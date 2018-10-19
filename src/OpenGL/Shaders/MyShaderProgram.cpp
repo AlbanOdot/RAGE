@@ -1,5 +1,4 @@
 #include "MyShaderProgram.h"
-#include <gl3.h>
 #include <iostream>
 
 MyShaderProgram::MyShaderProgram(){}
