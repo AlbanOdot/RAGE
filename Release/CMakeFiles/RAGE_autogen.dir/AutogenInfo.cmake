@@ -1,0 +1,33 @@
+# Directories and files
+set(AM_CMAKE_BINARY_DIR "/home/dtl1115a/RAGE/Release/")
+set(AM_CMAKE_SOURCE_DIR "/home/dtl1115a/RAGE/")
+set(AM_CMAKE_CURRENT_SOURCE_DIR "/home/dtl1115a/RAGE/")
+set(AM_CMAKE_CURRENT_BINARY_DIR "/home/dtl1115a/RAGE/Release/")
+set(AM_CMAKE_INCLUDE_DIRECTORIES_PROJECT_BEFORE "")
+set(AM_BUILD_DIR "/home/dtl1115a/RAGE/Release/RAGE_autogen")
+set(AM_SOURCES "/home/dtl1115a/RAGE/src/OpenGL/GeometryDisplay.cpp;/home/dtl1115a/RAGE/src/OpenGL/Object/MyModel.cpp;/home/dtl1115a/RAGE/src/OpenGL/Object/MyObject.cpp;/home/dtl1115a/RAGE/src/OpenGL/Shaders/MyShaderProgram.cpp;/home/dtl1115a/RAGE/src/OpenGL/Shaders/ShaderLoader.cpp;/home/dtl1115a/RAGE/src/OpenGL/shadericosphere.cpp;/home/dtl1115a/RAGE/src/hello_camera/camera.cpp;/home/dtl1115a/RAGE/src/hello_camera/hellocamera.cpp;/home/dtl1115a/RAGE/src/main.cpp;/home/dtl1115a/RAGE/src/mainwindow.cpp;/home/dtl1115a/RAGE/src/myopenglwidget.cpp;/home/dtl1115a/RAGE/src/scene.cpp")
+set(AM_HEADERS "/home/dtl1115a/RAGE/src/OpenGL/GeometryDisplay.h;/home/dtl1115a/RAGE/src/OpenGL/Object/MyModel.h;/home/dtl1115a/RAGE/src/OpenGL/Object/MyObject.h;/home/dtl1115a/RAGE/src/OpenGL/Shaders/MyShaderProgram.h;/home/dtl1115a/RAGE/src/OpenGL/Shaders/ShaderLoader.h;/home/dtl1115a/RAGE/src/OpenGL/shadericosphere.h;/home/dtl1115a/RAGE/src/hello_camera/camera.h;/home/dtl1115a/RAGE/src/hello_camera/hellocamera.h;/home/dtl1115a/RAGE/src/mainwindow.h;/home/dtl1115a/RAGE/src/myopenglwidget.h;/home/dtl1115a/RAGE/src/opengl_stuff.h;/home/dtl1115a/RAGE/src/scene.h")
+# Qt environment
+set(AM_QT_VERSION_MAJOR "5")
+set(AM_QT_MOC_EXECUTABLE "/opt/anaconda3/bin/moc")
+set(AM_QT_UIC_EXECUTABLE "/opt/anaconda3/bin/uic")
+set(AM_QT_RCC_EXECUTABLE )
+# MOC settings
+set(AM_MOC_SKIP "")
+set(AM_MOC_DEFINITIONS "QT_CORE_LIB;QT_GUI_LIB;QT_NO_DEBUG;QT_OPENGL_LIB;QT_WIDGETS_LIB")
+set(AM_MOC_INCLUDES "/home/dtl1115a/RAGE/Release;/home/dtl1115a/RAGE;/home/dtl1115a/RAGE/Release/RAGE_autogen/include;/home/dtl1115a/RAGE/src;/home/dtl1115a/RAGE/glm;/home/dtl1115a/RAGE/Tools/OpenMesh-7.1/build/install/include;/opt/anaconda3/include/qt;/opt/anaconda3/include/qt/QtWidgets;/opt/anaconda3/include/qt/QtGui;/opt/anaconda3/include/qt/QtCore;/opt/anaconda3/./mkspecs/linux-g++;/opt/anaconda3/include/qt/QtOpenGL")
+set(AM_MOC_OPTIONS "")
+set(AM_MOC_RELAXED_MODE "FALSE")
+set(AM_MOC_DEPEND_FILTERS "")
+set(AM_MOC_PREDEFS_CMD )
+# UIC settings
+set(AM_UIC_SKIP "")
+set(AM_UIC_TARGET_OPTIONS "")
+set(AM_UIC_OPTIONS_FILES "")
+set(AM_UIC_OPTIONS_OPTIONS "")
+set(AM_UIC_SEARCH_PATHS "")
+# RCC settings
+set(AM_RCC_SOURCES  )
+set(AM_RCC_INPUTS )
+set(AM_RCC_OPTIONS_FILES )
+set(AM_RCC_OPTIONS_OPTIONS )

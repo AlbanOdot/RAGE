@@ -1,5 +1,4 @@
-#include "GeometryDisplay.h"
-
+#include <unistd.h>
 #include "GeometryDisplay.h"
 #include <iostream>
 /*------------------------------------------------------------------------------------------------------------------------*/
@@ -16,7 +15,16 @@ GeometryDisplay::GeometryDisplay(const int width, const int height) : Scene(widt
 
     //hardcoded init of the mesh
     //TODO here
+    char buff[1000];
+    getcwd(buff,1000);
+    std::string wd(buff);
+    std::string meshPath = wd + std::string("/../src/OpenGL/DataFiles/Mesh/Skull.obj");
+    std::string vshPath = wd + std::string("/../src/OpenGL/DataFiles/Shader/basic.vert.txt");
+    std::string fragPath = wd + std::string("/../src/OpenGL/DataFiles/orange.frag.txt");
 
+    _objects.emplace_back(MyModel(meshPath,  //MESH
+                                  vshPath,   //Vertex Shader
+                                  fragPath));//Fragment Shader
     _cameraselector.push_back( []()->Camera*{return new EulerCamera(glm::vec3(0.f, 0.f, 2.5));} );
     _cameraselector.push_back( []()->Camera*{return new TrackballCamera(glm::vec3(0.f, 0.f, 2.5),glm::vec3(0.f, 1.f, 0.f),glm::vec3(0.f, 0.f, 0.f));} );
 
@@ -38,9 +46,9 @@ void GeometryDisplay::draw() {
     _view = _camera->viewmatrix();
 
     GLuint prog = 0;
+    prog = _objects[0].getProg();
+    glUseProgram(prog);
     for( auto& obj : _objects){
-        prog = obj.getProg();
-        glUseProgram(prog);
         auto model = obj.getModel();
         obj.updateNormalMatrix(glm::mat3(model * _view));
         glUniformMatrix4fv( glGetUniformLocation(prog, "NormalMatrix"), 1, GL_FALSE, glm::value_ptr(obj.getNormalMatrix()));

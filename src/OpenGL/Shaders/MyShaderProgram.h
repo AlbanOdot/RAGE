@@ -16,7 +16,7 @@ public:
     void addFragment(GLuint Frag);
 
     GLuint getProgram() { return program;}
-    GLuint getUniformLocation(const char * name) { return glGetUniformLocation(program,name);}
+    //GLuint getUniformLocation(const char * name) { return glGetUniformLocation(program,name);}
 
 private:
 

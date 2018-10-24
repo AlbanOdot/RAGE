@@ -22,6 +22,8 @@ private slots:
 
     void on_actionShader_ICO_Sphere_triggered();
 
+    void on_actionDisplay_geometry_triggered();
+
 private:
     Ui::MainWindow *ui;
 };

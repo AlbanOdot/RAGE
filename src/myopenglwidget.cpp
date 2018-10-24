@@ -8,11 +8,13 @@
 #include <stdexcept>
 
 #include "hello_camera/hellocamera.h"
+#include "OpenGL/GeometryDisplay.h"
 
 MyOpenGLWidget::MyOpenGLWidget(QWidget *parent) :QOpenGLWidget(parent), QOpenGLFunctions_4_1_Core(), _scene(nullptr), _lastime(0) {
     // add all demo constructors here
     _democonstructors.push_back( [](int width, int height)->Scene*{std::cout << "Hello clear ..." << std::endl; return new Scene(width, height);} );
     _democonstructors.push_back( [](int width, int height)->Scene*{std::cout << "Hello camera ..." << std::endl; return new SimpleCamera(width, height);} );
+    _democonstructors.push_back( [](int width, int height)->Scene*{std::cout << "Geometry Display ..." << std::endl; return new GeometryDisplay(width, height);} );
 }
 
 MyOpenGLWidget::~MyOpenGLWidget() {

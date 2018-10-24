@@ -36,3 +36,9 @@ void MainWindow::on_actionHello_triangle_triggered() {
 void MainWindow::on_actionShader_ICO_Sphere_triggered(){
     ui->openglWidget->activatedemo(5);
 }
+
+
+void MainWindow::on_actionDisplay_geometry_triggered(){
+    ui->openglWidget->activatedemo(2);
+}
+

@@ -1,6 +1,6 @@
 #include "MyModel.h"
 
-
+unsigned int MyModel::currentProg = 0;
 //All of the constructors
 MyModel::MyModel(){}
 
@@ -15,7 +15,7 @@ MyModel::MyModel(const std::string& meshPath, const std::string& vsPath, const s
     GLuint vs = _loader.getShader();
     _loader = ShaderLoader(fsPath.c_str(),GL_FRAGMENT_SHADER,"FRAGMENT");
     GLuint fs = _loader.getShader();
-    _prog = MyShaderProgram(vs,fs);
+    _prog.emplace_back(MyShaderProgram(vs,fs));
 
 }
 
@@ -32,7 +32,7 @@ MyModel::MyModel(const std::string& meshPath, const std::string& vsPath, const s
     GLuint gs = _loader.getShader();
     _loader = ShaderLoader(fsPath.c_str(),GL_FRAGMENT_SHADER,"FRAGMENT");
     GLuint fs = _loader.getShader();
-    _prog = MyShaderProgram(vs,tcs,tes,gs,fs);
+    _prog.emplace_back(MyShaderProgram(vs,tcs,tes,gs,fs));
 
 }
 
