@@ -1,13 +1,41 @@
 #include "MyObject.h"
-#include <gl3.h>
+#include <vector>
+#include <iostream>
 
 MyObject::MyObject(){}
 MyObject::~MyObject(){}
 
-//Mesh with ligth interaction
-MyObject::MyObject(const std::vector<GLfloat>& v, const std::vector<GLfloat>& n, const std::vector<GLuint>& t) :
-vertices(v),normals(n),topology(t)
-{
+//Create/init all of the openGL attributes
+void MyObject::loadGL(){
+/*    _mesh.n_vertices();
+    std::vector<GLfloat> vertices = std::vector<GLfloat>(_mesh.n_vertices()*3); //Vertices
+    std::vector<GLfloat> normals = std::vector<GLfloat>(_mesh.n_vertices()*3); //Normals
+    std::vector<GLfloat> uv; //TODO : Prendre en compte les textures -> plus tard osef là
+    std::vector<GLuint> topology  = std::vector<GLuint>(_mesh.n_faces()*3); //Indices;
+    MyMesh::Point p;
+    MyMesh::Point nn;
+    _mesh.update_normals();
+
+    //On iter sur chaque face -> on va repeter des données mais obligé pour la topo
+    for (MyMesh::FaceIter f_it = _mesh.faces_begin(); f_it != _mesh.faces_end(); ++f_it) {
+        MyMesh::FaceVertexIter fv_it;
+        //on iter sur les point d'une face ( fv = Face's vertices )
+        for (fv_it = _mesh.fv_iter(*f_it); fv_it.is_valid(); ++fv_it) {
+            //Indices
+            topology[i] = fv_it->idx();
+            //Vertices
+            p = _mesh.point(*fv_it);
+            vertices[(fv_it->idx()*3)] = p[0];
+            vertices[(fv_it->idx()*3)+1] = p[1];
+            vertices[(fv_it->idx()*3)+2] = p[2];
+            //Normals*
+            nn = _mesh.normal(*fv_it);
+            normals[(fv_it->idx()*3)] = nn[0];
+            normals[(fv_it->idx()*3)+1] = nn[1];
+            normals[(fv_it->idx()*3)+2] = nn[2];
+        }
+    }
+
     // Create the VAO:
     glGenVertexArrays(1, &vao);
     glBindVertexArray(vao);
@@ -19,80 +47,47 @@ vertices(v),normals(n),topology(t)
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat), (GLvoid *)0);
 
-    // Create the VBO for positions:;
+    // Create the NBO for normals;
     glGenBuffers(1, &nbo);
     glBindBuffer(GL_ARRAY_BUFFER, nbo);
     glBufferData(GL_ARRAY_BUFFER, normals.size() * sizeof(GLfloat), normals.data(), GL_STATIC_DRAW);
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat), (GLvoid *)0);
 
-    // Create the VBO for indices:
+    // Create the EBO for topology:
     glGenBuffers(1, &ebo);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, topology.size()*sizeof(GLfloat), topology.data(), GL_STATIC_DRAW);
 
     glBindVertexArray(0);
-}
-//Mesh simple mesh
-MyObject::MyObject(const std::vector<GLfloat>& v, const std::vector<GLuint>& t){
-    MyObject(v,std::vector<GLfloat>(),t);
-}
-//Points cloud
-MyObject::MyObject(const std::vector<GLfloat>& v){
-    MyObject(v,std::vector<GLfloat>(), std::vector<GLuint>() );
+    */
 }
 
-//From points cloud to Mesh
-void MyObject::addTopology(const std::vector<GLuint>& t){
-    topology = t;
-    glBindVertexArray(vao);
-    // Create the VBO for positions:;
-    glBindBuffer(GL_ARRAY_BUFFER, vbo);
-    glBindBuffer(GL_ARRAY_BUFFER, nbo);
-    // Create the VBO for indices:
-    glGenBuffers(1, &ebo);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, topology.size()*sizeof(GLfloat), topology.data(), GL_STATIC_DRAW);
-    glBindVertexArray(0);
+MyObject::MyObject(const std::string& path){
+   /* if (!OpenMesh::IO::read_mesh(_mesh, path.c_str()))
+    {
+      std::cerr << "read error\n";
+      exit(1);
+    }*/
+    //From there the mesh is loaded
+    //We now want to init the VAO and everything
+     loadGL();
 }
-//From Mesh to Mesh with light interaction
-void MyObject::addNormals(const std::vector<GLfloat>& n){
-    normals = n;
-    // Create the VAO:
-    glBindVertexArray(vao);
-    // Create the VBO for positions
-    glBindBuffer(GL_ARRAY_BUFFER, vbo);
-    // Create the VBO for positions:;
-    glGenBuffers(1, &nbo);
-    glBindBuffer(GL_ARRAY_BUFFER, nbo);
-    glBufferData(GL_ARRAY_BUFFER, normals.size() * sizeof(GLfloat), normals.data(), GL_STATIC_DRAW);
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat), (GLvoid *)0);
 
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
+//Mesh actions
+//Return the new face count
+unsigned int MyObject::subdivideLoop(){
 
-    glBindVertexArray(0);
+    //return _mesh.n_faces();
 }
-//From points cloud to mesh with light interaction
-void MyObject::addNormalsAndTopology(const std::vector<GLfloat>&n, const std::vector<GLuint>& t){
-    normals = n;
-    topology = t;
-    glBindVertexArray(vao);
 
-    // Create the VBO for positions:;
-    glBindBuffer(GL_ARRAY_BUFFER, vbo);
-
-    // Create the VBO for positions:;
-    glGenBuffers(1, &nbo);
-    glBindBuffer(GL_ARRAY_BUFFER, nbo);
-    glBufferData(GL_ARRAY_BUFFER, normals.size() * sizeof(GLfloat), normals.data(), GL_STATIC_DRAW);
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(GLfloat), (GLvoid *)0);
-
-    // Create the VBO for indices:
-    glGenBuffers(1, &ebo);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, topology.size()*sizeof(GLfloat), topology.data(), GL_STATIC_DRAW);
-
-    glBindVertexArray(0);
+//Return the Error
+float MyObject::halfEdgeCollapse(const unsigned int faceCountTarget){
+    //On va sort avec une std::map (key = edge handle, val = error)
+    return 0.f;
+}
+//Return the Error
+float MyObject::EdgeCollapse( const unsigned int faceCountTarget){
+    //On va sort avec une std::map (key = edge handle, val = error)
+    return 0.f;
 }
