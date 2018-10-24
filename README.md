@@ -1,7 +1,8 @@
 # RAGE
-Really Awesome Graphique Engine. Small graphic engine developped because of reason
+*Really Awesome Graphique Engine. Small graphic engine developped because of reason*
 
 Build instructions :
+
 cd RAGE/Tools/OpenMesh-7.1/build
 
 cmake .. -DCMAKE_INSTALL_PREFIX="THE ABSOLUTE PATH TO THE install SUBDIRECTORY"
