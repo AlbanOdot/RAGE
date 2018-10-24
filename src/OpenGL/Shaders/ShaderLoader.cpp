@@ -4,7 +4,7 @@
 ShaderLoader::ShaderLoader(){}
 ShaderLoader::~ShaderLoader(){}
 
-ShaderLoader::ShaderLoader(const char * shaderSource, GLenum  t, const std::string& error){
+ShaderLoader::ShaderLoader(const char * shaderSource, int  t, const char * error){
     type = t;
     // Initialize shaders
     GLint success;

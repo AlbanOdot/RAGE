@@ -15,15 +15,8 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_action_Version_OpenGL_triggered();
 
     void on_actionHello_triangle_triggered();
-
-    void on_actionHello_camera_triggered();
-
-    void on_actionHello_UV_Sphere_triggered();
-
-    void on_actionHello_ICO_Sphere_triggered();
 
     void on_actionHello_clear_triggered();
 

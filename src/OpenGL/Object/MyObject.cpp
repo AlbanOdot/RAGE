@@ -7,13 +7,14 @@ MyObject::~MyObject(){}
 
 //Create/init all of the openGL attributes
 void MyObject::loadGL(){
-/*    _mesh.n_vertices();
+    _mesh.n_vertices();
     std::vector<GLfloat> vertices = std::vector<GLfloat>(_mesh.n_vertices()*3); //Vertices
     std::vector<GLfloat> normals = std::vector<GLfloat>(_mesh.n_vertices()*3); //Normals
     std::vector<GLfloat> uv; //TODO : Prendre en compte les textures -> plus tard osef là
-    std::vector<GLuint> topology  = std::vector<GLuint>(_mesh.n_faces()*3); //Indices;
+   _topology  = std::vector<GLuint>(_mesh.n_faces()*3); //Indices;
     MyMesh::Point p;
     MyMesh::Point nn;
+    unsigned int i = 0;
     _mesh.update_normals();
 
     //On iter sur chaque face -> on va repeter des données mais obligé pour la topo
@@ -22,7 +23,7 @@ void MyObject::loadGL(){
         //on iter sur les point d'une face ( fv = Face's vertices )
         for (fv_it = _mesh.fv_iter(*f_it); fv_it.is_valid(); ++fv_it) {
             //Indices
-            topology[i] = fv_it->idx();
+            _topology[i] = fv_it->idx();
             //Vertices
             p = _mesh.point(*fv_it);
             vertices[(fv_it->idx()*3)] = p[0];
@@ -57,18 +58,17 @@ void MyObject::loadGL(){
     // Create the EBO for topology:
     glGenBuffers(1, &ebo);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, topology.size()*sizeof(GLfloat), topology.data(), GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, _topology.size()*sizeof(GLfloat), _topology.data(), GL_STATIC_DRAW);
 
     glBindVertexArray(0);
-    */
 }
 
 MyObject::MyObject(const std::string& path){
-   /* if (!OpenMesh::IO::read_mesh(_mesh, path.c_str()))
+    if (!OpenMesh::IO::read_mesh(_mesh, path.c_str()))
     {
       std::cerr << "read error\n";
       exit(1);
-    }*/
+    }
     //From there the mesh is loaded
     //We now want to init the VAO and everything
      loadGL();
@@ -77,8 +77,7 @@ MyObject::MyObject(const std::string& path){
 //Mesh actions
 //Return the new face count
 unsigned int MyObject::subdivideLoop(){
-
-    //return _mesh.n_faces();
+    return _mesh.n_faces();
 }
 
 //Return the Error

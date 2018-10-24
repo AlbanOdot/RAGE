@@ -1,14 +1,14 @@
 #ifndef _MyShaderProgram
 #define _MyShaderProgram
 
-#include <gl.h>
+#include "./opengl_stuff.h"
 
 class MyShaderProgram{
 public:
     MyShaderProgram();
     ~MyShaderProgram();
-    MyShaderProgram(GLuint VS, GLuint TC, GLuint TE, GLuint Geo, GLuint Frag);
-    MyShaderProgram(GLuint VS, GLuint Frag);
+    MyShaderProgram(GLuint& VS, GLuint& TC, GLuint& TE, GLuint& Geo, GLuint& Frag);
+    MyShaderProgram(GLuint& VS, GLuint& Frag);
 
     void addVertex(GLuint VS);
     void addTesselation( GLuint TC, GLuint TE);

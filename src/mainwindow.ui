@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>656</height>
+    <height>667</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,28 +27,25 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>28</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuInfo">
-    <property name="title">
-     <string>Info</string>
-    </property>
-    <addaction name="action_Version_OpenGL"/>
-   </widget>
    <widget class="QMenu" name="menu_Demo">
     <property name="title">
      <string>&amp;Demo</string>
     </property>
     <addaction name="actionHello_clear"/>
     <addaction name="actionHello_triangle"/>
-    <addaction name="actionHello_camera"/>
-    <addaction name="actionHello_UV_Sphere"/>
-    <addaction name="actionHello_ICO_Sphere"/>
-    <addaction name="actionShader_ICO_Sphere"/>
+   </widget>
+   <widget class="QMenu" name="menuFiles">
+    <property name="title">
+     <string>Files</string>
+    </property>
+    <addaction name="actionOpen"/>
+    <addaction name="actionClose"/>
    </widget>
    <addaction name="menu_Demo"/>
-   <addaction name="menuInfo"/>
+   <addaction name="menuFiles"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -102,6 +99,16 @@
   <action name="actionShader_ICO_Sphere">
    <property name="text">
     <string>Shader ICO Sphere</string>
+   </property>
+  </action>
+  <action name="actionOpen">
+   <property name="text">
+    <string>Open</string>
+   </property>
+  </action>
+  <action name="actionClose">
+   <property name="text">
+    <string>Close</string>
    </property>
   </action>
  </widget>

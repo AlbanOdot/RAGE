@@ -4,8 +4,9 @@
 MyShaderProgram::MyShaderProgram(){}
 MyShaderProgram::~MyShaderProgram(){}
 
-MyShaderProgram::MyShaderProgram(GLuint VS, GLuint TC, GLuint TE, GLuint Geo, GLuint Frag) :
-vertexShader(VS),tesselationControlShader(TC),tesselationEvaluationShader(TE), geometryShader(Geo), fragmentShader(Frag)
+MyShaderProgram::MyShaderProgram(GLuint& VS, GLuint& TC, GLuint& TE, GLuint& Geo, GLuint& Frag)
+    : vertexShader(VS),tesselationControlShader(TC),tesselationEvaluationShader(TE),
+      geometryShader(Geo), fragmentShader(Frag)
 {
     int success = 0;
     GLchar infoLog[512];
@@ -24,8 +25,20 @@ vertexShader(VS),tesselationControlShader(TC),tesselationEvaluationShader(TE), g
     }
 }
 
-MyShaderProgram::MyShaderProgram(GLuint VS, GLuint Frag){
-
+MyShaderProgram::MyShaderProgram(GLuint &VS, GLuint &Frag)
+    : vertexShader(VS),fragmentShader(Frag){
+    int success = 0;
+    GLchar infoLog[512];
+    program = glCreateProgram();
+    glAttachShader(program,vertexShader);
+    glAttachShader(program, fragmentShader);
+    glBindAttribLocation(program,0,"Position");
+    glLinkProgram(program);
+    glGetProgramiv(program, GL_LINK_STATUS, &success);
+    if(!success){
+        glGetProgramInfoLog(program, 512,NULL,infoLog);
+        std::cerr << "ERROR::SHADER::LINK_FAILED\n"<<infoLog<<std::endl;
+    }
 }
 
 void MyShaderProgram::addVertex(GLuint VS){
