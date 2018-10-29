@@ -40,7 +40,6 @@ MyShaderProgram::MyShaderProgram(GLuint &VS, GLuint &Frag)
         glGetProgramInfoLog(program, 512,NULL,infoLog);
         std::cerr << "ERROR::SHADER::LINK_FAILED\n"<<infoLog<<std::endl;
     }
-    std::cout << "out of my shader Program init" << std::endl;
 }
 
 void MyShaderProgram::addVertex(GLuint VS){

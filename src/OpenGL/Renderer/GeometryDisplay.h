@@ -26,7 +26,8 @@ private:
 
     //Change this to vector if you need multiple objects
     MyModel m_object;
-    FrameBuffer m_fb;
+    MyModel m_postProcessScreen;
+    FrameBuffer m_frameBuffer;
 
     // for mouse management
     int _button; // 0 --> left. 1 --> right. 2 --> middle. 3 --> other
