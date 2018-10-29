@@ -1,8 +1,8 @@
-# Install script for directory: /home/dtl1115a/RAGE/Tools/OpenMesh-7.1
+# Install script for directory: /Users/alban/Cours/M2/RTR/RAGE/Tools/OpenMesh-7.1
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/dtl1115a/RAGE/Tools/OpenMesh-7.1/build/install")
+  set(CMAKE_INSTALL_PREFIX "/Users/alban/Cours/M2/RTR/RAGE/Tools/OpenMesh-7.1/build/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -27,18 +27,18 @@ if(NOT CMAKE_INSTALL_COMPONENT)
   endif()
 endif()
 
-# Install shared libraries without execute permission?
-if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
-  set(CMAKE_INSTALL_SO_NO_EXE "0")
+# Is this installation the result of a crosscompile?
+if(NOT DEFINED CMAKE_CROSSCOMPILING)
+  set(CMAKE_CROSSCOMPILING "FALSE")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/dtl1115a/RAGE/Tools/OpenMesh-7.1/build/src/OpenMesh/Core/cmake_install.cmake")
-  include("/home/dtl1115a/RAGE/Tools/OpenMesh-7.1/build/src/OpenMesh/Tools/cmake_install.cmake")
-  include("/home/dtl1115a/RAGE/Tools/OpenMesh-7.1/build/src/OpenMesh/Apps/cmake_install.cmake")
-  include("/home/dtl1115a/RAGE/Tools/OpenMesh-7.1/build/src/Unittests/cmake_install.cmake")
-  include("/home/dtl1115a/RAGE/Tools/OpenMesh-7.1/build/Doc/cmake_install.cmake")
+  include("/Users/alban/Cours/M2/RTR/RAGE/Tools/OpenMesh-7.1/build/src/OpenMesh/Core/cmake_install.cmake")
+  include("/Users/alban/Cours/M2/RTR/RAGE/Tools/OpenMesh-7.1/build/src/OpenMesh/Tools/cmake_install.cmake")
+  include("/Users/alban/Cours/M2/RTR/RAGE/Tools/OpenMesh-7.1/build/src/OpenMesh/Apps/cmake_install.cmake")
+  include("/Users/alban/Cours/M2/RTR/RAGE/Tools/OpenMesh-7.1/build/src/Unittests/cmake_install.cmake")
+  include("/Users/alban/Cours/M2/RTR/RAGE/Tools/OpenMesh-7.1/build/Doc/cmake_install.cmake")
 
 endif()
 
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/dtl1115a/RAGE/Tools/OpenMesh-7.1/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/alban/Cours/M2/RTR/RAGE/Tools/OpenMesh-7.1/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/Dualizer.dir/dualizer.cc.o"
-  "../../../../Build/bin/Dualizer.pdb"
-  "../../../../Build/bin/Dualizer"
+  "Dualizer.pdb"
+  "Dualizer"
 )
 
 # Per-language clean rules from dependency scanning.

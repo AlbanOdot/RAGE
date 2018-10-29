@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/Smoothing.dir/smooth.cc.o"
-  "../../../../Build/bin/Smoothing.pdb"
-  "../../../../Build/bin/Smoothing"
+  "Smoothing.pdb"
+  "Smoothing"
 )
 
 # Per-language clean rules from dependency scanning.

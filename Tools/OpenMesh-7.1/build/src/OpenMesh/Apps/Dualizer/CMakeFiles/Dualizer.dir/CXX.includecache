@@ -820,7 +820,7 @@ float.h
 OpenMesh/Utils/NumLimitsT.hh
 -
 
-/home/dtl1115a/RAGE/Tools/OpenMesh-7.1/src/OpenMesh/Apps/Dualizer/dualizer.cc
+/Users/alban/Cours/M2/RTR/RAGE/Tools/OpenMesh-7.1/src/OpenMesh/Apps/Dualizer/dualizer.cc
 iostream
 -
 OpenMesh/Core/IO/MeshIO.hh

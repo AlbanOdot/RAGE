@@ -1,8 +1,8 @@
-# Install script for directory: /home/dtl1115a/RAGE/Tools/OpenMesh-7.1/src/OpenMesh/Apps
+# Install script for directory: /Users/alban/Cours/M2/RTR/RAGE/Tools/OpenMesh-7.1/src/OpenMesh/Apps
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/dtl1115a/RAGE/Tools/OpenMesh-7.1/build/install")
+  set(CMAKE_INSTALL_PREFIX "/Users/alban/Cours/M2/RTR/RAGE/Tools/OpenMesh-7.1/build/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -27,26 +27,21 @@ if(NOT CMAKE_INSTALL_COMPONENT)
   endif()
 endif()
 
-# Install shared libraries without execute permission?
-if(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
-  set(CMAKE_INSTALL_SO_NO_EXE "0")
+# Is this installation the result of a crosscompile?
+if(NOT DEFINED CMAKE_CROSSCOMPILING)
+  set(CMAKE_CROSSCOMPILING "FALSE")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/dtl1115a/RAGE/Tools/OpenMesh-7.1/build/src/OpenMesh/Apps/Dualizer/cmake_install.cmake")
-  include("/home/dtl1115a/RAGE/Tools/OpenMesh-7.1/build/src/OpenMesh/Apps/Decimating/commandlineDecimater/cmake_install.cmake")
-  include("/home/dtl1115a/RAGE/Tools/OpenMesh-7.1/build/src/OpenMesh/Apps/Smoothing/cmake_install.cmake")
-  include("/home/dtl1115a/RAGE/Tools/OpenMesh-7.1/build/src/OpenMesh/Apps/Subdivider/commandlineSubdivider/cmake_install.cmake")
-  include("/home/dtl1115a/RAGE/Tools/OpenMesh-7.1/build/src/OpenMesh/Apps/Subdivider/commandlineAdaptiveSubdivider/cmake_install.cmake")
-  include("/home/dtl1115a/RAGE/Tools/OpenMesh-7.1/build/src/OpenMesh/Apps/mconvert/cmake_install.cmake")
-  include("/home/dtl1115a/RAGE/Tools/OpenMesh-7.1/build/src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/cmake_install.cmake")
-  include("/home/dtl1115a/RAGE/Tools/OpenMesh-7.1/build/src/OpenMesh/Apps/VDProgMesh/Analyzer/cmake_install.cmake")
-  include("/home/dtl1115a/RAGE/Tools/OpenMesh-7.1/build/src/OpenMesh/Apps/Decimating/DecimaterGui/cmake_install.cmake")
-  include("/home/dtl1115a/RAGE/Tools/OpenMesh-7.1/build/src/OpenMesh/Apps/QtViewer/cmake_install.cmake")
-  include("/home/dtl1115a/RAGE/Tools/OpenMesh-7.1/build/src/OpenMesh/Apps/Subdivider/SubdividerGui/cmake_install.cmake")
-  include("/home/dtl1115a/RAGE/Tools/OpenMesh-7.1/build/src/OpenMesh/Apps/ProgViewer/cmake_install.cmake")
-  include("/home/dtl1115a/RAGE/Tools/OpenMesh-7.1/build/src/OpenMesh/Apps/VDProgMesh/Synthesizer/cmake_install.cmake")
+  include("/Users/alban/Cours/M2/RTR/RAGE/Tools/OpenMesh-7.1/build/src/OpenMesh/Apps/Dualizer/cmake_install.cmake")
+  include("/Users/alban/Cours/M2/RTR/RAGE/Tools/OpenMesh-7.1/build/src/OpenMesh/Apps/Decimating/commandlineDecimater/cmake_install.cmake")
+  include("/Users/alban/Cours/M2/RTR/RAGE/Tools/OpenMesh-7.1/build/src/OpenMesh/Apps/Smoothing/cmake_install.cmake")
+  include("/Users/alban/Cours/M2/RTR/RAGE/Tools/OpenMesh-7.1/build/src/OpenMesh/Apps/Subdivider/commandlineSubdivider/cmake_install.cmake")
+  include("/Users/alban/Cours/M2/RTR/RAGE/Tools/OpenMesh-7.1/build/src/OpenMesh/Apps/Subdivider/commandlineAdaptiveSubdivider/cmake_install.cmake")
+  include("/Users/alban/Cours/M2/RTR/RAGE/Tools/OpenMesh-7.1/build/src/OpenMesh/Apps/mconvert/cmake_install.cmake")
+  include("/Users/alban/Cours/M2/RTR/RAGE/Tools/OpenMesh-7.1/build/src/OpenMesh/Apps/VDProgMesh/mkbalancedpm/cmake_install.cmake")
+  include("/Users/alban/Cours/M2/RTR/RAGE/Tools/OpenMesh-7.1/build/src/OpenMesh/Apps/VDProgMesh/Analyzer/cmake_install.cmake")
 
 endif()
 

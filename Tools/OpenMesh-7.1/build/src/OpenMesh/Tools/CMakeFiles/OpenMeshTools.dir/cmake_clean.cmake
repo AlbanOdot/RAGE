@@ -8,9 +8,9 @@ file(REMOVE_RECURSE
   "CMakeFiles/OpenMeshTools.dir/VDPM/VHierarchyNodeIndex.cc.o"
   "CMakeFiles/OpenMeshTools.dir/VDPM/VHierarchyWindow.cc.o"
   "CMakeFiles/OpenMeshTools.dir/VDPM/ViewingParameters.cc.o"
-  "../../../Build/lib/libOpenMeshTools.pdb"
-  "../../../Build/lib/libOpenMeshTools.so.7.1"
-  "../../../Build/lib/libOpenMeshTools.so"
+  "libOpenMeshTools.pdb"
+  "libOpenMeshTools.7.1.dylib"
+  "libOpenMeshTools.dylib"
 )
 
 # Per-language clean rules from dependency scanning.

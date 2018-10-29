@@ -900,7 +900,7 @@ OpenMesh/Core/Geometry/VectorT.hh
 OpenMesh/Core/Geometry/Plane3d.hh
 -
 
-/home/dtl1115a/RAGE/Tools/OpenMesh-7.1/src/OpenMesh/Apps/VDProgMesh/Analyzer/vdpmanalyzer.cc
+/Users/alban/Cours/M2/RTR/RAGE/Tools/OpenMesh-7.1/src/OpenMesh/Apps/VDProgMesh/Analyzer/vdpmanalyzer.cc
 OpenMesh/Core/System/config.h
 -
 iostream

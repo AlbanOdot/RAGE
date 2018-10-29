@@ -8,7 +8,7 @@
 #include <stdexcept>
 
 #include "hello_camera/hellocamera.h"
-#include "OpenGL/GeometryDisplay.h"
+#include "./src/OpenGL/Renderer/GeometryDisplay.h"
 
 MyOpenGLWidget::MyOpenGLWidget(QWidget *parent) :QOpenGLWidget(parent), QOpenGLFunctions_4_1_Core(), _scene(nullptr), _lastime(0) {
     // add all demo constructors here

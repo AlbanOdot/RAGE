@@ -9,9 +9,8 @@ set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3")
 
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_SOURCE_DIR}/bin)
 
-set(OPENMESHCORE_LIBRARIES ${CMAKE_SOURCE_DIR}/Tools/OpenMesh-7.1/build/install/lib/libOpenMeshCore.a)
-
-set(OPENMESHTOOLS_LIBRARIES ${CMAKE_SOURCE_DIR}/Tools/OpenMesh-7.1/build/install/lib/libOpenMeshTools.a)
+set(OPENMESHCORE_LIBRARIES ${CMAKE_SOURCE_DIR}/Tools/OpenMesh-7.1/build/install/lib/libOpenMeshCore.7.1.dylib)
+set(OPENMESHTOOLS_LIBRARIES ${CMAKE_SOURCE_DIR}/Tools/OpenMesh-7.1/build/install/lib/libOpenMeshTools.7.1.dylib)
 
 find_package(OpenGL REQUIRED) # define OPENGL_LIBRARIES
 find_package(Qt5Widgets REQUIRED)
@@ -24,6 +23,7 @@ find_package(Qt5OpenGL REQUIRED)
 FILE(GLOB_RECURSE
     folder_source
     ${CMAKE_SOURCE_DIR}/src/*.cpp
+    ${CMAKE_SOURCE_DIR}/src/*.cc
 )
 
 FILE(GLOB_RECURSE
@@ -37,6 +37,10 @@ FILE(GLOB_RECURSE
     ${CMAKE_SOURCE_DIR}/src/*.ui
 )
 
+FILE(GLOB_RECURSE
+    folder_shader
+    ${CMAKE_SOURCE_DIR}/src/*.txt
+)
 
 include_directories(
    ${CMAKE_SOURCE_DIR}/src
@@ -72,6 +76,7 @@ add_executable(RAGE
                ${folder_source}
                ${folder_header}
                ${folder_ui}
+               ${folder_shader}
                )
 qt5_use_modules(RAGE Widgets OpenGL)
 set(EXT_LIBS ${QT_LIBRARIES} ${OPENGL_LIBRARIES} ${OPENMESHCORE_LIBRARIES} ${OPENMESHTOOLS_LIBRARIES})

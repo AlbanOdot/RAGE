@@ -1136,9 +1136,9 @@ unistd.h
 getopt.h
 -
 
-/home/dtl1115a/RAGE/Tools/OpenMesh-7.1/src/OpenMesh/Apps/Decimating/CmdOption.hh
+/Users/alban/Cours/M2/RTR/RAGE/Tools/OpenMesh-7.1/src/OpenMesh/Apps/Decimating/CmdOption.hh
 
-/home/dtl1115a/RAGE/Tools/OpenMesh-7.1/src/OpenMesh/Apps/Decimating/decimater.cc
+/Users/alban/Cours/M2/RTR/RAGE/Tools/OpenMesh-7.1/src/OpenMesh/Apps/Decimating/decimater.cc
 iostream
 -
 fstream
@@ -1184,5 +1184,5 @@ OpenMesh/Tools/Decimater/ModIndependentSetsT.hh
 OpenMesh/Tools/Decimater/ModRoundnessT.hh
 -
 CmdOption.hh
-/home/dtl1115a/RAGE/Tools/OpenMesh-7.1/src/OpenMesh/Apps/Decimating/CmdOption.hh
+/Users/alban/Cours/M2/RTR/RAGE/Tools/OpenMesh-7.1/src/OpenMesh/Apps/Decimating/CmdOption.hh
 

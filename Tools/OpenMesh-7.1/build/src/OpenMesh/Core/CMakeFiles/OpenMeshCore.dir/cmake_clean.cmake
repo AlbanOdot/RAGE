@@ -23,9 +23,9 @@ file(REMOVE_RECURSE
   "CMakeFiles/OpenMeshCore.dir/Utils/BaseProperty.cc.o"
   "CMakeFiles/OpenMeshCore.dir/Utils/Endian.cc.o"
   "CMakeFiles/OpenMeshCore.dir/Utils/RandomNumberGenerator.cc.o"
-  "../../../Build/lib/libOpenMeshCore.pdb"
-  "../../../Build/lib/libOpenMeshCore.so.7.1"
-  "../../../Build/lib/libOpenMeshCore.so"
+  "libOpenMeshCore.pdb"
+  "libOpenMeshCore.7.1.dylib"
+  "libOpenMeshCore.dylib"
 )
 
 # Per-language clean rules from dependency scanning.
