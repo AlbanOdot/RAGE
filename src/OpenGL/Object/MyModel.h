@@ -5,6 +5,8 @@
 #include "./src/OpenGL/ShadersUtils/MyShaderProgram.h"
 #include "./src/OpenGL/ShadersUtils/ShaderLoader.h"
 
+
+
 //MyModel is the object to be displayed by the openGL
 class MyModel : public MyObject
 {

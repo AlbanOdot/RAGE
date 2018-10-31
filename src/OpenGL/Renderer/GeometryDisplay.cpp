@@ -28,8 +28,8 @@ GeometryDisplay::GeometryDisplay(const int width, const int height) : Scene(widt
                        fragPath);//Fragment Shader
 
     meshPath = wd + std::string("/../DataFiles/Mesh/square.obj");
-    vshPath = wd +  std::string("/../src/OpenGL/Shader/pass.vert.txt");
-    fragPath = wd + std::string("/../src/OpenGL/Shader/SSAO.frag.txt");
+    vshPath = wd +  std::string("/../src/OpenGL/Shader/basic.vert.txt");
+    fragPath = wd + std::string("/../src/OpenGL/Shader/color.frag.txt");
     m_postProcessScreen = MyModel(meshPath, vshPath, fragPath);
 
 
@@ -48,7 +48,17 @@ void GeometryDisplay::resize(int width, int height){
 }
 
 void GeometryDisplay::draw() {
-    Scene::draw();
+    //1ere passe de rendu
+    //Qt utilise son propre buffer
+    GLint qt_buffer;
+    glGetIntegerv(GL_FRAMEBUFFER_BINDING, &qt_buffer);
+
+    // first pass
+    //m_frameBuffer.bind();
+    glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // we're not using the stencil buffer now
+    glEnable(GL_DEPTH_TEST);
+
     glUseProgram(m_object.getProg());
     _view = _camera->viewmatrix();
     glm::mat4 model(m_object.getModel());
@@ -56,7 +66,20 @@ void GeometryDisplay::draw() {
     glUniformMatrix4fv( glGetUniformLocation(m_object.getProg(), "view"), 1, GL_FALSE, glm::value_ptr(_view));
     glUniformMatrix4fv( glGetUniformLocation(m_object.getProg(), "projection"), 1, GL_FALSE, glm::value_ptr(_projection));
     m_object.draw();
+/*
+    //2eme passe de rendu, on vient rajouter les effets spéciaux
+    //On rebind la bonne sortie (qt opengl widget )
+    glBindFramebuffer(GL_FRAMEBUFFER, qt_buffer);
+    glClearColor(1,1,1, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT);
+std::cout << m_object.getProg() << "    :    " << m_postProcessScreen.getProg() << std::endl;
+    //glUseProgram(m_postProcessScreen.getProg());
+    glActiveTexture(GL_TEXTURE0);
+    glDisable(GL_DEPTH_TEST);
+    glBindTexture(GL_TEXTURE_2D, m_frameBuffer.textureColor);
+    glUniform1i(glGetUniformLocation(m_postProcessScreen.getProg(), "screenTexture"), 0);
     m_postProcessScreen.draw();
+*/
 }
 
 void GeometryDisplay::mouseclick(int button, float xpos, float ypos) {
@@ -77,6 +100,10 @@ void GeometryDisplay::keyboardmove(int key, double time) {
 bool GeometryDisplay::keyboard(unsigned char k) {
 
     switch(k) {
+    case '+':
+        m_object.subdivideLoop();
+        draw();
+        return true;
     case 'p':
         _activecamera = (_activecamera+1)%2;
         _camera.reset(_cameraselector[_activecamera]());

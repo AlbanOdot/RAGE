@@ -6,8 +6,11 @@
 //#define TINYOBJLOADER_IMPLEMENTATION
 #include "tiny_obj_loader.h"
 #include "./opengl_stuff.h"
+#include <OpenMesh/Core/Mesh/TriMesh_ArrayKernelT.hh>
 
 using namespace tinyobj;
+
+typedef OpenMesh::TriMesh_ArrayKernelT<> Mesh;
 
 class MyObject {
 
@@ -27,15 +30,17 @@ public:
     //Return the Error
     virtual float EdgeCollapse( const unsigned int faceCountTarget);
 
+
+
     //Mesh info
     //if -1 return the sum over the whole mesh, if != -1 return the value of the asked patch
     inline unsigned int faceCount(int i = -1)     {int s =0;
-                                                    if(i != -1 )
-                                                        s = shapes_m[i].mesh.num_face_vertices.size();
-                                                    else
-                                                        for( unsigned long k = 0; k < shapes_m.size(); ++k)
-                                                            s +=shapes_m[k].mesh.num_face_vertices.size();
-                                                   return s;
+                                                   if(i != -1 )
+                                                       s = shapes_m[i].mesh.num_face_vertices.size();
+                                                   else
+                                                       for( unsigned long k = 0; k < shapes_m.size(); ++k)
+                                                           s +=shapes_m[k].mesh.num_face_vertices.size();
+                                                                                              return s;
                                                   }
 
     inline unsigned int verticesCount(int i = -1) {return 3 * faceCount( i );}
@@ -67,10 +72,13 @@ protected:
 private:
     //Create/init all of the openGL attributes
     void loadGL();
+    void mesh2Object(Mesh& mesh, attrib_t& a, shape_t& s);
+    void object2Mesh( attrib_t& a, shape_t& s, Mesh& mesh);
+    void split_edge( Mesh& mesh, const Mesh::EdgeHandle& e_it,OpenMesh::VPropHandleT< Mesh::Point >& vph_pos,OpenMesh::EPropHandleT< Mesh::Point >& eph_pos);
+    void split_face(Mesh &mesh, const Mesh::FaceHandle& f_it);
+    void splice( Mesh& mesh, const Mesh::HalfedgeHandle& heh);
 };
-
 #endif
-
 /**
                     EXPLICATIONS
 
