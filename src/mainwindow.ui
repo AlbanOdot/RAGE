@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>667</height>
+    <width>1644</width>
+    <height>1233</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -26,18 +26,10 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
-     <height>28</height>
+     <width>1644</width>
+     <height>22</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menu_Demo">
-    <property name="title">
-     <string>&amp;Demo</string>
-    </property>
-    <addaction name="actionHello_clear"/>
-    <addaction name="actionHello_triangle"/>
-    <addaction name="actionDisplay_geometry"/>
-   </widget>
    <widget class="QMenu" name="menuFiles">
     <property name="title">
      <string>Files</string>
@@ -45,7 +37,6 @@
     <addaction name="actionOpen"/>
     <addaction name="actionClose"/>
    </widget>
-   <addaction name="menu_Demo"/>
    <addaction name="menuFiles"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">

@@ -24,18 +24,14 @@ public:
     // Event maagement
     void mousePressEvent(QMouseEvent *event) override;
     void mouseMoveEvent(QMouseEvent *event) override;
-
     void keyPressEvent(QKeyEvent *event) override;
+    void wheelEvent(QWheelEvent *event) override;
 
     // Demo management
-    void activatedemo(unsigned int numdemo);
+    void render(const std::string& filename);
 
 private :
     std::unique_ptr<Scene> _scene;
-
-    using DemoConstructors=std::function<Scene*(int, int)>;
-    std::vector<DemoConstructors> _democonstructors;
-
     // for event management
     std::int64_t _lastime;
 };

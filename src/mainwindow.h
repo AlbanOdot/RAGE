@@ -16,13 +16,7 @@ public:
 
 private slots:
 
-    void on_actionHello_triangle_triggered();
-
-    void on_actionHello_clear_triggered();
-
-    void on_actionShader_ICO_Sphere_triggered();
-
-    void on_actionDisplay_geometry_triggered();
+    void on_actionOpen_triggered();
 
 private:
     Ui::MainWindow *ui;

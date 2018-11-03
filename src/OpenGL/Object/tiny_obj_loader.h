@@ -263,6 +263,7 @@ typedef struct {
   std::vector<real_t> normals;    // 'vn'
   std::vector<real_t> texcoords;  // 'vt'
   std::vector<real_t> colors;     // extension: vertex colors
+  std::vector<std::vector<real_t>> face_normals;
 } attrib_t;
 
 typedef struct callback_t_ {

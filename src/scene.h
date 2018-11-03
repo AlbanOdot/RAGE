@@ -20,7 +20,7 @@ public:
     virtual void mousemove(float xpos, float ypos);
     virtual void keyboardmove(int key, double time);
     virtual bool keyboard(unsigned char k);
-
+    virtual void wheelEvent(const int down);
 
     void toggledrawmode();
 

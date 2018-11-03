@@ -2,14 +2,14 @@
 #include <iostream>
 //All of the constructors
 MyModel::MyModel(){}
-
+MyModel::~MyModel(){
+}
 MyModel::MyModel(const std::string& meshPath)
     : MyObject(meshPath), _isProginit(0),_isSimpleProg(0){
 }
 
 MyModel::MyModel(const std::string& meshPath, const std::string& vsPath, const std::string& fsPath)
     : MyObject(meshPath), _isProginit(1), _isSimpleProg(1){
-
     _loader = ShaderLoader(vsPath.c_str(),GL_VERTEX_SHADER,"VERTEX");
     GLuint vs = _loader.getShader();
     _loader = ShaderLoader(fsPath.c_str(),GL_FRAGMENT_SHADER,"FRAGMENT");

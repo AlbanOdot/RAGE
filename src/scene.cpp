@@ -48,3 +48,6 @@ void Scene::toggledrawmode() {
     _drawfill = !_drawfill;
 }
 
+void Scene::wheelEvent(const int down){
+
+}

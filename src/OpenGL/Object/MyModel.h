@@ -12,7 +12,7 @@ class MyModel : public MyObject
 {
 public:
     MyModel();
-
+    ~MyModel();
     MyModel(const std::string& meshPath);
 
     MyModel(const std::string& meshPath, const std::string& vsPath, const std::string& fsPath);

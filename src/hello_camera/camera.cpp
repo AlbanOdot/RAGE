@@ -3,7 +3,7 @@
 #include "gtc/quaternion.hpp"
 #include "gtx/norm.hpp"
 #include "gtc/matrix_transform.hpp"
-
+#include <iostream>
 /*------------------------------------------------------------------------------------------------------------------------*/
 
 Camera::Camera(glm::vec3 position, glm::vec3 up, glm::vec3 look, float zoom) : _position(position), _front(look-position), _up(up), _zoom(zoom) {
@@ -32,7 +32,7 @@ void Camera::processmousemovement(int , GLfloat , GLfloat , GLboolean ) {
 
 }
 
-void Camera::processmousescroll(GLfloat ) {
+void Camera::processmousescroll(GLfloat down) {
 
 }
 
@@ -190,8 +190,12 @@ void TrackballCamera::processmousemovement(int button, GLfloat xpos, GLfloat ypo
     }
 }
 
-void TrackballCamera::processmousescroll(GLfloat yoffset) {
-    (void)yoffset;
+void TrackballCamera::processmousescroll(GLfloat down) {
+    if(down < 0 ){
+        _position *= 1.1;
+    }else if (down > 0) {
+        _position *= 0.9;
+    }
 }
 
 
@@ -206,7 +210,7 @@ glm::vec3 TrackballCamera::getmouseprojectiononball(float xpos, float ypos){
     float length = glm::length(mouseonball);
 
     length = (length<1.0f) ? length : 1.0f;
-    mouseonball.z = std::sqrt(1-length*length);
+    mouseonball.z = std::sqrt(1.0f-length*length);
     mouseonball = glm::normalize(mouseonball);
     return mouseonball;
 }

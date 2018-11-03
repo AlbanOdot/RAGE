@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.6.2
+** Created by: Qt User Interface Compiler version 5.9.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -40,7 +40,6 @@ public:
     QAction *actionDisplay_geometry;
     MyOpenGLWidget *openglWidget;
     QMenuBar *menuBar;
-    QMenu *menu_Demo;
     QMenu *menuFiles;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -49,7 +48,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(800, 667);
+        MainWindow->resize(1644, 1233);
         action_Version_OpenGL = new QAction(MainWindow);
         action_Version_OpenGL->setObjectName(QStringLiteral("action_Version_OpenGL"));
         actionHello_triangle = new QAction(MainWindow);
@@ -80,9 +79,7 @@ public:
         MainWindow->setCentralWidget(openglWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 800, 28));
-        menu_Demo = new QMenu(menuBar);
-        menu_Demo->setObjectName(QStringLiteral("menu_Demo"));
+        menuBar->setGeometry(QRect(0, 0, 1644, 22));
         menuFiles = new QMenu(menuBar);
         menuFiles->setObjectName(QStringLiteral("menuFiles"));
         MainWindow->setMenuBar(menuBar);
@@ -93,11 +90,7 @@ public:
         statusBar->setObjectName(QStringLiteral("statusBar"));
         MainWindow->setStatusBar(statusBar);
 
-        menuBar->addAction(menu_Demo->menuAction());
         menuBar->addAction(menuFiles->menuAction());
-        menu_Demo->addAction(actionHello_clear);
-        menu_Demo->addAction(actionHello_triangle);
-        menu_Demo->addAction(actionDisplay_geometry);
         menuFiles->addAction(actionOpen);
         menuFiles->addAction(actionClose);
 
@@ -108,21 +101,20 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Hello OpenGL ...", 0));
-        action_Version_OpenGL->setText(QApplication::translate("MainWindow", "&Version OpenGL", 0));
-        actionHello_triangle->setText(QApplication::translate("MainWindow", "Hello triangle ...", 0));
-        actionHello_camera->setText(QApplication::translate("MainWindow", "Hello camera ...", 0));
-        actionHello_spheres->setText(QApplication::translate("MainWindow", "Hello UV spheres ...", 0));
-        actionHello_clear->setText(QApplication::translate("MainWindow", "Hello clear ...", 0));
-        actionHello_ICO_spheres->setText(QApplication::translate("MainWindow", "Hello ICO Sphere", 0));
-        actionHello_UV_Sphere->setText(QApplication::translate("MainWindow", "Hello UV Sphere", 0));
-        actionHello_ICO_Sphere->setText(QApplication::translate("MainWindow", "Hello ICO Sphere", 0));
-        actionShader_ICO_Sphere->setText(QApplication::translate("MainWindow", "Shader ICO Sphere", 0));
-        actionOpen->setText(QApplication::translate("MainWindow", "Open", 0));
-        actionClose->setText(QApplication::translate("MainWindow", "Close", 0));
-        actionDisplay_geometry->setText(QApplication::translate("MainWindow", "Display geometry", 0));
-        menu_Demo->setTitle(QApplication::translate("MainWindow", "&Demo", 0));
-        menuFiles->setTitle(QApplication::translate("MainWindow", "Files", 0));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Hello OpenGL ...", Q_NULLPTR));
+        action_Version_OpenGL->setText(QApplication::translate("MainWindow", "&Version OpenGL", Q_NULLPTR));
+        actionHello_triangle->setText(QApplication::translate("MainWindow", "Hello triangle ...", Q_NULLPTR));
+        actionHello_camera->setText(QApplication::translate("MainWindow", "Hello camera ...", Q_NULLPTR));
+        actionHello_spheres->setText(QApplication::translate("MainWindow", "Hello UV spheres ...", Q_NULLPTR));
+        actionHello_clear->setText(QApplication::translate("MainWindow", "Hello clear ...", Q_NULLPTR));
+        actionHello_ICO_spheres->setText(QApplication::translate("MainWindow", "Hello ICO Sphere", Q_NULLPTR));
+        actionHello_UV_Sphere->setText(QApplication::translate("MainWindow", "Hello UV Sphere", Q_NULLPTR));
+        actionHello_ICO_Sphere->setText(QApplication::translate("MainWindow", "Hello ICO Sphere", Q_NULLPTR));
+        actionShader_ICO_Sphere->setText(QApplication::translate("MainWindow", "Shader ICO Sphere", Q_NULLPTR));
+        actionOpen->setText(QApplication::translate("MainWindow", "Open", Q_NULLPTR));
+        actionClose->setText(QApplication::translate("MainWindow", "Close", Q_NULLPTR));
+        actionDisplay_geometry->setText(QApplication::translate("MainWindow", "Display geometry", Q_NULLPTR));
+        menuFiles->setTitle(QApplication::translate("MainWindow", "Files", Q_NULLPTR));
     } // retranslateUi
 
 };

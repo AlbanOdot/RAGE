@@ -718,7 +718,7 @@ PolyConnectivity::ConstFaceIter PolyConnectivity::faces_end() const
 }
 
 //-----------------------------------------------------------------------------
-void PolyConnectivity::collapse(HalfedgeHandle _hh)
+void PolyConnectivity::@HalfedgeHandle _hh)
 {
   HalfedgeHandle h0 = _hh;
   HalfedgeHandle h1 = next_halfedge_handle(h0);

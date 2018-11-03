@@ -38,6 +38,7 @@ public:
     virtual void processmousescroll(GLfloat yoffset);
 
 protected:
+    float _dist = 1.f;
     glm::vec3 _position;
     glm::vec3 _front;
     glm::vec3 _up;

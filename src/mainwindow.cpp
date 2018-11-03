@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 
 #include <QMessageBox>
+#include <QFileDialog>
 
 #include <iostream>
 #include <sstream>
@@ -23,22 +24,12 @@ MainWindow::~MainWindow() {
     delete ui;
 }
 
-void MainWindow::on_actionHello_clear_triggered() {
-    ui->openglWidget->activatedemo(0);
+
+void MainWindow::on_actionOpen_triggered()
+{
+    QFileDialog fd;
+    fd.open();
+    QString filename = fd.getOpenFileName(this,tr("Select your .obj file"), tr("../DataFiles"), tr("OBJ files *.obj"));
+    //std::cout << "Selected file is " << filename.toStdString() << std::endl;
+    ui->openglWidget->render(filename.toStdString());
 }
-
-void MainWindow::on_actionHello_triangle_triggered() {
-    ui->openglWidget->activatedemo(1);
-}
-
-
-
-void MainWindow::on_actionShader_ICO_Sphere_triggered(){
-    ui->openglWidget->activatedemo(5);
-}
-
-
-void MainWindow::on_actionDisplay_geometry_triggered(){
-    ui->openglWidget->activatedemo(2);
-}
-

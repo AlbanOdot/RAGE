@@ -8,13 +8,9 @@
 #include <stdexcept>
 
 #include "hello_camera/hellocamera.h"
-#include "./src/OpenGL/Renderer/GeometryDisplay.h"
+#include "./src/OpenGL/Renderer/Renderer.h"
 
 MyOpenGLWidget::MyOpenGLWidget(QWidget *parent) :QOpenGLWidget(parent), QOpenGLFunctions_4_1_Core(), _scene(nullptr), _lastime(0) {
-    // add all demo constructors here
-    _democonstructors.push_back( [](int width, int height)->Scene*{std::cout << "Hello clear ..." << std::endl; return new Scene(width, height);} );
-    _democonstructors.push_back( [](int width, int height)->Scene*{std::cout << "Hello camera ..." << std::endl; return new SimpleCamera(width, height);} );
-    _democonstructors.push_back( [](int width, int height)->Scene*{std::cout << "Geometry Display ..." << std::endl; return new GeometryDisplay(width, height);} );
 }
 
 MyOpenGLWidget::~MyOpenGLWidget() {
@@ -27,7 +23,7 @@ void MyOpenGLWidget::initializeGL() {
         exit(1);
     }
     // Initialize OpenGL and all OpenGL dependent stuff below
-    _scene.reset(_democonstructors[0](width(), height()));
+    _scene.reset(new Scene(width(), height()));
 }
 
 void MyOpenGLWidget::paintGL() {
@@ -61,6 +57,12 @@ void MyOpenGLWidget::mousePressEvent(QMouseEvent *event) {
     _lastime = QDateTime::currentMSecsSinceEpoch();
 }
 
+void MyOpenGLWidget::wheelEvent(QWheelEvent *event){
+    QPoint angle = event->angleDelta();
+    _scene->wheelEvent(angle.y() / 15);
+    event->accept();
+}
+
 void MyOpenGLWidget::mouseMoveEvent(QMouseEvent *event) {
     _scene->mousemove(event->x(), event->y());
     update();
@@ -79,7 +81,6 @@ void MyOpenGLWidget::keyPressEvent(QKeyEvent *event) {
         case Qt::Key_7:
         case Qt::Key_8:
         case Qt::Key_9:
-            activatedemo(event->key()-Qt::Key_0);
         break;
         // Move keys
         case Qt::Key_Left:
@@ -102,13 +103,10 @@ void MyOpenGLWidget::keyPressEvent(QKeyEvent *event) {
     }
 }
 
-void MyOpenGLWidget::activatedemo(unsigned int numdemo) {
-    if (numdemo < _democonstructors.size()) {
-        std::cout << "Activating demo " << numdemo << " : ";
+void MyOpenGLWidget::render(const std::string& filename) {
         makeCurrent();
-        _scene.reset(_democonstructors[numdemo](width(), height()));
+        _scene.reset(new Renderer(width(), height(), filename));
         doneCurrent();
         update();
-    }
 }
 
