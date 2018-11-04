@@ -5,21 +5,18 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/alban/Cours/M2/RTR/RAGE/Release/RAGE_autogen/mocs_compilation.cpp" "/Users/alban/Cours/M2/RTR/RAGE/Release/CMakeFiles/RAGE.dir/RAGE_autogen/mocs_compilation.cpp.o"
+  "/Users/alban/Cours/M2/RTR/RAGE/src/Main/main.cpp" "/Users/alban/Cours/M2/RTR/RAGE/Release/CMakeFiles/RAGE.dir/src/Main/main.cpp.o"
+  "/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Camera/camera.cpp" "/Users/alban/Cours/M2/RTR/RAGE/Release/CMakeFiles/RAGE.dir/src/OpenGL/Camera/camera.cpp.o"
   "/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Object/MeshModifier.cpp" "/Users/alban/Cours/M2/RTR/RAGE/Release/CMakeFiles/RAGE.dir/src/OpenGL/Object/MeshModifier.cpp.o"
   "/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Object/MyModel.cpp" "/Users/alban/Cours/M2/RTR/RAGE/Release/CMakeFiles/RAGE.dir/src/OpenGL/Object/MyModel.cpp.o"
   "/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Object/MyObject.cpp" "/Users/alban/Cours/M2/RTR/RAGE/Release/CMakeFiles/RAGE.dir/src/OpenGL/Object/MyObject.cpp.o"
-  "/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Object/tiny_obj_loader.cc" "/Users/alban/Cours/M2/RTR/RAGE/Release/CMakeFiles/RAGE.dir/src/OpenGL/Object/tiny_obj_loader.cc.o"
   "/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Renderer/Renderer.cpp" "/Users/alban/Cours/M2/RTR/RAGE/Release/CMakeFiles/RAGE.dir/src/OpenGL/Renderer/Renderer.cpp.o"
-  "/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Renderer/shadericosphere.cpp" "/Users/alban/Cours/M2/RTR/RAGE/Release/CMakeFiles/RAGE.dir/src/OpenGL/Renderer/shadericosphere.cpp.o"
+  "/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Renderer/scene.cpp" "/Users/alban/Cours/M2/RTR/RAGE/Release/CMakeFiles/RAGE.dir/src/OpenGL/Renderer/scene.cpp.o"
   "/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/ShadersUtils/MyShaderProgram.cpp" "/Users/alban/Cours/M2/RTR/RAGE/Release/CMakeFiles/RAGE.dir/src/OpenGL/ShadersUtils/MyShaderProgram.cpp.o"
   "/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/ShadersUtils/ShaderLoader.cpp" "/Users/alban/Cours/M2/RTR/RAGE/Release/CMakeFiles/RAGE.dir/src/OpenGL/ShadersUtils/ShaderLoader.cpp.o"
   "/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Textures/framebuffer.cpp" "/Users/alban/Cours/M2/RTR/RAGE/Release/CMakeFiles/RAGE.dir/src/OpenGL/Textures/framebuffer.cpp.o"
-  "/Users/alban/Cours/M2/RTR/RAGE/src/hello_camera/camera.cpp" "/Users/alban/Cours/M2/RTR/RAGE/Release/CMakeFiles/RAGE.dir/src/hello_camera/camera.cpp.o"
-  "/Users/alban/Cours/M2/RTR/RAGE/src/hello_camera/hellocamera.cpp" "/Users/alban/Cours/M2/RTR/RAGE/Release/CMakeFiles/RAGE.dir/src/hello_camera/hellocamera.cpp.o"
-  "/Users/alban/Cours/M2/RTR/RAGE/src/main.cpp" "/Users/alban/Cours/M2/RTR/RAGE/Release/CMakeFiles/RAGE.dir/src/main.cpp.o"
-  "/Users/alban/Cours/M2/RTR/RAGE/src/mainwindow.cpp" "/Users/alban/Cours/M2/RTR/RAGE/Release/CMakeFiles/RAGE.dir/src/mainwindow.cpp.o"
-  "/Users/alban/Cours/M2/RTR/RAGE/src/myopenglwidget.cpp" "/Users/alban/Cours/M2/RTR/RAGE/Release/CMakeFiles/RAGE.dir/src/myopenglwidget.cpp.o"
-  "/Users/alban/Cours/M2/RTR/RAGE/src/scene.cpp" "/Users/alban/Cours/M2/RTR/RAGE/Release/CMakeFiles/RAGE.dir/src/scene.cpp.o"
+  "/Users/alban/Cours/M2/RTR/RAGE/src/Qt/mainwindow.cpp" "/Users/alban/Cours/M2/RTR/RAGE/Release/CMakeFiles/RAGE.dir/src/Qt/mainwindow.cpp.o"
+  "/Users/alban/Cours/M2/RTR/RAGE/src/Qt/myopenglwidget.cpp" "/Users/alban/Cours/M2/RTR/RAGE/Release/CMakeFiles/RAGE.dir/src/Qt/myopenglwidget.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "Clang")
 

@@ -7,7 +7,7 @@
 #include <iostream>
 #include <stdexcept>
 
-#include "hello_camera/hellocamera.h"
+#include "./src/OpenGL/Camera/camera.h"
 #include "./src/OpenGL/Renderer/Renderer.h"
 
 MyOpenGLWidget::MyOpenGLWidget(QWidget *parent) :QOpenGLWidget(parent), QOpenGLFunctions_4_1_Core(), _scene(nullptr), _lastime(0) {

@@ -1,10 +1,8 @@
 #ifndef MYOBJECT_H
 #define MYOBJECT_H
-#include "tiny_obj_loader.h"
-#include "./opengl_stuff.h"
+#include "./src/OpenGL/opengl_stuff.h"
 #include <OpenMesh/Core/Mesh/TriMesh_ArrayKernelT.hh>
 
-using namespace tinyobj;
 
 typedef OpenMesh::TriMesh_ArrayKernelT<> Mesh;
 
@@ -30,31 +28,22 @@ public:
     //Return the Error
     virtual float fastEdgeCollapse( const unsigned int faceCountTarget);
 
-    //Mesh info
-    //if -1 return the sum over the whole mesh, if != -1 return the value of the asked patch
-    inline unsigned int faceCount(int i = -1)     {int s =0;
-                                                   if(i != -1 )
-                                                       s = shapes_m[i].mesh.indices.size();
-                                                   else
-                                                       for( unsigned long k = 0; k < shapes_m.size(); ++k)
-                                                           s +=shapes_m[k].mesh.indices.size();
-                                                                                              return s/3;
-                                                  }
+    void updateFaceMatrix();
 
-    inline unsigned int verticesCount(int i = -1) {return 3 * faceCount( i );}
-    inline unsigned int edgeCount(int i = -1)     {return 3 * faceCount( i );}
-    inline unsigned int normalsCount(int i = -1)  {return 3 * faceCount( i );}
-    inline unsigned int indicesCount(int i = -1)  {return 3 * faceCount( i );}
+    //Mesh info
+    inline unsigned int faceCount()     { return mesh_m.n_faces();}
+    inline unsigned int verticesCount() {return mesh_m.n_vertices();}
+    inline unsigned int edgeCount()     {return mesh_m.n_edges();}
+    inline unsigned int normalsCount()  {return mesh_m.n_vertices();}
+    inline unsigned int indicesCount()  {return mesh_m.n_faces() * 3;}
     GLuint getVAO() { return vao;}
     GLuint getVBO() { return vbo;}
     GLuint getNBO() { return nbo;}
     GLuint getEBO() { return ebo;}
-    shape_t& shape(unsigned int i) {return shapes_m[i];}
-    attrib_t& attrib() { return attrib_m;}
+    Mesh& mesh() { return mesh_m;}
+    std::vector<std::vector<float>>& faceMatrix()  { return face_matrix;}
 
 protected:
-
-    GLuint nbIndices = 0;
     GLuint vao = 0;//vertex array buffer
     GLuint vbo = 0;//vertices
     GLuint nbo = 0;//normals
@@ -62,22 +51,10 @@ protected:
     GLuint cro = 0;//color
     GLuint ebo = 0;//topology
 
-    //The actual mesh
-    //Explications at the end of the file
-    attrib_t attrib_m;
-    std::vector<shape_t> shapes_m;
-    std::vector<material_t> materials_m;
-    Mesh mesh;
-
+    Mesh mesh_m;
+    std::vector<std::vector<float>> face_matrix;
 private:
     //Create/init all of the openGL attributes
     void loadGL();
 };
 #endif
-/**
-                    EXPLICATIONS
-
- * attrib contient la liste de tous les points, normales, coordonnées de textures et couleurs de l'objet
- * Un objet peut être constitué de plusieurs patch chacun représenté par un shape
- * Chacun de ces patch possède un matériau d'ou les vecteur de matériaux
- **/

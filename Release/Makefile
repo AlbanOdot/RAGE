@@ -163,6 +163,60 @@ RAGE_autogen/mocs_compilation.cpp.s:
 	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/RAGE_autogen/mocs_compilation.cpp.s
 .PHONY : RAGE_autogen/mocs_compilation.cpp.s
 
+src/Main/main.o: src/Main/main.cpp.o
+
+.PHONY : src/Main/main.o
+
+# target to build an object file
+src/Main/main.cpp.o:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/Main/main.cpp.o
+.PHONY : src/Main/main.cpp.o
+
+src/Main/main.i: src/Main/main.cpp.i
+
+.PHONY : src/Main/main.i
+
+# target to preprocess a source file
+src/Main/main.cpp.i:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/Main/main.cpp.i
+.PHONY : src/Main/main.cpp.i
+
+src/Main/main.s: src/Main/main.cpp.s
+
+.PHONY : src/Main/main.s
+
+# target to generate assembly for a file
+src/Main/main.cpp.s:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/Main/main.cpp.s
+.PHONY : src/Main/main.cpp.s
+
+src/OpenGL/Camera/camera.o: src/OpenGL/Camera/camera.cpp.o
+
+.PHONY : src/OpenGL/Camera/camera.o
+
+# target to build an object file
+src/OpenGL/Camera/camera.cpp.o:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Camera/camera.cpp.o
+.PHONY : src/OpenGL/Camera/camera.cpp.o
+
+src/OpenGL/Camera/camera.i: src/OpenGL/Camera/camera.cpp.i
+
+.PHONY : src/OpenGL/Camera/camera.i
+
+# target to preprocess a source file
+src/OpenGL/Camera/camera.cpp.i:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Camera/camera.cpp.i
+.PHONY : src/OpenGL/Camera/camera.cpp.i
+
+src/OpenGL/Camera/camera.s: src/OpenGL/Camera/camera.cpp.s
+
+.PHONY : src/OpenGL/Camera/camera.s
+
+# target to generate assembly for a file
+src/OpenGL/Camera/camera.cpp.s:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Camera/camera.cpp.s
+.PHONY : src/OpenGL/Camera/camera.cpp.s
+
 src/OpenGL/Object/MeshModifier.o: src/OpenGL/Object/MeshModifier.cpp.o
 
 .PHONY : src/OpenGL/Object/MeshModifier.o
@@ -244,33 +298,6 @@ src/OpenGL/Object/MyObject.cpp.s:
 	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/MyObject.cpp.s
 .PHONY : src/OpenGL/Object/MyObject.cpp.s
 
-src/OpenGL/Object/tiny_obj_loader.o: src/OpenGL/Object/tiny_obj_loader.cc.o
-
-.PHONY : src/OpenGL/Object/tiny_obj_loader.o
-
-# target to build an object file
-src/OpenGL/Object/tiny_obj_loader.cc.o:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/tiny_obj_loader.cc.o
-.PHONY : src/OpenGL/Object/tiny_obj_loader.cc.o
-
-src/OpenGL/Object/tiny_obj_loader.i: src/OpenGL/Object/tiny_obj_loader.cc.i
-
-.PHONY : src/OpenGL/Object/tiny_obj_loader.i
-
-# target to preprocess a source file
-src/OpenGL/Object/tiny_obj_loader.cc.i:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/tiny_obj_loader.cc.i
-.PHONY : src/OpenGL/Object/tiny_obj_loader.cc.i
-
-src/OpenGL/Object/tiny_obj_loader.s: src/OpenGL/Object/tiny_obj_loader.cc.s
-
-.PHONY : src/OpenGL/Object/tiny_obj_loader.s
-
-# target to generate assembly for a file
-src/OpenGL/Object/tiny_obj_loader.cc.s:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/tiny_obj_loader.cc.s
-.PHONY : src/OpenGL/Object/tiny_obj_loader.cc.s
-
 src/OpenGL/Renderer/Renderer.o: src/OpenGL/Renderer/Renderer.cpp.o
 
 .PHONY : src/OpenGL/Renderer/Renderer.o
@@ -298,32 +325,32 @@ src/OpenGL/Renderer/Renderer.cpp.s:
 	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Renderer/Renderer.cpp.s
 .PHONY : src/OpenGL/Renderer/Renderer.cpp.s
 
-src/OpenGL/Renderer/shadericosphere.o: src/OpenGL/Renderer/shadericosphere.cpp.o
+src/OpenGL/Renderer/scene.o: src/OpenGL/Renderer/scene.cpp.o
 
-.PHONY : src/OpenGL/Renderer/shadericosphere.o
+.PHONY : src/OpenGL/Renderer/scene.o
 
 # target to build an object file
-src/OpenGL/Renderer/shadericosphere.cpp.o:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Renderer/shadericosphere.cpp.o
-.PHONY : src/OpenGL/Renderer/shadericosphere.cpp.o
+src/OpenGL/Renderer/scene.cpp.o:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Renderer/scene.cpp.o
+.PHONY : src/OpenGL/Renderer/scene.cpp.o
 
-src/OpenGL/Renderer/shadericosphere.i: src/OpenGL/Renderer/shadericosphere.cpp.i
+src/OpenGL/Renderer/scene.i: src/OpenGL/Renderer/scene.cpp.i
 
-.PHONY : src/OpenGL/Renderer/shadericosphere.i
+.PHONY : src/OpenGL/Renderer/scene.i
 
 # target to preprocess a source file
-src/OpenGL/Renderer/shadericosphere.cpp.i:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Renderer/shadericosphere.cpp.i
-.PHONY : src/OpenGL/Renderer/shadericosphere.cpp.i
+src/OpenGL/Renderer/scene.cpp.i:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Renderer/scene.cpp.i
+.PHONY : src/OpenGL/Renderer/scene.cpp.i
 
-src/OpenGL/Renderer/shadericosphere.s: src/OpenGL/Renderer/shadericosphere.cpp.s
+src/OpenGL/Renderer/scene.s: src/OpenGL/Renderer/scene.cpp.s
 
-.PHONY : src/OpenGL/Renderer/shadericosphere.s
+.PHONY : src/OpenGL/Renderer/scene.s
 
 # target to generate assembly for a file
-src/OpenGL/Renderer/shadericosphere.cpp.s:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Renderer/shadericosphere.cpp.s
-.PHONY : src/OpenGL/Renderer/shadericosphere.cpp.s
+src/OpenGL/Renderer/scene.cpp.s:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Renderer/scene.cpp.s
+.PHONY : src/OpenGL/Renderer/scene.cpp.s
 
 src/OpenGL/ShadersUtils/MyShaderProgram.o: src/OpenGL/ShadersUtils/MyShaderProgram.cpp.o
 
@@ -406,167 +433,59 @@ src/OpenGL/Textures/framebuffer.cpp.s:
 	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Textures/framebuffer.cpp.s
 .PHONY : src/OpenGL/Textures/framebuffer.cpp.s
 
-src/hello_camera/camera.o: src/hello_camera/camera.cpp.o
+src/Qt/mainwindow.o: src/Qt/mainwindow.cpp.o
 
-.PHONY : src/hello_camera/camera.o
-
-# target to build an object file
-src/hello_camera/camera.cpp.o:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/hello_camera/camera.cpp.o
-.PHONY : src/hello_camera/camera.cpp.o
-
-src/hello_camera/camera.i: src/hello_camera/camera.cpp.i
-
-.PHONY : src/hello_camera/camera.i
-
-# target to preprocess a source file
-src/hello_camera/camera.cpp.i:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/hello_camera/camera.cpp.i
-.PHONY : src/hello_camera/camera.cpp.i
-
-src/hello_camera/camera.s: src/hello_camera/camera.cpp.s
-
-.PHONY : src/hello_camera/camera.s
-
-# target to generate assembly for a file
-src/hello_camera/camera.cpp.s:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/hello_camera/camera.cpp.s
-.PHONY : src/hello_camera/camera.cpp.s
-
-src/hello_camera/hellocamera.o: src/hello_camera/hellocamera.cpp.o
-
-.PHONY : src/hello_camera/hellocamera.o
+.PHONY : src/Qt/mainwindow.o
 
 # target to build an object file
-src/hello_camera/hellocamera.cpp.o:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/hello_camera/hellocamera.cpp.o
-.PHONY : src/hello_camera/hellocamera.cpp.o
+src/Qt/mainwindow.cpp.o:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/Qt/mainwindow.cpp.o
+.PHONY : src/Qt/mainwindow.cpp.o
 
-src/hello_camera/hellocamera.i: src/hello_camera/hellocamera.cpp.i
+src/Qt/mainwindow.i: src/Qt/mainwindow.cpp.i
 
-.PHONY : src/hello_camera/hellocamera.i
+.PHONY : src/Qt/mainwindow.i
 
 # target to preprocess a source file
-src/hello_camera/hellocamera.cpp.i:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/hello_camera/hellocamera.cpp.i
-.PHONY : src/hello_camera/hellocamera.cpp.i
+src/Qt/mainwindow.cpp.i:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/Qt/mainwindow.cpp.i
+.PHONY : src/Qt/mainwindow.cpp.i
 
-src/hello_camera/hellocamera.s: src/hello_camera/hellocamera.cpp.s
+src/Qt/mainwindow.s: src/Qt/mainwindow.cpp.s
 
-.PHONY : src/hello_camera/hellocamera.s
+.PHONY : src/Qt/mainwindow.s
 
 # target to generate assembly for a file
-src/hello_camera/hellocamera.cpp.s:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/hello_camera/hellocamera.cpp.s
-.PHONY : src/hello_camera/hellocamera.cpp.s
+src/Qt/mainwindow.cpp.s:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/Qt/mainwindow.cpp.s
+.PHONY : src/Qt/mainwindow.cpp.s
 
-src/main.o: src/main.cpp.o
+src/Qt/myopenglwidget.o: src/Qt/myopenglwidget.cpp.o
 
-.PHONY : src/main.o
+.PHONY : src/Qt/myopenglwidget.o
 
 # target to build an object file
-src/main.cpp.o:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/main.cpp.o
-.PHONY : src/main.cpp.o
+src/Qt/myopenglwidget.cpp.o:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/Qt/myopenglwidget.cpp.o
+.PHONY : src/Qt/myopenglwidget.cpp.o
 
-src/main.i: src/main.cpp.i
+src/Qt/myopenglwidget.i: src/Qt/myopenglwidget.cpp.i
 
-.PHONY : src/main.i
-
-# target to preprocess a source file
-src/main.cpp.i:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/main.cpp.i
-.PHONY : src/main.cpp.i
-
-src/main.s: src/main.cpp.s
-
-.PHONY : src/main.s
-
-# target to generate assembly for a file
-src/main.cpp.s:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/main.cpp.s
-.PHONY : src/main.cpp.s
-
-src/mainwindow.o: src/mainwindow.cpp.o
-
-.PHONY : src/mainwindow.o
-
-# target to build an object file
-src/mainwindow.cpp.o:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/mainwindow.cpp.o
-.PHONY : src/mainwindow.cpp.o
-
-src/mainwindow.i: src/mainwindow.cpp.i
-
-.PHONY : src/mainwindow.i
+.PHONY : src/Qt/myopenglwidget.i
 
 # target to preprocess a source file
-src/mainwindow.cpp.i:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/mainwindow.cpp.i
-.PHONY : src/mainwindow.cpp.i
+src/Qt/myopenglwidget.cpp.i:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/Qt/myopenglwidget.cpp.i
+.PHONY : src/Qt/myopenglwidget.cpp.i
 
-src/mainwindow.s: src/mainwindow.cpp.s
+src/Qt/myopenglwidget.s: src/Qt/myopenglwidget.cpp.s
 
-.PHONY : src/mainwindow.s
-
-# target to generate assembly for a file
-src/mainwindow.cpp.s:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/mainwindow.cpp.s
-.PHONY : src/mainwindow.cpp.s
-
-src/myopenglwidget.o: src/myopenglwidget.cpp.o
-
-.PHONY : src/myopenglwidget.o
-
-# target to build an object file
-src/myopenglwidget.cpp.o:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/myopenglwidget.cpp.o
-.PHONY : src/myopenglwidget.cpp.o
-
-src/myopenglwidget.i: src/myopenglwidget.cpp.i
-
-.PHONY : src/myopenglwidget.i
-
-# target to preprocess a source file
-src/myopenglwidget.cpp.i:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/myopenglwidget.cpp.i
-.PHONY : src/myopenglwidget.cpp.i
-
-src/myopenglwidget.s: src/myopenglwidget.cpp.s
-
-.PHONY : src/myopenglwidget.s
+.PHONY : src/Qt/myopenglwidget.s
 
 # target to generate assembly for a file
-src/myopenglwidget.cpp.s:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/myopenglwidget.cpp.s
-.PHONY : src/myopenglwidget.cpp.s
-
-src/scene.o: src/scene.cpp.o
-
-.PHONY : src/scene.o
-
-# target to build an object file
-src/scene.cpp.o:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/scene.cpp.o
-.PHONY : src/scene.cpp.o
-
-src/scene.i: src/scene.cpp.i
-
-.PHONY : src/scene.i
-
-# target to preprocess a source file
-src/scene.cpp.i:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/scene.cpp.i
-.PHONY : src/scene.cpp.i
-
-src/scene.s: src/scene.cpp.s
-
-.PHONY : src/scene.s
-
-# target to generate assembly for a file
-src/scene.cpp.s:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/scene.cpp.s
-.PHONY : src/scene.cpp.s
+src/Qt/myopenglwidget.cpp.s:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/Qt/myopenglwidget.cpp.s
+.PHONY : src/Qt/myopenglwidget.cpp.s
 
 # Help Target
 help:
@@ -581,6 +500,12 @@ help:
 	@echo "... RAGE_autogen/mocs_compilation.o"
 	@echo "... RAGE_autogen/mocs_compilation.i"
 	@echo "... RAGE_autogen/mocs_compilation.s"
+	@echo "... src/Main/main.o"
+	@echo "... src/Main/main.i"
+	@echo "... src/Main/main.s"
+	@echo "... src/OpenGL/Camera/camera.o"
+	@echo "... src/OpenGL/Camera/camera.i"
+	@echo "... src/OpenGL/Camera/camera.s"
 	@echo "... src/OpenGL/Object/MeshModifier.o"
 	@echo "... src/OpenGL/Object/MeshModifier.i"
 	@echo "... src/OpenGL/Object/MeshModifier.s"
@@ -590,15 +515,12 @@ help:
 	@echo "... src/OpenGL/Object/MyObject.o"
 	@echo "... src/OpenGL/Object/MyObject.i"
 	@echo "... src/OpenGL/Object/MyObject.s"
-	@echo "... src/OpenGL/Object/tiny_obj_loader.o"
-	@echo "... src/OpenGL/Object/tiny_obj_loader.i"
-	@echo "... src/OpenGL/Object/tiny_obj_loader.s"
 	@echo "... src/OpenGL/Renderer/Renderer.o"
 	@echo "... src/OpenGL/Renderer/Renderer.i"
 	@echo "... src/OpenGL/Renderer/Renderer.s"
-	@echo "... src/OpenGL/Renderer/shadericosphere.o"
-	@echo "... src/OpenGL/Renderer/shadericosphere.i"
-	@echo "... src/OpenGL/Renderer/shadericosphere.s"
+	@echo "... src/OpenGL/Renderer/scene.o"
+	@echo "... src/OpenGL/Renderer/scene.i"
+	@echo "... src/OpenGL/Renderer/scene.s"
 	@echo "... src/OpenGL/ShadersUtils/MyShaderProgram.o"
 	@echo "... src/OpenGL/ShadersUtils/MyShaderProgram.i"
 	@echo "... src/OpenGL/ShadersUtils/MyShaderProgram.s"
@@ -608,24 +530,12 @@ help:
 	@echo "... src/OpenGL/Textures/framebuffer.o"
 	@echo "... src/OpenGL/Textures/framebuffer.i"
 	@echo "... src/OpenGL/Textures/framebuffer.s"
-	@echo "... src/hello_camera/camera.o"
-	@echo "... src/hello_camera/camera.i"
-	@echo "... src/hello_camera/camera.s"
-	@echo "... src/hello_camera/hellocamera.o"
-	@echo "... src/hello_camera/hellocamera.i"
-	@echo "... src/hello_camera/hellocamera.s"
-	@echo "... src/main.o"
-	@echo "... src/main.i"
-	@echo "... src/main.s"
-	@echo "... src/mainwindow.o"
-	@echo "... src/mainwindow.i"
-	@echo "... src/mainwindow.s"
-	@echo "... src/myopenglwidget.o"
-	@echo "... src/myopenglwidget.i"
-	@echo "... src/myopenglwidget.s"
-	@echo "... src/scene.o"
-	@echo "... src/scene.i"
-	@echo "... src/scene.s"
+	@echo "... src/Qt/mainwindow.o"
+	@echo "... src/Qt/mainwindow.i"
+	@echo "... src/Qt/mainwindow.s"
+	@echo "... src/Qt/myopenglwidget.o"
+	@echo "... src/Qt/myopenglwidget.i"
+	@echo "... src/Qt/myopenglwidget.s"
 .PHONY : help
 
 

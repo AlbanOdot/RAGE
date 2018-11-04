@@ -135,6 +135,15 @@
 		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/Release/RAGE_autogen/mocs_compilation.cpp">
 			<Option target="RAGE"/>
 		</Unit>
+		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/Main/main.cpp">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Camera/camera.cpp">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Camera/camera.h">
+			<Option target="RAGE"/>
+		</Unit>
 		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Object/MeshModifier.cpp">
 			<Option target="RAGE"/>
 		</Unit>
@@ -153,22 +162,16 @@
 		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Object/MyObject.h">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Object/tiny_obj_loader.cc">
-			<Option target="RAGE"/>
-		</Unit>
-		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Object/tiny_obj_loader.h">
-			<Option target="RAGE"/>
-		</Unit>
 		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Renderer/Renderer.cpp">
 			<Option target="RAGE"/>
 		</Unit>
 		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Renderer/Renderer.h">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Renderer/shadericosphere.cpp">
+		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Renderer/scene.cpp">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Renderer/shadericosphere.h">
+		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Renderer/scene.h">
 			<Option target="RAGE"/>
 		</Unit>
 		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Shader/SSAO.frag.txt">
@@ -204,43 +207,22 @@
 		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Textures/framebuffer.h">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/hello_camera/camera.cpp">
+		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/opengl_stuff.h">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/hello_camera/camera.h">
+		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/Qt/mainwindow.cpp">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/hello_camera/hellocamera.cpp">
+		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/Qt/mainwindow.h">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/hello_camera/hellocamera.h">
+		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/Qt/mainwindow.ui">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/main.cpp">
+		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/Qt/myopenglwidget.cpp">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/mainwindow.cpp">
-			<Option target="RAGE"/>
-		</Unit>
-		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/mainwindow.h">
-			<Option target="RAGE"/>
-		</Unit>
-		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/mainwindow.ui">
-			<Option target="RAGE"/>
-		</Unit>
-		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/myopenglwidget.cpp">
-			<Option target="RAGE"/>
-		</Unit>
-		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/myopenglwidget.h">
-			<Option target="RAGE"/>
-		</Unit>
-		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/opengl_stuff.h">
-			<Option target="RAGE"/>
-		</Unit>
-		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/scene.cpp">
-			<Option target="RAGE"/>
-		</Unit>
-		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/scene.h">
+		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/Qt/myopenglwidget.h">
 			<Option target="RAGE"/>
 		</Unit>
 		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/CMakeLists.txt">

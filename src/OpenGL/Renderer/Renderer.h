@@ -3,7 +3,7 @@
 
 #include "scene.h"
 
-#include "./src/hello_camera/camera.h"
+#include "./src/OpenGL/Camera/camera.h"
 #include "./src/OpenGL/Object/MyModel.h"
 #include "./src/OpenGL/Textures/framebuffer.h"
 

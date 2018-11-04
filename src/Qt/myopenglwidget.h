@@ -7,7 +7,7 @@
 
 #include <memory>
 #include <functional>
-#include "scene.h"
+#include "./src/OpenGL/Renderer/scene.h"
 
 class MyOpenGLWidget : public QOpenGLWidget, public QOpenGLFunctions_4_1_Core {
 

@@ -1,7 +1,7 @@
 #ifndef SHADER_LOADER_H
 #define SHADER_LOADER_H
 
-#include "./opengl_stuff.h"
+#include "./src/OpenGL/opengl_stuff.h"
 #include <string>
 
 class ShaderLoader {

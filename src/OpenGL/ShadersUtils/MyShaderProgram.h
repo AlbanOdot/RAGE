@@ -1,7 +1,7 @@
 #ifndef _MyShaderProgram
 #define _MyShaderProgram
 
-#include "./opengl_stuff.h"
+#include "./src/OpenGL/opengl_stuff.h"
 
 class MyShaderProgram{
 public:
