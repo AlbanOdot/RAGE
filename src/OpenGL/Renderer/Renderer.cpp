@@ -94,8 +94,29 @@ void Renderer::keyboardmove(int key, double time) {
 bool Renderer::keyboard(unsigned char k) {
 
     switch(k) {
-    case '+':
+    case 'm':
         m_object.subdivideLoop();
+        draw();
+        return true;
+    case 'M':
+        //TODO Change this to something else
+        m_object.subdivideLoop();
+        draw();
+        return true;
+    case 'l':
+        m_object.halfEdgeCollapseMinError(m_object.faceCount()/2);
+        draw();
+        return true;
+    case 'L':
+        m_object.edgeCollapseMinError(m_object.faceCount()/2);
+        draw();
+        return true;
+    case '_':
+        m_object.fastEdgeCollapse(m_object.faceCount()/2);
+        draw();
+        return true;
+    case '-':
+        m_object.fastHalfEdgeCollapse(m_object.faceCount()/2);
         draw();
         return true;
     default:

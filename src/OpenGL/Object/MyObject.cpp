@@ -127,13 +127,80 @@ void MyObject::subdivideLoop(){
     draw();
 }
 //Return the Error
-float MyObject::halfEdgeCollapse(const unsigned int faceCountTarget){
+float MyObject::halfEdgeCollapseMinError(const unsigned int faceCountTarget){
+    std::cout << "++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
+    std::cout << "+Avant la simplification :                  "<<std::endl;
+    std::cout << "+Nombre de faces : " << shapes_m[0].mesh.indices.size()/3 <<"   +"<< std::endl;
+    std::cout << "+Nombre de sommets : "<<attrib_m.vertices.size() << " +"<<std::endl;
+    std::cout << "+Objectif : "<< faceCountTarget<< "  +"<<std::endl;
+    std::cout << "++++++++++++++++++++++++++++++++++++++++++++"<<std::endl<<std::endl<<std::endl;
     MeshModifier m;
-    return m.halfEdgeCollapse(this,faceCountTarget);
+    float error = m.halfEdgeCollapseMinError(this,faceCountTarget);
+    std::cout << "++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
+    std::cout << "+Apres la simplification :                  "<<std::endl;
+    std::cout << "+Nombre de faces : " << shapes_m[0].mesh.indices.size()/3 <<"   +"<< std::endl;
+    std::cout << "+Nombre de sommets : "<<attrib_m.vertices.size() << " +"<<std::endl;
+    std::cout << "++++++++++++++++++++++++++++++++++++++++++++"<<std::endl<<std::endl<<std::endl;
+    loadGL();
+    draw();
+    return error;
 }
 
 //Return the Error
-float MyObject::edgeCollapse( const unsigned int faceCountTarget){
+float MyObject::edgeCollapseMinError( const unsigned int faceCountTarget){
+    std::cout << "++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
+    std::cout << "+Avant la simplification :                  "<<std::endl;
+    std::cout << "+Nombre de faces : " << shapes_m[0].mesh.indices.size()/3 <<"   +"<< std::endl;
+    std::cout << "+Nombre de sommets : "<<attrib_m.vertices.size() << " +"<<std::endl;
+    std::cout << "+Objectif : "<< faceCountTarget<< "  +"<<std::endl;
+    std::cout << "++++++++++++++++++++++++++++++++++++++++++++"<<std::endl<<std::endl<<std::endl;
     MeshModifier m;
-    return m.edgeCollapse(this,faceCountTarget);
+    float error = m.edgeCollapseMinError(this,faceCountTarget);
+    std::cout << "++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
+    std::cout << "+Apres la simplification :                  "<<std::endl;
+    std::cout << "+Nombre de faces : " << shapes_m[0].mesh.indices.size()/3 <<"   +"<< std::endl;
+    std::cout << "+Nombre de sommets : "<<attrib_m.vertices.size() << " +"<<std::endl;
+    std::cout << "++++++++++++++++++++++++++++++++++++++++++++"<<std::endl<<std::endl<<std::endl;
+    loadGL();
+    draw();
+    return error;
+}
+
+float MyObject::fastHalfEdgeCollapse(const unsigned int faceCountTarget){
+    std::cout << "++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
+    std::cout << "+Avant la simplification :                  "<<std::endl;
+    std::cout << "+Nombre de faces : " << shapes_m[0].mesh.indices.size()/3 <<"   +"<< std::endl;
+    std::cout << "+Nombre de sommets : "<<attrib_m.vertices.size() << " +"<<std::endl;
+    std::cout << "+Objectif : "<< faceCountTarget<< "  +"<<std::endl;
+    std::cout << "++++++++++++++++++++++++++++++++++++++++++++"<<std::endl<<std::endl<<std::endl;
+    MeshModifier m;
+    float error = m.fastHalfEdgeCollapse(this,faceCountTarget);
+    std::cout << "++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
+    std::cout << "+Apres la simplification :                  "<<std::endl;
+    std::cout << "+Nombre de faces : " << shapes_m[0].mesh.indices.size()/3 <<"   +"<< std::endl;
+    std::cout << "+Nombre de sommets : "<<attrib_m.vertices.size() << " +"<<std::endl;
+    std::cout << "++++++++++++++++++++++++++++++++++++++++++++"<<std::endl<<std::endl<<std::endl;
+    loadGL();
+    draw();
+    return error;
+}
+
+//Return the Error
+float MyObject::fastEdgeCollapse( const unsigned int faceCountTarget){
+    std::cout << "++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
+    std::cout << "+Avant la simplification :                  "<<std::endl;
+    std::cout << "+Nombre de faces : " << shapes_m[0].mesh.indices.size()/3 <<"   +"<< std::endl;
+    std::cout << "+Nombre de sommets : "<<attrib_m.vertices.size() << " +"<<std::endl;
+    std::cout << "+Objectif : "<< faceCountTarget<< "  +"<<std::endl;
+    std::cout << "++++++++++++++++++++++++++++++++++++++++++++"<<std::endl<<std::endl<<std::endl;
+    MeshModifier m;
+    float error = m.fastEdgeCollapse(this,faceCountTarget);
+    std::cout << "++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
+    std::cout << "+Apres la simplification :                  "<<std::endl;
+    std::cout << "+Nombre de faces : " << shapes_m[0].mesh.indices.size()/3 <<"   +"<< std::endl;
+    std::cout << "+Nombre de sommets : "<<attrib_m.vertices.size() << " +"<<std::endl;
+    std::cout << "++++++++++++++++++++++++++++++++++++++++++++"<<std::endl<<std::endl<<std::endl;
+    loadGL();
+    draw();
+    return error;
 }

@@ -18,6 +18,13 @@ MeshModifier::MeshModifier()
  *
  *
  ******************************************************************/
+void MeshModifier::computeFaceMatrix(MyObject &obj, Mesh &mesh){
+    mesh2Object(mesh,obj.attrib(),obj.shape(0));
+}
+void MeshModifier::recomputeNormals(MyObject &obj, Mesh &mesh){
+    computeFaceMatrix(obj,mesh);
+}
+
 //Mesh actions
 //First we need to load our mesh into OpenMesh
 void MeshModifier::object2Mesh(attrib_t &a,shape_t &s, Mesh &mesh){
@@ -61,6 +68,7 @@ void MeshModifier::mesh2Object(Mesh& mesh, attrib_t& a, shape_t& s){
 
     a.vertices.resize(mesh.n_vertices() * 3);
     a.normals.resize(mesh.n_vertices() * 3);
+    a.face_normals.resize( mesh.n_faces() );
     s.mesh.indices.resize(mesh.n_faces() * 3);
 
     mesh.update_normals();
@@ -95,7 +103,7 @@ void MeshModifier::mesh2Object(Mesh& mesh, attrib_t& a, shape_t& s){
                                          y*y, y*z, y*d,
                                               z*z, z*d,
                                                    d*d};
-        a.face_normals.push_back(vals);
+        a.face_normals[f_it->idx()] = vals;
     }
 }
 
@@ -319,29 +327,161 @@ void MeshModifier::splice( Mesh& mesh, const Mesh::HalfedgeHandle& heh){
  *
  */
 //Return the Error
-float MeshModifier::halfEdgeCollapse(MyObject * obj, const unsigned int faceCountTarget){
-    //On va sort avec une std::map (key = edge handle, val = error)
-    return 0.0;
-}
-//Return the Error
-float MeshModifier::edgeCollapse(MyObject * obj, const unsigned int faceCountTarget){
-    if( faceCountTarget > obj->faceCount())
+float MeshModifier::halfEdgeCollapseMinError(MyObject * obj, const unsigned int faceCountTarget){
+    if( faceCountTarget >= obj->faceCount() )
         return 0.f;
-
+    float totalError = 0.0;
     Mesh mesh;
     object2Mesh(obj->attrib(),obj->shape(0),mesh);
     //Creation of the map
     std::map<float,Mesh::HalfedgeHandle> errorMap;
     //Initialisation
+    if(obj->attrib().face_normals.size() == 0)
+        computeFaceMatrix(*obj,mesh);
     computeQuadricError(mesh, obj->attrib().face_normals, errorMap);
+    do{
+        bool collapse = false;
+        int i = 0;
+        auto map_end = errorMap.end();
+        for( auto item = errorMap.begin() ; item != map_end; ++item){
+            if( (collapse = mesh.is_collapse_ok(item->second)) ){
+                totalError += item->first;
+                //Ecrase le from_vertex sur le to_vertex
+                mesh.collapse(item->second);
+                mesh.garbage_collection();
+                break;
+            }
+        }
+        if( !collapse ){
+            std::cout << "The object is not a manifold anymore i cannot continue to collapse :( "<<std::endl;
+            break;
+        }
+        std::cout << "There is "<< mesh.n_faces() - faceCountTarget << " remaining." << std::endl;
+        computeFaceMatrix(*obj, mesh);
+        computeQuadricError(mesh,obj->attrib().face_normals, errorMap);
+    }while(mesh.n_faces() > faceCountTarget);
 
+    mesh2Object(mesh,obj->attrib(),obj->shape(0));
+    return totalError;
+}
 
-    //On va sort avec une std::map (key = edge handle, val = error)
-    return 0.0;
+//Return the Error
+float MeshModifier::edgeCollapseMinError(MyObject * obj, const unsigned int faceCountTarget){
+    if( faceCountTarget >= obj->faceCount() )
+        return 0.f;
+    float totalError = 0.0;
+    Mesh mesh;
+    object2Mesh(obj->attrib(),obj->shape(0),mesh);
+    //Creation of the map
+    std::map<float,Mesh::HalfedgeHandle> errorMap;
+    //Initialisation
+    if(obj->attrib().face_normals.size() == 0)
+        computeFaceMatrix(*obj,mesh);
+    computeQuadricError(mesh, obj->attrib().face_normals, errorMap);
+    do{
+        bool collapse = false;
+        int i = 0;
+        auto map_end = errorMap.end();
+        for( auto item = errorMap.begin() ; item != map_end; ++item){
+            if( (collapse = mesh.is_collapse_ok(item->second)) ){
+                totalError += item->first;
+                //Ecrase le from_vertex sur le to_vertex
+                mesh.collapse(item->second);
+                mesh.garbage_collection();
+                break;
+            }
+
+        }
+        if( !collapse ){
+            std::cout << "The object is not a manifold anymore i cannot continue to collapse :( "<<std::endl;
+            break;
+        }
+
+        computeFaceMatrix(*obj, mesh);
+        computeQuadricError(mesh,obj->attrib().face_normals, errorMap);
+    }while(mesh.n_faces() > faceCountTarget);
+
+    mesh2Object(mesh,obj->attrib(),obj->shape(0));
+    return totalError;
+}
+
+float MeshModifier::fastHalfEdgeCollapse(MyObject * obj, const unsigned int faceCountTarget){
+    if( faceCountTarget >= obj->faceCount() )
+        return 0.f;
+    float totalError = 0.0;
+    Mesh mesh;
+    object2Mesh(obj->attrib(),obj->shape(0),mesh);
+    //Creation of the map
+    std::map<float,Mesh::HalfedgeHandle> errorMap;
+    //Initialisation
+    if(obj->attrib().face_normals.size() == 0)
+        computeFaceMatrix(*obj,mesh);
+    computeQuadricError(mesh, obj->attrib().face_normals, errorMap);
+    do{
+        bool collapse = false;
+        int i = 0;
+        auto map_end = errorMap.end();
+        for( auto item = errorMap.begin() ; mesh.n_faces() > faceCountTarget && item != map_end; ++item){
+            if( (collapse = mesh.is_collapse_ok(item->second)) ){
+                totalError += item->first;
+                //Ecrase le from_vertex sur le to_vertex
+                mesh.collapse(item->second);
+                mesh.garbage_collection();
+            }
+        }
+        if( !collapse ){
+            std::cout << "The object is not a manifold anymore i cannot continue to collapse :( "<<std::endl;
+            break;
+        }
+        computeFaceMatrix(*obj, mesh);
+        computeQuadricError(mesh,obj->attrib().face_normals, errorMap);
+                std::cout << "There is "<< mesh.n_faces() - faceCountTarget << " remaining." << std::endl;
+    }while(mesh.n_faces() > faceCountTarget);
+
+    mesh2Object(mesh,obj->attrib(),obj->shape(0));
+    return totalError;
+}
+//Return the Error
+float MeshModifier::fastEdgeCollapse(MyObject * obj, const unsigned int faceCountTarget){
+    if( faceCountTarget >= obj->faceCount() )
+        return 0.f;
+    float totalError = 0.0;
+    Mesh mesh;
+    object2Mesh(obj->attrib(),obj->shape(0),mesh);
+    //Creation of the map
+    std::map<float,Mesh::HalfedgeHandle> errorMap;
+    //Initialisation
+    if(obj->attrib().face_normals.size() == 0)
+        computeFaceMatrix(*obj,mesh);
+    computeQuadricError(mesh, obj->attrib().face_normals, errorMap);
+    do{
+        bool collapse = false;
+        int i = 0;
+        auto map_end = errorMap.end();
+        for( auto item = errorMap.begin() ; mesh.n_faces() > faceCountTarget && item != map_end; ++item){
+            if( (collapse = mesh.is_collapse_ok(item->second)) ){
+                totalError += item->first;
+                //Ecrase le from_vertex sur le to_vertex
+                mesh.collapse(item->second);
+                mesh.garbage_collection();
+            }
+
+        }
+        if( !collapse ){
+            std::cout << "The object is not a manifold anymore i cannot continue to collapse :( "<<std::endl;
+            break;
+        }
+        computeFaceMatrix(*obj, mesh);
+        computeQuadricError(mesh,obj->attrib().face_normals, errorMap);
+    }while(mesh.n_faces() > faceCountTarget);
+
+    mesh2Object(mesh,obj->attrib(),obj->shape(0));
+    return totalError;
 }
 
 void MeshModifier::computeQuadricError( Mesh& mesh, std::vector<std::vector<float>> faceMatrix, std::map<float, Mesh::HalfedgeHandle>& map){
 
+    map.clear();
     //On va associer à chaque edge une erreur
     for (Mesh::EdgeIter e_it=mesh.edges_begin(); e_it!=mesh.edges_end(); ++e_it){
         Mesh::HalfedgeHandle heh(mesh.halfedge_handle(*e_it, 0));
@@ -350,6 +490,7 @@ void MeshModifier::computeQuadricError( Mesh& mesh, std::vector<std::vector<floa
         Mesh::VertexHandle from_vh = mesh.from_vertex_handle(heh);
         //Afin de pas compter deux fois les faces du edge on va les sauvegarder dans un coin
         std::vector<Mesh::FaceHandle> seen;
+        unsigned int nbFaces = 0;
         //La matrice Q
         float Q[10] = {0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0};
 
@@ -361,7 +502,9 @@ void MeshModifier::computeQuadricError( Mesh& mesh, std::vector<std::vector<floa
             for(int i = 0; i < 9; ++i){
                 Q[i] += faceMatrix[fh.idx()][i];
             }
+            ++nbFaces;
         }
+
         //Loop du from_vh
         for(Mesh::VertexFaceIter vf_it= mesh.vf_iter(from_vh); vf_it; ++vf_it){
             Mesh::FaceHandle fh(*vf_it);
@@ -371,20 +514,19 @@ void MeshModifier::computeQuadricError( Mesh& mesh, std::vector<std::vector<floa
                     Q[i] += faceMatrix[fh.idx()][i];
                 }
              }
+            ++nbFaces;
         }
-
         //Calcul de x,y,z
-        float inv_detA = 1.0/(Q[1] * Q[1] * ( Q[5] - Q[7]));
+        float inv_detA = 1.0/(2*Q[1]*Q[2]*Q[5] + Q[0]*Q[4]*Q[7] - Q[2]*Q[2]*Q[4] - Q[5]*Q[5]*Q[0] - Q[7]*Q[1]*Q[1]);
         float x = ((Q[3]*Q[4]*Q[7] + (Q[1]*Q[8] + Q[2]*Q[6]) * Q[5]) - (Q[8] * Q[4] * Q[2] + Q[5]*Q[5]*Q[3] + Q[7]*Q[6]*Q[1])) * inv_detA;
         float y = ((Q[0]*Q[6]*Q[7] + (Q[3]*Q[5] + Q[1]*Q[8]) * Q[2]) - (Q[2] * Q[6] * Q[2] + Q[8]*Q[5]*Q[0] + Q[7]*Q[3]*Q[1])) * inv_detA;
         float z = ((Q[0]*Q[4]*Q[8] + (Q[6]*Q[2] + Q[3]*Q[5]) * Q[1]) - (Q[2] * Q[4] * Q[3] + Q[5]*Q[6]*Q[0] + Q[8]*Q[1]*Q[1])) * inv_detA;
 
         float Ev = x*x*Q[0] + y*y*Q[4] + z*z*Q[7] + 2*x*y*Q[1] + 2*y*z*Q[5] + 2*x*z*Q[2] + 2*x*Q[3] + 2*y*Q[6] + 2*z*Q[8] + Q[9];
-
         //On met l'erreur en clef comme ca on tri en insérant.
-        //Proba que 2 Erreurs soit les même +- 0%
+        //Proba que 2 Erreurs soit les même +- 0% -> Solide régulier
         //De toute facon on aurait pris la première insérée car on veut un tri en place
-        map.insert(std::pair<float,Mesh::HalfedgeHandle>(Ev,heh));
+        map.insert(std::pair<float,Mesh::HalfedgeHandle>(Ev/(float)nbFaces,heh));
     }
 }
 

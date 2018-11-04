@@ -13,12 +13,18 @@ class MeshModifier
 public:
     MeshModifier();
 
+    //Data improvement
+    void computeFaceMatrix(MyObject& obj, Mesh& mesh);
+    void recomputeNormals(MyObject& obj, Mesh& mesh);
+
     //Subdivision strategy
     void subdivideLoop(MyObject* obj);
 
     //Simplification startegy
-    float edgeCollapse(MyObject* obj, const unsigned int target);
-    float halfEdgeCollapse(MyObject* obj, const unsigned int target);
+    virtual float halfEdgeCollapseMinError( MyObject* obj, const unsigned int faceCountTarget);
+    virtual float edgeCollapseMinError( MyObject* obj,  const unsigned int faceCountTarget);
+    virtual float fastHalfEdgeCollapse( MyObject* obj,  const unsigned int faceCountTarget);
+    virtual float fastEdgeCollapse( MyObject* obj,  const unsigned int faceCountTarget);
 
 
 protected:

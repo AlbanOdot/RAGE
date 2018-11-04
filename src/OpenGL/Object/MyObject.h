@@ -2,9 +2,11 @@
 #define MYOBJECT_H
 #include "tiny_obj_loader.h"
 #include "./opengl_stuff.h"
-
+#include <OpenMesh/Core/Mesh/TriMesh_ArrayKernelT.hh>
 
 using namespace tinyobj;
+
+typedef OpenMesh::TriMesh_ArrayKernelT<> Mesh;
 
 class MyObject {
 
@@ -20,11 +22,13 @@ public:
     //Return the new face count
     virtual void subdivideLoop();
     //Return the Error
-    virtual float halfEdgeCollapse(const unsigned int faceCountTarget);
+    virtual float halfEdgeCollapseMinError(const unsigned int faceCountTarget);
     //Return the Error
-    virtual float edgeCollapse( const unsigned int faceCountTarget);
-
-
+    virtual float edgeCollapseMinError( const unsigned int faceCountTarget);
+    //Return the Error
+    virtual float fastHalfEdgeCollapse(const unsigned int faceCountTarget);
+    //Return the Error
+    virtual float fastEdgeCollapse( const unsigned int faceCountTarget);
 
     //Mesh info
     //if -1 return the sum over the whole mesh, if != -1 return the value of the asked patch
@@ -34,7 +38,7 @@ public:
                                                    else
                                                        for( unsigned long k = 0; k < shapes_m.size(); ++k)
                                                            s +=shapes_m[k].mesh.indices.size();
-                                                                                              return s;
+                                                                                              return s/3;
                                                   }
 
     inline unsigned int verticesCount(int i = -1) {return 3 * faceCount( i );}
@@ -63,6 +67,7 @@ protected:
     attrib_t attrib_m;
     std::vector<shape_t> shapes_m;
     std::vector<material_t> materials_m;
+    Mesh mesh;
 
 private:
     //Create/init all of the openGL attributes
