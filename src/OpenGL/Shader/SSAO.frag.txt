@@ -4,11 +4,11 @@ in vec3 vposition;
 in vec3 vcolor;
 in vec2 vtexCoord;
 
-//uniform sampler2D screenTexture;
+uniform sampler2D screenTexture;
 
 out vec4 color;
 
 void main()
 {
-    color = vec4(vposition,1.0f);//vec4(vtexCoord.x,vtexCoord.y,0.5,1.0);
+    color = vec4(vtexCoord.x,vtexCoord.y,0.5,1.0);
 }

@@ -4,7 +4,7 @@
 #include "scene.h"
 
 #include "./src/OpenGL/Camera/camera.h"
-#include "./src/OpenGL/Object/MyModel.h"
+#include "./src/OpenGL/Object/Mesh/MyModel.h"
 #include "./src/OpenGL/Textures/framebuffer.h"
 
 #include <memory>
@@ -41,6 +41,8 @@ private:
     //Matrices
     glm::mat4 _view;
     glm::mat4 _projection;
+
+    char wireframe = 0;
 };
 
 #endif // SHADERICOSPHERE_H

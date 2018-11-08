@@ -1,7 +1,7 @@
 #include "MyObject.h"
 #include <vector>
 #include <iostream>
-#include "MeshModifier.h"
+#include "src/OpenGL/Object/MeshTools/MeshModifier.h"
 #include <OpenMesh/Core/IO/MeshIO.hh>
 
 MyObject::MyObject(){}
@@ -16,12 +16,13 @@ MyObject::MyObject(const std::string& path){
         exit(1);
     }
     if( ! mesh_m.has_face_normals() ){
-       mesh_m.request_face_normals();
+        mesh_m.request_face_normals();
     }
     //Initialisation de ses propres propriétés
     if( !mesh_m.has_vertex_normals() ){
         mesh_m.request_vertex_normals();
     }
+    mesh_m.add_property(face_matrix);
     mesh_m.update_face_normals();
     mesh_m.update_vertex_normals();
     mesh_m.request_face_status();
@@ -41,7 +42,7 @@ void MyObject::loadGL(){
     vertices.resize(mesh_m.n_vertices() * 3);
     normals.resize(mesh_m.n_vertices() * 3);
     colors.resize(mesh_m.n_vertices() * 3);
-       uv.resize(mesh_m.n_vertices() * 2);
+    uv.resize(mesh_m.n_vertices() * 2);
     indices.resize(mesh_m.n_faces() * 3);
     if( !mesh_m.has_vertex_texcoords2D())
         mesh_m.request_vertex_texcoords2D();
@@ -155,7 +156,7 @@ void MyObject::subdivideLoop(){
     std::cout << "*Nombre de sommets : "<<verticesCount() << " *"<<std::endl;
     std::cout << "********************************************"<<std::endl;
     MeshModifier m;
-    m.subdivideLoop(this);
+    m.subdivideLoop(*this);
     mesh_m.update_face_normals();
     mesh_m.update_normals();
     std::cout << "********************************************"<<std::endl;
@@ -166,8 +167,9 @@ void MyObject::subdivideLoop(){
     loadGL();
     draw();
 }
-//Return the Error
-float MyObject::halfEdgeCollapseMinError(const unsigned int faceCountTarget){
+
+
+float MyObject::halfEdgeCollapse(const unsigned int faceCountTarget){
     std::cout << "++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
     std::cout << "+Avant la simplification :                  "<<std::endl;
     std::cout << "+Nombre de faces : " << faceCount() <<"   +"<< std::endl;
@@ -175,7 +177,7 @@ float MyObject::halfEdgeCollapseMinError(const unsigned int faceCountTarget){
     std::cout << "+Objectif : "<< faceCountTarget<< "  +"<<std::endl;
     std::cout << "++++++++++++++++++++++++++++++++++++++++++++"<<std::endl<<std::endl<<std::endl;
     MeshModifier m;
-    float error = m.halfEdgeCollapseMinError(this,faceCountTarget);
+    float error = m.halfEdgeCollapse(*this,faceCountTarget);
     mesh_m.update_face_normals();
     mesh_m.update_normals();
     std::cout << "++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
@@ -189,7 +191,7 @@ float MyObject::halfEdgeCollapseMinError(const unsigned int faceCountTarget){
 }
 
 //Return the Error
-float MyObject::edgeCollapseMinError( const unsigned int faceCountTarget){
+float MyObject::edgeCollapse( const unsigned int faceCountTarget){
     std::cout << "++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
     std::cout << "+Avant la simplification :                  "<<std::endl;
     std::cout << "+Nombre de faces : " << faceCount() <<"   +"<< std::endl;
@@ -197,50 +199,7 @@ float MyObject::edgeCollapseMinError( const unsigned int faceCountTarget){
     std::cout << "+Objectif : "<< faceCountTarget<< "  +"<<std::endl;
     std::cout << "++++++++++++++++++++++++++++++++++++++++++++"<<std::endl<<std::endl<<std::endl;
     MeshModifier m;
-    float error = m.edgeCollapseMinError(this,faceCountTarget);
-    mesh_m.update_face_normals();
-    mesh_m.update_normals();
-    std::cout << "++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
-    std::cout << "+Apres la simplification :                  "<<std::endl;
-    std::cout << "+Nombre de faces : " << faceCount() <<"   +"<< std::endl;
-    std::cout << "+Nombre de sommets : "<<verticesCount() << " +"<<std::endl;
-    std::cout << "++++++++++++++++++++++++++++++++++++++++++++"<<std::endl<<std::endl<<std::endl;
-    loadGL();
-    draw();
-    return error;
-}
-
-float MyObject::fastHalfEdgeCollapse(const unsigned int faceCountTarget){
-    std::cout << "++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
-    std::cout << "+Avant la simplification :                  "<<std::endl;
-    std::cout << "+Nombre de faces : " << faceCount() <<"   +"<< std::endl;
-    std::cout << "+Nombre de sommets : "<<verticesCount() << " +"<<std::endl;
-    std::cout << "+Objectif : "<< faceCountTarget<< "  +"<<std::endl;
-    std::cout << "++++++++++++++++++++++++++++++++++++++++++++"<<std::endl<<std::endl<<std::endl;
-    MeshModifier m;
-    float error = m.fastHalfEdgeCollapse(this,faceCountTarget);
-    mesh_m.update_face_normals();
-    mesh_m.update_normals();
-    std::cout << "++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
-    std::cout << "+Apres la simplification :                  "<<std::endl;
-    std::cout << "+Nombre de faces : " << faceCount() <<"   +"<< std::endl;
-    std::cout << "+Nombre de sommets : "<<verticesCount() << " +"<<std::endl;
-    std::cout << "++++++++++++++++++++++++++++++++++++++++++++"<<std::endl<<std::endl<<std::endl;
-    loadGL();
-    draw();
-    return error;
-}
-
-//Return the Error
-float MyObject::fastEdgeCollapse( const unsigned int faceCountTarget){
-    std::cout << "++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
-    std::cout << "+Avant la simplification :                  "<<std::endl;
-    std::cout << "+Nombre de faces : " << faceCount() <<"   +"<< std::endl;
-    std::cout << "+Nombre de sommets : "<<verticesCount() << " +"<<std::endl;
-    std::cout << "+Objectif : "<< faceCountTarget<< "  +"<<std::endl;
-    std::cout << "++++++++++++++++++++++++++++++++++++++++++++"<<std::endl<<std::endl<<std::endl;
-    MeshModifier m;
-    float error = m.fastEdgeCollapse(this,faceCountTarget);
+    float error = m.edgeCollapse(*this,faceCountTarget);
     mesh_m.update_face_normals();
     mesh_m.update_normals();
     std::cout << "++++++++++++++++++++++++++++++++++++++++++++"<<std::endl;
@@ -255,25 +214,29 @@ float MyObject::fastEdgeCollapse( const unsigned int faceCountTarget){
 
 void MyObject::updateFaceMatrix(){
 
-    if(!mesh_m.has_face_normals())
-        mesh_m.request_face_normals();
-    mesh_m.update_face_normals();
+    for( Mesh::VertexIter v_it = mesh_m.vertices_begin(); v_it != mesh_m.vertices_end(); ++v_it){
+        mesh_m.property(face_matrix, *v_it).clear();
+    }
 
-    face_matrix.resize(mesh_m.n_faces());
-    for(Mesh::FaceIter f_it = mesh_m.faces_begin(); f_it != mesh_m.faces_end(); ++f_it){
-        Mesh::Point barycentre(0.0,0.0,0.0);
-        for(Mesh::FaceVertexIter fv_it = mesh_m.fv_iter(*f_it); fv_it; ++fv_it){
-            barycentre += mesh_m.point(*fv_it);
-        }
-        //Face Normal
-        Mesh::Normal n = mesh_m.normal(*f_it);
-        barycentre = barycentre/3.f;
-        float d = barycentre.norm();
-        float x = n[0], y = n[1], z = n[2];
-        std::vector<float> Qv = {x*x, x*y, x*z, x*d,
-                                         y*y, y*z, y*d,
-                                              z*z, z*d,
-                                                   d*d};
-        face_matrix[f_it->idx()] = Qv;
+    //On utilise le fait que la norm du vecteur normal == air du triangle
+    for( Mesh::FaceIter f_it = mesh_m.faces_begin(); f_it != mesh_m.faces_end(); ++f_it){
+        Mesh::FaceVertexIter fv_it = mesh_m.fv_iter(*f_it);
+        Mesh::VertexHandle vh1 = *fv_it;
+        ++fv_it;
+        Mesh::VertexHandle vh2 = *fv_it;
+        ++fv_it;
+        Mesh::VertexHandle vh3 = *fv_it;
+        Mesh::Point v1 = mesh_m.point(vh1);
+        Mesh::Point v2 = mesh_m.point(vh2);
+        Mesh::Point v3 = mesh_m.point(vh3);
+
+        Mesh::Normal n = (v3-v2) % (v3-v1);
+        double aire = n.norm();
+        n /= aire;
+        OpenMesh::Geometry::Quadricf Qv(n,v1);
+        Qv *= 0.5 * aire;//On calcul l'air du parallèlogramme mais on a un triangle donc on divise par 2
+        mesh_m.property( face_matrix, vh1) += Qv;
+        mesh_m.property( face_matrix, vh2) += Qv;
+        mesh_m.property( face_matrix, vh3) += Qv;
     }
 }

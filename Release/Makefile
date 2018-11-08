@@ -217,86 +217,140 @@ src/OpenGL/Camera/camera.cpp.s:
 	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Camera/camera.cpp.s
 .PHONY : src/OpenGL/Camera/camera.cpp.s
 
-src/OpenGL/Object/MeshModifier.o: src/OpenGL/Object/MeshModifier.cpp.o
+src/OpenGL/Object/Mesh/MyModel.o: src/OpenGL/Object/Mesh/MyModel.cpp.o
 
-.PHONY : src/OpenGL/Object/MeshModifier.o
-
-# target to build an object file
-src/OpenGL/Object/MeshModifier.cpp.o:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/MeshModifier.cpp.o
-.PHONY : src/OpenGL/Object/MeshModifier.cpp.o
-
-src/OpenGL/Object/MeshModifier.i: src/OpenGL/Object/MeshModifier.cpp.i
-
-.PHONY : src/OpenGL/Object/MeshModifier.i
-
-# target to preprocess a source file
-src/OpenGL/Object/MeshModifier.cpp.i:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/MeshModifier.cpp.i
-.PHONY : src/OpenGL/Object/MeshModifier.cpp.i
-
-src/OpenGL/Object/MeshModifier.s: src/OpenGL/Object/MeshModifier.cpp.s
-
-.PHONY : src/OpenGL/Object/MeshModifier.s
-
-# target to generate assembly for a file
-src/OpenGL/Object/MeshModifier.cpp.s:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/MeshModifier.cpp.s
-.PHONY : src/OpenGL/Object/MeshModifier.cpp.s
-
-src/OpenGL/Object/MyModel.o: src/OpenGL/Object/MyModel.cpp.o
-
-.PHONY : src/OpenGL/Object/MyModel.o
+.PHONY : src/OpenGL/Object/Mesh/MyModel.o
 
 # target to build an object file
-src/OpenGL/Object/MyModel.cpp.o:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/MyModel.cpp.o
-.PHONY : src/OpenGL/Object/MyModel.cpp.o
+src/OpenGL/Object/Mesh/MyModel.cpp.o:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Mesh/MyModel.cpp.o
+.PHONY : src/OpenGL/Object/Mesh/MyModel.cpp.o
 
-src/OpenGL/Object/MyModel.i: src/OpenGL/Object/MyModel.cpp.i
+src/OpenGL/Object/Mesh/MyModel.i: src/OpenGL/Object/Mesh/MyModel.cpp.i
 
-.PHONY : src/OpenGL/Object/MyModel.i
+.PHONY : src/OpenGL/Object/Mesh/MyModel.i
 
 # target to preprocess a source file
-src/OpenGL/Object/MyModel.cpp.i:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/MyModel.cpp.i
-.PHONY : src/OpenGL/Object/MyModel.cpp.i
+src/OpenGL/Object/Mesh/MyModel.cpp.i:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Mesh/MyModel.cpp.i
+.PHONY : src/OpenGL/Object/Mesh/MyModel.cpp.i
 
-src/OpenGL/Object/MyModel.s: src/OpenGL/Object/MyModel.cpp.s
+src/OpenGL/Object/Mesh/MyModel.s: src/OpenGL/Object/Mesh/MyModel.cpp.s
 
-.PHONY : src/OpenGL/Object/MyModel.s
+.PHONY : src/OpenGL/Object/Mesh/MyModel.s
 
 # target to generate assembly for a file
-src/OpenGL/Object/MyModel.cpp.s:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/MyModel.cpp.s
-.PHONY : src/OpenGL/Object/MyModel.cpp.s
+src/OpenGL/Object/Mesh/MyModel.cpp.s:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Mesh/MyModel.cpp.s
+.PHONY : src/OpenGL/Object/Mesh/MyModel.cpp.s
 
-src/OpenGL/Object/MyObject.o: src/OpenGL/Object/MyObject.cpp.o
+src/OpenGL/Object/Mesh/MyObject.o: src/OpenGL/Object/Mesh/MyObject.cpp.o
 
-.PHONY : src/OpenGL/Object/MyObject.o
+.PHONY : src/OpenGL/Object/Mesh/MyObject.o
 
 # target to build an object file
-src/OpenGL/Object/MyObject.cpp.o:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/MyObject.cpp.o
-.PHONY : src/OpenGL/Object/MyObject.cpp.o
+src/OpenGL/Object/Mesh/MyObject.cpp.o:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Mesh/MyObject.cpp.o
+.PHONY : src/OpenGL/Object/Mesh/MyObject.cpp.o
 
-src/OpenGL/Object/MyObject.i: src/OpenGL/Object/MyObject.cpp.i
+src/OpenGL/Object/Mesh/MyObject.i: src/OpenGL/Object/Mesh/MyObject.cpp.i
 
-.PHONY : src/OpenGL/Object/MyObject.i
+.PHONY : src/OpenGL/Object/Mesh/MyObject.i
 
 # target to preprocess a source file
-src/OpenGL/Object/MyObject.cpp.i:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/MyObject.cpp.i
-.PHONY : src/OpenGL/Object/MyObject.cpp.i
+src/OpenGL/Object/Mesh/MyObject.cpp.i:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Mesh/MyObject.cpp.i
+.PHONY : src/OpenGL/Object/Mesh/MyObject.cpp.i
 
-src/OpenGL/Object/MyObject.s: src/OpenGL/Object/MyObject.cpp.s
+src/OpenGL/Object/Mesh/MyObject.s: src/OpenGL/Object/Mesh/MyObject.cpp.s
 
-.PHONY : src/OpenGL/Object/MyObject.s
+.PHONY : src/OpenGL/Object/Mesh/MyObject.s
 
 # target to generate assembly for a file
-src/OpenGL/Object/MyObject.cpp.s:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/MyObject.cpp.s
-.PHONY : src/OpenGL/Object/MyObject.cpp.s
+src/OpenGL/Object/Mesh/MyObject.cpp.s:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Mesh/MyObject.cpp.s
+.PHONY : src/OpenGL/Object/Mesh/MyObject.cpp.s
+
+src/OpenGL/Object/MeshTools/Decimator.o: src/OpenGL/Object/MeshTools/Decimator.cpp.o
+
+.PHONY : src/OpenGL/Object/MeshTools/Decimator.o
+
+# target to build an object file
+src/OpenGL/Object/MeshTools/Decimator.cpp.o:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/MeshTools/Decimator.cpp.o
+.PHONY : src/OpenGL/Object/MeshTools/Decimator.cpp.o
+
+src/OpenGL/Object/MeshTools/Decimator.i: src/OpenGL/Object/MeshTools/Decimator.cpp.i
+
+.PHONY : src/OpenGL/Object/MeshTools/Decimator.i
+
+# target to preprocess a source file
+src/OpenGL/Object/MeshTools/Decimator.cpp.i:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/MeshTools/Decimator.cpp.i
+.PHONY : src/OpenGL/Object/MeshTools/Decimator.cpp.i
+
+src/OpenGL/Object/MeshTools/Decimator.s: src/OpenGL/Object/MeshTools/Decimator.cpp.s
+
+.PHONY : src/OpenGL/Object/MeshTools/Decimator.s
+
+# target to generate assembly for a file
+src/OpenGL/Object/MeshTools/Decimator.cpp.s:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/MeshTools/Decimator.cpp.s
+.PHONY : src/OpenGL/Object/MeshTools/Decimator.cpp.s
+
+src/OpenGL/Object/MeshTools/MeshModifier.o: src/OpenGL/Object/MeshTools/MeshModifier.cpp.o
+
+.PHONY : src/OpenGL/Object/MeshTools/MeshModifier.o
+
+# target to build an object file
+src/OpenGL/Object/MeshTools/MeshModifier.cpp.o:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/MeshTools/MeshModifier.cpp.o
+.PHONY : src/OpenGL/Object/MeshTools/MeshModifier.cpp.o
+
+src/OpenGL/Object/MeshTools/MeshModifier.i: src/OpenGL/Object/MeshTools/MeshModifier.cpp.i
+
+.PHONY : src/OpenGL/Object/MeshTools/MeshModifier.i
+
+# target to preprocess a source file
+src/OpenGL/Object/MeshTools/MeshModifier.cpp.i:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/MeshTools/MeshModifier.cpp.i
+.PHONY : src/OpenGL/Object/MeshTools/MeshModifier.cpp.i
+
+src/OpenGL/Object/MeshTools/MeshModifier.s: src/OpenGL/Object/MeshTools/MeshModifier.cpp.s
+
+.PHONY : src/OpenGL/Object/MeshTools/MeshModifier.s
+
+# target to generate assembly for a file
+src/OpenGL/Object/MeshTools/MeshModifier.cpp.s:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/MeshTools/MeshModifier.cpp.s
+.PHONY : src/OpenGL/Object/MeshTools/MeshModifier.cpp.s
+
+src/OpenGL/Object/MeshTools/subdivider.o: src/OpenGL/Object/MeshTools/subdivider.cpp.o
+
+.PHONY : src/OpenGL/Object/MeshTools/subdivider.o
+
+# target to build an object file
+src/OpenGL/Object/MeshTools/subdivider.cpp.o:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/MeshTools/subdivider.cpp.o
+.PHONY : src/OpenGL/Object/MeshTools/subdivider.cpp.o
+
+src/OpenGL/Object/MeshTools/subdivider.i: src/OpenGL/Object/MeshTools/subdivider.cpp.i
+
+.PHONY : src/OpenGL/Object/MeshTools/subdivider.i
+
+# target to preprocess a source file
+src/OpenGL/Object/MeshTools/subdivider.cpp.i:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/MeshTools/subdivider.cpp.i
+.PHONY : src/OpenGL/Object/MeshTools/subdivider.cpp.i
+
+src/OpenGL/Object/MeshTools/subdivider.s: src/OpenGL/Object/MeshTools/subdivider.cpp.s
+
+.PHONY : src/OpenGL/Object/MeshTools/subdivider.s
+
+# target to generate assembly for a file
+src/OpenGL/Object/MeshTools/subdivider.cpp.s:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/MeshTools/subdivider.cpp.s
+.PHONY : src/OpenGL/Object/MeshTools/subdivider.cpp.s
 
 src/OpenGL/Renderer/Renderer.o: src/OpenGL/Renderer/Renderer.cpp.o
 
@@ -506,15 +560,21 @@ help:
 	@echo "... src/OpenGL/Camera/camera.o"
 	@echo "... src/OpenGL/Camera/camera.i"
 	@echo "... src/OpenGL/Camera/camera.s"
-	@echo "... src/OpenGL/Object/MeshModifier.o"
-	@echo "... src/OpenGL/Object/MeshModifier.i"
-	@echo "... src/OpenGL/Object/MeshModifier.s"
-	@echo "... src/OpenGL/Object/MyModel.o"
-	@echo "... src/OpenGL/Object/MyModel.i"
-	@echo "... src/OpenGL/Object/MyModel.s"
-	@echo "... src/OpenGL/Object/MyObject.o"
-	@echo "... src/OpenGL/Object/MyObject.i"
-	@echo "... src/OpenGL/Object/MyObject.s"
+	@echo "... src/OpenGL/Object/Mesh/MyModel.o"
+	@echo "... src/OpenGL/Object/Mesh/MyModel.i"
+	@echo "... src/OpenGL/Object/Mesh/MyModel.s"
+	@echo "... src/OpenGL/Object/Mesh/MyObject.o"
+	@echo "... src/OpenGL/Object/Mesh/MyObject.i"
+	@echo "... src/OpenGL/Object/Mesh/MyObject.s"
+	@echo "... src/OpenGL/Object/MeshTools/Decimator.o"
+	@echo "... src/OpenGL/Object/MeshTools/Decimator.i"
+	@echo "... src/OpenGL/Object/MeshTools/Decimator.s"
+	@echo "... src/OpenGL/Object/MeshTools/MeshModifier.o"
+	@echo "... src/OpenGL/Object/MeshTools/MeshModifier.i"
+	@echo "... src/OpenGL/Object/MeshTools/MeshModifier.s"
+	@echo "... src/OpenGL/Object/MeshTools/subdivider.o"
+	@echo "... src/OpenGL/Object/MeshTools/subdivider.i"
+	@echo "... src/OpenGL/Object/MeshTools/subdivider.s"
 	@echo "... src/OpenGL/Renderer/Renderer.o"
 	@echo "... src/OpenGL/Renderer/Renderer.i"
 	@echo "... src/OpenGL/Renderer/Renderer.s"

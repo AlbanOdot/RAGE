@@ -26,8 +26,8 @@ Renderer::Renderer(const int width, const int height, const std::string& filenam
                        fragPath);//Fragment Shader
 
     std::string meshPath = wd + std::string("/../DataFiles/Mesh/square.obj");
-    vshPath = wd +  std::string("/../src/OpenGL/Shader/basic.vert.txt");
-    fragPath = wd + std::string("/../src/OpenGL/Shader/color.frag.txt");
+    vshPath = wd +  std::string("/../src/OpenGL/Shader/pass.vert.txt");
+    fragPath = wd + std::string("/../src/OpenGL/Shader/SSAO.frag.txt");
     m_postProcessScreen = MyModel(meshPath, vshPath, fragPath);
 
     _camera.reset(new TrackballCamera(glm::vec3(0.f, 0.f, 3.f)));
@@ -44,15 +44,19 @@ void Renderer::resize(int width, int height){
 void Renderer::draw() {
     //1ere passe de rendu
     //Qt utilise son propre buffer
-    //GLint qt_buffer;
-    //glGetIntegerv(GL_FRAMEBUFFER_BINDING, &qt_buffer);
+ /*   GLint qt_buffer;
+    glGetIntegerv(GL_FRAMEBUFFER_BINDING, &qt_buffer);
 
     // first pass
-    //m_frameBuffer.bind();
+    m_frameBuffer.bind();
     glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // we're not using the stencil buffer now
-    //glEnable(GL_DEPTH_TEST);
-
+    glEnable(GL_DEPTH_TEST);
+*/
+    if( wireframe )
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    else
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     glUseProgram(m_object.getProg());
     _view = _camera->viewmatrix();
     glm::mat4 model(m_object.getModel());
@@ -60,20 +64,21 @@ void Renderer::draw() {
     glUniformMatrix4fv( glGetUniformLocation(m_object.getProg(), "view"), 1, GL_FALSE, glm::value_ptr(_view));
     glUniformMatrix4fv( glGetUniformLocation(m_object.getProg(), "projection"), 1, GL_FALSE, glm::value_ptr(_projection));
     m_object.draw();
-    /*
+/*
     //2eme passe de rendu, on vient rajouter les effets spéciaux
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
     //On rebind la bonne sortie (qt opengl widget )
     glBindFramebuffer(GL_FRAMEBUFFER, qt_buffer);
-    glClearColor(1,1,1, 1.0f);
+
+    glClearColor(0.3,0.3,0.3, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
-std::cout << m_object.getProg() << "    :    " << m_postProcessScreen.getProg() << std::endl;
-    //glUseProgram(m_postProcessScreen.getProg());
+    glUseProgram(m_postProcessScreen.getProg());
     glActiveTexture(GL_TEXTURE0);
     glDisable(GL_DEPTH_TEST);
     glBindTexture(GL_TEXTURE_2D, m_frameBuffer.textureColor);
     glUniform1i(glGetUniformLocation(m_postProcessScreen.getProg(), "screenTexture"), 0);
-    m_postProcessScreen.draw();
-*/
+    m_postProcessScreen.draw();*/
+
 }
 
 void Renderer::mouseclick(int button, float xpos, float ypos) {
@@ -94,29 +99,29 @@ void Renderer::keyboardmove(int key, double time) {
 bool Renderer::keyboard(unsigned char k) {
 
     switch(k) {
-    case 'm':
+    case '+':
         m_object.subdivideLoop();
         draw();
         return true;
-    case 'M':
+    case '*':
         //TODO Change this to something else
         m_object.subdivideLoop();
         draw();
         return true;
-    case 'l':
-        m_object.halfEdgeCollapseMinError(m_object.faceCount()/2);
-        draw();
-        return true;
-    case 'L':
-        m_object.edgeCollapseMinError(m_object.faceCount()/2);
+    case '-':
+        m_object.edgeCollapse(m_object.faceCount()/2);
         draw();
         return true;
     case '_':
-        m_object.fastEdgeCollapse(m_object.faceCount()/2);
+        m_object.halfEdgeCollapse(m_object.faceCount()/2);
         draw();
         return true;
-    case '-':
-        m_object.fastHalfEdgeCollapse(m_object.faceCount()/2);
+    case 'w':
+        wireframe = !wireframe;
+        draw();
+        return true;
+    case ';':
+        //Small hack forw wheel scroll
         draw();
         return true;
     default:
@@ -125,5 +130,5 @@ bool Renderer::keyboard(unsigned char k) {
 }
 void Renderer::wheelEvent( const int down){
     _camera->processmousescroll(down);
-    draw();
+    keyboard(';');
 }

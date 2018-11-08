@@ -13,13 +13,10 @@
 void main()
 {
             // Note that we read the multiplication from right to left
-            gl_Position = projection * view * model * vec4(iposition, 1.0f);
-
-            //On fait ca pour que la position soit interpolée
-            vec4 p = model*vec4(iposition, 1.0f);
-            vposition = (p / p.w).xyz;
+            gl_Position = vec4(iposition.x, iposition.z, 0.0, 1.0f);
 
             //Passthrough
+            vposition = iposition;
             vnormal = inormal;
             vcolor = icolor;
             vtexCoord = itexCoord;

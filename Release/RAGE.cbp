@@ -144,22 +144,34 @@
 		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Camera/camera.h">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Object/MeshModifier.cpp">
+		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Object/Mesh/MyModel.cpp">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Object/MeshModifier.h">
+		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Object/Mesh/MyModel.h">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Object/MyModel.cpp">
+		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Object/Mesh/MyObject.cpp">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Object/MyModel.h">
+		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Object/Mesh/MyObject.h">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Object/MyObject.cpp">
+		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Object/MeshTools/Decimator.cpp">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Object/MyObject.h">
+		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Object/MeshTools/Decimator.h">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Object/MeshTools/MeshModifier.cpp">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Object/MeshTools/MeshModifier.h">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Object/MeshTools/subdivider.cpp">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Object/MeshTools/subdivider.h">
 			<Option target="RAGE"/>
 		</Unit>
 		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Renderer/Renderer.cpp">

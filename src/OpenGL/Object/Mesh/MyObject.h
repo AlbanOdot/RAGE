@@ -2,6 +2,7 @@
 #define MYOBJECT_H
 #include "./src/OpenGL/opengl_stuff.h"
 #include <OpenMesh/Core/Mesh/TriMesh_ArrayKernelT.hh>
+#include <OpenMesh/Core/Geometry/QuadricT.hh>
 
 
 typedef OpenMesh::TriMesh_ArrayKernelT<> Mesh;
@@ -20,13 +21,9 @@ public:
     //Return the new face count
     virtual void subdivideLoop();
     //Return the Error
-    virtual float halfEdgeCollapseMinError(const unsigned int faceCountTarget);
+    virtual float halfEdgeCollapse(const unsigned int faceCountTarget);
     //Return the Error
-    virtual float edgeCollapseMinError( const unsigned int faceCountTarget);
-    //Return the Error
-    virtual float fastHalfEdgeCollapse(const unsigned int faceCountTarget);
-    //Return the Error
-    virtual float fastEdgeCollapse( const unsigned int faceCountTarget);
+    virtual float edgeCollapse( const unsigned int faceCountTarget);
 
     void updateFaceMatrix();
 
@@ -41,7 +38,7 @@ public:
     GLuint getNBO() { return nbo;}
     GLuint getEBO() { return ebo;}
     Mesh& mesh() { return mesh_m;}
-    std::vector<std::vector<float>>& faceMatrix()  { return face_matrix;}
+    OpenMesh::VPropHandleT<OpenMesh::Geometry::Quadricf>& faceMatrix()  { return face_matrix;}
 
 protected:
     GLuint vao = 0;//vertex array buffer
@@ -52,7 +49,7 @@ protected:
     GLuint ebo = 0;//topology
 
     Mesh mesh_m;
-    std::vector<std::vector<float>> face_matrix;
+    OpenMesh::VPropHandleT<OpenMesh::Geometry::Quadricf> face_matrix;
 private:
     //Create/init all of the openGL attributes
     void loadGL();
