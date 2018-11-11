@@ -26,6 +26,7 @@ public:
     virtual float edgeCollapse( const unsigned int faceCountTarget);
 
     void updateFaceMatrix();
+    void updateFaceMatrix(Mesh::VertexHandle& vh);
 
     //Mesh info
     inline unsigned int faceCount()     { return mesh_m.n_faces();}

@@ -16,27 +16,32 @@ void Decimator::updateNormals(MyObject &obj){
     obj.mesh().update_vertex_normals();
 }
 
-
 float Decimator::edgeCollapse(MyObject &obj, const unsigned int faceCountTarget){
     if( faceCountTarget >= obj.faceCount() )
         return 0.f;
     float totalError = 0.0;
     Mesh& mesh = obj.mesh();
+
+    mesh.request_vertex_status();
+    mesh.request_edge_status();
+    mesh.request_face_status();
     //Creation of the map
     std::map<float,Mesh::HalfedgeHandle> errorMap;
     do{
         //Initialisation
         updateFaceMatrix(obj);
-        computeQuadricError(mesh, obj.faceMatrix(), errorMap, false);
+        computeQuadricError(mesh, obj.faceMatrix(), errorMap);
+        while(!collapsable(mesh,errorMap.begin()->second) && !errorMap.empty()){
+            errorMap.erase(errorMap.begin());
+        }
         if( errorMap.empty())
             break;
         const std::pair<float,Mesh::HalfedgeHandle>& item = *(errorMap.begin());
+
         totalError += item.first;
-        //Calcul de la nouvelle position de to_vh
-        Mesh::Point nPos = computeQuadricErrorNewPosition(mesh, obj.faceMatrix(), item.second);
-        Mesh::VertexHandle to_vh(mesh.to_vertex_handle(item.second));
-        //On dépalce le point
-        mesh.set_point(to_vh, nPos);
+        //Faire un vv_iter et un ev_iter
+        Mesh::Point nPos = computeQuadricErrorNewPosition(mesh,obj.faceMatrix(),item.second);
+        mesh.set_point(mesh.from_vertex_handle(item.second),nPos);
         //Ecrase le from_vertex sur le to_vertex
         mesh.collapse(item.second);
         mesh.garbage_collection();
@@ -51,27 +56,34 @@ float Decimator::halfEdgeCollapse(MyObject &obj, const unsigned int faceCountTar
         return 0.f;
     float totalError = 0.0;
     Mesh& mesh = obj.mesh();
+
+    mesh.request_vertex_status();
+    mesh.request_edge_status();
+    mesh.request_face_status();
     //Creation of the map
     std::map<float,Mesh::HalfedgeHandle> errorMap;
     do{
         //Initialisation
         updateFaceMatrix(obj);
-        computeQuadricError(mesh, obj.faceMatrix(), errorMap, true);
+        computeQuadricError(mesh, obj.faceMatrix(), errorMap);
+        while(!collapsable(mesh,errorMap.begin()->second) && !errorMap.empty()){
+            errorMap.erase(errorMap.begin());
+        }
         if( errorMap.empty())
             break;
         const std::pair<float,Mesh::HalfedgeHandle>& item = *(errorMap.begin());
+
         totalError += item.first;
         //Faire un vv_iter et un ev_iter
         //Ecrase le from_vertex sur le to_vertex
         mesh.collapse(item.second);
         mesh.garbage_collection();
-        std::cout << "There is "<< mesh.n_faces() - faceCountTarget << " remaining." << std::endl;
     }while(mesh.n_faces() > faceCountTarget);
     mesh.update_normals();
     return totalError;
 }
 
-void Decimator::computeQuadricError( Mesh& mesh, const OpenMesh::VPropHandleT<OpenMesh::Geometry::Quadricf>& faceMatrix, std::map<float, Mesh::HalfedgeHandle>& map, bool halfEdgeCollapse){
+void Decimator::computeQuadricError( Mesh& mesh, const OpenMesh::VPropHandleT<OpenMesh::Geometry::Quadricf>& faceMatrix, std::map<float, Mesh::HalfedgeHandle>& map){
 
     map.clear();
     //On va associer à chaque edge une erreur
@@ -80,52 +92,52 @@ void Decimator::computeQuadricError( Mesh& mesh, const OpenMesh::VPropHandleT<Op
         Mesh::HalfedgeHandle heh(mesh.halfedge_handle(*e_it, 0));
         float Ev = 0.f;
         Mesh::HalfedgeHandle minheh;
-        if( collapsable(mesh, heh)){//On ne met que des heh que l'on peut collapse
-            if( halfEdgeCollapse ){
-                Mesh::VertexHandle to_vh = mesh.to_vertex_handle(heh);
-                Mesh::VertexHandle from_vh = mesh.from_vertex_handle(heh);
-                OpenMesh::Geometry::Quadricf Qto =  mesh.property( faceMatrix, to_vh);
-                OpenMesh::Geometry::Quadricf Qfrom = mesh.property( faceMatrix, from_vh);
-                float Evto = Qto(mesh.point(to_vh));
-                float Evfrom = Qfrom(mesh.point(from_vh));
-                minheh = Evto < Evfrom ? heh : mesh.opposite_halfedge_handle(heh);
-                Ev = Evto < Evfrom ? Evto : Evfrom;
-            }else{
-                Mesh::VertexHandle to_vh = mesh.to_vertex_handle(heh);
-                Mesh::VertexHandle from_vh = mesh.from_vertex_handle(heh);
-                OpenMesh::Geometry::Quadricf Q =  mesh.property( faceMatrix, to_vh);
-                Q += mesh.property( faceMatrix, from_vh);
-                Mesh::Point p = computeQuadricErrorNewPosition(mesh, faceMatrix, heh);//TODO changer ca
-                Ev = Q( p );
-                minheh = heh;
-            }
-            if( Ev < max_error_m)
-                map.insert(std::pair<float,Mesh::HalfedgeHandle>(Ev,minheh));
-            //On met l'erreur en clef comme ca on tri en insérant.
-            //Proba que 2 Erreurs soit les même +- 0% -> Solide régulier
-            //De toute facon on aurait pris la première insérée car on veut un tri en place
-        }
+        Mesh::VertexHandle to_vh = mesh.to_vertex_handle(heh);
+        Mesh::VertexHandle from_vh = mesh.from_vertex_handle(heh);
+        OpenMesh::Geometry::Quadricf Q =  mesh.property( faceMatrix, to_vh);
+        Q += mesh.property( faceMatrix, from_vh);
+        Mesh::Point p = computeQuadricErrorNewPosition(mesh, faceMatrix, heh);//TODO changer ca
+        Ev = Q( p );
+        minheh = heh;
+        map.insert(std::pair<float,Mesh::HalfedgeHandle>(Ev,minheh));
+        //On met l'erreur en clef comme ca on tri en insérant.
+        //Proba que 2 Erreurs soit les même +- 0% -> Solide régulier
+        //De toute facon on aurait pris la première insérée car on veut un tri en place
     }
     std::cout << "map size : " << map.size() << std::endl;
 }
 
 bool Decimator::collapsable(Mesh& mesh, Mesh::HalfedgeHandle heh){
-    if( !mesh.is_collapse_ok(heh) || mesh.is_boundary(heh))
-        return false;
-
     //Voisin de gauche
     Mesh::VertexHandle v0 = mesh.to_vertex_handle(mesh.next_halfedge_handle(heh));
     //Voisin de droite
     Mesh::VertexHandle v1 = mesh.to_vertex_handle(mesh.next_halfedge_handle(mesh.opposite_halfedge_handle(heh)));
+    //Vertex à supprimer
+    Mesh::VertexHandle from_vh = mesh.from_vertex_handle(heh);
+    //Vertex restant
+    Mesh::VertexHandle to_vh = mesh.to_vertex_handle(heh);
+
+    if( mesh.status(from_vh).locked())
+        return false;
+    if(!mesh.is_collapse_ok(heh))
+        return false;
     //Test du diamant
     if (v0.is_valid() && v1.is_valid()
             && mesh.find_halfedge(v0, v1).is_valid()
             && mesh.valence(v0) == 3 && mesh.valence(v1) == 3)
         return false;
-    //On vaut pas collapse un sommet de bord sur un de l'intérieur
-    if( mesh.is_boundary(v0)
-            && ( !mesh.is_boundary(v1) || (v0.is_valid() && v1.is_valid() )))
+
+    if( mesh.status(from_vh).feature() && !mesh.status(mesh.edge_handle(heh)).feature())
         return false;
+
+    //On vaut pas collapse un sommet de bord sur un de l'intérieur
+    if( mesh.is_boundary(from_vh)){
+
+        if( !mesh.is_boundary(to_vh) )
+            return false;
+        if(v0.is_valid() && v1.is_valid() )
+            return false;
+    }
     //Il manque surement une condition de bord
 
     //2 faces incidentes au moins

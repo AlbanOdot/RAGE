@@ -17,7 +17,7 @@ private:
     void updateFaceMatrix(MyObject& obj);
     void updateNormals(MyObject& obj);
     //Practical functions
-    void computeQuadricError( Mesh& mesh, const OpenMesh::VPropHandleT<OpenMesh::Geometry::Quadricf>& faceMatrix, std::map<float, Mesh::HalfedgeHandle>& map, bool halfEdgeCollapse = true);
+    void computeQuadricError( Mesh& mesh, const OpenMesh::VPropHandleT<OpenMesh::Geometry::Quadricf>& faceMatrix, std::map<float, Mesh::HalfedgeHandle>& map);
     Mesh::Point computeQuadricErrorNewPosition( Mesh& mesh, const OpenMesh::VPropHandleT<OpenMesh::Geometry::Quadricf>& faceMatrix, Mesh::HalfedgeHandle);
     bool collapsable(Mesh& mesh, Mesh::HalfedgeHandle heh);
     float max_error_m = 0.00001;

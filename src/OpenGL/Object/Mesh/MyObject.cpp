@@ -240,3 +240,28 @@ void MyObject::updateFaceMatrix(){
         mesh_m.property( face_matrix, vh3) += Qv;
     }
 }
+
+void MyObject::updateFaceMatrix(Mesh::VertexHandle& vh){
+    mesh_m.property(face_matrix, vh).clear();
+    //On utilise le fait que la norm du vecteur normal == air du triangle
+    for(Mesh::VertexFaceIter vf_it = mesh_m.vf_iter(vh); vf_it.is_valid(); ++vf_it){
+        if( !mesh_m.status(*vf_it).deleted())
+            continue;
+        Mesh::FaceVertexIter fv_it = mesh_m.fv_iter(*vf_it);
+        Mesh::VertexHandle vh1 = *fv_it;
+        ++fv_it;
+        Mesh::VertexHandle vh2 = *fv_it;
+        ++fv_it;
+        Mesh::VertexHandle vh3 = *fv_it;
+        Mesh::Point v1 = mesh_m.point(vh1);
+        Mesh::Point v2 = mesh_m.point(vh2);
+        Mesh::Point v3 = mesh_m.point(vh3);
+
+        Mesh::Normal n = (v3-v2) % (v3-v1);
+        double aire = n.norm();
+        n /= aire;
+        OpenMesh::Geometry::Quadricf Qv(n,v1);
+        Qv *= 0.5 * aire;//On calcul l'air du parallèlogramme mais on a un triangle donc on divise par 2
+        mesh_m.property( face_matrix, vh) += Qv;
+    }
+}
