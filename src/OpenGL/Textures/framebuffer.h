@@ -1,9 +1,6 @@
 #ifndef FRAMEBUFFER_H
 #define FRAMEBUFFER_H
-
-
-class FrameBuffer
-{
+class FrameBuffer {
 public:
     FrameBuffer();
     ~FrameBuffer();

@@ -74,6 +74,7 @@ void MyObject::loadGL(){
 
             //UV
             Mesh::TexCoord2D t = mesh_m.texcoord2D(*fv_it);
+            std::cout << "UV("<<fv_it->idx()<<") : ("<<t[0]<<", "<<t[1]<<")"<<std::endl;
             uv[2 * fv_it->idx() ] = t[0];
             uv[2 * fv_it->idx() + 1 ] = t[1];
 

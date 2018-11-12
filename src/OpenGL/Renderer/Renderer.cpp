@@ -41,22 +41,23 @@ void Renderer::resize(int width, int height){
     _camera->setviewport(glm::vec4(0.f, 0.f, _width, _height));
 }
 
-void Renderer::draw() {
+/*void Renderer::draw() {
     //1ere passe de rendu
     //Qt utilise son propre buffer
- /*   GLint qt_buffer;
+    GLint qt_buffer;
     glGetIntegerv(GL_FRAMEBUFFER_BINDING, &qt_buffer);
-
+    std::cout << "Qt buffer idx : "<<qt_buffer<<std::endl;
     // first pass
     m_frameBuffer.bind();
-    glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
+    //glClearColor(0.3f, 0.3f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // we're not using the stencil buffer now
     glEnable(GL_DEPTH_TEST);
-*/
+
     if( wireframe )
         glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     else
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
     glUseProgram(m_object.getProg());
     _view = _camera->viewmatrix();
     glm::mat4 model(m_object.getModel());
@@ -64,12 +65,10 @@ void Renderer::draw() {
     glUniformMatrix4fv( glGetUniformLocation(m_object.getProg(), "view"), 1, GL_FALSE, glm::value_ptr(_view));
     glUniformMatrix4fv( glGetUniformLocation(m_object.getProg(), "projection"), 1, GL_FALSE, glm::value_ptr(_projection));
     m_object.draw();
-/*
-    //2eme passe de rendu, on vient rajouter les effets spéciaux
-    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-    //On rebind la bonne sortie (qt opengl widget )
-    glBindFramebuffer(GL_FRAMEBUFFER, qt_buffer);
 
+    //2eme passe de rendu, on vient rajouter les effets spéciaux
+    //On rebind la bonne sortie (qt opengl widget )
+    glBindFramebuffer(GL_FRAMEBUFFER, 1);
     glClearColor(0.3,0.3,0.3, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
     glUseProgram(m_postProcessScreen.getProg());
@@ -77,8 +76,48 @@ void Renderer::draw() {
     glDisable(GL_DEPTH_TEST);
     glBindTexture(GL_TEXTURE_2D, m_frameBuffer.textureColor);
     glUniform1i(glGetUniformLocation(m_postProcessScreen.getProg(), "screenTexture"), 0);
-    m_postProcessScreen.draw();*/
+    m_postProcessScreen.draw();
 
+}*/
+void Renderer::draw(){
+    //1ere passe de rendu
+    //Qt utilise son propre buffer
+
+    // QT use his own default frame buffer ...
+    GLint qt_buffer;
+    glGetIntegerv(GL_FRAMEBUFFER_BINDING, &qt_buffer);
+
+    /* ********************* Rendering ******************** */
+
+    m_frameBuffer.bind();
+
+    glClearColor(0.05f, 0.1f, 0.1f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glEnable(GL_DEPTH_TEST);
+
+    if (!wireframe)
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+    else
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+    glUseProgram(m_object.getProg());
+    _view = _camera->viewmatrix();
+    glm::mat4 model(m_object.getModel());
+    glUniformMatrix4fv( glGetUniformLocation(m_object.getProg(), "model"), 1, GL_FALSE, glm::value_ptr(model));
+    glUniformMatrix4fv( glGetUniformLocation(m_object.getProg(), "view"), 1, GL_FALSE, glm::value_ptr(_view));
+    glUniformMatrix4fv( glGetUniformLocation(m_object.getProg(), "projection"), 1, GL_FALSE, glm::value_ptr(_projection));
+    m_object.draw();
+
+    //2eme passe de rendu, on vient rajouter les effets spéciaux
+    glBindFramebuffer(GL_FRAMEBUFFER, qt_buffer);
+    glClearColor(1,1,1, 1.0f);
+    glDisable(GL_DEPTH_TEST);
+    glClear(GL_COLOR_BUFFER_BIT );
+    glUseProgram(m_postProcessScreen.getProg());
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, m_frameBuffer.textureColor);
+    glUniform1i(glGetUniformLocation(m_postProcessScreen.getProg(), "screenTexture"), 0);
+    m_postProcessScreen.draw();
 }
 
 void Renderer::mouseclick(int button, float xpos, float ypos) {
@@ -118,10 +157,6 @@ bool Renderer::keyboard(unsigned char k) {
         return true;
     case 'w':
         wireframe = !wireframe;
-        draw();
-        return true;
-    case ';':
-        //Small hack forw wheel scroll
         draw();
         return true;
     default:

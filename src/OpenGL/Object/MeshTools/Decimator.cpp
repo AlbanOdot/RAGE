@@ -1,15 +1,13 @@
 #include "Decimator.h"
 #include <iostream>
-Decimator::Decimator()
-{
-
-}
+Decimator::Decimator(){}
 
 void Decimator::updateFaceMatrix(MyObject &obj){
     obj.mesh().update_normals();
     obj.mesh().update_face_normals();
     obj.updateFaceMatrix();
 }
+
 void Decimator::updateNormals(MyObject &obj){
     if( ! obj.mesh().has_vertex_normals() )
         obj.mesh().request_vertex_normals();
@@ -45,7 +43,6 @@ float Decimator::edgeCollapse(MyObject &obj, const unsigned int faceCountTarget)
         //Ecrase le from_vertex sur le to_vertex
         mesh.collapse(item.second);
         mesh.garbage_collection();
-        std::cout << "There is "<< mesh.n_faces() - faceCountTarget << " remaining." << std::endl;
     }while(mesh.n_faces() > faceCountTarget);
     mesh.update_normals();
     return totalError;
@@ -104,7 +101,6 @@ void Decimator::computeQuadricError( Mesh& mesh, const OpenMesh::VPropHandleT<Op
         //Proba que 2 Erreurs soit les même +- 0% -> Solide régulier
         //De toute facon on aurait pris la première insérée car on veut un tri en place
     }
-    std::cout << "map size : " << map.size() << std::endl;
 }
 
 bool Decimator::collapsable(Mesh& mesh, Mesh::HalfedgeHandle heh){
