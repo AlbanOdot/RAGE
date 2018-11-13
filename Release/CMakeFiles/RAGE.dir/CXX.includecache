@@ -6,14 +6,6 @@
 
 #IncludeRegexTransform: 
 
-.././src/OpenGL/Object/Mesh/MyObject.h
-./src/OpenGL/opengl_stuff.h
-.././src/OpenGL/Object/Mesh/./src/OpenGL/opengl_stuff.h
-OpenMesh/Core/Mesh/TriMesh_ArrayKernelT.hh
--
-OpenMesh/Core/Geometry/QuadricT.hh
--
-
 .././src/OpenGL/Renderer/scene.h
 vector
 -
@@ -23,14 +15,6 @@ vector
 ..//./src/OpenGL/Camera/camera.h
 ./src/OpenGL/opengl_stuff.h
 .././src/OpenGL/Camera/./src/OpenGL/opengl_stuff.h
-
-..//./src/OpenGL/Object/Mesh/MyModel.h
-MyObject.h
-.././src/OpenGL/Object/Mesh/MyObject.h
-./src/OpenGL/ShadersUtils/MyShaderProgram.h
-.././src/OpenGL/Object/Mesh/./src/OpenGL/ShadersUtils/MyShaderProgram.h
-./src/OpenGL/ShadersUtils/ShaderLoader.h
-.././src/OpenGL/Object/Mesh/./src/OpenGL/ShadersUtils/ShaderLoader.h
 
 ..//./src/OpenGL/Object/Mesh/MyObject.h
 ./src/OpenGL/opengl_stuff.h
@@ -57,10 +41,12 @@ scene.h
 .././src/OpenGL/Renderer/scene.h
 ./src/OpenGL/Camera/camera.h
 .././src/OpenGL/Renderer/./src/OpenGL/Camera/camera.h
-./src/OpenGL/Object/Mesh/MyModel.h
-.././src/OpenGL/Renderer/./src/OpenGL/Object/Mesh/MyModel.h
 ./src/OpenGL/Textures/framebuffer.h
 .././src/OpenGL/Renderer/./src/OpenGL/Textures/framebuffer.h
+./src/OpenGL/Object/Mesh/MyObject.h
+.././src/OpenGL/Renderer/./src/OpenGL/Object/Mesh/MyObject.h
+./src/OpenGL/ShadersUtils/shadermanager.h
+.././src/OpenGL/Renderer/./src/OpenGL/ShadersUtils/shadermanager.h
 memory
 -
 functional
@@ -72,14 +58,10 @@ vector
 ./src/OpenGL/opengl_stuff.h
 .././src/OpenGL/Renderer/./src/OpenGL/opengl_stuff.h
 
-..//./src/OpenGL/ShadersUtils/MyShaderProgram.h
+..//./src/OpenGL/ShadersUtils/shadermanager.h
 ./src/OpenGL/opengl_stuff.h
 .././src/OpenGL/ShadersUtils/./src/OpenGL/opengl_stuff.h
-
-..//./src/OpenGL/ShadersUtils/ShaderLoader.h
-./src/OpenGL/opengl_stuff.h
-.././src/OpenGL/ShadersUtils/./src/OpenGL/opengl_stuff.h
-string
+vector
 -
 
 ..//./src/OpenGL/Textures/framebuffer.h
@@ -1906,20 +1888,6 @@ iostream
 ./src/OpenGL/opengl_stuff.h
 /Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Camera/./src/OpenGL/opengl_stuff.h
 
-/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Object/Mesh/MyModel.cpp
-MyModel.h
-/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Object/Mesh/MyModel.h
-iostream
--
-
-/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Object/Mesh/MyModel.h
-MyObject.h
-/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Object/Mesh/MyObject.h
-./src/OpenGL/ShadersUtils/MyShaderProgram.h
-/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Object/Mesh/./src/OpenGL/ShadersUtils/MyShaderProgram.h
-./src/OpenGL/ShadersUtils/ShaderLoader.h
-/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Object/Mesh/./src/OpenGL/ShadersUtils/ShaderLoader.h
-
 /Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Object/Mesh/MyObject.cpp
 MyObject.h
 /Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Object/Mesh/MyObject.h
@@ -1993,10 +1961,12 @@ scene.h
 /Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Renderer/scene.h
 ./src/OpenGL/Camera/camera.h
 /Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Renderer/./src/OpenGL/Camera/camera.h
-./src/OpenGL/Object/Mesh/MyModel.h
-/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Renderer/./src/OpenGL/Object/Mesh/MyModel.h
 ./src/OpenGL/Textures/framebuffer.h
 /Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Renderer/./src/OpenGL/Textures/framebuffer.h
+./src/OpenGL/Object/Mesh/MyObject.h
+/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Renderer/./src/OpenGL/Object/Mesh/MyObject.h
+./src/OpenGL/ShadersUtils/shadermanager.h
+/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Renderer/./src/OpenGL/ShadersUtils/shadermanager.h
 memory
 -
 functional
@@ -2014,16 +1984,6 @@ vector
 ./src/OpenGL/opengl_stuff.h
 /Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Renderer/./src/OpenGL/opengl_stuff.h
 
-/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/ShadersUtils/MyShaderProgram.cpp
-MyShaderProgram.h
-/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/ShadersUtils/MyShaderProgram.h
-iostream
--
-
-/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/ShadersUtils/MyShaderProgram.h
-./src/OpenGL/opengl_stuff.h
-/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/ShadersUtils/./src/OpenGL/opengl_stuff.h
-
 /Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/ShadersUtils/ShaderLoader.cpp
 ShaderLoader.h
 /Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/ShadersUtils/ShaderLoader.h
@@ -2038,6 +1998,20 @@ cstdio
 ./src/OpenGL/opengl_stuff.h
 /Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/ShadersUtils/./src/OpenGL/opengl_stuff.h
 string
+-
+
+/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/ShadersUtils/shadermanager.cpp
+shadermanager.h
+/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/ShadersUtils/shadermanager.h
+ShaderLoader.h
+/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/ShadersUtils/ShaderLoader.h
+iostream
+-
+
+/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/ShadersUtils/shadermanager.h
+./src/OpenGL/opengl_stuff.h
+/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/ShadersUtils/./src/OpenGL/opengl_stuff.h
+vector
 -
 
 /Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Textures/framebuffer.cpp

@@ -38,6 +38,7 @@ public:
     GLuint getVBO() { return vbo;}
     GLuint getNBO() { return nbo;}
     GLuint getEBO() { return ebo;}
+    glm::mat4 getModel() { return _model;}
     Mesh& mesh() { return mesh_m;}
     OpenMesh::VPropHandleT<OpenMesh::Geometry::Quadricf>& faceMatrix()  { return face_matrix;}
 
@@ -51,6 +52,8 @@ protected:
 
     Mesh mesh_m;
     OpenMesh::VPropHandleT<OpenMesh::Geometry::Quadricf> face_matrix;
+
+    glm::mat4 _model;
 private:
     //Create/init all of the openGL attributes
     void loadGL();

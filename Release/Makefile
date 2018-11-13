@@ -217,33 +217,6 @@ src/OpenGL/Camera/camera.cpp.s:
 	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Camera/camera.cpp.s
 .PHONY : src/OpenGL/Camera/camera.cpp.s
 
-src/OpenGL/Object/Mesh/MyModel.o: src/OpenGL/Object/Mesh/MyModel.cpp.o
-
-.PHONY : src/OpenGL/Object/Mesh/MyModel.o
-
-# target to build an object file
-src/OpenGL/Object/Mesh/MyModel.cpp.o:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Mesh/MyModel.cpp.o
-.PHONY : src/OpenGL/Object/Mesh/MyModel.cpp.o
-
-src/OpenGL/Object/Mesh/MyModel.i: src/OpenGL/Object/Mesh/MyModel.cpp.i
-
-.PHONY : src/OpenGL/Object/Mesh/MyModel.i
-
-# target to preprocess a source file
-src/OpenGL/Object/Mesh/MyModel.cpp.i:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Mesh/MyModel.cpp.i
-.PHONY : src/OpenGL/Object/Mesh/MyModel.cpp.i
-
-src/OpenGL/Object/Mesh/MyModel.s: src/OpenGL/Object/Mesh/MyModel.cpp.s
-
-.PHONY : src/OpenGL/Object/Mesh/MyModel.s
-
-# target to generate assembly for a file
-src/OpenGL/Object/Mesh/MyModel.cpp.s:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Mesh/MyModel.cpp.s
-.PHONY : src/OpenGL/Object/Mesh/MyModel.cpp.s
-
 src/OpenGL/Object/Mesh/MyObject.o: src/OpenGL/Object/Mesh/MyObject.cpp.o
 
 .PHONY : src/OpenGL/Object/Mesh/MyObject.o
@@ -406,33 +379,6 @@ src/OpenGL/Renderer/scene.cpp.s:
 	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Renderer/scene.cpp.s
 .PHONY : src/OpenGL/Renderer/scene.cpp.s
 
-src/OpenGL/ShadersUtils/MyShaderProgram.o: src/OpenGL/ShadersUtils/MyShaderProgram.cpp.o
-
-.PHONY : src/OpenGL/ShadersUtils/MyShaderProgram.o
-
-# target to build an object file
-src/OpenGL/ShadersUtils/MyShaderProgram.cpp.o:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/ShadersUtils/MyShaderProgram.cpp.o
-.PHONY : src/OpenGL/ShadersUtils/MyShaderProgram.cpp.o
-
-src/OpenGL/ShadersUtils/MyShaderProgram.i: src/OpenGL/ShadersUtils/MyShaderProgram.cpp.i
-
-.PHONY : src/OpenGL/ShadersUtils/MyShaderProgram.i
-
-# target to preprocess a source file
-src/OpenGL/ShadersUtils/MyShaderProgram.cpp.i:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/ShadersUtils/MyShaderProgram.cpp.i
-.PHONY : src/OpenGL/ShadersUtils/MyShaderProgram.cpp.i
-
-src/OpenGL/ShadersUtils/MyShaderProgram.s: src/OpenGL/ShadersUtils/MyShaderProgram.cpp.s
-
-.PHONY : src/OpenGL/ShadersUtils/MyShaderProgram.s
-
-# target to generate assembly for a file
-src/OpenGL/ShadersUtils/MyShaderProgram.cpp.s:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/ShadersUtils/MyShaderProgram.cpp.s
-.PHONY : src/OpenGL/ShadersUtils/MyShaderProgram.cpp.s
-
 src/OpenGL/ShadersUtils/ShaderLoader.o: src/OpenGL/ShadersUtils/ShaderLoader.cpp.o
 
 .PHONY : src/OpenGL/ShadersUtils/ShaderLoader.o
@@ -459,6 +405,33 @@ src/OpenGL/ShadersUtils/ShaderLoader.s: src/OpenGL/ShadersUtils/ShaderLoader.cpp
 src/OpenGL/ShadersUtils/ShaderLoader.cpp.s:
 	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/ShadersUtils/ShaderLoader.cpp.s
 .PHONY : src/OpenGL/ShadersUtils/ShaderLoader.cpp.s
+
+src/OpenGL/ShadersUtils/shadermanager.o: src/OpenGL/ShadersUtils/shadermanager.cpp.o
+
+.PHONY : src/OpenGL/ShadersUtils/shadermanager.o
+
+# target to build an object file
+src/OpenGL/ShadersUtils/shadermanager.cpp.o:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/ShadersUtils/shadermanager.cpp.o
+.PHONY : src/OpenGL/ShadersUtils/shadermanager.cpp.o
+
+src/OpenGL/ShadersUtils/shadermanager.i: src/OpenGL/ShadersUtils/shadermanager.cpp.i
+
+.PHONY : src/OpenGL/ShadersUtils/shadermanager.i
+
+# target to preprocess a source file
+src/OpenGL/ShadersUtils/shadermanager.cpp.i:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/ShadersUtils/shadermanager.cpp.i
+.PHONY : src/OpenGL/ShadersUtils/shadermanager.cpp.i
+
+src/OpenGL/ShadersUtils/shadermanager.s: src/OpenGL/ShadersUtils/shadermanager.cpp.s
+
+.PHONY : src/OpenGL/ShadersUtils/shadermanager.s
+
+# target to generate assembly for a file
+src/OpenGL/ShadersUtils/shadermanager.cpp.s:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/ShadersUtils/shadermanager.cpp.s
+.PHONY : src/OpenGL/ShadersUtils/shadermanager.cpp.s
 
 src/OpenGL/Textures/framebuffer.o: src/OpenGL/Textures/framebuffer.cpp.o
 
@@ -560,9 +533,6 @@ help:
 	@echo "... src/OpenGL/Camera/camera.o"
 	@echo "... src/OpenGL/Camera/camera.i"
 	@echo "... src/OpenGL/Camera/camera.s"
-	@echo "... src/OpenGL/Object/Mesh/MyModel.o"
-	@echo "... src/OpenGL/Object/Mesh/MyModel.i"
-	@echo "... src/OpenGL/Object/Mesh/MyModel.s"
 	@echo "... src/OpenGL/Object/Mesh/MyObject.o"
 	@echo "... src/OpenGL/Object/Mesh/MyObject.i"
 	@echo "... src/OpenGL/Object/Mesh/MyObject.s"
@@ -581,12 +551,12 @@ help:
 	@echo "... src/OpenGL/Renderer/scene.o"
 	@echo "... src/OpenGL/Renderer/scene.i"
 	@echo "... src/OpenGL/Renderer/scene.s"
-	@echo "... src/OpenGL/ShadersUtils/MyShaderProgram.o"
-	@echo "... src/OpenGL/ShadersUtils/MyShaderProgram.i"
-	@echo "... src/OpenGL/ShadersUtils/MyShaderProgram.s"
 	@echo "... src/OpenGL/ShadersUtils/ShaderLoader.o"
 	@echo "... src/OpenGL/ShadersUtils/ShaderLoader.i"
 	@echo "... src/OpenGL/ShadersUtils/ShaderLoader.s"
+	@echo "... src/OpenGL/ShadersUtils/shadermanager.o"
+	@echo "... src/OpenGL/ShadersUtils/shadermanager.i"
+	@echo "... src/OpenGL/ShadersUtils/shadermanager.s"
 	@echo "... src/OpenGL/Textures/framebuffer.o"
 	@echo "... src/OpenGL/Textures/framebuffer.i"
 	@echo "... src/OpenGL/Textures/framebuffer.s"

@@ -8,8 +8,6 @@ MyObject::MyObject(){}
 MyObject::~MyObject(){}
 
 MyObject::MyObject(const std::string& path){
-    std::string warn;
-    std::string err;
     if (!OpenMesh::IO::read_mesh(mesh_m,path.c_str()))
     {
         std::cerr << "Can't read mesh";
@@ -21,6 +19,9 @@ MyObject::MyObject(const std::string& path){
     //Initialisation de ses propres propriétés
     if( !mesh_m.has_vertex_normals() ){
         mesh_m.request_vertex_normals();
+    }
+    if( ! mesh_m.has_vertex_texcoords2D()){
+        mesh_m.request_vertex_texcoords2D();
     }
     mesh_m.add_property(face_matrix);
     mesh_m.update_face_normals();
@@ -74,7 +75,7 @@ void MyObject::loadGL(){
 
             //UV
             Mesh::TexCoord2D t = mesh_m.texcoord2D(*fv_it);
-            std::cout << "UV("<<fv_it->idx()<<") : ("<<t[0]<<", "<<t[1]<<")"<<std::endl;
+            //std::cout << "UV("<<fv_it->idx()<<") : ("<<t[0]<<", "<<t[1]<<")"<<std::endl;
             uv[2 * fv_it->idx() ] = t[0];
             uv[2 * fv_it->idx() + 1 ] = t[1];
 

@@ -39,7 +39,7 @@ FILE(GLOB_RECURSE
 
 FILE(GLOB_RECURSE
     folder_shader
-    ${CMAKE_SOURCE_DIR}/src/*.txt
+    ${CMAKE_SOURCE_DIR}/src/*.glsl
 )
 
 include_directories(
