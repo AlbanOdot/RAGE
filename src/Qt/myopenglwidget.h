@@ -7,7 +7,7 @@
 
 #include <memory>
 #include <functional>
-#include "./src/OpenGL/Renderer/scene.h"
+#include "./src/OpenGL/Renderer/Renderer.h"
 
 class MyOpenGLWidget : public QOpenGLWidget, public QOpenGLFunctions_4_1_Core {
 
@@ -30,6 +30,7 @@ public:
     // Demo management
     void render(const std::string& filename);
 
+    //getters
 private :
     std::unique_ptr<Scene> _scene;
     // for event management

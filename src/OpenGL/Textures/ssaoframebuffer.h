@@ -1,9 +1,12 @@
-#ifndef FRAMEBUFFER_H
-#define FRAMEBUFFER_H
-class FrameBuffer {
+#ifndef SSAOFRAMEBUFFER_H
+#define SSAOFRAMEBUFFER_H
+
+
+class SSAOFrameBuffer
+{
 public:
-    FrameBuffer();
-    ~FrameBuffer();
+    SSAOFrameBuffer();
+    ~SSAOFrameBuffer();
 
     void init(int w, int h);
 
@@ -21,7 +24,6 @@ private:
 
     unsigned int m_id;
     unsigned int rbo;
-
 };
 
-#endif // FRAMEBUFFER_H
+#endif // SSAOFRAMEBUFFER_H

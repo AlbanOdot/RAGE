@@ -406,6 +406,33 @@ src/OpenGL/ShadersUtils/ShaderLoader.cpp.s:
 	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/ShadersUtils/ShaderLoader.cpp.s
 .PHONY : src/OpenGL/ShadersUtils/ShaderLoader.cpp.s
 
+src/OpenGL/ShadersUtils/postprocess.o: src/OpenGL/ShadersUtils/postprocess.cpp.o
+
+.PHONY : src/OpenGL/ShadersUtils/postprocess.o
+
+# target to build an object file
+src/OpenGL/ShadersUtils/postprocess.cpp.o:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/ShadersUtils/postprocess.cpp.o
+.PHONY : src/OpenGL/ShadersUtils/postprocess.cpp.o
+
+src/OpenGL/ShadersUtils/postprocess.i: src/OpenGL/ShadersUtils/postprocess.cpp.i
+
+.PHONY : src/OpenGL/ShadersUtils/postprocess.i
+
+# target to preprocess a source file
+src/OpenGL/ShadersUtils/postprocess.cpp.i:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/ShadersUtils/postprocess.cpp.i
+.PHONY : src/OpenGL/ShadersUtils/postprocess.cpp.i
+
+src/OpenGL/ShadersUtils/postprocess.s: src/OpenGL/ShadersUtils/postprocess.cpp.s
+
+.PHONY : src/OpenGL/ShadersUtils/postprocess.s
+
+# target to generate assembly for a file
+src/OpenGL/ShadersUtils/postprocess.cpp.s:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/ShadersUtils/postprocess.cpp.s
+.PHONY : src/OpenGL/ShadersUtils/postprocess.cpp.s
+
 src/OpenGL/ShadersUtils/shadermanager.o: src/OpenGL/ShadersUtils/shadermanager.cpp.o
 
 .PHONY : src/OpenGL/ShadersUtils/shadermanager.o
@@ -433,6 +460,33 @@ src/OpenGL/ShadersUtils/shadermanager.cpp.s:
 	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/ShadersUtils/shadermanager.cpp.s
 .PHONY : src/OpenGL/ShadersUtils/shadermanager.cpp.s
 
+src/OpenGL/Textures/Gbuffer.o: src/OpenGL/Textures/Gbuffer.cpp.o
+
+.PHONY : src/OpenGL/Textures/Gbuffer.o
+
+# target to build an object file
+src/OpenGL/Textures/Gbuffer.cpp.o:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Textures/Gbuffer.cpp.o
+.PHONY : src/OpenGL/Textures/Gbuffer.cpp.o
+
+src/OpenGL/Textures/Gbuffer.i: src/OpenGL/Textures/Gbuffer.cpp.i
+
+.PHONY : src/OpenGL/Textures/Gbuffer.i
+
+# target to preprocess a source file
+src/OpenGL/Textures/Gbuffer.cpp.i:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Textures/Gbuffer.cpp.i
+.PHONY : src/OpenGL/Textures/Gbuffer.cpp.i
+
+src/OpenGL/Textures/Gbuffer.s: src/OpenGL/Textures/Gbuffer.cpp.s
+
+.PHONY : src/OpenGL/Textures/Gbuffer.s
+
+# target to generate assembly for a file
+src/OpenGL/Textures/Gbuffer.cpp.s:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Textures/Gbuffer.cpp.s
+.PHONY : src/OpenGL/Textures/Gbuffer.cpp.s
+
 src/OpenGL/Textures/framebuffer.o: src/OpenGL/Textures/framebuffer.cpp.o
 
 .PHONY : src/OpenGL/Textures/framebuffer.o
@@ -459,6 +513,33 @@ src/OpenGL/Textures/framebuffer.s: src/OpenGL/Textures/framebuffer.cpp.s
 src/OpenGL/Textures/framebuffer.cpp.s:
 	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Textures/framebuffer.cpp.s
 .PHONY : src/OpenGL/Textures/framebuffer.cpp.s
+
+src/OpenGL/Textures/ssaoframebuffer.o: src/OpenGL/Textures/ssaoframebuffer.cpp.o
+
+.PHONY : src/OpenGL/Textures/ssaoframebuffer.o
+
+# target to build an object file
+src/OpenGL/Textures/ssaoframebuffer.cpp.o:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Textures/ssaoframebuffer.cpp.o
+.PHONY : src/OpenGL/Textures/ssaoframebuffer.cpp.o
+
+src/OpenGL/Textures/ssaoframebuffer.i: src/OpenGL/Textures/ssaoframebuffer.cpp.i
+
+.PHONY : src/OpenGL/Textures/ssaoframebuffer.i
+
+# target to preprocess a source file
+src/OpenGL/Textures/ssaoframebuffer.cpp.i:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Textures/ssaoframebuffer.cpp.i
+.PHONY : src/OpenGL/Textures/ssaoframebuffer.cpp.i
+
+src/OpenGL/Textures/ssaoframebuffer.s: src/OpenGL/Textures/ssaoframebuffer.cpp.s
+
+.PHONY : src/OpenGL/Textures/ssaoframebuffer.s
+
+# target to generate assembly for a file
+src/OpenGL/Textures/ssaoframebuffer.cpp.s:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Textures/ssaoframebuffer.cpp.s
+.PHONY : src/OpenGL/Textures/ssaoframebuffer.cpp.s
 
 src/Qt/mainwindow.o: src/Qt/mainwindow.cpp.o
 
@@ -554,12 +635,21 @@ help:
 	@echo "... src/OpenGL/ShadersUtils/ShaderLoader.o"
 	@echo "... src/OpenGL/ShadersUtils/ShaderLoader.i"
 	@echo "... src/OpenGL/ShadersUtils/ShaderLoader.s"
+	@echo "... src/OpenGL/ShadersUtils/postprocess.o"
+	@echo "... src/OpenGL/ShadersUtils/postprocess.i"
+	@echo "... src/OpenGL/ShadersUtils/postprocess.s"
 	@echo "... src/OpenGL/ShadersUtils/shadermanager.o"
 	@echo "... src/OpenGL/ShadersUtils/shadermanager.i"
 	@echo "... src/OpenGL/ShadersUtils/shadermanager.s"
+	@echo "... src/OpenGL/Textures/Gbuffer.o"
+	@echo "... src/OpenGL/Textures/Gbuffer.i"
+	@echo "... src/OpenGL/Textures/Gbuffer.s"
 	@echo "... src/OpenGL/Textures/framebuffer.o"
 	@echo "... src/OpenGL/Textures/framebuffer.i"
 	@echo "... src/OpenGL/Textures/framebuffer.s"
+	@echo "... src/OpenGL/Textures/ssaoframebuffer.o"
+	@echo "... src/OpenGL/Textures/ssaoframebuffer.i"
+	@echo "... src/OpenGL/Textures/ssaoframebuffer.s"
 	@echo "... src/Qt/mainwindow.o"
 	@echo "... src/Qt/mainwindow.i"
 	@echo "... src/Qt/mainwindow.s"

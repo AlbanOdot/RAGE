@@ -126,21 +126,7 @@ private:
     bool showContour;
     bool computeFXAA;
 
-    // HDR
-    bool computeHDR;
-    FrameBuffer hdrBuffer;
-    int hdrShader;
-    float hdrGamma;
-    float hdrExposure;
-
-    // BLOOM
-    FrameBuffer bloomBuffer;
-    int bloomShader;
-    int shaderBlur;
-    FrameBuffer pingpongBuffers[2];
-    unsigned int amountBloom;
-    bool computeBloom = false;
-
+    
     //Shaders
     ShaderManager programs;
 

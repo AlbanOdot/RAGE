@@ -1,10 +1,12 @@
-#ifndef FRAMEBUFFER_H
-#define FRAMEBUFFER_H
-class FrameBuffer {
-public:
-    FrameBuffer();
-    ~FrameBuffer();
+#ifndef GBUFFER_H
+#define GBUFFER_H
 
+
+class GBuffer
+{
+public:
+    GBuffer();
+    ~GBuffer();
     void init(int w, int h);
 
     void bind();
@@ -12,7 +14,9 @@ public:
     void unbindOther(unsigned int id);
 
     void resize(int w, int h);
-    unsigned int buf;
+    unsigned int position;
+    unsigned int normal;
+    unsigned int albedo;
 
 private:
 
@@ -24,4 +28,4 @@ private:
 
 };
 
-#endif // FRAMEBUFFER_H
+#endif // GBUFFER_H

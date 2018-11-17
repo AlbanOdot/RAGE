@@ -30,6 +30,9 @@ MyObject::MyObject(const std::string& path){
     mesh_m.request_edge_status();
     mesh_m.request_vertex_status();
     updateFaceMatrix();
+    std::cout << "Loading Mesh :"<<path<<std::endl;
+    std::cout << "Nombre de triangles :"<<mesh_m.n_faces()<<std::endl;
+    std::cout << "Nombre de sommets :"<<mesh_m.n_vertices()<<std::endl;
     //From there the mesh is loaded
     //We now want to init the VAO and everything
     loadGL();

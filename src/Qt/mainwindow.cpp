@@ -3,7 +3,6 @@
 
 #include <QMessageBox>
 #include <QFileDialog>
-
 #include <iostream>
 #include <sstream>
 #include <iomanip>
@@ -30,7 +29,7 @@ void MainWindow::on_actionOpen_triggered()
     QFileDialog fd;
     fd.open();
     QString filename = fd.getOpenFileName(this,tr("Select your .obj file"), tr("../DataFiles"), tr("OBJ files *.obj;; PLY files *.ply"));
-    //std::cout << "Selected file is " << filename.toStdString() << std::endl;
+    std::cout << "Selected file is " << filename.toStdString() << std::endl;
     ui->openglWidget->render(filename.toStdString());
 }
 

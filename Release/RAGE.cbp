@@ -186,6 +186,9 @@
 		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Shader/PostProcess/SSAO.frag.glsl">
 			<Option target="RAGE"/>
 		</Unit>
+		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Shader/PostProcess/SSAOBLUR.frag.glsl">
+			<Option target="RAGE"/>
+		</Unit>
 		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Shader/PostProcess/pass.vert.glsl">
 			<Option target="RAGE"/>
 		</Unit>
@@ -195,16 +198,16 @@
 		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Shader/Process/basic.vert.glsl">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Shader/Process/color.frag.glsl">
-			<Option target="RAGE"/>
-		</Unit>
-		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Shader/Process/normals.frag.glsl">
-			<Option target="RAGE"/>
-		</Unit>
 		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/ShadersUtils/ShaderLoader.cpp">
 			<Option target="RAGE"/>
 		</Unit>
 		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/ShadersUtils/ShaderLoader.h">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/ShadersUtils/postprocess.cpp">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/ShadersUtils/postprocess.h">
 			<Option target="RAGE"/>
 		</Unit>
 		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/ShadersUtils/shadermanager.cpp">
@@ -213,10 +216,22 @@
 		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/ShadersUtils/shadermanager.h">
 			<Option target="RAGE"/>
 		</Unit>
+		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Textures/Gbuffer.cpp">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Textures/Gbuffer.h">
+			<Option target="RAGE"/>
+		</Unit>
 		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Textures/framebuffer.cpp">
 			<Option target="RAGE"/>
 		</Unit>
 		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Textures/framebuffer.h">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Textures/ssaoframebuffer.cpp">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Textures/ssaoframebuffer.h">
 			<Option target="RAGE"/>
 		</Unit>
 		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/opengl_stuff.h">

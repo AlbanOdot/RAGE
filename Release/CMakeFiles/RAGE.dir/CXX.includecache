@@ -43,6 +43,10 @@ scene.h
 .././src/OpenGL/Renderer/./src/OpenGL/Camera/camera.h
 ./src/OpenGL/Textures/framebuffer.h
 .././src/OpenGL/Renderer/./src/OpenGL/Textures/framebuffer.h
+./src/OpenGL/Textures/Gbuffer.h
+.././src/OpenGL/Renderer/./src/OpenGL/Textures/Gbuffer.h
+./src/OpenGL/Textures/ssaoframebuffer.h
+.././src/OpenGL/Renderer/./src/OpenGL/Textures/ssaoframebuffer.h
 ./src/OpenGL/Object/Mesh/MyObject.h
 .././src/OpenGL/Renderer/./src/OpenGL/Object/Mesh/MyObject.h
 ./src/OpenGL/ShadersUtils/shadermanager.h
@@ -52,19 +56,17 @@ memory
 functional
 -
 
-..//./src/OpenGL/Renderer/scene.h
-vector
--
-./src/OpenGL/opengl_stuff.h
-.././src/OpenGL/Renderer/./src/OpenGL/opengl_stuff.h
-
 ..//./src/OpenGL/ShadersUtils/shadermanager.h
 ./src/OpenGL/opengl_stuff.h
 .././src/OpenGL/ShadersUtils/./src/OpenGL/opengl_stuff.h
 vector
 -
 
+..//./src/OpenGL/Textures/Gbuffer.h
+
 ..//./src/OpenGL/Textures/framebuffer.h
+
+..//./src/OpenGL/Textures/ssaoframebuffer.h
 
 ..//./src/OpenGL/opengl_stuff.h
 OpenGL/gl3.h
@@ -101,8 +103,8 @@ memory
 -
 functional
 -
-./src/OpenGL/Renderer/scene.h
-.././src/Qt/./src/OpenGL/Renderer/scene.h
+./src/OpenGL/Renderer/Renderer.h
+.././src/Qt/./src/OpenGL/Renderer/Renderer.h
 
 ..//glm/glm.hpp
 detail/_fixes.hpp
@@ -1953,6 +1955,8 @@ unistd.h
 -
 Renderer.h
 /Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Renderer/Renderer.h
+random
+-
 iostream
 -
 
@@ -1963,6 +1967,10 @@ scene.h
 /Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Renderer/./src/OpenGL/Camera/camera.h
 ./src/OpenGL/Textures/framebuffer.h
 /Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Renderer/./src/OpenGL/Textures/framebuffer.h
+./src/OpenGL/Textures/Gbuffer.h
+/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Renderer/./src/OpenGL/Textures/Gbuffer.h
+./src/OpenGL/Textures/ssaoframebuffer.h
+/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Renderer/./src/OpenGL/Textures/ssaoframebuffer.h
 ./src/OpenGL/Object/Mesh/MyObject.h
 /Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Renderer/./src/OpenGL/Object/Mesh/MyObject.h
 ./src/OpenGL/ShadersUtils/shadermanager.h
@@ -2000,6 +2008,12 @@ cstdio
 string
 -
 
+/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/ShadersUtils/postprocess.cpp
+postprocess.h
+/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/ShadersUtils/postprocess.h
+
+/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/ShadersUtils/postprocess.h
+
 /Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/ShadersUtils/shadermanager.cpp
 shadermanager.h
 /Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/ShadersUtils/shadermanager.h
@@ -2014,6 +2028,18 @@ iostream
 vector
 -
 
+/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Textures/Gbuffer.cpp
+Gbuffer.h
+/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Textures/Gbuffer.h
+gl3.h
+-
+gl3ext.h
+-
+iostream
+-
+
+/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Textures/Gbuffer.h
+
 /Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Textures/framebuffer.cpp
 framebuffer.h
 /Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Textures/framebuffer.h
@@ -2025,6 +2051,20 @@ iostream
 -
 
 /Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Textures/framebuffer.h
+
+/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Textures/ssaoframebuffer.cpp
+ssaoframebuffer.h
+/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Textures/ssaoframebuffer.h
+framebuffer.h
+/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Textures/framebuffer.h
+gl3.h
+-
+gl3ext.h
+-
+iostream
+-
+
+/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Textures/ssaoframebuffer.h
 
 /Users/alban/Cours/M2/RTR/RAGE/src/Qt/mainwindow.cpp
 mainwindow.h
@@ -2075,8 +2115,8 @@ memory
 -
 functional
 -
-./src/OpenGL/Renderer/scene.h
-/Users/alban/Cours/M2/RTR/RAGE/src/Qt/./src/OpenGL/Renderer/scene.h
+./src/OpenGL/Renderer/Renderer.h
+/Users/alban/Cours/M2/RTR/RAGE/src/Qt/./src/OpenGL/Renderer/Renderer.h
 
 /Users/alban/Qt/5.9.2/clang_64/lib/QtCore.framework/Headers/QDateTime
 qdatetime.h

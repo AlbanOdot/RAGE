@@ -1,49 +1,47 @@
+#version 410 core
+out float color;
 
-#version 330 core
-out vec4 FragColor;
+in vec2 vtexCoord;
 
-in vec2 TexCoords;
+uniform sampler2D position;
+uniform sampler2D normal;
+uniform sampler2D noise;
 
-uniform sampler2D gPosition;
-uniform sampler2D gNormal;
-uniform sampler2D gAlbedo;
-uniform sampler2D ssao;
+uniform vec3 kernel[64];
 
-struct Light {
-    vec3 Position;
-    vec3 Color;
+int kernelSize = 64;
+uniform float radius;
+uniform float bias;
 
-    float Linear;
-    float Quadratic;
-    float Radius;
-};
-uniform Light light;
+uniform vec2 noiseScale;
+
+uniform mat4 projection;
 
 void main()
 {
-    // retrieve data from gbuffer
-    vec3 FragPos = texture(gPosition, TexCoords).rgb;
-    vec3 Normal = texture(gNormal, TexCoords).rgb;
-    vec3 Diffuse = texture(gAlbedo, TexCoords).rgb;
-    float AmbientOcclusion = texture(ssao, TexCoords).r;
+    vec3 fragPos = texture(position, vtexCoord).xyz;
+    vec3 normal = normalize(texture(normal, vtexCoord).rgb);
+    vec3 randomVec = normalize(texture(noise, vtexCoord * noiseScale).xyz);
 
-    // blinn-phong (in view-space)
-    vec3 ambient = vec3(0.3 * Diffuse * AmbientOcclusion); // here we add occlusion factor
-    vec3 lighting  = ambient;
-    vec3 viewDir  = normalize(-FragPos); // viewpos is (0.0.0) in view-space
-    // diffuse
-    vec3 lightDir = normalize(light.Position - FragPos);
-    vec3 diffuse = max(dot(Normal, lightDir), 0.0) * Diffuse * light.Color;
-    // specular
-    vec3 halfwayDir = normalize(lightDir + viewDir);
-    float spec = pow(max(dot(Normal, halfwayDir), 0.0), 8.0);
-    vec3 specular = light.Color * spec;
-    // attenuation
-    float dist = length(light.Position - FragPos);
-    float attenuation = 1.0 / (1.0 + light.Linear * dist + light.Quadratic * dist * dist);
-    diffuse  *= attenuation;
-    specular *= attenuation;
-    lighting += diffuse + specular;
+    vec3 tangent = normalize(randomVec - normal * dot(randomVec, normal));
+    vec3 bitangent = cross(normal, tangent);
+    mat3 TBN = mat3(tangent, bitangent, normal);
 
-    FragColor = vec4(lighting, 1.0);
+    float occlusion = 0.0;
+
+    for(int i = 0; i<kernelSize; ++i)
+    {
+        vec3 samp = TBN * kernel[i];
+        samp = fragPos + samp * radius;
+        vec4 offset = vec4(samp, 1.0);
+        offset = projection * offset;
+        offset.xyz /= offset.w;
+        offset.xyz = offset.xyz * 0.5 +0.5;
+
+        float sampleDepth = texture(position, offset.xy).z;
+
+        float rangeCheck = smoothstep(0.0, 1.0, radius / abs(fragPos.z - sampleDepth));
+        occlusion += (sampleDepth >= samp.z + bias ? 1.0 : 0.0) * rangeCheck;
+    }
+    color = 1.0 - (occlusion / kernelSize);
 }
