@@ -7,7 +7,7 @@ class ShaderManager
 public:
     ShaderManager();
     enum POSTPROCESS {SSAO,SSAOBLUR,HDR,BLOOM,BLOOMBLUR,FXAA,OIT,DRAW};
-    enum PREPROCESS {GBUFFER};
+    enum PREPROCESS {GBUFFER,RENDER};
     /*
      *
      * BASIC OBJECT DRAW FUNCTION
@@ -28,6 +28,7 @@ public:
     GLuint setActiveProg(const GLuint& prog);
     GLuint setActiveProg(const int& i);
     void useProg() const { glUseProgram(program_m[active_program]);}
+    void useProg( PREPROCESS p ) { glUseProgram(program_m[RENDER]); active_program = RENDER;}
     unsigned int progCount();
 
     /*

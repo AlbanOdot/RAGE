@@ -103,6 +103,7 @@ private:
     //PostProcess stuff
     Quad m_postProcessScreen;
     GBuffer m_GBuffer;
+    GLuint RENDERPROG;
     float invSS[2] = {static_cast<float>(1.0/ (2*_width)), static_cast<float>(1.0/(2*_height))};
 
     //SSAO
@@ -119,10 +120,10 @@ private:
     bool computeSSAO;
 
     // FXAA
+    GLuint FXAAPROG;
     FrameBuffer fxaaBuffer;
     float maxThresholdFXAA;
     float minThresholdFXAA;
-
     bool showContour;
     bool computeFXAA;
 
@@ -140,6 +141,7 @@ private:
     FrameBuffer pingpongBuffers[2];
     unsigned int amountBloom;
     bool computeBloom = false;
+
 
     //Shaders
     ShaderManager programs;

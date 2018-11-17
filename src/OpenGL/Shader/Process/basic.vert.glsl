@@ -16,8 +16,8 @@ void main()
             gl_Position = projection * view * model * vec4(iposition, 1.0f);
 
             //On fait ca pour que la position soit interpolée
-            vec4 p = model*vec4(iposition, 1.0f);
-            vposition = (p / p.w).xyz;
+            //vec4 p = model*vec4(iposition, 1.0f);
+            vposition = vec3(view * model * vec4(iposition, 1.0f));//(p / p.w).xyz;
 
             //Passthrough
             vnormal = inormal;

@@ -1,9 +1,9 @@
 #version 410 core
-        layout (location = 0) in vec2 iposition;
-        layout (location = 1) in vec2 itexCoord;
+layout( location = 0) in vec2 iposition;
+layout( location = 1) in vec2 itexCoord;
 
-        out vec2 vtexCoord;
-        out vec2 vposition;
+out vec2 vtexCoord;
+out vec2 vposition;
 void main()
 {
 

@@ -198,6 +198,9 @@
 		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Shader/Process/basic.vert.glsl">
 			<Option target="RAGE"/>
 		</Unit>
+		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Shader/Process/render.frag.glsl">
+			<Option target="RAGE"/>
+		</Unit>
 		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/ShadersUtils/ShaderLoader.cpp">
 			<Option target="RAGE"/>
 		</Unit>

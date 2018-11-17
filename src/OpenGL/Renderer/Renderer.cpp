@@ -45,8 +45,8 @@ void Renderer::draw(){
     GLint qt_buffer;
     glGetIntegerv(GL_FRAMEBUFFER_BINDING, &qt_buffer);
 
-    /* ********************* Rendering ******************** */
-
+    /* GBUFFER FILLING */
+    programs.setActiveProg(ShaderManager::GBUFFER);
     m_GBuffer.bind();
 
     glClearColor(0.05f, 0.1f, 0.1f, 1.0f);
@@ -68,15 +68,6 @@ void Renderer::draw(){
         obj.draw();
     }
 
-    //2eme passe de rendu, on vient rajouter les effets spéciaux
-
-    glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, m_GBuffer.position);
-    glActiveTexture(GL_TEXTURE1);
-    glBindTexture(GL_TEXTURE_2D, m_GBuffer.normal);
-    glActiveTexture(GL_TEXTURE2);
-    glBindTexture(GL_TEXTURE_2D, m_GBuffer.albedo);
-    //SSAO
 
     if(computeSSAO){
         ssaoBuffer.bind();
@@ -87,61 +78,69 @@ void Renderer::draw(){
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
         programs.usePostProg(ShaderManager::SSAO);
-        GLint location = glGetUniformLocation(programs.get(ShaderManager::SSAO),"kernel");
-        glUniform3fv(location, 64, ssaoKernel);
-        glUniformMatrix4fv( glGetUniformLocation(programs.getActiveProg(), "projection"), 1, GL_FALSE, glm::value_ptr(_projection));
+        GLuint ssao = programs.get(ShaderManager::SSAO);
+        glUniform3fv(glGetUniformLocation(ssao,"kernel"), 64, ssaoKernel);
+        glUniformMatrix4fv( glGetUniformLocation(ssao, "projection"), 1, GL_FALSE, glm::value_ptr(_projection));
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, m_GBuffer.position);
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, m_GBuffer.normal);
         glActiveTexture(GL_TEXTURE2);
-        glBindTexture(GL_TEXTURE_2D,  noiseTexture);
-        glUniform1f(glGetUniformLocation(programs.getActivePostProg(),"radius"), ssaoRadius);
-        glUniform1f(glGetUniformLocation(programs.getActivePostProg(),"bias"), ssaoBias);
-        float noiseScale[2] ={static_cast<float>(_width/4.0),static_cast<float>(_height/4.0)};
-        glUniform2fv(glGetUniformLocation(programs.getActivePostProg(),"noiseScale"),1, noiseScale);
+        glBindTexture(GL_TEXTURE_2D, noiseTexture);
+        glUniform1i(glGetUniformLocation(ssao, "position"), 0);
+        glUniform1i(glGetUniformLocation(ssao, "normal"), 1);
+        glUniform1i(glGetUniformLocation(ssao, "noise"), 2);
+        glUniform1f(glGetUniformLocation(ssao,"radius"), ssaoRadius);
+        glUniform1f(glGetUniformLocation(ssao,"bias"), ssaoBias);
+        float noiseScale[2] ={static_cast<float>(_width/2.0),static_cast<float>(_height/2.0)};
+        glUniform2fv(glGetUniformLocation(ssao,"noiseScale"),1, noiseScale);
         m_postProcessScreen.quadDraw();
-/*
+
         ssaoBufferBlur.bind();
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         programs.usePostProg(ShaderManager::SSAOBLUR);
         glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D,  ssaoBufferBlur.buf);
-        m_postProcessScreen.quadDraw();*/
+        glBindTexture(GL_TEXTURE_2D,  ssaoBuffer.buf);
+        m_postProcessScreen.quadDraw();
     }
 
-
-
-
-
-    //BLOOM
-
-
-    //HDR
-
+    //2eme passe de rendu on combine G_BUFFER et ssaoBlur
+    fxaaBuffer.bind();
+    glClear(GL_COLOR_BUFFER_BIT);
+    glClearColor(0.05f, 0.5f, 0.5f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glDisable(GL_DEPTH_TEST);
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+    glUseProgram(RENDERPROG);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, m_GBuffer.position);
+    /*glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_2D, m_GBuffer.normal);
+    glActiveTexture(GL_TEXTURE2);
+    glBindTexture(GL_TEXTURE_2D, m_GBuffer.albedo);
+    glActiveTexture(GL_TEXTURE3);
+    glBindTexture(GL_TEXTURE_2D, ssaoBufferBlur.buf);*/
+    glUniform1i(glGetUniformLocation(RENDERPROG, "position"), 0);
+   /* glUniform1i(glGetUniformLocation(RENDERPROG, "normal"), 1);
+    glUniform1i(glGetUniformLocation(RENDERPROG, "albedo"), 2);
+    glUniform1i(glGetUniformLocation(RENDERPROG, "ssao"), 3);*/
+    m_postProcessScreen.quadDraw();
 
 
 
     //FXAA
-
-
-
-    //LAST PROCESS DRAW SCREEN
     glBindFramebuffer(GL_FRAMEBUFFER, qt_buffer);
-    glClearColor(1,1,1, 1.0f);
+    glClearColor(1.,1.,1., 1.0f);
     glDisable(GL_DEPTH_TEST);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    programs.setActivePostProg(2);
-    programs.usePostProg();
+    programs.usePostProg(ShaderManager::FXAA);
     glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D,  ssaoBuffer.buf);
-    glUniform1i(glGetUniformLocation(programs.getActivePostProg(), "screenTexture"), 2);
+    glBindTexture(GL_TEXTURE_2D,  fxaaBuffer.buf);
     glUniform1f(glGetUniformLocation(programs.getActivePostProg(),"minThreshold"),minThresholdFXAA);
     glUniform1f(glGetUniformLocation(programs.getActivePostProg(),"maxThreshold"),maxThresholdFXAA);
-    glUniform2fv(glGetUniformLocation(programs.getActivePostProg(), "inverseScreenSize"),1,invSS);
     glUniform1i(glGetUniformLocation(programs.getActivePostProg(), "showContour"),showContour);
+    glUniform2fv(glGetUniformLocation(programs.getActivePostProg(), "inverseScreenSize"),1,invSS);
     glUniform1i(glGetUniformLocation(programs.getActivePostProg(), "computeFXAA"),computeFXAA);
-
     m_postProcessScreen.quadDraw();
 }
 
@@ -152,10 +151,18 @@ void Renderer::initPreprocess(){
     std::string wd(buff);
     //PROCESS SHADERS
     std::string vshPath = wd +  std::string("/../src/OpenGL/Shader/Process/basic.vert.glsl");
-    std::string GPath = wd + std::string("/../src/OpenGL/Shader/Process/GBuffer.frag.glsl");
+    std::string GPath = wd +      std::string("/../src/OpenGL/Shader/Process/GBuffer.frag.glsl");
+    std::string renderPath = wd + std::string("/../src/OpenGL/Shader/Process/render.frag.glsl");
     programs.computeAddProgramm(vshPath,GPath);
-    programs.setActiveProg(ShaderManager::GBUFFER);
+
+    RENDERPROG = programs.computeAddProgramm(vshPath,renderPath);
+    glUniform1i(glGetUniformLocation(RENDERPROG, "position"), 0);
+    glUniform1i(glGetUniformLocation(RENDERPROG, "normal"), 1);
+    glUniform1i(glGetUniformLocation(RENDERPROG, "albedo"), 2);
+    glUniform1i(glGetUniformLocation(RENDERPROG, "ssao"), 3);
+
 }
+
 void Renderer::initSSAO(){
     std::uniform_real_distribution<GLfloat> randomFloats(0.0,1.0);
     std::default_random_engine  generator;
@@ -165,7 +172,7 @@ void Renderer::initSSAO(){
         sample *= randomFloats(generator);
         float scale = float(i) / 64.0;
         float scale2 = scale* scale;
-        scale = 0.1f * (1.0 - scale2) + 1.0f*scale2;
+        scale = 0.1f * scale2 + 1.0f*(1.0-scale2);
         sample *= scale;
         ssaoKernel[3*i]  = sample[0];
         ssaoKernel[3*i+1]= sample[1];
@@ -180,7 +187,7 @@ void Renderer::initSSAO(){
 
     glGenTextures(1, &noiseTexture);
     glBindTexture(GL_TEXTURE_2D,  noiseTexture);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB32F, 4, 4, 0, GL_RGB, GL_FLOAT, &ssaoNoise[0]);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB32F, 4, 4, 0, GL_RGB, GL_FLOAT, ssaoNoise);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
@@ -192,56 +199,56 @@ void Renderer::initSSAO(){
     std::string vshPath = wd +  std::string("/../src/OpenGL/Shader/PostProcess/pass.vert.glsl");
     std::string SSAOPath = wd + std::string("/../src/OpenGL/Shader/PostProcess/SSAO.frag.glsl");
     std::string SSAOBlur = wd + std::string("/../src/OpenGL/Shader/PostProcess/SSAOBLUR.frag.glsl");
-    programs.computeAddPostProgramm(vshPath,SSAOPath);
-    programs.usePostProg(ShaderManager::SSAO);
-    glUniform1i(glGetUniformLocation(programs.getActivePostProg(), "position"), 0);
-    glUniform1i(glGetUniformLocation(programs.getActivePostProg(), "normal"), 1);
-    glUniform1i(glGetUniformLocation(programs.getActivePostProg(), "noise"), 2);
-
-    programs.computeAddPostProgramm(vshPath,SSAOBlur);
-    programs.usePostProg(ShaderManager::SSAOBLUR);
-    glUniform1i(glGetUniformLocation(programs.getActivePostProg(), "ssaoTexture"), 0);
-
+    GLuint ssao = programs.computeAddPostProgramm(vshPath,SSAOPath);
+    glUniform1i(glGetUniformLocation(ssao, "position"), 0);
+    glUniform1i(glGetUniformLocation(ssao, "normal"), 1);
+    glUniform1i(glGetUniformLocation(ssao, "noise"), 2);
+    GLuint ssaoblur = programs.computeAddPostProgramm(vshPath,SSAOBlur);
+    glUniform1i(glGetUniformLocation(ssaoblur, "ssaoTexture"), 0);
     computeSSAO = true;
 
 }
+
 void Renderer::initHDR(){
     char buff[1000];
     getcwd(buff,1000);
     std::string wd(buff);
     std::string vshPath = wd +  std::string("/../src/OpenGL/Shader/PostProcess/pass.vert.glsl");
     std::string FXAAPath = wd + std::string("/../src/OpenGL/Shader/PostProcess/FXAA.frag.glsl");
+    programs.addPostProgram(30);
 }
+
 void Renderer::initBloom(){
     char buff[1000];
     getcwd(buff,1000);
     std::string wd(buff);
     std::string vshPath = wd +  std::string("/../src/OpenGL/Shader/PostProcess/pass.vert.glsl");
+    programs.addPostProgram(31);
 
 }
+
 void Renderer::initBloomBlur(){
     char buff[1000];
     getcwd(buff,1000);
     std::string wd(buff);
     std::string vshPath = wd +  std::string("/../src/OpenGL/Shader/PostProcess/pass.vert.glsl");
 
+    programs.addPostProgram(32);
 }
+
 void Renderer::initFXAA(){
     showContour = false;
     computeFXAA = true;
     minThresholdFXAA = 0.0312;
     maxThresholdFXAA = 0.125;
-
-
-
     char buff[1000];
     getcwd(buff,1000);
     std::string wd(buff);
     std::string vshPath = wd +  std::string("/../src/OpenGL/Shader/PostProcess/pass.vert.glsl");
     std::string fxxPath = wd + std::string("/../src/OpenGL/Shader/PostProcess/FXAA.frag.glsl");
     GLuint fxaa = programs.computeAddPostProgramm(vshPath,fxxPath);
+    glUniform1i(glGetUniformLocation(fxaa, "screenTexture"), 0);
 }
-
 
 void Renderer::wheelEvent( const int down){
     _camera->processmousescroll(down);
@@ -315,7 +322,6 @@ bool Renderer::keyboard(unsigned char k) {
         return false;
     }
 }
-
 
 void Renderer::resizeBuffers(int w, int h){
     m_GBuffer.resize(w,h);

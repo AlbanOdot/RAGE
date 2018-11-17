@@ -33,7 +33,6 @@ GLuint ShaderManager::computeAddProgramm( const std::string& vs, const std::stri
     program = glCreateProgram();
     glAttachShader(program,vsid);
     glAttachShader(program, fsid);
-    glBindAttribLocation(program,0,"Position");
     glLinkProgram(program);
     glGetProgramiv(program, GL_LINK_STATUS, &success);
     if(!success){
@@ -112,7 +111,6 @@ GLuint ShaderManager::computeAddPostProgramm( const std::string& vs, const std::
     program = glCreateProgram();
     glAttachShader(program,vsid);
     glAttachShader(program, fsid);
-    glBindAttribLocation(program,0,"Position");
     glLinkProgram(program);
     glGetProgramiv(program, GL_LINK_STATUS, &success);
     if(!success){
