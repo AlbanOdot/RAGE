@@ -89,13 +89,9 @@ public:
     void initSSAO();
     void initHDR();
     void initBloom();
-    void initBloomBlur();
     void initFXAA();
     void initLighting();
 
-    //UNIFORM CONTROL
-    bool toogleContour() {showContour = !showContour; return showContour;}
-    bool toogleFXAA() {computeFXAA = !computeFXAA; return computeFXAA;}
 private:
 
     //Change this to vector if you need multiple objects
@@ -104,20 +100,21 @@ private:
     //PostProcess stuff
     Quad m_postProcessScreen;
     GBuffer m_GBuffer;
+    FrameBuffer renderBuffer;
+    float LiPosition[60*3];
+    float LiColor[60*3];
+    int nbLights;
     GLuint RENDERPROG;
     float invSS[2] = {static_cast<float>(1.0/ (2*_width)), static_cast<float>(1.0/(2*_height))};
 
     //SSAO
-    //Buffers
     SSAOFrameBuffer ssaoBuffer;
     SSAOFrameBuffer ssaoBufferBlur;
-    //Uniforms
     float ssaoKernel[64*3];
     float ssaoNoise[16*3];
     GLuint noiseTexture;
     float ssaoRadius;
     float ssaoBias;
-    //Options
     bool computeSSAO;
 
     // FXAA
@@ -125,23 +122,24 @@ private:
     FrameBuffer fxaaBuffer;
     float maxThresholdFXAA;
     float minThresholdFXAA;
-    bool showContour;
+    bool showContourFXAA;
     bool computeFXAA;
 
     // HDR
-    bool computeHDR;
+    GLuint HDRPROG;
     FrameBuffer hdrBuffer;
-    int hdrShader;
-    float hdrGamma;
-    float hdrExposure;
+    float gammaHDR;
+    float exposureHDR;
+    bool computeHDR;
 
     // BLOOM
+    GLuint BLOOMPROG;
+    GLuint BLURPROG;
     FrameBuffer bloomBuffer;
-    int bloomShader;
-    int shaderBlur;
-    FrameBuffer pingpongBuffers[2];
-    unsigned int amountBloom;
-    bool computeBloom = false;
+    FrameBuffer blurBufferVert;
+    FrameBuffer blurBufferHori;
+    unsigned int nbKernelBloom;
+    bool computeBLOOM;
 
 
     //Shaders

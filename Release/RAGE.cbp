@@ -180,6 +180,12 @@
 		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Renderer/scene.h">
 			<Option target="RAGE"/>
 		</Unit>
+		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Shader/PostProcess/BLOOM.frag.glsl">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Shader/PostProcess/BLOOMBLUR.frag.glsl">
+			<Option target="RAGE"/>
+		</Unit>
 		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Shader/PostProcess/FXAA.frag.glsl">
 			<Option target="RAGE"/>
 		</Unit>
@@ -187,6 +193,9 @@
 			<Option target="RAGE"/>
 		</Unit>
 		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Shader/PostProcess/SSAOBLUR.frag.glsl">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Shader/PostProcess/hdr.frag.glsl">
 			<Option target="RAGE"/>
 		</Unit>
 		<Unit filename="/Users/alban/Cours/M2/RTR/RAGE/src/OpenGL/Shader/PostProcess/pass.vert.glsl">

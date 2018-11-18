@@ -20,12 +20,11 @@ Renderer::Renderer(const int width, const int height, const std::string& filenam
     initPreprocess();
 
     //POSTPROCESS SHADERS
+    initLighting();
     initSSAO();
     initHDR();
     initBloom();
-    initBloomBlur();
     initFXAA();
-    initLighting();
     //MESH LOADING AND STORAGE
     m_objects.push_back(MyObject(filename));
 
@@ -90,7 +89,7 @@ void Renderer::draw(){
         glBindTexture(GL_TEXTURE_2D, noiseTexture);
         glUniform1f(glGetUniformLocation(ssao,"radius"), ssaoRadius);
         glUniform1f(glGetUniformLocation(ssao,"bias"), ssaoBias);
-        float noiseScale[2] ={static_cast<float>(_width/4.0),static_cast<float>(_height/4.0)};
+        float noiseScale[2] ={static_cast<float>(_width/2.0),static_cast<float>(_height/2.0)};
         glUniform2fv(glGetUniformLocation(ssao,"noiseScale"),1, noiseScale);
         m_postProcessScreen.quadDraw();
 
@@ -106,13 +105,13 @@ void Renderer::draw(){
         glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         ssaoBufferBlur.bind();
-        glClearColor(1.f,1.f,1.f,1.f);
+        glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     }
 
     //2eme passe de rendu on combine G_BUFFER et ssaoBlur
-    fxaaBuffer.bind();
+    renderBuffer.bind();
     glClear(GL_COLOR_BUFFER_BIT);
     glClearColor(0.05f, 0.5f, 0.5f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -133,22 +132,72 @@ void Renderer::draw(){
     glUniform1i(glGetUniformLocation(RENDERPROG, "ssao"), 3);
     m_postProcessScreen.quadDraw();
 
-
-
     //FXAA
-    glBindFramebuffer(GL_FRAMEBUFFER, qt_buffer);
-    glClearColor(1.,1.,1., 1.0f);
+    fxaaBuffer.bind();
+    glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
     glDisable(GL_DEPTH_TEST);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glUseProgram(FXAAPROG);
     glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D,  fxaaBuffer.buf);
+    glBindTexture(GL_TEXTURE_2D,  renderBuffer.buf);
     glUniform1f(glGetUniformLocation(FXAAPROG,"minThreshold"),minThresholdFXAA);
     glUniform1f(glGetUniformLocation(FXAAPROG,"maxThreshold"),maxThresholdFXAA);
-    glUniform1i(glGetUniformLocation(FXAAPROG, "showContour"),showContour);
+    glUniform1i(glGetUniformLocation(FXAAPROG, "showContour"),showContourFXAA);
     glUniform2fv(glGetUniformLocation(FXAAPROG, "inverseScreenSize"),1,invSS);
     glUniform1i(glGetUniformLocation(FXAAPROG, "computeFXAA"),computeFXAA);
     m_postProcessScreen.quadDraw();
+
+    //BLOOM
+    bloomBuffer.bind();
+    glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
+    glDisable(GL_DEPTH_TEST);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glUseProgram(BLOOMPROG);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D,  fxaaBuffer.buf);
+    m_postProcessScreen.quadDraw();
+    //BLUR
+    //VERTICAL PASS
+    blurBufferVert.bind();
+    glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
+    glDisable(GL_DEPTH_TEST);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glUseProgram(BLURPROG);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D,  bloomBuffer.buf);
+    glUniform2fv(glGetUniformLocation(BLURPROG, "texelStep"),1,invSS);
+    glUniform1f(glGetUniformLocation(BLURPROG, "horizontal"),0.);
+    m_postProcessScreen.quadDraw();
+    //HORIZONTAL PASS
+    blurBufferHori.bind();
+    glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
+    glDisable(GL_DEPTH_TEST);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D,  blurBufferVert.buf);
+    glUniform2fv(glGetUniformLocation(BLURPROG, "texelStep"),1,invSS);
+    glUniform1i(glGetUniformLocation(BLURPROG, "horizontal"),1.);
+    m_postProcessScreen.quadDraw();
+
+
+    //HDR
+    glBindFramebuffer(GL_FRAMEBUFFER, 1);
+    glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
+    glDisable(GL_DEPTH_TEST);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glUseProgram(HDRPROG);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D,  blurBufferHori.buf);
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_2D,  fxaaBuffer.buf);
+    glUniform1i(glGetUniformLocation(HDRPROG,"screenTexture"),1);
+    glUniform1i(glGetUniformLocation(HDRPROG,"brightTexture"),0);
+    glUniform1f(glGetUniformLocation(HDRPROG, "gamma"),gammaHDR);
+    glUniform1f(glGetUniformLocation(HDRPROG, "exposure"),exposureHDR);
+    glUniform1f(glGetUniformLocation(HDRPROG, "BLOOM"),computeBLOOM ? 1.0 : 0.0);
+    glUniform1i(glGetUniformLocation(HDRPROG,"computeHDR"),computeHDR);
+    m_postProcessScreen.quadDraw();
+
 }
 
 void Renderer::initPreprocess(){
@@ -212,34 +261,35 @@ void Renderer::initSSAO(){
 }
 
 void Renderer::initHDR(){
+    gammaHDR = 1.0;
+    exposureHDR = 1.0;
+    computeHDR = true;
     char buff[1000];
     getcwd(buff,1000);
     std::string wd(buff);
     std::string vshPath = wd +  std::string("/../src/OpenGL/Shader/PostProcess/pass.vert.glsl");
-    std::string FXAAPath = wd + std::string("/../src/OpenGL/Shader/PostProcess/FXAA.frag.glsl");
-    programs.addPostProgram(30);
+    std::string hdrPath = wd + std::string("/../src/OpenGL/Shader/PostProcess/hdr.frag.glsl");
+    HDRPROG = programs.computeAddPostProgramm(vshPath,hdrPath);
+
 }
 
 void Renderer::initBloom(){
+    computeBLOOM = true;
     char buff[1000];
     getcwd(buff,1000);
     std::string wd(buff);
     std::string vshPath = wd +  std::string("/../src/OpenGL/Shader/PostProcess/pass.vert.glsl");
-    programs.addPostProgram(31);
-
-}
-
-void Renderer::initBloomBlur(){
-    char buff[1000];
-    getcwd(buff,1000);
-    std::string wd(buff);
-    std::string vshPath = wd +  std::string("/../src/OpenGL/Shader/PostProcess/pass.vert.glsl");
-
-    programs.addPostProgram(32);
+    std::string bloomPath = wd + std::string("/../src/OpenGL/Shader/PostProcess/BLOOM.frag.glsl");
+    std::string bloomBlurPath = wd + std::string("/../src/OpenGL/Shader/PostProcess/BLOOMBLUR.frag.glsl");
+    BLOOMPROG = programs.computeAddPostProgramm(vshPath,bloomPath);
+    glUniform1i(glGetUniformLocation(BLOOMPROG, "screenTexture"), 0);
+    BLURPROG = programs.computeAddPostProgramm(vshPath,bloomBlurPath);
+    glUniform1i(glGetUniformLocation(BLURPROG, "screenTexture"), 0);
+    glUniform2fv(glGetUniformLocation(FXAAPROG, "inverseScreenSize"),1,invSS);
 }
 
 void Renderer::initFXAA(){
-    showContour = false;
+    showContourFXAA = false;
     computeFXAA = true;
     minThresholdFXAA = 0.0312;
     maxThresholdFXAA = 0.125;
@@ -248,11 +298,29 @@ void Renderer::initFXAA(){
     std::string wd(buff);
     std::string vshPath = wd +  std::string("/../src/OpenGL/Shader/PostProcess/pass.vert.glsl");
     std::string fxxPath = wd + std::string("/../src/OpenGL/Shader/PostProcess/FXAA.frag.glsl");
-   FXAAPROG = programs.computeAddPostProgramm(vshPath,fxxPath);
+    FXAAPROG = programs.computeAddPostProgramm(vshPath,fxxPath);
     glUniform1i(glGetUniformLocation(FXAAPROG, "screenTexture"), 0);
 }
 
 void Renderer::initLighting(){
+    std::uniform_real_distribution<GLfloat> randompos(1.0,40.0);
+    std::uniform_real_distribution<GLfloat> randomcol(0.0,2.0);
+    std::default_random_engine  generator;
+    std::vector<float> pos3 = {1.,1.,1., 1.,-1.,1., -1,0.,1};
+    nbLights = 0;
+    for(    ; nbLights<3; ++nbLights){
+        glm::vec3 pos(pos3[3*nbLights], pos3[3*nbLights+1], pos3[3*nbLights+3]);
+        pos = glm::normalize(pos);
+        pos *= 50.;
+        LiPosition[3*nbLights]  = pos[0];
+        LiPosition[3*nbLights+1]= pos[1];
+        LiPosition[3*nbLights+3]= pos[2];
+        LiColor[3*nbLights] = randomcol(generator);
+        LiColor[3*nbLights + 1] = randomcol(generator);
+        LiColor[3*nbLights + 2] = randomcol(generator);
+    }
+    std::cout << "The scene is composed of " << nbLights << "lights "<<std::endl;
+
     char buff[1000];
     getcwd(buff,1000);
     std::string wd(buff);
@@ -263,6 +331,10 @@ void Renderer::initLighting(){
     glUniform1i(glGetUniformLocation(RENDERPROG, "normal"), 1);
     glUniform1i(glGetUniformLocation(RENDERPROG, "albedo"), 2);
     glUniform1i(glGetUniformLocation(RENDERPROG, "ssao"), 3);
+    glUniform1i(glGetUniformLocation(RENDERPROG, "lightCount"), nbLights);
+    glUniform3fv(glGetUniformLocation(RENDERPROG,"LiPosition"), nbLights, LiPosition);
+    glUniform3fv(glGetUniformLocation(RENDERPROG,"LiColor"), nbLights, LiColor);
+
 }
 
 void Renderer::wheelEvent( const int down){
@@ -310,12 +382,12 @@ bool Renderer::keyboard(unsigned char k) {
         return true;
         //###########FXAA###############
     case '&':
-        showContour = !showContour;
+        showContourFXAA = !showContourFXAA;
         computeFXAA = true;
         return true;
     case 'A':
         computeFXAA = !computeFXAA;
-        showContour = false;
+        showContourFXAA = false;
         return true;
     case 'a':
         minThresholdFXAA = minThresholdFXAA - 0.01 > 0 ? minThresholdFXAA - 0.010 : 0;
@@ -349,6 +421,26 @@ bool Renderer::keyboard(unsigned char k) {
     case 'f':
         ssaoBias = ssaoBias + 0.005 < 0.25 ? ssaoBias + 0.005 : 0.25;
         return true;
+        //##############HDR+BLOOM##############
+    case 'E':
+        computeBLOOM = !computeBLOOM;
+        std::cout << "computebloom : "<<computeBLOOM <<std::endl;
+        return true;
+    case 'R':
+        computeHDR = !computeHDR;
+        std::cout << "computeHDR : "<<computeHDR <<std::endl;
+        return true;
+    case 'g':
+        gammaHDR = gammaHDR - 0.1 < 0.0 ? 0. : gammaHDR;
+        return true;
+    case 'h':
+        gammaHDR = gammaHDR + 0.1 < 3. ? gammaHDR + 0.1 : 3.0;
+        return true;
+    case 't':
+        exposureHDR = exposureHDR -0.1 < 0. ? 0.0 : exposureHDR - 0.1;
+        return true;
+    case 'y':
+        exposureHDR = exposureHDR + 0.1 < 3. ? exposureHDR + 0.1 : 0.0;
     default:
         return false;
     }
@@ -358,11 +450,12 @@ void Renderer::resizeBuffers(int w, int h){
     m_GBuffer.resize(w,h);
     ssaoBuffer.resize(w,h);
     ssaoBufferBlur.resize(w,h);
+    renderBuffer.resize(w,h);
     fxaaBuffer.resize(w,h);
     hdrBuffer.resize(w,h);
     bloomBuffer.resize(w,h);
-    pingpongBuffers[0].resize(w,h);
-    pingpongBuffers[1].resize(w,h);
+    blurBufferVert.resize(w,h);
+    blurBufferHori.resize(w,h);
 }
 
 void Renderer::resize(int w, int h){
