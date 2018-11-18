@@ -28,7 +28,7 @@ public:
     GLuint setActiveProg(const GLuint& prog);
     GLuint setActiveProg(const int& i);
     void useProg() const { glUseProgram(program_m[active_program]);}
-    void useProg( PREPROCESS p ) { glUseProgram(program_m[RENDER]); active_program = RENDER;}
+    void useProg( PREPROCESS p ) { setActiveProg(p);useProg();}
     unsigned int progCount();
 
     /*

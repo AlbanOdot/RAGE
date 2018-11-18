@@ -91,6 +91,7 @@ public:
     void initBloom();
     void initBloomBlur();
     void initFXAA();
+    void initLighting();
 
     //UNIFORM CONTROL
     bool toogleContour() {showContour = !showContour; return showContour;}
@@ -114,8 +115,8 @@ private:
     float ssaoKernel[64*3];
     float ssaoNoise[16*3];
     GLuint noiseTexture;
-    float ssaoRadius = 0.5;
-    float ssaoBias = 0.01;
+    float ssaoRadius;
+    float ssaoBias;
     //Options
     bool computeSSAO;
 

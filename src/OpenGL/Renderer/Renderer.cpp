@@ -25,6 +25,7 @@ Renderer::Renderer(const int width, const int height, const std::string& filenam
     initBloom();
     initBloomBlur();
     initFXAA();
+    initLighting();
     //MESH LOADING AND STORAGE
     m_objects.push_back(MyObject(filename));
 
@@ -46,7 +47,7 @@ void Renderer::draw(){
     glGetIntegerv(GL_FRAMEBUFFER_BINDING, &qt_buffer);
 
     /* GBUFFER FILLING */
-    programs.setActiveProg(ShaderManager::GBUFFER);
+    //programs.setActiveProg(ShaderManager::GBUFFER);
     m_GBuffer.bind();
 
     glClearColor(0.05f, 0.1f, 0.1f, 1.0f);
@@ -58,7 +59,7 @@ void Renderer::draw(){
     else
         glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
-    programs.useProg();
+    programs.useProg(ShaderManager::GBUFFER);
     _view = _camera->viewmatrix();
     for(MyObject& obj : m_objects){
         glm::mat4 model(obj.getModel());
@@ -87,12 +88,9 @@ void Renderer::draw(){
         glBindTexture(GL_TEXTURE_2D, m_GBuffer.normal);
         glActiveTexture(GL_TEXTURE2);
         glBindTexture(GL_TEXTURE_2D, noiseTexture);
-        glUniform1i(glGetUniformLocation(ssao, "position"), 0);
-        glUniform1i(glGetUniformLocation(ssao, "normal"), 1);
-        glUniform1i(glGetUniformLocation(ssao, "noise"), 2);
         glUniform1f(glGetUniformLocation(ssao,"radius"), ssaoRadius);
         glUniform1f(glGetUniformLocation(ssao,"bias"), ssaoBias);
-        float noiseScale[2] ={static_cast<float>(_width/2.0),static_cast<float>(_height/2.0)};
+        float noiseScale[2] ={static_cast<float>(_width/4.0),static_cast<float>(_height/4.0)};
         glUniform2fv(glGetUniformLocation(ssao,"noiseScale"),1, noiseScale);
         m_postProcessScreen.quadDraw();
 
@@ -102,6 +100,15 @@ void Renderer::draw(){
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D,  ssaoBuffer.buf);
         m_postProcessScreen.quadDraw();
+    }else{
+        ssaoBuffer.bind();
+        glClear(GL_COLOR_BUFFER_BIT);
+        glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        ssaoBufferBlur.bind();
+        glClearColor(1.f,1.f,1.f,1.f);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
     }
 
     //2eme passe de rendu on combine G_BUFFER et ssaoBlur
@@ -114,16 +121,16 @@ void Renderer::draw(){
     glUseProgram(RENDERPROG);
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, m_GBuffer.position);
-    /*glActiveTexture(GL_TEXTURE1);
+    glActiveTexture(GL_TEXTURE1);
     glBindTexture(GL_TEXTURE_2D, m_GBuffer.normal);
     glActiveTexture(GL_TEXTURE2);
     glBindTexture(GL_TEXTURE_2D, m_GBuffer.albedo);
     glActiveTexture(GL_TEXTURE3);
-    glBindTexture(GL_TEXTURE_2D, ssaoBufferBlur.buf);*/
+    glBindTexture(GL_TEXTURE_2D, ssaoBufferBlur.buf);
     glUniform1i(glGetUniformLocation(RENDERPROG, "position"), 0);
-   /* glUniform1i(glGetUniformLocation(RENDERPROG, "normal"), 1);
+    glUniform1i(glGetUniformLocation(RENDERPROG, "normal"), 1);
     glUniform1i(glGetUniformLocation(RENDERPROG, "albedo"), 2);
-    glUniform1i(glGetUniformLocation(RENDERPROG, "ssao"), 3);*/
+    glUniform1i(glGetUniformLocation(RENDERPROG, "ssao"), 3);
     m_postProcessScreen.quadDraw();
 
 
@@ -133,14 +140,14 @@ void Renderer::draw(){
     glClearColor(1.,1.,1., 1.0f);
     glDisable(GL_DEPTH_TEST);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    programs.usePostProg(ShaderManager::FXAA);
+    glUseProgram(FXAAPROG);
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D,  fxaaBuffer.buf);
-    glUniform1f(glGetUniformLocation(programs.getActivePostProg(),"minThreshold"),minThresholdFXAA);
-    glUniform1f(glGetUniformLocation(programs.getActivePostProg(),"maxThreshold"),maxThresholdFXAA);
-    glUniform1i(glGetUniformLocation(programs.getActivePostProg(), "showContour"),showContour);
-    glUniform2fv(glGetUniformLocation(programs.getActivePostProg(), "inverseScreenSize"),1,invSS);
-    glUniform1i(glGetUniformLocation(programs.getActivePostProg(), "computeFXAA"),computeFXAA);
+    glUniform1f(glGetUniformLocation(FXAAPROG,"minThreshold"),minThresholdFXAA);
+    glUniform1f(glGetUniformLocation(FXAAPROG,"maxThreshold"),maxThresholdFXAA);
+    glUniform1i(glGetUniformLocation(FXAAPROG, "showContour"),showContour);
+    glUniform2fv(glGetUniformLocation(FXAAPROG, "inverseScreenSize"),1,invSS);
+    glUniform1i(glGetUniformLocation(FXAAPROG, "computeFXAA"),computeFXAA);
     m_postProcessScreen.quadDraw();
 }
 
@@ -152,18 +159,13 @@ void Renderer::initPreprocess(){
     //PROCESS SHADERS
     std::string vshPath = wd +  std::string("/../src/OpenGL/Shader/Process/basic.vert.glsl");
     std::string GPath = wd +      std::string("/../src/OpenGL/Shader/Process/GBuffer.frag.glsl");
-    std::string renderPath = wd + std::string("/../src/OpenGL/Shader/Process/render.frag.glsl");
     programs.computeAddProgramm(vshPath,GPath);
-
-    RENDERPROG = programs.computeAddProgramm(vshPath,renderPath);
-    glUniform1i(glGetUniformLocation(RENDERPROG, "position"), 0);
-    glUniform1i(glGetUniformLocation(RENDERPROG, "normal"), 1);
-    glUniform1i(glGetUniformLocation(RENDERPROG, "albedo"), 2);
-    glUniform1i(glGetUniformLocation(RENDERPROG, "ssao"), 3);
 
 }
 
 void Renderer::initSSAO(){
+    ssaoRadius = 0.5;
+    ssaoBias = 0.01;
     std::uniform_real_distribution<GLfloat> randomFloats(0.0,1.0);
     std::default_random_engine  generator;
     for(unsigned int i = 0; i<64; ++i){
@@ -246,8 +248,21 @@ void Renderer::initFXAA(){
     std::string wd(buff);
     std::string vshPath = wd +  std::string("/../src/OpenGL/Shader/PostProcess/pass.vert.glsl");
     std::string fxxPath = wd + std::string("/../src/OpenGL/Shader/PostProcess/FXAA.frag.glsl");
-    GLuint fxaa = programs.computeAddPostProgramm(vshPath,fxxPath);
-    glUniform1i(glGetUniformLocation(fxaa, "screenTexture"), 0);
+   FXAAPROG = programs.computeAddPostProgramm(vshPath,fxxPath);
+    glUniform1i(glGetUniformLocation(FXAAPROG, "screenTexture"), 0);
+}
+
+void Renderer::initLighting(){
+    char buff[1000];
+    getcwd(buff,1000);
+    std::string wd(buff);
+    std::string vshPath = wd +  std::string("/../src/OpenGL/Shader/PostProcess/pass.vert.glsl");
+    std::string renderPath = wd + std::string("/../src/OpenGL/Shader/PostProcess/render.frag.glsl");
+    RENDERPROG = programs.computeAddProgramm(vshPath,renderPath);
+    glUniform1i(glGetUniformLocation(RENDERPROG, "position"), 0);
+    glUniform1i(glGetUniformLocation(RENDERPROG, "normal"), 1);
+    glUniform1i(glGetUniformLocation(RENDERPROG, "albedo"), 2);
+    glUniform1i(glGetUniformLocation(RENDERPROG, "ssao"), 3);
 }
 
 void Renderer::wheelEvent( const int down){
@@ -294,29 +309,45 @@ bool Renderer::keyboard(unsigned char k) {
         draw();
         return true;
         //###########FXAA###############
-    case 'f':
+    case '&':
         showContour = !showContour;
         computeFXAA = true;
         return true;
-    case 'F':
+    case 'A':
         computeFXAA = !computeFXAA;
         showContour = false;
         return true;
-    case 'd':
+    case 'a':
         minThresholdFXAA = minThresholdFXAA - 0.01 > 0 ? minThresholdFXAA - 0.010 : 0;
         std::cout << "minThreshhold down to "<< minThresholdFXAA <<std::endl;
         return true;
-    case 'g':
+    case 'z':
         minThresholdFXAA = minThresholdFXAA + 0.01 < maxThresholdFXAA ? minThresholdFXAA + 0.01 : maxThresholdFXAA;
         std::cout << "minThreshhold up to "<< minThresholdFXAA <<std::endl;
         return true;
-    case 'D':
+    case 'q':
         maxThresholdFXAA = maxThresholdFXAA - 0.01 > minThresholdFXAA ? maxThresholdFXAA - 0.01 : minThresholdFXAA;
         std::cout << "maxThreshhold down to "<< maxThresholdFXAA <<std::endl;
         return true;
-    case 'G':
+    case 's':
         maxThresholdFXAA = maxThresholdFXAA + 0.01 < 0.5 ? maxThresholdFXAA + 0.01 : 0.5;
         std::cout << "maxThreshhold up to "<< maxThresholdFXAA <<std::endl;
+        return true;
+        //##########SSAO##############
+    case 'Z':
+        computeSSAO = !computeSSAO;
+        return true;
+    case 'e':
+        ssaoRadius = ssaoRadius - 0.05 > 0.f ? ssaoRadius - 0.05 : 0.0;
+        return true;
+    case 'r':
+        ssaoRadius = ssaoRadius + 0.05 < 1.5 ? ssaoRadius + 0.05 : 1.5;
+        return true;
+    case 'd':
+        ssaoBias = ssaoBias - 0.005 < 0.0 ? ssaoBias - 0.005 : 0.0;
+        return true;
+    case 'f':
+        ssaoBias = ssaoBias + 0.005 < 0.25 ? ssaoBias + 0.005 : 0.25;
         return true;
     default:
         return false;
