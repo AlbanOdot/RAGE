@@ -5,7 +5,7 @@
 /// @defgroup gtc GTC Extensions (Stable)
 ///
 /// @brief Functions and types that the GLSL specification doesn't define, but useful to have for a C++ program.
-/// 
+///   
 /// GTC extensions aim to be stable. 
 /// 
 /// Even if it's highly unrecommended, it's possible to include all the extensions at once by
