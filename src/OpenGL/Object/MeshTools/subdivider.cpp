@@ -112,11 +112,8 @@ void Subdivider::split_edge(Mesh& mesh, const Mesh::EdgeHandle& e_it)
     Mesh::Point midP(mesh.point(mesh.to_vertex_handle(heh))); // A
     midP = (midP + mesh.point(mesh.to_vertex_handle(oheh))) * Cast(0.5); // (A+B) * 0.5 = D
 
-    // new vertex
     Mesh::VertexHandle vh(mesh.new_vertex( midP ));
-    // memorize position, will be set later
     mesh.property( vph_pos, vh ) = mesh.property( eph_pos, e_it );
-    // Re-link mesh entities
     Mesh::HalfedgeHandle t_heh;
     if (mesh.is_boundary(e_it))
     {
@@ -191,11 +188,10 @@ void Subdivider::splice( Mesh& mesh, const Mesh::HalfedgeHandle& heh){
     Mesh::HalfedgeHandle heh4(mesh.opposite_halfedge_handle(heh3));
     Mesh::HalfedgeHandle heh6(mesh.next_halfedge_handle(heh));
 
-    // Old and new Face
     Mesh::FaceHandle     fh_old(mesh.face_handle(heh6));
     Mesh::FaceHandle     fh_new(mesh.new_face());
 
-    // Re-Set Handles around old Face
+    //On recolle la liste chainée
     mesh.set_next_halfedge_handle(heh4, heh6);
     mesh.set_next_halfedge_handle(heh5, heh4);
 
@@ -204,7 +200,6 @@ void Subdivider::splice( Mesh& mesh, const Mesh::HalfedgeHandle& heh){
     mesh.set_face_handle(heh6, fh_old);
     mesh.set_halfedge_handle(fh_old, heh4);
 
-    // Re-Set Handles around new Face
     mesh.set_next_halfedge_handle(heh1, heh3);
     mesh.set_next_halfedge_handle(heh3, heh2);
 

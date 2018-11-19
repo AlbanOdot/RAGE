@@ -18,23 +18,24 @@ void main()
     vec3 Color[23];
     for(int i = 0; i < 11; ++i){
         Color[11+i] = texture(screenTexture, vtexCoord + vec2((1.0-horizontal) * texelStep.x * i, texelStep.y * i * horizontal)).rgb;
-        Color[i] = texture(screenTexture, vtexCoord - vec2((1.0 - horizontal) * texelStep.x * i, texelStep.y * i * horizontal)).rgb;
+        Color[11-i] = texture(screenTexture, vtexCoord - vec2((1.0 - horizontal) * texelStep.x * i, texelStep.y * i * horizontal)).rgb;
     }
 
     //Kernel size = 11
     vec3 col = Color[11] * weights1[0];
     for(int i=1; i < 6; ++i)
     {
-        col += Color[i] * weights1[i];
-        col += Color[i] * weights1[i];
+        col += Color[11+i] * weights1[i];
+        col += Color[11-i] * weights1[i];
     }
     finalCol += col;
+
     //Kernel size = 15
     col = Color[11] * weights2[0];
     for(int i=1; i < 8; ++i)
     {
-        col += Color[i] * weights2[i];
-        col += Color[i] * weights2[i];
+        col += Color[i+11] * weights2[i];
+        col += Color[11-i] * weights2[i];
     }
     finalCol += col;
 
@@ -42,8 +43,8 @@ void main()
     col = Color[11] * weights3[0];
     for(int i=1; i < 11; ++i)
     {
-        col += Color[i] * weights3[i];
-        col += Color[i] * weights3[i];
+        col += Color[i+11] * weights3[i];
+        col += Color[11-i] * weights3[i];
     }
     finalCol += col;
 
@@ -51,11 +52,11 @@ void main()
     col = Color[11] * weights4[0];
     for(int i=1; i < 3; ++i)
     {
-        col += Color[i] * weights4[i];
-        col += Color[i] * weights4[i];
+        col += Color[i+11] * weights4[i];
+        col += Color[11-i] * weights4[i];
     }
     finalCol += col;
 
     finalCol /= 4;
-    color = vec4(finalCol, 1.0);
+    color = vec4(col, 1.0);
 }

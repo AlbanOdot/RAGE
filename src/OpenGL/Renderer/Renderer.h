@@ -98,13 +98,12 @@ private:
     std::vector<MyObject> m_objects;
 
     //PostProcess stuff
+    GLuint RENDERPROG;
     Quad m_postProcessScreen;
     GBuffer m_GBuffer;
     FrameBuffer renderBuffer;
     float LiPosition[60*3];
-    float LiColor[60*3];
     int nbLights;
-    GLuint RENDERPROG;
     float invSS[2] = {static_cast<float>(1.0/ (2*_width)), static_cast<float>(1.0/(2*_height))};
 
     //SSAO

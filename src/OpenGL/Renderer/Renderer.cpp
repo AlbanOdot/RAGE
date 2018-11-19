@@ -49,7 +49,7 @@ void Renderer::draw(){
     //programs.setActiveProg(ShaderManager::GBUFFER);
     m_GBuffer.bind();
 
-    glClearColor(0.05f, 0.1f, 0.1f, 1.0f);
+    glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glEnable(GL_DEPTH_TEST);
 
@@ -72,7 +72,7 @@ void Renderer::draw(){
     if(computeSSAO){
         ssaoBuffer.bind();
         glClear(GL_COLOR_BUFFER_BIT);
-        glClearColor(0.05f, 0.5f, 0.5f, 1.0f);
+        glClearColor(0.00f, 0.0f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         glEnable(GL_DEPTH_TEST);
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
@@ -95,6 +95,7 @@ void Renderer::draw(){
 
         ssaoBufferBlur.bind();
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        glClearColor(1.f, 1.f, 1.f, 1.0f);
         programs.usePostProg(ShaderManager::SSAOBLUR);
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D,  ssaoBuffer.buf);
@@ -105,15 +106,16 @@ void Renderer::draw(){
         glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         ssaoBufferBlur.bind();
-        glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
+        glClearColor(1.f, 1.f, 1.f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     }
 
     //2eme passe de rendu on combine G_BUFFER et ssaoBlur
     renderBuffer.bind();
+    //glBindFramebuffer(GL_FRAMEBUFFER, 1);
     glClear(GL_COLOR_BUFFER_BIT);
-    glClearColor(0.05f, 0.5f, 0.5f, 1.0f);
+    glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glDisable(GL_DEPTH_TEST);
     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
@@ -134,6 +136,7 @@ void Renderer::draw(){
 
     //FXAA
     fxaaBuffer.bind();
+    //glBindFramebuffer(GL_FRAMEBUFFER, 1);
     glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
     glDisable(GL_DEPTH_TEST);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -307,6 +310,7 @@ void Renderer::initLighting(){
     std::uniform_real_distribution<GLfloat> randomcol(0.0,2.0);
     std::default_random_engine  generator;
     std::vector<float> pos3 = {1.,1.,1., 1.,-1.,1., -1,0.,1};
+    float LiColor[9] = {1.5,1.0,0.2, 0.3,1.0,0.1, 0.2,0.0,1.7};
     nbLights = 0;
     for(    ; nbLights<3; ++nbLights){
         glm::vec3 pos(pos3[3*nbLights], pos3[3*nbLights+1], pos3[3*nbLights+3]);
@@ -315,9 +319,6 @@ void Renderer::initLighting(){
         LiPosition[3*nbLights]  = pos[0];
         LiPosition[3*nbLights+1]= pos[1];
         LiPosition[3*nbLights+3]= pos[2];
-        LiColor[3*nbLights] = randomcol(generator);
-        LiColor[3*nbLights + 1] = randomcol(generator);
-        LiColor[3*nbLights + 2] = randomcol(generator);
     }
     std::cout << "The scene is composed of " << nbLights << "lights "<<std::endl;
 
@@ -357,93 +358,118 @@ void Renderer::keyboardmove(int key, double time) {
 }
 
 bool Renderer::keyboard(unsigned char k) {
+std::string OnOff;
+auto displayInfo = [&](){        std::cout << "******************************"<<std::endl;
+    std::cout << "*     Post process status    *"<<std::endl;
+    std::cout << "******************************"<<std::endl;
+    OnOff = computeFXAA ? "[ON] " : "[OFF]";
+    std::cout << "* FXAA :  " << OnOff <<"              *  min threshold : "<< minThresholdFXAA <<"     max threshold : "<<maxThresholdFXAA<<std::endl;
+    OnOff = computeSSAO ? "[ON] " : "[OFF]";
+    std::cout << "* SSAO :  " << OnOff <<"              *  radius : " <<ssaoRadius<<"    bias : "<< ssaoBias<<std::endl;
+    OnOff = computeBLOOM ? "[ON] " : "[OFF]";
+    std::cout << "* Bloom : " << OnOff <<"              *"<<std::endl;
+    OnOff = computeHDR ? "[ON] " : "[OFF]";
+    std::cout << "* HDR :   " << OnOff <<"              *  gamma : "<<gammaHDR<<"    exposure : "<<exposureHDR<<std::endl;
+    std::cout << "******************************"<<std::endl;
+    std::cout <<std::endl;
+    std::cout <<std::endl;
+    std::cout <<std::endl;};
 
     switch(k) {
-    case '+':
-        m_objects[0].subdivideLoop();
-        draw();
+    //TOOGLE OPTIONS - MAJ
+    case 'E':
+        computeBLOOM = !computeBLOOM;
+        displayInfo();
         return true;
-    case '*':
-        //TODO Change this to something else
-        m_objects[0].subdivideLoop();
-        draw();
+    case 'R':
+        computeHDR = !computeHDR;
+        displayInfo();
         return true;
-    case '-':
-        m_objects[0].edgeCollapse(m_objects[0].faceCount()/2);
-        draw();
-        return true;
-    case '_':
-        m_objects[0].halfEdgeCollapse(m_objects[0].faceCount()/2);
-        draw();
-        return true;
-    case 'w':
-        wireframe = !wireframe;
-        draw();
-        return true;
-        //###########FXAA###############
     case '&':
         showContourFXAA = !showContourFXAA;
         computeFXAA = true;
+        displayInfo();
         return true;
     case 'A':
         computeFXAA = !computeFXAA;
         showContourFXAA = false;
+        displayInfo();
         return true;
+    case 'Z':
+        computeSSAO = !computeSSAO;
+        displayInfo();
+        return true;
+    //#######################GEOMETRY
+    case '+':
+        m_objects[0].subdivideLoop();
+        return true;
+    case '*':
+        m_objects[0].subdivideLoop();
+        return true;
+    case '-':
+        m_objects[0].edgeCollapse(m_objects[0].faceCount()/2);
+        return true;
+    case '_':
+        m_objects[0].halfEdgeCollapse(m_objects[0].faceCount()/2);
+        return true;
+    case 'w':
+        wireframe = !wireframe;
+        return true;
+        //###########FXAA###############
     case 'a':
-        minThresholdFXAA = minThresholdFXAA - 0.01 > 0 ? minThresholdFXAA - 0.010 : 0;
-        std::cout << "minThreshhold down to "<< minThresholdFXAA <<std::endl;
+        minThresholdFXAA = minThresholdFXAA - 0.01 > 0 ? minThresholdFXAA - 0.010 : 0.0;
+        displayInfo();
         return true;
     case 'z':
         minThresholdFXAA = minThresholdFXAA + 0.01 < maxThresholdFXAA ? minThresholdFXAA + 0.01 : maxThresholdFXAA;
-        std::cout << "minThreshhold up to "<< minThresholdFXAA <<std::endl;
+        displayInfo();
         return true;
     case 'q':
         maxThresholdFXAA = maxThresholdFXAA - 0.01 > minThresholdFXAA ? maxThresholdFXAA - 0.01 : minThresholdFXAA;
-        std::cout << "maxThreshhold down to "<< maxThresholdFXAA <<std::endl;
+        displayInfo();
         return true;
     case 's':
         maxThresholdFXAA = maxThresholdFXAA + 0.01 < 0.5 ? maxThresholdFXAA + 0.01 : 0.5;
-        std::cout << "maxThreshhold up to "<< maxThresholdFXAA <<std::endl;
+        displayInfo();
         return true;
         //##########SSAO##############
-    case 'Z':
-        computeSSAO = !computeSSAO;
-        return true;
     case 'e':
         ssaoRadius = ssaoRadius - 0.05 > 0.f ? ssaoRadius - 0.05 : 0.0;
+        displayInfo();
         return true;
     case 'r':
         ssaoRadius = ssaoRadius + 0.05 < 1.5 ? ssaoRadius + 0.05 : 1.5;
+        displayInfo();
         return true;
     case 'd':
-        ssaoBias = ssaoBias - 0.005 < 0.0 ? ssaoBias - 0.005 : 0.0;
+        ssaoBias = ssaoBias - 0.005 >0.0 ? ssaoBias - 0.005 : 0.0;
+        displayInfo();
         return true;
     case 'f':
         ssaoBias = ssaoBias + 0.005 < 0.25 ? ssaoBias + 0.005 : 0.25;
+        displayInfo();
         return true;
         //##############HDR+BLOOM##############
-    case 'E':
-        computeBLOOM = !computeBLOOM;
-        std::cout << "computebloom : "<<computeBLOOM <<std::endl;
-        return true;
-    case 'R':
-        computeHDR = !computeHDR;
-        std::cout << "computeHDR : "<<computeHDR <<std::endl;
-        return true;
     case 'g':
-        gammaHDR = gammaHDR - 0.1 < 0.0 ? 0. : gammaHDR;
+        gammaHDR = gammaHDR - 0.1 < 0.0 ? 0. : gammaHDR- 0.1;
+        displayInfo();
         return true;
     case 'h':
         gammaHDR = gammaHDR + 0.1 < 3. ? gammaHDR + 0.1 : 3.0;
+        displayInfo();
         return true;
     case 't':
         exposureHDR = exposureHDR -0.1 < 0. ? 0.0 : exposureHDR - 0.1;
+        displayInfo();
         return true;
     case 'y':
         exposureHDR = exposureHDR + 0.1 < 3. ? exposureHDR + 0.1 : 0.0;
+        displayInfo();
+        return true;
     default:
         return false;
     }
+
 }
 
 void Renderer::resizeBuffers(int w, int h){

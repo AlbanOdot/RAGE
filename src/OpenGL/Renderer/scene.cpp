@@ -18,7 +18,7 @@ void Scene::resize(int width, int height) {
 }
 
 void Scene::draw() {
-    glClearColor(0.2f, 0.3f, 0.3f, 0.1f);
+    glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 
     if (_drawfill)

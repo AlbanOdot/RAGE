@@ -39,7 +39,7 @@ float Decimator::edgeCollapse(MyObject &obj, const unsigned int faceCountTarget)
         totalError += item.first;
         //Faire un vv_iter et un ev_iter
         Mesh::Point nPos = computeQuadricErrorNewPosition(mesh,obj.faceMatrix(),item.second);
-        mesh.set_point(mesh.from_vertex_handle(item.second),nPos);
+        mesh.set_point(mesh.to_vertex_handle(item.second),nPos);
         //Ecrase le from_vertex sur le to_vertex
         mesh.collapse(item.second);
         mesh.garbage_collection();
