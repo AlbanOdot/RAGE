@@ -1,5 +1,4 @@
 project(RAGE)
-
 ############################################
 # Configure CMake and GCC flags
 cmake_minimum_required(VERSION 2.8.9) # Minimal version compatible QT5
