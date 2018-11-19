@@ -19,7 +19,6 @@ cd Release
 
 cmake ..
 
-
 The binany is in the bin folder
 
 
