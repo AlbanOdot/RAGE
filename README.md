@@ -22,27 +22,27 @@ cmake ..
 The binany is in the bin folder
 
 #Geometry
-(+ || *) = subdivide
-- = edge collapse
-_ = half edge collapse
+- (+ || *) = subdivide
+- - = edge collapse
+- _ = half edge collapse
 
 #FXAA
-A = ON / OFF
-& = Show border
-(a|z) = minThreshold(--|++)
-(q|s) = maxThreshold(--|++)
+- A = ON / OFF
+- & = Show border
+- (a|z) = minThreshold(--|++)
+- (q|s) = maxThreshold(--|++)
 
 #SSAO
-Z = ON / OFF
-(e|r) = radius(--|++)
-(d|f) = biais(--|++)
+- Z = ON / OFF
+- (e|r) = radius(--|++)
+- (d|f) = biais(--|++)
 
 #BLOOM
-E = ON / OFF
+- E = ON / OFF
 
 #HDR
-(t|y) = exposure(--|++)
-(g|h) = gamma(--|++)
+- (t|y) = exposure(--|++)
+- (g|h) = gamma(--|++)
 
 
 
