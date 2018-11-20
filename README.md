@@ -13,17 +13,19 @@ make install
 
 cd ../../..
 
-mkdir Releas
+mkdir Release
 
 cd Release
 
 cmake ..
 
+make -j
+
 The binany is in the bin folder
 
 #Geometry
 - (+ || *) = subdivide
-- - = edge collapse
+- '-' = edge collapse
 - _ = half edge collapse
 
 #FXAA
