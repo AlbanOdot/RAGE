@@ -43,6 +43,7 @@ The binany is in the bin folder
 - E = ON / OFF
 
 #HDR
+- R = ON / OFF
 - (t|y) = exposure(--|++)
 - (g|h) = gamma(--|++)
 
