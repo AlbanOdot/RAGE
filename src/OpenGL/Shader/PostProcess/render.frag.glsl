@@ -19,7 +19,7 @@ void main()
     vec3 Normal = texture(normal, vtexCoord).rgb;
     vec3 Diffuse = texture(albedo, vtexCoord).rgb;
     float AmbientOcclusion = texture(ssao, vtexCoord).r;
-    vec3 finalcol = vec3(.5,.3,.2);
+    vec3 finalcol = vec3(0.,0.,0.);
     for(int i = 0; i < 3; ++i){
         // blinn-phong (in view-space)
         vec3 lighting  = Diffuse * AmbientOcclusion;

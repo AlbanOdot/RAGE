@@ -29,6 +29,7 @@ public:
 
     // Demo management
     void render(const std::string& filename);
+    void render(const int type);
 
     //getters
 private :

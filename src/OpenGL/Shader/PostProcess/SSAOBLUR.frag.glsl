@@ -17,5 +17,5 @@ void main()
             result += texture(ssaoTexture, vtexCoord + offset).r;
         }
     }
-    color = result / (4.0 * 4.0);
+    color = result / 16.;
 }

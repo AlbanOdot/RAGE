@@ -35,6 +35,7 @@
      <string>Files</string>
     </property>
     <addaction name="actionOpen"/>
+    <addaction name="actionAnimation"/>
     <addaction name="actionClose"/>
    </widget>
    <addaction name="menuFiles"/>
@@ -106,6 +107,11 @@
   <action name="actionDisplay_geometry">
    <property name="text">
     <string>Display geometry</string>
+   </property>
+  </action>
+  <action name="actionAnimation">
+   <property name="text">
+    <string>Animation</string>
    </property>
   </action>
  </widget>

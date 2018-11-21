@@ -70,43 +70,53 @@ void MyOpenGLWidget::mouseMoveEvent(QMouseEvent *event) {
 
 void MyOpenGLWidget::keyPressEvent(QKeyEvent *event) {
     switch(event->key()) {
-        // Demo keys
-        case Qt::Key_0:
-        case Qt::Key_1:
-        case Qt::Key_2:
-        case Qt::Key_3:
-        case Qt::Key_4:
-        case Qt::Key_5:
-        case Qt::Key_6:
-        case Qt::Key_7:
-        case Qt::Key_8:
-        case Qt::Key_9:
+    // Demo keys
+    case Qt::Key_0:
+    case Qt::Key_1:
+    case Qt::Key_2:
+    case Qt::Key_3:
+    case Qt::Key_4:
+    case Qt::Key_5:
+    case Qt::Key_6:
+    case Qt::Key_7:
+    case Qt::Key_8:
+    case Qt::Key_9:
         break;
         // Move keys
-        case Qt::Key_Left:
-        case Qt::Key_Up:
-        case Qt::Key_Right:
-        case Qt::Key_Down:
-            _scene->keyboardmove(event->key()-Qt::Key_Left, 1./100/*double(_lastime)/10.*/);
-            update();
+    case Qt::Key_Left:
+    case Qt::Key_Up:
+    case Qt::Key_Right:
+    case Qt::Key_Down:
+        _scene->keyboardmove(event->key()-Qt::Key_Left, 1./100/*double(_lastime)/10.*/);
+        update();
+        break;
+    case Qt::Key_Space:
+        render(0);//"../DataFiles/Mesh/cylinder.obj"
         break;
         // Wireframe key
-        case Qt::Key_W:
-            _scene->toggledrawmode();
-            update();
+    case Qt::Key_W:
+        _scene->toggledrawmode();
+        update();
         break;
         // Other keys are transmitted to the scene
-        default :
-            if (_scene->keyboard(event->text().toStdString()[0]))
-                update();
+    default :
+        if (_scene->keyboard(event->text().toStdString()[0]))
+            update();
         break;
     }
 }
 
 void MyOpenGLWidget::render(const std::string& filename) {
-        makeCurrent();
-        _scene.reset(new Renderer(width(), height(), filename));
-        doneCurrent();
-        update();
+    makeCurrent();
+    _scene.reset(new Renderer(width(), height(), filename));
+    doneCurrent();
+    update();
+}
+
+void MyOpenGLWidget::render(const int type){
+    makeCurrent();
+    _scene.reset(new Renderer(width(),height(),type));
+    doneCurrent();
+    update();
 }
 

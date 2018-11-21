@@ -6,6 +6,15 @@
 
 MyObject::MyObject(){}
 MyObject::~MyObject(){}
+MyObject::MyObject(const Shape s){
+    switch( s ){
+    case Cylinder:
+        cylinder();
+        break;
+    default:
+        cylinder();
+    }
+}
 
 MyObject::MyObject(const std::string& path){
     if (!OpenMesh::IO::read_mesh(mesh_m,path.c_str()))
@@ -269,4 +278,56 @@ void MyObject::updateFaceMatrix(Mesh::VertexHandle& vh){
         Qv *= 0.5 * aire;//On calcul l'air du parallèlogramme mais on a un triangle donc on divise par 2
         mesh_m.property( face_matrix, vh) += Qv;
     }
+}
+
+void MyObject::cylinder(){
+
+    Mesh::Point axis(1,0,0);
+    Mesh::Point base(-1,0,0);
+    int side = 15;
+    float length = 3.0;
+    float radius = 0.5;
+    Mesh::Point x(0,1,0);
+    Mesh::Point y(axis % x);
+     std::vector<Mesh::VertexHandle> vHandle;
+    for(int i = 0; i < side; ++i){
+
+        float offset = float(i) / float(side - 1);
+        float offset2 = (offset - 0.5) * length;
+
+        for(int j = 0; j < side; ++j){
+            float angle = 2. * glm::pi<float>() * float(j) / float(side);
+
+            Mesh::Point nv = base * offset2 * axis  + radius * glm::cos(angle) * x + radius * glm::sin(angle) * y;
+            vHandle.push_back(mesh_m.add_vertex(nv));
+        }
+    }
+
+    for(int i = 0; i < side; ++i){
+        for(int j = 0; j < side; ++j){
+            mesh_m.add_face(vHandle[i*side+j], vHandle[i*side+j+side],vHandle[ i*side+(j+1)%side]);
+            //mesh_m.add_face(vHandle[i*side+(j+1)%side], vHandle[i*side+j+side], vHandle[i*side+(j+1)%side+side]);
+        }
+    }
+
+
+    if( ! mesh_m.has_face_normals() ){
+        mesh_m.request_face_normals();
+    }
+    //Initialisation de ses propres propriétés
+    if( !mesh_m.has_vertex_normals() ){
+        mesh_m.request_vertex_normals();
+    }
+    if( ! mesh_m.has_vertex_texcoords2D()){
+        mesh_m.request_vertex_texcoords2D();
+    }
+    mesh_m.add_property(face_matrix);
+    mesh_m.update_face_normals();
+    mesh_m.update_vertex_normals();
+    mesh_m.request_face_status();
+    mesh_m.request_edge_status();
+    mesh_m.request_vertex_status();
+    updateFaceMatrix();
+
+    loadGL();
 }

@@ -6,7 +6,7 @@
 #include "./src/OpenGL/Camera/camera.h"
 #include "./src/OpenGL/Textures/framebuffer.h"
 #include "./src/OpenGL/Textures/Gbuffer.h"
-#include "./src/OpenGL/Textures/ssaoframebuffer.h"
+#include "./src/OpenGL/Textures/RedBuffer.h".h"
 #include "./src/OpenGL/Object/Mesh/MyObject.h"
 #include "./src/OpenGL/ShadersUtils/shadermanager.h"
 
@@ -74,6 +74,7 @@ class Renderer : public Scene
 public:
     Renderer(const int width, const int height,const std::string& filename);
     Renderer(const int width, const int height) : Scene(width,height){}
+    Renderer(const int width, const int height, const int type);
     void resize(int width, int height) override;
     void draw() override;
 
@@ -83,6 +84,7 @@ public:
     bool keyboard(unsigned char k) override;
     void wheelEvent( const int down) override;
     void resizeBuffers(int w, int h);
+    void fastDraw();
 
     //INIT
     void initPreprocess();
@@ -107,8 +109,9 @@ private:
     float invSS[2] = {static_cast<float>(1.0/ (2*_width)), static_cast<float>(1.0/(2*_height))};
 
     //SSAO
-    SSAOFrameBuffer ssaoBuffer;
-    SSAOFrameBuffer ssaoBufferBlur;
+    GLuint ssao; GLuint ssaoBlur;
+    RedBuffer ssaoBuffer;
+    RedBuffer ssaoBufferBlur;
     float ssaoKernel[64*3];
     float ssaoNoise[16*3];
     GLuint noiseTexture;
@@ -156,9 +159,9 @@ private:
     glm::mat4 _view;
     glm::mat4 _projection;
 
-    //
-
-    char wireframe = 0;
+    //ANIMATION
+    bool animationMode = false;
+    bool picking_m = false;
 };
 
 

@@ -1,30 +1,24 @@
 #ifndef GBUFFER_H
 #define GBUFFER_H
+#include "RenderBuffer.h"
 
-
-class GBuffer
+class GBuffer : public RenderBuffer
 {
 public:
     GBuffer();
-    ~GBuffer();
+
     void init(int w, int h);
-
-    void bind();
-    void unbind();
-    void unbindOther(unsigned int id);
-
     void resize(int w, int h);
+    GLuint positions() const {return position;}
+    GLuint normals() const {return normal;}
+    GLuint albedos() const {return albedo;}
+private:
     unsigned int position;
     unsigned int normal;
     unsigned int albedo;
 
-private:
-
-    int m_width;
-    int m_height;
-
-    unsigned int m_id;
-    unsigned int rbo;
+protected:
+     void initGBuffer(int w, int h);
 
 };
 

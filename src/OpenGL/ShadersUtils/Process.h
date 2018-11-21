@@ -6,6 +6,7 @@ class Process
 {
 public:
     Process();
+
 };
 
 #endif // PROCESS_H

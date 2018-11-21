@@ -37,26 +37,68 @@ Renderer::Renderer(const int width, const int height, const std::string& filenam
     _projection = glm::perspective(_camera->zoom(), float(_width) / float(_height), 0.1f, 100.0f);
 }
 
+Renderer::Renderer(const int width, const int height, const int type) : Scene(width,height), _camera(nullptr){
+    glCullFace(GL_FRONT_AND_BACK);
+    resizeBuffers(2 * _width, 2 * _height);
+
+    //PREPROCESS SHADER
+    initPreprocess();
+
+    //POSTPROCESS SHADERS
+    initLighting();
+    initSSAO();
+    initHDR();
+    initBloom();
+    initFXAA();
+    //MESH LOADING AND STORAGE
+    m_objects.push_back(MyObject("../DataFiles/Mesh/cylinder.obj"));
+
+    //POSTPROCESS QUAD INIT
+    m_postProcessScreen.quadLoad();
+    //CAMERA STUFF
+    _camera.reset(new TrackballCamera(glm::vec3(0.f, 0.f, 3.f)));
+    _camera->setviewport(glm::vec4(0.f, 0.f, _width, _height));
+    _view = _camera->viewmatrix();
+    _projection = glm::perspective(_camera->zoom(), float(_width) / float(_height), 0.1f, 100.0f);
+
+    animationMode = true;
+    picking_m = true;
+
+}
+
+
+
+
+void Renderer::fastDraw(){
+
+    glBindFramebuffer(GL_FRAMEBUFFER, 1);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glClearColor(0.55f, 0.25f, 0.05f, 1.0f);
+    glDisable(GL_DEPTH_TEST);
+    glUseProgram(RENDERPROG);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, m_GBuffer.positions());
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_2D, m_GBuffer.normals());
+    glActiveTexture(GL_TEXTURE2);
+    glBindTexture(GL_TEXTURE_2D, m_GBuffer.albedos());
+    glActiveTexture(GL_TEXTURE3);
+    glBindTexture(GL_TEXTURE_2D, ssaoBufferBlur.buffer());
+    glUniform1i(glGetUniformLocation(RENDERPROG, "position"), 0);
+    glUniform1i(glGetUniformLocation(RENDERPROG, "normal"), 1);
+    glUniform1i(glGetUniformLocation(RENDERPROG, "albedo"), 2);
+    glUniform1i(glGetUniformLocation(RENDERPROG, "ssao"), 3);
+    m_postProcessScreen.quadDraw();
+    std::cout << "fast Draw ok"<<std::endl;
+}
 void Renderer::draw(){
     //1ere passe de rendu
-    //Qt utilise son propre buffer
-
-    // QT use his own default frame buffer ...
-    GLint qt_buffer;
-    glGetIntegerv(GL_FRAMEBUFFER_BINDING, &qt_buffer);
-
     /* GBUFFER FILLING */
-    //programs.setActiveProg(ShaderManager::GBUFFER);
+
     m_GBuffer.bind();
-
-    glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    m_GBuffer.clear();
     glEnable(GL_DEPTH_TEST);
-
-    if (!wireframe)
-        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-    else
-        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
     programs.useProg(ShaderManager::GBUFFER);
     _view = _camera->viewmatrix();
@@ -71,20 +113,16 @@ void Renderer::draw(){
 
     if(computeSSAO){
         ssaoBuffer.bind();
-        glClear(GL_COLOR_BUFFER_BIT);
-        glClearColor(0.00f, 0.0f, 0.0f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        glEnable(GL_DEPTH_TEST);
-        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+        ssaoBuffer.clear();
 
-        programs.usePostProg(ShaderManager::SSAO);
-        GLuint ssao = programs.get(ShaderManager::SSAO);
+        glEnable(GL_DEPTH_TEST);
+        glUseProgram(ssao);
         glUniform3fv(glGetUniformLocation(ssao,"kernel"), 64, ssaoKernel);
         glUniformMatrix4fv( glGetUniformLocation(ssao, "projection"), 1, GL_FALSE, glm::value_ptr(_projection));
         glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, m_GBuffer.position);
+        glBindTexture(GL_TEXTURE_2D, m_GBuffer.positions());
         glActiveTexture(GL_TEXTURE1);
-        glBindTexture(GL_TEXTURE_2D, m_GBuffer.normal);
+        glBindTexture(GL_TEXTURE_2D, m_GBuffer.normals());
         glActiveTexture(GL_TEXTURE2);
         glBindTexture(GL_TEXTURE_2D, noiseTexture);
         glUniform1f(glGetUniformLocation(ssao,"radius"), ssaoRadius);
@@ -94,40 +132,36 @@ void Renderer::draw(){
         m_postProcessScreen.quadDraw();
 
         ssaoBufferBlur.bind();
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        glClearColor(1.f, 1.f, 1.f, 1.0f);
-        programs.usePostProg(ShaderManager::SSAOBLUR);
+        ssaoBufferBlur.clear();
+        glUseProgram(ssaoBlur);
         glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D,  ssaoBuffer.buf);
+        glBindTexture(GL_TEXTURE_2D,  ssaoBuffer.buffer());
         m_postProcessScreen.quadDraw();
     }else{
         ssaoBuffer.bind();
-        glClear(GL_COLOR_BUFFER_BIT);
-        glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        ssaoBuffer.clear();
         ssaoBufferBlur.bind();
-        glClearColor(1.f, 1.f, 1.f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        ssaoBufferBlur.clear();
 
     }
-
+    if( animationMode ){
+        fastDraw();
+        return;
+    }
     //2eme passe de rendu on combine G_BUFFER et ssaoBlur
     renderBuffer.bind();
-    //glBindFramebuffer(GL_FRAMEBUFFER, 1);
-    glClear(GL_COLOR_BUFFER_BIT);
-    glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    renderBuffer.clear();
     glDisable(GL_DEPTH_TEST);
-    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
     glUseProgram(RENDERPROG);
     glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, m_GBuffer.position);
+    glBindTexture(GL_TEXTURE_2D, m_GBuffer.positions());
     glActiveTexture(GL_TEXTURE1);
-    glBindTexture(GL_TEXTURE_2D, m_GBuffer.normal);
+    glBindTexture(GL_TEXTURE_2D, m_GBuffer.normals());
     glActiveTexture(GL_TEXTURE2);
-    glBindTexture(GL_TEXTURE_2D, m_GBuffer.albedo);
+    glBindTexture(GL_TEXTURE_2D, m_GBuffer.albedos());
     glActiveTexture(GL_TEXTURE3);
-    glBindTexture(GL_TEXTURE_2D, ssaoBufferBlur.buf);
+    glBindTexture(GL_TEXTURE_2D, ssaoBufferBlur.buffer());
     glUniform1i(glGetUniformLocation(RENDERPROG, "position"), 0);
     glUniform1i(glGetUniformLocation(RENDERPROG, "normal"), 1);
     glUniform1i(glGetUniformLocation(RENDERPROG, "albedo"), 2);
@@ -136,13 +170,11 @@ void Renderer::draw(){
 
     //FXAA
     fxaaBuffer.bind();
-    //glBindFramebuffer(GL_FRAMEBUFFER, 1);
-    glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
+    fxaaBuffer.clear();
     glDisable(GL_DEPTH_TEST);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glUseProgram(FXAAPROG);
     glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D,  renderBuffer.buf);
+    glBindTexture(GL_TEXTURE_2D,  renderBuffer.buffer());
     glUniform1f(glGetUniformLocation(FXAAPROG,"minThreshold"),minThresholdFXAA);
     glUniform1f(glGetUniformLocation(FXAAPROG,"maxThreshold"),maxThresholdFXAA);
     glUniform1i(glGetUniformLocation(FXAAPROG, "showContour"),showContourFXAA);
@@ -152,32 +184,29 @@ void Renderer::draw(){
 
     //BLOOM
     bloomBuffer.bind();
-    glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
+    bloomBuffer.clear();
     glDisable(GL_DEPTH_TEST);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glUseProgram(BLOOMPROG);
     glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D,  fxaaBuffer.buf);
+    glBindTexture(GL_TEXTURE_2D,  fxaaBuffer.buffer());
     m_postProcessScreen.quadDraw();
     //BLUR
     //VERTICAL PASS
     blurBufferVert.bind();
-    glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
+    blurBufferVert.clear();
     glDisable(GL_DEPTH_TEST);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glUseProgram(BLURPROG);
     glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D,  bloomBuffer.buf);
+    glBindTexture(GL_TEXTURE_2D,  bloomBuffer.buffer());
     glUniform2fv(glGetUniformLocation(BLURPROG, "texelStep"),1,invSS);
     glUniform1f(glGetUniformLocation(BLURPROG, "horizontal"),0.);
     m_postProcessScreen.quadDraw();
     //HORIZONTAL PASS
     blurBufferHori.bind();
-    glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
+    blurBufferHori.clear();
     glDisable(GL_DEPTH_TEST);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D,  blurBufferVert.buf);
+    glBindTexture(GL_TEXTURE_2D,  blurBufferVert.buffer());
     glUniform2fv(glGetUniformLocation(BLURPROG, "texelStep"),1,invSS);
     glUniform1i(glGetUniformLocation(BLURPROG, "horizontal"),1.);
     m_postProcessScreen.quadDraw();
@@ -185,14 +214,14 @@ void Renderer::draw(){
 
     //HDR
     glBindFramebuffer(GL_FRAMEBUFFER, 1);
-    glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
-    glDisable(GL_DEPTH_TEST);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+     glClearColor(0.55f, 0.25f, 0.05f, 1.0f);
+    glDisable(GL_DEPTH_TEST);
     glUseProgram(HDRPROG);
     glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D,  blurBufferHori.buf);
+    glBindTexture(GL_TEXTURE_2D,  blurBufferHori.buffer());
     glActiveTexture(GL_TEXTURE1);
-    glBindTexture(GL_TEXTURE_2D,  fxaaBuffer.buf);
+    glBindTexture(GL_TEXTURE_2D,  fxaaBuffer.buffer());
     glUniform1i(glGetUniformLocation(HDRPROG,"screenTexture"),1);
     glUniform1i(glGetUniformLocation(HDRPROG,"brightTexture"),0);
     glUniform1f(glGetUniformLocation(HDRPROG, "gamma"),gammaHDR);
@@ -253,12 +282,12 @@ void Renderer::initSSAO(){
     std::string vshPath = wd +  std::string("/../src/OpenGL/Shader/PostProcess/pass.vert.glsl");
     std::string SSAOPath = wd + std::string("/../src/OpenGL/Shader/PostProcess/SSAO.frag.glsl");
     std::string SSAOBlur = wd + std::string("/../src/OpenGL/Shader/PostProcess/SSAOBLUR.frag.glsl");
-    GLuint ssao = programs.computeAddPostProgramm(vshPath,SSAOPath);
+    ssao = programs.computeAddPostProgramm(vshPath,SSAOPath);
     glUniform1i(glGetUniformLocation(ssao, "position"), 0);
     glUniform1i(glGetUniformLocation(ssao, "normal"), 1);
     glUniform1i(glGetUniformLocation(ssao, "noise"), 2);
-    GLuint ssaoblur = programs.computeAddPostProgramm(vshPath,SSAOBlur);
-    glUniform1i(glGetUniformLocation(ssaoblur, "ssaoTexture"), 0);
+    ssaoBlur = programs.computeAddPostProgramm(vshPath,SSAOBlur);
+    glUniform1i(glGetUniformLocation(ssaoBlur, "ssaoTexture"), 0);
     computeSSAO = true;
 
 }
@@ -306,13 +335,11 @@ void Renderer::initFXAA(){
 }
 
 void Renderer::initLighting(){
-    std::uniform_real_distribution<GLfloat> randompos(1.0,40.0);
-    std::uniform_real_distribution<GLfloat> randomcol(0.0,2.0);
-    std::default_random_engine  generator;
+
     std::vector<float> pos3 = {1.,1.,1., 1.,-1.,1., -1,0.,1};
     float LiColor[9] = {1.5,1.0,0.2, 0.3,1.0,0.1, 0.2,0.0,1.7};
-    nbLights = 0;
-    for(    ; nbLights<3; ++nbLights){
+
+    for( nbLights = 0; nbLights<3; ++nbLights){
         glm::vec3 pos(pos3[3*nbLights], pos3[3*nbLights+1], pos3[3*nbLights+3]);
         pos = glm::normalize(pos);
         pos *= 50.;
@@ -358,22 +385,22 @@ void Renderer::keyboardmove(int key, double time) {
 }
 
 bool Renderer::keyboard(unsigned char k) {
-std::string OnOff;
-auto displayInfo = [&](){        std::cout << "******************************"<<std::endl;
-    std::cout << "*     Post process status    *"<<std::endl;
-    std::cout << "******************************"<<std::endl;
-    OnOff = computeFXAA ? "[ON] " : "[OFF]";
-    std::cout << "* FXAA :  " << OnOff <<"              *  min threshold : "<< minThresholdFXAA <<"     max threshold : "<<maxThresholdFXAA<<std::endl;
-    OnOff = computeSSAO ? "[ON] " : "[OFF]";
-    std::cout << "* SSAO :  " << OnOff <<"              *  radius : " <<ssaoRadius<<"    bias : "<< ssaoBias<<std::endl;
-    OnOff = computeBLOOM ? "[ON] " : "[OFF]";
-    std::cout << "* Bloom : " << OnOff <<"              *"<<std::endl;
-    OnOff = computeHDR ? "[ON] " : "[OFF]";
-    std::cout << "* HDR :   " << OnOff <<"              *  gamma : "<<gammaHDR<<"    exposure : "<<exposureHDR<<std::endl;
-    std::cout << "******************************"<<std::endl;
-    std::cout <<std::endl;
-    std::cout <<std::endl;
-    std::cout <<std::endl;};
+    std::string OnOff;
+    auto displayInfo = [&](){        std::cout << "******************************"<<std::endl;
+        std::cout << "*     Post process status    *"<<std::endl;
+        std::cout << "******************************"<<std::endl;
+        OnOff = computeFXAA ? "[ON] " : "[OFF]";
+        std::cout << "* FXAA :  " << OnOff <<"              *  min threshold : "<< minThresholdFXAA <<"     max threshold : "<<maxThresholdFXAA<<std::endl;
+        OnOff = computeSSAO ? "[ON] " : "[OFF]";
+        std::cout << "* SSAO :  " << OnOff <<"              *  radius : " <<ssaoRadius<<"    bias : "<< ssaoBias<<std::endl;
+        OnOff = computeBLOOM ? "[ON] " : "[OFF]";
+        std::cout << "* Bloom : " << OnOff <<"              *"<<std::endl;
+        OnOff = computeHDR ? "[ON] " : "[OFF]";
+        std::cout << "* HDR :   " << OnOff <<"              *  gamma : "<<gammaHDR<<"    exposure : "<<exposureHDR<<std::endl;
+        std::cout << "******************************"<<std::endl;
+        std::cout <<std::endl;
+        std::cout <<std::endl;
+        std::cout <<std::endl;};
 
     switch(k) {
     //TOOGLE OPTIONS - MAJ
@@ -399,7 +426,7 @@ auto displayInfo = [&](){        std::cout << "******************************"<<
         computeSSAO = !computeSSAO;
         displayInfo();
         return true;
-    //#######################GEOMETRY
+        //#######################GEOMETRY
     case '+':
         m_objects[0].subdivideLoop();
         return true;
@@ -411,9 +438,6 @@ auto displayInfo = [&](){        std::cout << "******************************"<<
         return true;
     case '_':
         m_objects[0].halfEdgeCollapse(m_objects[0].faceCount()/2);
-        return true;
-    case 'w':
-        wireframe = !wireframe;
         return true;
         //###########FXAA###############
     case 'a':
@@ -465,6 +489,9 @@ auto displayInfo = [&](){        std::cout << "******************************"<<
     case 'y':
         exposureHDR = exposureHDR + 0.1 < 3. ? exposureHDR + 0.1 : 0.0;
         displayInfo();
+        return true;
+    case 'x':
+        picking_m = !picking_m;
         return true;
     default:
         return false;

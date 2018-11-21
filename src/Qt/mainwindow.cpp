@@ -28,8 +28,14 @@ void MainWindow::on_actionOpen_triggered()
 {
     QFileDialog fd;
     fd.open();
-    QString filename = fd.getOpenFileName(this,tr("Select your .obj file"), tr("../DataFiles"), tr("OBJ files *.obj;; PLY files *.ply"));
+    QString filename = fd.getOpenFileName(this,tr("Select your .obj file"), tr("../DataFiles"), tr("ALL files *.*;;OBJ files *.obj;; PLY files *.ply;;STL files *.stl"));
     std::cout << "Selected file is " << filename.toStdString() << std::endl;
     ui->openglWidget->render(filename.toStdString());
 }
 
+
+void MainWindow::on_actionAnimation_triggered()
+{
+    //0 = cylinder;
+    ui->openglWidget->render(0);
+}

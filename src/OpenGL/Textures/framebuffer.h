@@ -1,26 +1,20 @@
 #ifndef FRAMEBUFFER_H
 #define FRAMEBUFFER_H
-class FrameBuffer {
+#include "RenderBuffer.h"
+
+class FrameBuffer : public RenderBuffer{
 public:
     FrameBuffer();
-    ~FrameBuffer();
 
     void init(int w, int h);
-
-    void bind();
-    void unbind();
-    void unbindOther(unsigned int id);
-
     void resize(int w, int h);
+
+    GLuint buffer() const {return buf;}
+private:
     unsigned int buf;
 
-private:
-
-    int m_width;
-    int m_height;
-
-    unsigned int m_id;
-    unsigned int rbo;
+protected:
+    void initFrame(int w, int h);
 
 };
 

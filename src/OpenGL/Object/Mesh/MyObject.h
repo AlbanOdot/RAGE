@@ -9,12 +9,15 @@ typedef OpenMesh::TriMesh_ArrayKernelT<> Mesh;
 
 class MyObject {
 
+
 public:
+    enum Shape { Cylinder, Sphere, Cube};
     MyObject();
     ~MyObject();
 
     //Mesh from a file
     MyObject(const std::string& path);
+    MyObject(const Shape s);
     //Display
     virtual void draw();
     //Mesh actions
@@ -41,6 +44,8 @@ public:
     glm::mat4 getModel() { return _model;}
     Mesh& mesh() { return mesh_m;}
     OpenMesh::VPropHandleT<OpenMesh::Geometry::Quadricf>& faceMatrix()  { return face_matrix;}
+
+    void cylinder();
 
 protected:
     GLuint vao = 0;//vertex array buffer

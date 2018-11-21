@@ -18,6 +18,8 @@ private slots:
 
     void on_actionOpen_triggered();
 
+    void on_actionAnimation_triggered();
+
 private:
     Ui::MainWindow *ui;
 };
