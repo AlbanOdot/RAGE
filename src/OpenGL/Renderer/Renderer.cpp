@@ -306,7 +306,7 @@ void Renderer::initSSAO(){
   glUniform1i(glGetUniformLocation(SSAO, "noise"), 2);
   SSAOBLUR = programs.computeAddPostProgramm(vshPath,SSAOBlur);
   glUniform1i(glGetUniformLocation(SSAOBLUR, "ssaoTexture"), 0);
-  computeSSAO = false;
+  computeSSAO = true;
 
 }
 
