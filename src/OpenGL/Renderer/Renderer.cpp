@@ -68,13 +68,13 @@ void Renderer::animationDraw(){
 
   glUseProgram(RENDERPROG);
   glActiveTexture(GL_TEXTURE0);
-  glBindTexture(GL_TEXTURE_2D, m_GBuffer.position);
+  glBindTexture(GL_TEXTURE_2D, m_GBuffer.position());
   glActiveTexture(GL_TEXTURE1);
-  glBindTexture(GL_TEXTURE_2D, m_GBuffer.normal);
+  glBindTexture(GL_TEXTURE_2D, m_GBuffer.normal());
   glActiveTexture(GL_TEXTURE2);
-  glBindTexture(GL_TEXTURE_2D, m_GBuffer.albedo);
+  glBindTexture(GL_TEXTURE_2D, m_GBuffer.albedo());
   glActiveTexture(GL_TEXTURE3);
-  glBindTexture(GL_TEXTURE_2D, ssaoBufferBlur.buf);
+  glBindTexture(GL_TEXTURE_2D, ssaoBufferBlur.buffer());
 
   glUniform1i(glGetUniformLocation(RENDERPROG, "position"), 0);
   glUniform1i(glGetUniformLocation(RENDERPROG, "normal"), 1);
@@ -122,9 +122,9 @@ void Renderer::draw(){
       glUniform3fv(glGetUniformLocation(SSAO,"kernel"), 64, ssaoKernel);
       glUniformMatrix4fv( glGetUniformLocation(SSAO, "projection"), 1, GL_FALSE, glm::value_ptr(m_projection));
       glActiveTexture(GL_TEXTURE0);
-      glBindTexture(GL_TEXTURE_2D, m_GBuffer.position);
+      glBindTexture(GL_TEXTURE_2D, m_GBuffer.position());
       glActiveTexture(GL_TEXTURE1);
-      glBindTexture(GL_TEXTURE_2D, m_GBuffer.normal);
+      glBindTexture(GL_TEXTURE_2D, m_GBuffer.normal());
       glActiveTexture(GL_TEXTURE2);
       glBindTexture(GL_TEXTURE_2D, noiseTexture);
       glUniform1f(glGetUniformLocation(SSAO,"radius"), ssaoRadius);
@@ -138,7 +138,7 @@ void Renderer::draw(){
       glClearColor(1.f, 1.f, 1.f, 1.0f);
       glUseProgram(SSAOBLUR);
       glActiveTexture(GL_TEXTURE0);
-      glBindTexture(GL_TEXTURE_2D,  ssaoBuffer.buf);
+      glBindTexture(GL_TEXTURE_2D,  ssaoBuffer.buffer());
       m_postProcessScreen.quadDraw();
     }else{
       cout << "NO SSAO"<<endl;
@@ -156,7 +156,7 @@ void Renderer::draw(){
       animationDraw();
       return;
     }
-  cout << "C'est pas bon"<<endl;
+
   //2eme passe de rendu on combine G_BUFFER et ssaoBlur
   renderBuffer.bind();
   //glBindFramebuffer(GL_FRAMEBUFFER, 1);
@@ -167,13 +167,13 @@ void Renderer::draw(){
   glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
   glUseProgram(RENDERPROG);
   glActiveTexture(GL_TEXTURE0);
-  glBindTexture(GL_TEXTURE_2D, m_GBuffer.position);
+  glBindTexture(GL_TEXTURE_2D, m_GBuffer.position());
   glActiveTexture(GL_TEXTURE1);
-  glBindTexture(GL_TEXTURE_2D, m_GBuffer.normal);
+  glBindTexture(GL_TEXTURE_2D, m_GBuffer.normal());
   glActiveTexture(GL_TEXTURE2);
-  glBindTexture(GL_TEXTURE_2D, m_GBuffer.albedo);
+  glBindTexture(GL_TEXTURE_2D, m_GBuffer.albedo());
   glActiveTexture(GL_TEXTURE3);
-  glBindTexture(GL_TEXTURE_2D, ssaoBufferBlur.buf);
+  glBindTexture(GL_TEXTURE_2D, ssaoBufferBlur.buffer());
   glUniform1i(glGetUniformLocation(RENDERPROG, "position"), 0);
   glUniform1i(glGetUniformLocation(RENDERPROG, "normal"), 1);
   glUniform1i(glGetUniformLocation(RENDERPROG, "albedo"), 2);
@@ -188,7 +188,7 @@ void Renderer::draw(){
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   glUseProgram(FXAAPROG);
   glActiveTexture(GL_TEXTURE0);
-  glBindTexture(GL_TEXTURE_2D,  renderBuffer.buf);
+  glBindTexture(GL_TEXTURE_2D,  renderBuffer.buffer());
   glUniform1f(glGetUniformLocation(FXAAPROG,"minThreshold"),minThresholdFXAA);
   glUniform1f(glGetUniformLocation(FXAAPROG,"maxThreshold"),maxThresholdFXAA);
   glUniform1i(glGetUniformLocation(FXAAPROG, "showContour"),showContourFXAA);
@@ -203,7 +203,7 @@ void Renderer::draw(){
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   glUseProgram(BLOOMPROG);
   glActiveTexture(GL_TEXTURE0);
-  glBindTexture(GL_TEXTURE_2D,  fxaaBuffer.buf);
+  glBindTexture(GL_TEXTURE_2D,  fxaaBuffer.buffer());
   m_postProcessScreen.quadDraw();
   //BLUR
   //VERTICAL PASS
@@ -213,7 +213,7 @@ void Renderer::draw(){
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   glUseProgram(BLURPROG);
   glActiveTexture(GL_TEXTURE0);
-  glBindTexture(GL_TEXTURE_2D,  bloomBuffer.buf);
+  glBindTexture(GL_TEXTURE_2D,  bloomBuffer.buffer());
   glUniform2fv(glGetUniformLocation(BLURPROG, "texelStep"),1,invSS);
   glUniform1f(glGetUniformLocation(BLURPROG, "horizontal"),0.);
   m_postProcessScreen.quadDraw();
@@ -223,7 +223,7 @@ void Renderer::draw(){
   glDisable(GL_DEPTH_TEST);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   glActiveTexture(GL_TEXTURE0);
-  glBindTexture(GL_TEXTURE_2D,  blurBufferVert.buf);
+  glBindTexture(GL_TEXTURE_2D,  blurBufferVert.buffer());
   glUniform2fv(glGetUniformLocation(BLURPROG, "texelStep"),1,invSS);
   glUniform1i(glGetUniformLocation(BLURPROG, "horizontal"),1.);
   m_postProcessScreen.quadDraw();
@@ -236,9 +236,9 @@ void Renderer::draw(){
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   glUseProgram(HDRPROG);
   glActiveTexture(GL_TEXTURE0);
-  glBindTexture(GL_TEXTURE_2D,  blurBufferHori.buf);
+  glBindTexture(GL_TEXTURE_2D,  blurBufferHori.buffer());
   glActiveTexture(GL_TEXTURE1);
-  glBindTexture(GL_TEXTURE_2D,  fxaaBuffer.buf);
+  glBindTexture(GL_TEXTURE_2D,  fxaaBuffer.buffer());
   glUniform1i(glGetUniformLocation(HDRPROG,"screenTexture"),1);
   glUniform1i(glGetUniformLocation(HDRPROG,"brightTexture"),0);
   glUniform1f(glGetUniformLocation(HDRPROG, "gamma"),gammaHDR);

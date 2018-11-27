@@ -14,6 +14,40 @@ CMakeFiles/RAGE.dir/src/Main/main.cpp.o: /Users/alban/Qt/5.11.2/clang_64/lib/QtW
 CMakeFiles/RAGE.dir/src/Main/main.cpp.o: /Users/alban/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/qapplication.h
 CMakeFiles/RAGE.dir/src/Main/main.cpp.o: /Users/alban/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers/qmainwindow.h
 
+CMakeFiles/RAGE.dir/src/OpenGL/Buffers/DataBuffers/Float3BufferObject.cpp.o: ../src/OpenGL/Buffers/DataBuffers/Float3BufferObject.cpp
+
+CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/FrameBuffer.cpp.o: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers/gl3.h
+CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/FrameBuffer.cpp.o: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers/gl3ext.h
+CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/FrameBuffer.cpp.o: ../src/OpenGL/Buffers/FrameBuffers/FrameBuffer.cpp
+CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/FrameBuffer.cpp.o: ../src/OpenGL/Buffers/FrameBuffers/framebuffer.h
+
+CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/GBuffer.cpp.o: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers/gl3.h
+CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/GBuffer.cpp.o: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers/gl3ext.h
+CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/GBuffer.cpp.o: ../src/OpenGL/Buffers/FrameBuffers/FrameBuffer.h
+CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/GBuffer.cpp.o: ../src/OpenGL/Buffers/FrameBuffers/GBuffer.cpp
+CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/GBuffer.cpp.o: ../src/OpenGL/Buffers/FrameBuffers/GBuffer.h
+CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/GBuffer.cpp.o: ../src/OpenGL/Buffers/FrameBuffers/Renderbuffer.h
+
+CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/RGBbuffer.cpp.o: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers/gl3.h
+CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/RGBbuffer.cpp.o: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers/gl3ext.h
+CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/RGBbuffer.cpp.o: ../src/OpenGL/Buffers/FrameBuffers/FrameBuffer.h
+CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/RGBbuffer.cpp.o: ../src/OpenGL/Buffers/FrameBuffers/RGBbuffer.cpp
+CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/RGBbuffer.cpp.o: ../src/OpenGL/Buffers/FrameBuffers/RGBbuffer.h
+CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/RGBbuffer.cpp.o: ../src/OpenGL/Buffers/FrameBuffers/Renderbuffer.h
+
+CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/RedBuffer.cpp.o: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers/gl3.h
+CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/RedBuffer.cpp.o: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers/gl3ext.h
+CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/RedBuffer.cpp.o: ../src/OpenGL/Buffers/FrameBuffers/FrameBuffer.h
+CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/RedBuffer.cpp.o: ../src/OpenGL/Buffers/FrameBuffers/RedBuffer.cpp
+CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/RedBuffer.cpp.o: ../src/OpenGL/Buffers/FrameBuffers/RedBuffer.h
+CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/RedBuffer.cpp.o: ../src/OpenGL/Buffers/FrameBuffers/Renderbuffer.h
+
+CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/Renderbuffer.cpp.o: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers/gl3.h
+CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/Renderbuffer.cpp.o: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers/gl3ext.h
+CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/Renderbuffer.cpp.o: ../src/OpenGL/Buffers/FrameBuffers/FrameBuffer.h
+CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/Renderbuffer.cpp.o: ../src/OpenGL/Buffers/FrameBuffers/Renderbuffer.cpp
+CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/Renderbuffer.cpp.o: ../src/OpenGL/Buffers/FrameBuffers/Renderbuffer.h
+
 CMakeFiles/RAGE.dir/src/OpenGL/Camera/camera.cpp.o: .././src/OpenGL/opengl_stuff.h
 CMakeFiles/RAGE.dir/src/OpenGL/Camera/camera.cpp.o: ../glm/glm.hpp
 CMakeFiles/RAGE.dir/src/OpenGL/Camera/camera.cpp.o: ../glm/gtc/matrix_transform.hpp
@@ -123,8 +157,6 @@ CMakeFiles/RAGE.dir/src/OpenGL/Camera/camera.cpp.o: ../glm/vec4.hpp
 CMakeFiles/RAGE.dir/src/OpenGL/Camera/camera.cpp.o: ../glm/vector_relational.hpp
 CMakeFiles/RAGE.dir/src/OpenGL/Camera/camera.cpp.o: ../src/OpenGL/Camera/camera.cpp
 CMakeFiles/RAGE.dir/src/OpenGL/Camera/camera.cpp.o: ../src/OpenGL/Camera/camera.h
-
-CMakeFiles/RAGE.dir/src/OpenGL/Object/MyObject.cpp.o: ../src/OpenGL/Object/MyObject.cpp
 
 CMakeFiles/RAGE.dir/src/OpenGL/Object/mesh.cpp.o: .././src/OpenGL/opengl_stuff.h
 CMakeFiles/RAGE.dir/src/OpenGL/Object/mesh.cpp.o: ../glm/glm.hpp
@@ -336,13 +368,15 @@ CMakeFiles/RAGE.dir/src/OpenGL/Object/model.cpp.o: /usr/local/include/assimp/vec
 CMakeFiles/RAGE.dir/src/OpenGL/Object/model.cpp.o: /usr/local/include/assimp/vector3.h
 CMakeFiles/RAGE.dir/src/OpenGL/Object/model.cpp.o: /usr/local/include/assimp/vector3.inl
 
+CMakeFiles/RAGE.dir/src/OpenGL/Renderer/Renderer.cpp.o: .././src/OpenGL/Buffers/FrameBuffers/FrameBuffer.h
+CMakeFiles/RAGE.dir/src/OpenGL/Renderer/Renderer.cpp.o: .././src/OpenGL/Buffers/FrameBuffers/Renderbuffer.h
 CMakeFiles/RAGE.dir/src/OpenGL/Renderer/Renderer.cpp.o: .././src/OpenGL/Object/mesh.h
+CMakeFiles/RAGE.dir/src/OpenGL/Renderer/Renderer.cpp.o: .././src/OpenGL/Buffers/FrameBuffers/GBuffer.h
+CMakeFiles/RAGE.dir/src/OpenGL/Renderer/Renderer.cpp.o: .././src/OpenGL/Buffers/FrameBuffers/RGBBuffer.h
+CMakeFiles/RAGE.dir/src/OpenGL/Renderer/Renderer.cpp.o: .././src/OpenGL/Buffers/FrameBuffers/RedBuffer.h
 CMakeFiles/RAGE.dir/src/OpenGL/Renderer/Renderer.cpp.o: .././src/OpenGL/Camera/camera.h
 CMakeFiles/RAGE.dir/src/OpenGL/Renderer/Renderer.cpp.o: .././src/OpenGL/Object/model.h
 CMakeFiles/RAGE.dir/src/OpenGL/Renderer/Renderer.cpp.o: .././src/OpenGL/ShadersUtils/shadermanager.h
-CMakeFiles/RAGE.dir/src/OpenGL/Renderer/Renderer.cpp.o: .././src/OpenGL/Textures/Gbuffer.h
-CMakeFiles/RAGE.dir/src/OpenGL/Renderer/Renderer.cpp.o: .././src/OpenGL/Textures/framebuffer.h
-CMakeFiles/RAGE.dir/src/OpenGL/Renderer/Renderer.cpp.o: .././src/OpenGL/Textures/ssaoframebuffer.h
 CMakeFiles/RAGE.dir/src/OpenGL/Renderer/Renderer.cpp.o: .././src/OpenGL/opengl_stuff.h
 CMakeFiles/RAGE.dir/src/OpenGL/Renderer/Renderer.cpp.o: ../glm/glm.hpp
 CMakeFiles/RAGE.dir/src/OpenGL/Renderer/Renderer.cpp.o: ../glm/gtc/matrix_transform.hpp
@@ -444,6 +478,8 @@ CMakeFiles/RAGE.dir/src/OpenGL/Renderer/Renderer.cpp.o: ../glm/vec2.hpp
 CMakeFiles/RAGE.dir/src/OpenGL/Renderer/Renderer.cpp.o: ../glm/vec3.hpp
 CMakeFiles/RAGE.dir/src/OpenGL/Renderer/Renderer.cpp.o: ../glm/vec4.hpp
 CMakeFiles/RAGE.dir/src/OpenGL/Renderer/Renderer.cpp.o: ../glm/vector_relational.hpp
+CMakeFiles/RAGE.dir/src/OpenGL/Renderer/Renderer.cpp.o: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers/gl3.h
+CMakeFiles/RAGE.dir/src/OpenGL/Renderer/Renderer.cpp.o: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers/gl3ext.h
 CMakeFiles/RAGE.dir/src/OpenGL/Renderer/Renderer.cpp.o: ../src/OpenGL/Renderer/Renderer.cpp
 CMakeFiles/RAGE.dir/src/OpenGL/Renderer/Renderer.cpp.o: ../src/OpenGL/Renderer/Renderer.h
 CMakeFiles/RAGE.dir/src/OpenGL/Renderer/Renderer.cpp.o: ../src/OpenGL/Renderer/scene.h
@@ -795,31 +831,17 @@ CMakeFiles/RAGE.dir/src/OpenGL/ShadersUtils/shadermanager.cpp.o: ../src/OpenGL/S
 CMakeFiles/RAGE.dir/src/OpenGL/ShadersUtils/shadermanager.cpp.o: ../src/OpenGL/ShadersUtils/shadermanager.cpp
 CMakeFiles/RAGE.dir/src/OpenGL/ShadersUtils/shadermanager.cpp.o: ../src/OpenGL/ShadersUtils/shadermanager.h
 
-CMakeFiles/RAGE.dir/src/OpenGL/Textures/Gbuffer.cpp.o: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers/gl3.h
-CMakeFiles/RAGE.dir/src/OpenGL/Textures/Gbuffer.cpp.o: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers/gl3ext.h
-CMakeFiles/RAGE.dir/src/OpenGL/Textures/Gbuffer.cpp.o: ../src/OpenGL/Textures/Gbuffer.cpp
-CMakeFiles/RAGE.dir/src/OpenGL/Textures/Gbuffer.cpp.o: ../src/OpenGL/Textures/Gbuffer.h
-
-CMakeFiles/RAGE.dir/src/OpenGL/Textures/framebuffer.cpp.o: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers/gl3.h
-CMakeFiles/RAGE.dir/src/OpenGL/Textures/framebuffer.cpp.o: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers/gl3ext.h
-CMakeFiles/RAGE.dir/src/OpenGL/Textures/framebuffer.cpp.o: ../src/OpenGL/Textures/framebuffer.cpp
-CMakeFiles/RAGE.dir/src/OpenGL/Textures/framebuffer.cpp.o: ../src/OpenGL/Textures/framebuffer.h
-
-CMakeFiles/RAGE.dir/src/OpenGL/Textures/ssaoframebuffer.cpp.o: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers/gl3.h
-CMakeFiles/RAGE.dir/src/OpenGL/Textures/ssaoframebuffer.cpp.o: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers/gl3ext.h
-CMakeFiles/RAGE.dir/src/OpenGL/Textures/ssaoframebuffer.cpp.o: ../src/OpenGL/Textures/framebuffer.h
-CMakeFiles/RAGE.dir/src/OpenGL/Textures/ssaoframebuffer.cpp.o: ../src/OpenGL/Textures/ssaoframebuffer.cpp
-CMakeFiles/RAGE.dir/src/OpenGL/Textures/ssaoframebuffer.cpp.o: ../src/OpenGL/Textures/ssaoframebuffer.h
-
+CMakeFiles/RAGE.dir/src/Qt/mainwindow.cpp.o: .././src/OpenGL/Buffers/FrameBuffers/FrameBuffer.h
+CMakeFiles/RAGE.dir/src/Qt/mainwindow.cpp.o: .././src/OpenGL/Buffers/FrameBuffers/Renderbuffer.h
 CMakeFiles/RAGE.dir/src/Qt/mainwindow.cpp.o: .././src/OpenGL/Object/mesh.h
 CMakeFiles/RAGE.dir/src/Qt/mainwindow.cpp.o: .././src/OpenGL/Renderer/scene.h
+CMakeFiles/RAGE.dir/src/Qt/mainwindow.cpp.o: .././src/OpenGL/Buffers/FrameBuffers/GBuffer.h
+CMakeFiles/RAGE.dir/src/Qt/mainwindow.cpp.o: .././src/OpenGL/Buffers/FrameBuffers/RGBBuffer.h
+CMakeFiles/RAGE.dir/src/Qt/mainwindow.cpp.o: .././src/OpenGL/Buffers/FrameBuffers/RedBuffer.h
 CMakeFiles/RAGE.dir/src/Qt/mainwindow.cpp.o: .././src/OpenGL/Camera/camera.h
 CMakeFiles/RAGE.dir/src/Qt/mainwindow.cpp.o: .././src/OpenGL/Object/model.h
 CMakeFiles/RAGE.dir/src/Qt/mainwindow.cpp.o: .././src/OpenGL/Renderer/Renderer.h
 CMakeFiles/RAGE.dir/src/Qt/mainwindow.cpp.o: .././src/OpenGL/ShadersUtils/shadermanager.h
-CMakeFiles/RAGE.dir/src/Qt/mainwindow.cpp.o: .././src/OpenGL/Textures/Gbuffer.h
-CMakeFiles/RAGE.dir/src/Qt/mainwindow.cpp.o: .././src/OpenGL/Textures/framebuffer.h
-CMakeFiles/RAGE.dir/src/Qt/mainwindow.cpp.o: .././src/OpenGL/Textures/ssaoframebuffer.h
 CMakeFiles/RAGE.dir/src/Qt/mainwindow.cpp.o: .././src/OpenGL/opengl_stuff.h
 CMakeFiles/RAGE.dir/src/Qt/mainwindow.cpp.o: .././src/Qt/myopenglwidget.h
 CMakeFiles/RAGE.dir/src/Qt/mainwindow.cpp.o: ../glm/glm.hpp
@@ -922,6 +944,8 @@ CMakeFiles/RAGE.dir/src/Qt/mainwindow.cpp.o: ../glm/vec2.hpp
 CMakeFiles/RAGE.dir/src/Qt/mainwindow.cpp.o: ../glm/vec3.hpp
 CMakeFiles/RAGE.dir/src/Qt/mainwindow.cpp.o: ../glm/vec4.hpp
 CMakeFiles/RAGE.dir/src/Qt/mainwindow.cpp.o: ../glm/vector_relational.hpp
+CMakeFiles/RAGE.dir/src/Qt/mainwindow.cpp.o: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers/gl3.h
+CMakeFiles/RAGE.dir/src/Qt/mainwindow.cpp.o: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers/gl3ext.h
 CMakeFiles/RAGE.dir/src/Qt/mainwindow.cpp.o: ../src/Qt/mainwindow.cpp
 CMakeFiles/RAGE.dir/src/Qt/mainwindow.cpp.o: ../src/Qt/mainwindow.h
 CMakeFiles/RAGE.dir/src/Qt/mainwindow.cpp.o: /Users/alban/Qt/5.11.2/clang_64/lib/QtGui.framework/Headers/QKeyEvent
@@ -968,15 +992,17 @@ CMakeFiles/RAGE.dir/src/Qt/mainwindow.cpp.o: /usr/local/include/assimp/vector3.h
 CMakeFiles/RAGE.dir/src/Qt/mainwindow.cpp.o: /usr/local/include/assimp/vector3.inl
 CMakeFiles/RAGE.dir/src/Qt/mainwindow.cpp.o: ui_mainwindow.h
 
+CMakeFiles/RAGE.dir/src/Qt/myopenglwidget.cpp.o: .././src/OpenGL/Buffers/FrameBuffers/FrameBuffer.h
+CMakeFiles/RAGE.dir/src/Qt/myopenglwidget.cpp.o: .././src/OpenGL/Buffers/FrameBuffers/Renderbuffer.h
 CMakeFiles/RAGE.dir/src/Qt/myopenglwidget.cpp.o: .././src/OpenGL/Object/mesh.h
 CMakeFiles/RAGE.dir/src/Qt/myopenglwidget.cpp.o: .././src/OpenGL/Renderer/scene.h
+CMakeFiles/RAGE.dir/src/Qt/myopenglwidget.cpp.o: .././src/OpenGL/Buffers/FrameBuffers/GBuffer.h
+CMakeFiles/RAGE.dir/src/Qt/myopenglwidget.cpp.o: .././src/OpenGL/Buffers/FrameBuffers/RGBBuffer.h
+CMakeFiles/RAGE.dir/src/Qt/myopenglwidget.cpp.o: .././src/OpenGL/Buffers/FrameBuffers/RedBuffer.h
 CMakeFiles/RAGE.dir/src/Qt/myopenglwidget.cpp.o: .././src/OpenGL/Camera/camera.h
 CMakeFiles/RAGE.dir/src/Qt/myopenglwidget.cpp.o: .././src/OpenGL/Object/model.h
 CMakeFiles/RAGE.dir/src/Qt/myopenglwidget.cpp.o: .././src/OpenGL/Renderer/Renderer.h
 CMakeFiles/RAGE.dir/src/Qt/myopenglwidget.cpp.o: .././src/OpenGL/ShadersUtils/shadermanager.h
-CMakeFiles/RAGE.dir/src/Qt/myopenglwidget.cpp.o: .././src/OpenGL/Textures/Gbuffer.h
-CMakeFiles/RAGE.dir/src/Qt/myopenglwidget.cpp.o: .././src/OpenGL/Textures/framebuffer.h
-CMakeFiles/RAGE.dir/src/Qt/myopenglwidget.cpp.o: .././src/OpenGL/Textures/ssaoframebuffer.h
 CMakeFiles/RAGE.dir/src/Qt/myopenglwidget.cpp.o: .././src/OpenGL/opengl_stuff.h
 CMakeFiles/RAGE.dir/src/Qt/myopenglwidget.cpp.o: ../glm/glm.hpp
 CMakeFiles/RAGE.dir/src/Qt/myopenglwidget.cpp.o: ../glm/gtc/matrix_transform.hpp
@@ -1080,6 +1106,8 @@ CMakeFiles/RAGE.dir/src/Qt/myopenglwidget.cpp.o: ../glm/vec2.hpp
 CMakeFiles/RAGE.dir/src/Qt/myopenglwidget.cpp.o: ../glm/vec3.hpp
 CMakeFiles/RAGE.dir/src/Qt/myopenglwidget.cpp.o: ../glm/vec4.hpp
 CMakeFiles/RAGE.dir/src/Qt/myopenglwidget.cpp.o: ../glm/vector_relational.hpp
+CMakeFiles/RAGE.dir/src/Qt/myopenglwidget.cpp.o: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers/gl3.h
+CMakeFiles/RAGE.dir/src/Qt/myopenglwidget.cpp.o: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers/gl3ext.h
 CMakeFiles/RAGE.dir/src/Qt/myopenglwidget.cpp.o: ../src/Qt/myopenglwidget.cpp
 CMakeFiles/RAGE.dir/src/Qt/myopenglwidget.cpp.o: ../src/Qt/myopenglwidget.h
 CMakeFiles/RAGE.dir/src/Qt/myopenglwidget.cpp.o: /Users/alban/Qt/5.11.2/clang_64/lib/QtCore.framework/Headers/QDateTime

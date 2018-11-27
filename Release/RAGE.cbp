@@ -136,16 +136,46 @@
 		<Unit filename="/Users/alban/Cours/Rage/src/Main/main.cpp">
 			<Option target="RAGE"/>
 		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Buffers/DataBuffers/Float3BufferObject.cpp">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Buffers/DataBuffers/Float3BufferObject.h">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Buffers/FrameBuffers/FrameBuffer.cpp">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Buffers/FrameBuffers/FrameBuffer.h">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Buffers/FrameBuffers/GBuffer.cpp">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Buffers/FrameBuffers/GBuffer.h">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Buffers/FrameBuffers/RGBbuffer.cpp">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Buffers/FrameBuffers/RGBbuffer.h">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Buffers/FrameBuffers/RedBuffer.cpp">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Buffers/FrameBuffers/RedBuffer.h">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Buffers/FrameBuffers/Renderbuffer.cpp">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Buffers/FrameBuffers/Renderbuffer.h">
+			<Option target="RAGE"/>
+		</Unit>
 		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Camera/camera.cpp">
 			<Option target="RAGE"/>
 		</Unit>
 		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Camera/camera.h">
-			<Option target="RAGE"/>
-		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/MyObject.cpp">
-			<Option target="RAGE"/>
-		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/MyObject.h">
 			<Option target="RAGE"/>
 		</Unit>
 		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/mesh.cpp">
@@ -221,24 +251,6 @@
 			<Option target="RAGE"/>
 		</Unit>
 		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/ShadersUtils/shadermanager.h">
-			<Option target="RAGE"/>
-		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Textures/Gbuffer.cpp">
-			<Option target="RAGE"/>
-		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Textures/Gbuffer.h">
-			<Option target="RAGE"/>
-		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Textures/framebuffer.cpp">
-			<Option target="RAGE"/>
-		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Textures/framebuffer.h">
-			<Option target="RAGE"/>
-		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Textures/ssaoframebuffer.cpp">
-			<Option target="RAGE"/>
-		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Textures/ssaoframebuffer.h">
 			<Option target="RAGE"/>
 		</Unit>
 		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/opengl_stuff.h">

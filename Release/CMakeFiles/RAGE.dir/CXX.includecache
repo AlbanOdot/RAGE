@@ -6,9 +6,33 @@
 
 #IncludeRegexTransform: 
 
+.././src/OpenGL/Buffers/FrameBuffers/FrameBuffer.h
+gl3.h
+-
+gl3ext.h
+-
+iostream
+-
+
+.././src/OpenGL/Buffers/FrameBuffers/Renderbuffer.h
+FrameBuffer.h
+.././src/OpenGL/Buffers/FrameBuffers/FrameBuffer.h
+
 .././src/OpenGL/Object/mesh.h
 vector
 -
+
+..//./src/OpenGL/Buffers/FrameBuffers/GBuffer.h
+Renderbuffer.h
+.././src/OpenGL/Buffers/FrameBuffers/Renderbuffer.h
+
+..//./src/OpenGL/Buffers/FrameBuffers/RGBBuffer.h
+Renderbuffer.h
+.././src/OpenGL/Buffers/FrameBuffers/Renderbuffer.h
+
+..//./src/OpenGL/Buffers/FrameBuffers/RedBuffer.h
+Renderbuffer.h
+.././src/OpenGL/Buffers/FrameBuffers/Renderbuffer.h
 
 ..//./src/OpenGL/Camera/camera.h
 ./src/OpenGL/opengl_stuff.h
@@ -35,12 +59,6 @@ vector
 -
 string
 -
-
-..//./src/OpenGL/Textures/Gbuffer.h
-
-..//./src/OpenGL/Textures/framebuffer.h
-
-..//./src/OpenGL/Textures/ssaoframebuffer.h
 
 ..//./src/OpenGL/opengl_stuff.h
 OpenGL/gl3.h
@@ -852,6 +870,20 @@ detail/type_vec4.hpp
 detail/func_vector_relational.hpp
 ../glm/detail/func_vector_relational.hpp
 
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers/gl3.h
+windows.h
+-
+OpenGL/gltypes.h
+-
+OpenGL/OpenGLAvailability.h
+-
+
+/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers/gl3ext.h
+OpenGL/gltypes.h
+-
+windows.h
+-
+
 /Users/alban/Cours/Rage/src/OpenGL/Renderer/Renderer.cpp
 unistd.h
 -
@@ -867,12 +899,12 @@ scene.h
 /Users/alban/Cours/Rage/src/OpenGL/Renderer/scene.h
 ./src/OpenGL/Camera/camera.h
 /Users/alban/Cours/Rage/src/OpenGL/Renderer/./src/OpenGL/Camera/camera.h
-./src/OpenGL/Textures/framebuffer.h
-/Users/alban/Cours/Rage/src/OpenGL/Renderer/./src/OpenGL/Textures/framebuffer.h
-./src/OpenGL/Textures/Gbuffer.h
-/Users/alban/Cours/Rage/src/OpenGL/Renderer/./src/OpenGL/Textures/Gbuffer.h
-./src/OpenGL/Textures/ssaoframebuffer.h
-/Users/alban/Cours/Rage/src/OpenGL/Renderer/./src/OpenGL/Textures/ssaoframebuffer.h
+./src/OpenGL/Buffers/FrameBuffers/RGBBuffer.h
+/Users/alban/Cours/Rage/src/OpenGL/Renderer/./src/OpenGL/Buffers/FrameBuffers/RGBBuffer.h
+./src/OpenGL/Buffers/FrameBuffers/GBuffer.h
+/Users/alban/Cours/Rage/src/OpenGL/Renderer/./src/OpenGL/Buffers/FrameBuffers/GBuffer.h
+./src/OpenGL/Buffers/FrameBuffers/RedBuffer.h
+/Users/alban/Cours/Rage/src/OpenGL/Renderer/./src/OpenGL/Buffers/FrameBuffers/RedBuffer.h
 ./src/OpenGL/Object/model.h
 /Users/alban/Cours/Rage/src/OpenGL/Renderer/./src/OpenGL/Object/model.h
 ./src/OpenGL/ShadersUtils/shadermanager.h

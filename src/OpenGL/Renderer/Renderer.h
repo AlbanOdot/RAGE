@@ -4,14 +4,15 @@
 #include "scene.h"
 
 #include "./src/OpenGL/Camera/camera.h"
-#include "./src/OpenGL/Textures/framebuffer.h"
-#include "./src/OpenGL/Textures/Gbuffer.h"
-#include "./src/OpenGL/Textures/ssaoframebuffer.h"
+#include "./src/OpenGL/Buffers/FrameBuffers/RGBBuffer.h"
+#include "./src/OpenGL/Buffers/FrameBuffers/GBuffer.h"
+#include "./src/OpenGL/Buffers/FrameBuffers/RedBuffer.h"
 #include "./src/OpenGL/Object/model.h"
 #include "./src/OpenGL/ShadersUtils/shadermanager.h"
 
 #include <memory>
 #include <functional>
+
 typedef struct _quad{
     std::vector<GLfloat> vertices = {-1.0,-1.0,
                                      1.f,-1.0,
@@ -106,7 +107,7 @@ private:
     GLuint GBUFFERRENDER;
     Quad m_postProcessScreen;
     GBuffer m_GBuffer;
-    FrameBuffer renderBuffer;
+    RGBBuffer renderBuffer;
     float LiPosition[9*3];
     int nbLights;
     float invSS[2] = {static_cast<float>(1.0/ (2*_width)), static_cast<float>(1.0/(2*_height))};
@@ -114,8 +115,8 @@ private:
     //SSAO
     GLuint SSAO;
     GLuint SSAOBLUR;
-    SSAOFrameBuffer ssaoBuffer;
-    SSAOFrameBuffer ssaoBufferBlur;
+    RedBuffer ssaoBuffer;
+    RedBuffer ssaoBufferBlur;
     float ssaoKernel[64*3];
     float ssaoNoise[16*3];
     GLuint noiseTexture;
@@ -126,7 +127,7 @@ private:
 
     // FXAA
     GLuint FXAAPROG;
-    FrameBuffer fxaaBuffer;
+    RGBBuffer fxaaBuffer;
     float maxThresholdFXAA;
     float minThresholdFXAA;
     bool showContourFXAA;
@@ -134,7 +135,7 @@ private:
 
     // HDR
     GLuint HDRPROG;
-    FrameBuffer hdrBuffer;
+    RGBBuffer hdrBuffer;
     float gammaHDR;
     float exposureHDR;
     bool computeHDR;
@@ -142,9 +143,9 @@ private:
     // BLOOM
     GLuint BLOOMPROG;
     GLuint BLURPROG;
-    FrameBuffer bloomBuffer;
-    FrameBuffer blurBufferVert;
-    FrameBuffer blurBufferHori;
+    RGBBuffer bloomBuffer;
+    RGBBuffer blurBufferVert;
+    RGBBuffer blurBufferHori;
     unsigned int nbKernelBloom;
     bool computeBLOOM;
 
