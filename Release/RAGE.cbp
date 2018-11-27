@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="RAGE"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="clang"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\Qt\;CMake Files\..\..\Qt\5.11.2\;CMake Files\..\..\Qt\5.11.2\clang_64\;CMake Files\..\..\Qt\5.11.2\clang_64\lib\;CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\;CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Widgets\;CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\;CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Core\;CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5OpenGL\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/alban/Cours/Rage/Release"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/alban/Cours/Rage/Release"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/alban/Cours/Rage/Release"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="RAGE">
+				<Option output="/Users/alban/Cours/Rage/bin/RAGE" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/alban/Cours/Rage/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DQT_WIDGETS_LIB"/>
+					<Add option="-DQT_GUI_LIB"/>
+					<Add option="-DQT_CORE_LIB"/>
+					<Add option="-DQT_OPENGL_LIB"/>
+					<Add option="-DQT_NO_DEBUG"/>
+					<Add directory="/Users/alban/Cours/Rage/Release"/>
+					<Add directory="/Users/alban/Cours/Rage"/>
+					<Add directory="/Users/alban/Cours/Rage/Release/RAGE_autogen/include"/>
+					<Add directory="/Users/alban/Cours/Rage/src"/>
+					<Add directory="/Users/alban/Cours/Rage/glm"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Users/alban/Qt/5.11.2/clang_64/lib/QtWidgets.framework"/>
+					<Add directory="/Users/alban/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers"/>
+					<Add directory="/Users/alban/Qt/5.11.2/clang_64/lib/QtGui.framework"/>
+					<Add directory="/Users/alban/Qt/5.11.2/clang_64/lib/QtGui.framework/Headers"/>
+					<Add directory="/Users/alban/Qt/5.11.2/clang_64/lib/QtCore.framework"/>
+					<Add directory="/Users/alban/Qt/5.11.2/clang_64/lib/QtCore.framework/Headers"/>
+					<Add directory="/Users/alban/Qt/5.11.2/clang_64/./mkspecs/macx-clang"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers"/>
+					<Add directory="/Users/alban/Qt/5.11.2/clang_64/lib/QtOpenGL.framework"/>
+					<Add directory="/Users/alban/Qt/5.11.2/clang_64/lib/QtOpenGL.framework/Headers"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 RAGE"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="RAGE/fast">
+				<Option output="/Users/alban/Cours/Rage/bin/RAGE" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/alban/Cours/Rage/bin"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="clang"/>
+				<Compiler>
+					<Add option="-DQT_WIDGETS_LIB"/>
+					<Add option="-DQT_GUI_LIB"/>
+					<Add option="-DQT_CORE_LIB"/>
+					<Add option="-DQT_OPENGL_LIB"/>
+					<Add option="-DQT_NO_DEBUG"/>
+					<Add directory="/Users/alban/Cours/Rage/Release"/>
+					<Add directory="/Users/alban/Cours/Rage"/>
+					<Add directory="/Users/alban/Cours/Rage/Release/RAGE_autogen/include"/>
+					<Add directory="/Users/alban/Cours/Rage/src"/>
+					<Add directory="/Users/alban/Cours/Rage/glm"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Users/alban/Qt/5.11.2/clang_64/lib/QtWidgets.framework"/>
+					<Add directory="/Users/alban/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers"/>
+					<Add directory="/Users/alban/Qt/5.11.2/clang_64/lib/QtGui.framework"/>
+					<Add directory="/Users/alban/Qt/5.11.2/clang_64/lib/QtGui.framework/Headers"/>
+					<Add directory="/Users/alban/Qt/5.11.2/clang_64/lib/QtCore.framework"/>
+					<Add directory="/Users/alban/Qt/5.11.2/clang_64/lib/QtCore.framework/Headers"/>
+					<Add directory="/Users/alban/Qt/5.11.2/clang_64/./mkspecs/macx-clang"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers"/>
+					<Add directory="/Users/alban/Qt/5.11.2/clang_64/lib/QtOpenGL.framework"/>
+					<Add directory="/Users/alban/Qt/5.11.2/clang_64/lib/QtOpenGL.framework/Headers"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include"/>
+					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 RAGE/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="RAGE_autogen">
+				<Option working_dir="/Users/alban/Cours/Rage/Release"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 RAGE_autogen"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/alban/Cours/Rage/Release/RAGE_autogen/mocs_compilation.cpp">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/Main/main.cpp">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Camera/camera.cpp">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Camera/camera.h">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/MyObject.cpp">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/MyObject.h">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/mesh.cpp">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/mesh.h">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/model.cpp">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/model.h">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Renderer/Renderer.cpp">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Renderer/Renderer.h">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Renderer/scene.cpp">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Renderer/scene.h">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Shader/PostProcess/BLOOM.frag.glsl">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Shader/PostProcess/BLOOMBLUR.frag.glsl">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Shader/PostProcess/FXAA.frag.glsl">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Shader/PostProcess/SSAO.frag.glsl">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Shader/PostProcess/SSAOBLUR.frag.glsl">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Shader/PostProcess/hdr.frag.glsl">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Shader/PostProcess/pass.vert.glsl">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Shader/PostProcess/render.frag.glsl">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Shader/Process/GBuffer.frag.glsl">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Shader/Process/basic.frag.glsl">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Shader/Process/basic.vert.glsl">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/ShadersUtils/ShaderLoader.cpp">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/ShadersUtils/ShaderLoader.h">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/ShadersUtils/postprocess.cpp">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/ShadersUtils/postprocess.h">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/ShadersUtils/shadermanager.cpp">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/ShadersUtils/shadermanager.h">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Textures/Gbuffer.cpp">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Textures/Gbuffer.h">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Textures/framebuffer.cpp">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Textures/framebuffer.h">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Textures/ssaoframebuffer.cpp">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Textures/ssaoframebuffer.h">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/opengl_stuff.h">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/Qt/mainwindow.cpp">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/Qt/mainwindow.h">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/Qt/mainwindow.ui">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/Qt/myopenglwidget.cpp">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/Qt/myopenglwidget.h">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Widgets/Qt5WidgetsConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Widgets\"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Widgets/Qt5WidgetsConfigExtras.cmake">
+			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Widgets\"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Widgets/Qt5WidgetsConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Widgets\"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Widgets/Qt5WidgetsMacros.cmake">
+			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Widgets\"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Widgets/Qt5Widgets_QMacStylePlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Widgets\"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5GuiConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5GuiConfigExtras.cmake">
+			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5GuiConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QCocoaIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QFlatpakThemePlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QGifPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QICNSPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QICOPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QJpegPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QMacHeifPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QMacJp2Plugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QMinimalIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QOffscreenIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QTgaPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QTiffPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QTuioTouchPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QWbmpPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QWebpPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Core/Qt5CoreConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Core\"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Core/Qt5CoreConfigExtras.cmake">
+			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Core\"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Core/Qt5CoreConfigExtrasMkspecDir.cmake">
+			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Core\"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Core/Qt5CoreConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Core\"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Core/Qt5CoreMacros.cmake">
+			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Core\"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5OpenGL/Qt5OpenGLConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5OpenGL\"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5OpenGL/Qt5OpenGLConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5OpenGL\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
