@@ -39,5 +39,5 @@ void main()
         finalcol += lighting + diffuse + specular;
     }
 
-    color = vec4(vec3(0.30), 1.0);
+    color = vec4(finalcol, 1.0);
 }

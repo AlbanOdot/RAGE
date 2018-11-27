@@ -96,7 +96,7 @@ void Renderer::draw(){
     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
   /* GBUFFER FILLING */
-  //m_GBuffer.bind();
+  m_GBuffer.bind();
   glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   glEnable(GL_DEPTH_TEST);
@@ -256,8 +256,8 @@ void Renderer::initPreprocess(){
   std::string wd(buff);
   //PROCESS SHADERS
   std::string vshPath = wd +  std::string("/../src/OpenGL/Shader/Process/basic.vert.glsl");
-  //std::string GPath = wd +      std::string("/../src/OpenGL/Shader/Process/GBuffer.frag.glsl");
-  std::string GPath = wd +      std::string("/../src/OpenGL/Shader/Process/basic.frag.glsl");
+  std::string GPath = wd +      std::string("/../src/OpenGL/Shader/Process/GBuffer.frag.glsl");
+  //std::string GPath = wd +      std::string("/../src/OpenGL/Shader/Process/basic.frag.glsl");
   GBUFFERRENDER = programs.computeAddProgramm(vshPath,GPath);
 
 }
@@ -503,6 +503,7 @@ bool Renderer::keyboard(unsigned char k) {
     }
 
 }
+
 void Renderer::resizeBuffers(int w, int h){
   m_GBuffer.resize(w,h);
   ssaoBuffer.resize(w,h);

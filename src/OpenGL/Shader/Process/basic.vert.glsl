@@ -22,5 +22,5 @@ void main()
     //Passthrough
     vnormal = inormal;
     vcolor = icolor;
-    //vtexCoord = itexCoord;
+    vtexCoord = itexCoord;
 }
