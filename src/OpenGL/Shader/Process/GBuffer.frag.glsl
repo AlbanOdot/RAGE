@@ -12,5 +12,5 @@ void main()
 {
     position = vposition;
     normal = vnormal;
-    albedo = vec4(vec3(0.43),1.0);
+    albedo = vec4(vnormal*0.5 +0.5,1.0);
 }

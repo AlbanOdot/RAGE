@@ -47,8 +47,10 @@ Renderer::Renderer(const int width, const int height, bool animation) : Scene(wi
   initLighting();
   initSSAO();
   //MESH LOADING AND STORAGE
-  m_objects.push_back(Model("../DataFiles/CylinderAnim.obj"));
+  //m_objects.push_back(Model("../DataFiles/CylinderAnim.obj"));
   m_objects.push_back(Model(Shape::TETRAHEDRON));
+  m_objects.push_back(Model(0.1,glm::vec3(-1.1,0.0,0.0)));
+  m_objects.push_back(Model(0.1,glm::vec3(1.1,0.0,0.0)));
 
   m_animation = true;
   //POSTPROCESS QUAD INIT

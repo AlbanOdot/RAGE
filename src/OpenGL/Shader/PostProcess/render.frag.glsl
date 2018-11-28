@@ -20,7 +20,7 @@ void main()
     vec3 Diffuse = texture(albedo, vtexCoord).rgb;
     float AmbientOcclusion = texture(ssao, vtexCoord).r;
     vec3 finalcol = vec3(0.0,0.0,0.0);
-    for(int i = 0; i < 3; ++i){
+    for(int i = 0; i < 2; ++i){
         // blinn-phong (in view-space)
         vec3 lighting  = Diffuse * AmbientOcclusion;
         vec3 viewDir  = normalize(-FragPos); // viewpos is (0.0.0) in view-space
