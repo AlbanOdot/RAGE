@@ -59,3 +59,12 @@ void Mesh::setupMesh(){
 
     glBindVertexArray(0);
 }
+
+Mesh::Mesh(){
+  glGenVertexArrays(1, &m_VAO);
+  glGenBuffers(1, &m_VBO);
+  glGenBuffers(1, &m_NBO);
+  glGenBuffers(1, &m_CRBO);
+  glGenBuffers(1, &m_UVBO);
+  glGenBuffers(1, &m_EBO);
+}

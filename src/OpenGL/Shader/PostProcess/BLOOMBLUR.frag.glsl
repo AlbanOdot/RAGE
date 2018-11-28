@@ -58,5 +58,5 @@ void main()
     finalCol += col;
 
     finalCol /= 4;
-    color = vec4(col, 1.0);
+    color = vec4(finalCol, 1.0);
 }

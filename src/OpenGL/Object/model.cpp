@@ -92,3 +92,20 @@ Mesh Model::processMesh(aiMesh *mesh){
     }
   return Mesh(vertices,normals,uv,colors,indices);
 }
+
+//Generate a sphere
+Model::Model(float radius,glm::vec3 center){
+  m_meshes.push_back(Sphere(center, radius));
+}
+//Generate generic shape
+Model::Model(Shape::SHAPE s,glm::vec3 origin , glm::vec3 direction, float length, float radius){
+  //TODO IMPLEMENTER CA
+  switch(s){
+    case Shape::SHAPE::TETRAHEDRON:
+      m_meshes.push_back(Tetrahedron(origin,direction,length,radius));
+    break;
+    default:
+      loadModel("../DataFiles/CylinderAnim.obj");
+      break;
+    }
+}

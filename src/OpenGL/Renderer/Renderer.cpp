@@ -1,5 +1,6 @@
 #include <unistd.h>
 #include "Renderer.h"
+#include "src/OpenGL/Object/Shapes/Sphere.h"
 #include <random>
 #include <iostream>
 #define GL_SILENCE_DEPRECATION 1
@@ -47,6 +48,8 @@ Renderer::Renderer(const int width, const int height, bool animation) : Scene(wi
   initSSAO();
   //MESH LOADING AND STORAGE
   m_objects.push_back(Model("../DataFiles/CylinderAnim.obj"));
+  m_objects.push_back(Model(1.0));
+
   m_animation = true;
   //POSTPROCESS QUAD INIT
   m_postProcessScreen.quadLoad();
@@ -159,7 +162,6 @@ void Renderer::draw(){
 
   //2eme passe de rendu on combine G_BUFFER et ssaoBlur
   renderBuffer.bind();
-  //glBindFramebuffer(GL_FRAMEBUFFER, 1);
   glClear(GL_COLOR_BUFFER_BIT);
   glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -181,8 +183,8 @@ void Renderer::draw(){
   m_postProcessScreen.quadDraw();
 
   //FXAA
-  fxaaBuffer.bind();
-  //glBindFramebuffer(GL_FRAMEBUFFER, 1);
+  //fxaaBuffer.bind();
+  glBindFramebuffer(GL_FRAMEBUFFER, 1);
   glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
   glDisable(GL_DEPTH_TEST);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -196,6 +198,7 @@ void Renderer::draw(){
   glUniform1i(glGetUniformLocation(FXAAPROG, "computeFXAA"),computeFXAA);
   m_postProcessScreen.quadDraw();
 
+/*  //TODO A corriger
   //BLOOM
   bloomBuffer.bind();
   glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
@@ -218,7 +221,8 @@ void Renderer::draw(){
   glUniform1f(glGetUniformLocation(BLURPROG, "horizontal"),0.);
   m_postProcessScreen.quadDraw();
   //HORIZONTAL PASS
-  blurBufferHori.bind();
+  //blurBufferHori.bind();
+  glBindFramebuffer(GL_FRAMEBUFFER, 1);
   glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
   glDisable(GL_DEPTH_TEST);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -246,6 +250,8 @@ void Renderer::draw(){
   glUniform1f(glGetUniformLocation(HDRPROG, "BLOOM"),computeBLOOM ? 1.0 : 0.0);
   glUniform1i(glGetUniformLocation(HDRPROG,"computeHDR"),computeHDR);
   m_postProcessScreen.quadDraw();
+  */
+
 
 }
 

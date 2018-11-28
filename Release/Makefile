@@ -379,6 +379,87 @@ src/OpenGL/Camera/camera.cpp.s:
 	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Camera/camera.cpp.s
 .PHONY : src/OpenGL/Camera/camera.cpp.s
 
+src/OpenGL/Object/Animation/Bone.o: src/OpenGL/Object/Animation/Bone.cpp.o
+
+.PHONY : src/OpenGL/Object/Animation/Bone.o
+
+# target to build an object file
+src/OpenGL/Object/Animation/Bone.cpp.o:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Animation/Bone.cpp.o
+.PHONY : src/OpenGL/Object/Animation/Bone.cpp.o
+
+src/OpenGL/Object/Animation/Bone.i: src/OpenGL/Object/Animation/Bone.cpp.i
+
+.PHONY : src/OpenGL/Object/Animation/Bone.i
+
+# target to preprocess a source file
+src/OpenGL/Object/Animation/Bone.cpp.i:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Animation/Bone.cpp.i
+.PHONY : src/OpenGL/Object/Animation/Bone.cpp.i
+
+src/OpenGL/Object/Animation/Bone.s: src/OpenGL/Object/Animation/Bone.cpp.s
+
+.PHONY : src/OpenGL/Object/Animation/Bone.s
+
+# target to generate assembly for a file
+src/OpenGL/Object/Animation/Bone.cpp.s:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Animation/Bone.cpp.s
+.PHONY : src/OpenGL/Object/Animation/Bone.cpp.s
+
+src/OpenGL/Object/Shapes/Sphere.o: src/OpenGL/Object/Shapes/Sphere.cpp.o
+
+.PHONY : src/OpenGL/Object/Shapes/Sphere.o
+
+# target to build an object file
+src/OpenGL/Object/Shapes/Sphere.cpp.o:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Sphere.cpp.o
+.PHONY : src/OpenGL/Object/Shapes/Sphere.cpp.o
+
+src/OpenGL/Object/Shapes/Sphere.i: src/OpenGL/Object/Shapes/Sphere.cpp.i
+
+.PHONY : src/OpenGL/Object/Shapes/Sphere.i
+
+# target to preprocess a source file
+src/OpenGL/Object/Shapes/Sphere.cpp.i:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Sphere.cpp.i
+.PHONY : src/OpenGL/Object/Shapes/Sphere.cpp.i
+
+src/OpenGL/Object/Shapes/Sphere.s: src/OpenGL/Object/Shapes/Sphere.cpp.s
+
+.PHONY : src/OpenGL/Object/Shapes/Sphere.s
+
+# target to generate assembly for a file
+src/OpenGL/Object/Shapes/Sphere.cpp.s:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Sphere.cpp.s
+.PHONY : src/OpenGL/Object/Shapes/Sphere.cpp.s
+
+src/OpenGL/Object/Shapes/Tetrahedron.o: src/OpenGL/Object/Shapes/Tetrahedron.cpp.o
+
+.PHONY : src/OpenGL/Object/Shapes/Tetrahedron.o
+
+# target to build an object file
+src/OpenGL/Object/Shapes/Tetrahedron.cpp.o:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Tetrahedron.cpp.o
+.PHONY : src/OpenGL/Object/Shapes/Tetrahedron.cpp.o
+
+src/OpenGL/Object/Shapes/Tetrahedron.i: src/OpenGL/Object/Shapes/Tetrahedron.cpp.i
+
+.PHONY : src/OpenGL/Object/Shapes/Tetrahedron.i
+
+# target to preprocess a source file
+src/OpenGL/Object/Shapes/Tetrahedron.cpp.i:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Tetrahedron.cpp.i
+.PHONY : src/OpenGL/Object/Shapes/Tetrahedron.cpp.i
+
+src/OpenGL/Object/Shapes/Tetrahedron.s: src/OpenGL/Object/Shapes/Tetrahedron.cpp.s
+
+.PHONY : src/OpenGL/Object/Shapes/Tetrahedron.s
+
+# target to generate assembly for a file
+src/OpenGL/Object/Shapes/Tetrahedron.cpp.s:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Tetrahedron.cpp.s
+.PHONY : src/OpenGL/Object/Shapes/Tetrahedron.cpp.s
+
 src/OpenGL/Object/mesh.o: src/OpenGL/Object/mesh.cpp.o
 
 .PHONY : src/OpenGL/Object/mesh.o
@@ -659,6 +740,15 @@ help:
 	@echo "... src/OpenGL/Camera/camera.o"
 	@echo "... src/OpenGL/Camera/camera.i"
 	@echo "... src/OpenGL/Camera/camera.s"
+	@echo "... src/OpenGL/Object/Animation/Bone.o"
+	@echo "... src/OpenGL/Object/Animation/Bone.i"
+	@echo "... src/OpenGL/Object/Animation/Bone.s"
+	@echo "... src/OpenGL/Object/Shapes/Sphere.o"
+	@echo "... src/OpenGL/Object/Shapes/Sphere.i"
+	@echo "... src/OpenGL/Object/Shapes/Sphere.s"
+	@echo "... src/OpenGL/Object/Shapes/Tetrahedron.o"
+	@echo "... src/OpenGL/Object/Shapes/Tetrahedron.i"
+	@echo "... src/OpenGL/Object/Shapes/Tetrahedron.s"
 	@echo "... src/OpenGL/Object/mesh.o"
 	@echo "... src/OpenGL/Object/mesh.i"
 	@echo "... src/OpenGL/Object/mesh.s"

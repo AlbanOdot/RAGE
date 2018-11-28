@@ -158,6 +158,201 @@ CMakeFiles/RAGE.dir/src/OpenGL/Camera/camera.cpp.o
  ../glm/vector_relational.hpp
  /Users/alban/Cours/Rage/src/OpenGL/Camera/camera.cpp
  /Users/alban/Cours/Rage/src/OpenGL/Camera/camera.h
+CMakeFiles/RAGE.dir/src/OpenGL/Object/Animation/Bone.cpp.o
+ /Users/alban/Cours/Rage/src/OpenGL/Object/Animation/Bone.cpp
+ /Users/alban/Cours/Rage/src/OpenGL/Object/Animation/Bone.h
+CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Sphere.cpp.o
+ ..//glm/glm.hpp
+ ../glm/common.hpp
+ ../glm/detail/_fixes.hpp
+ ../glm/detail/_swizzle.hpp
+ ../glm/detail/_swizzle_func.hpp
+ ../glm/detail/_vectorize.hpp
+ ../glm/detail/func_common.hpp
+ ../glm/detail/func_common.inl
+ ../glm/detail/func_common_simd.inl
+ ../glm/detail/func_exponential.hpp
+ ../glm/detail/func_exponential.inl
+ ../glm/detail/func_exponential_simd.inl
+ ../glm/detail/func_geometric.hpp
+ ../glm/detail/func_geometric.inl
+ ../glm/detail/func_geometric_simd.inl
+ ../glm/detail/func_integer.hpp
+ ../glm/detail/func_integer.inl
+ ../glm/detail/func_integer_simd.inl
+ ../glm/detail/func_matrix.hpp
+ ../glm/detail/func_matrix.inl
+ ../glm/detail/func_matrix_simd.inl
+ ../glm/detail/func_packing.hpp
+ ../glm/detail/func_packing.inl
+ ../glm/detail/func_packing_simd.inl
+ ../glm/detail/func_trigonometric.hpp
+ ../glm/detail/func_trigonometric.inl
+ ../glm/detail/func_trigonometric_simd.inl
+ ../glm/detail/func_vector_relational.hpp
+ ../glm/detail/func_vector_relational.inl
+ ../glm/detail/func_vector_relational_simd.inl
+ ../glm/detail/precision.hpp
+ ../glm/detail/setup.hpp
+ ../glm/detail/type_float.hpp
+ ../glm/detail/type_half.hpp
+ ../glm/detail/type_half.inl
+ ../glm/detail/type_int.hpp
+ ../glm/detail/type_mat.hpp
+ ../glm/detail/type_mat2x2.hpp
+ ../glm/detail/type_mat2x2.inl
+ ../glm/detail/type_mat2x3.hpp
+ ../glm/detail/type_mat2x3.inl
+ ../glm/detail/type_mat2x4.hpp
+ ../glm/detail/type_mat2x4.inl
+ ../glm/detail/type_mat3x2.hpp
+ ../glm/detail/type_mat3x2.inl
+ ../glm/detail/type_mat3x3.hpp
+ ../glm/detail/type_mat3x3.inl
+ ../glm/detail/type_mat3x4.hpp
+ ../glm/detail/type_mat3x4.inl
+ ../glm/detail/type_mat4x2.hpp
+ ../glm/detail/type_mat4x2.inl
+ ../glm/detail/type_mat4x3.hpp
+ ../glm/detail/type_mat4x3.inl
+ ../glm/detail/type_mat4x4.hpp
+ ../glm/detail/type_mat4x4.inl
+ ../glm/detail/type_mat4x4_simd.inl
+ ../glm/detail/type_vec.hpp
+ ../glm/detail/type_vec1.hpp
+ ../glm/detail/type_vec1.inl
+ ../glm/detail/type_vec2.hpp
+ ../glm/detail/type_vec2.inl
+ ../glm/detail/type_vec3.hpp
+ ../glm/detail/type_vec3.inl
+ ../glm/detail/type_vec4.hpp
+ ../glm/detail/type_vec4.inl
+ ../glm/detail/type_vec4_simd.inl
+ ../glm/exponential.hpp
+ ../glm/fwd.hpp
+ ../glm/geometric.hpp
+ ../glm/integer.hpp
+ ../glm/mat2x2.hpp
+ ../glm/mat2x3.hpp
+ ../glm/mat2x4.hpp
+ ../glm/mat3x2.hpp
+ ../glm/mat3x3.hpp
+ ../glm/mat3x4.hpp
+ ../glm/mat4x2.hpp
+ ../glm/mat4x3.hpp
+ ../glm/mat4x4.hpp
+ ../glm/matrix.hpp
+ ../glm/packing.hpp
+ ../glm/simd/common.h
+ ../glm/simd/exponential.h
+ ../glm/simd/geometric.h
+ ../glm/simd/integer.h
+ ../glm/simd/matrix.h
+ ../glm/simd/platform.h
+ ../glm/trigonometric.hpp
+ ../glm/vec2.hpp
+ ../glm/vec3.hpp
+ ../glm/vec4.hpp
+ ../glm/vector_relational.hpp
+ /Users/alban/Cours/Rage/src/OpenGL/Object/Shapes/./Shape.h
+ /Users/alban/Cours/Rage/src/OpenGL/Object/Shapes/Sphere.cpp
+ /Users/alban/Cours/Rage/src/OpenGL/Object/Shapes/Sphere.h
+CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Tetrahedron.cpp.o
+ ..//glm/glm.hpp
+ ../glm/common.hpp
+ ../glm/detail/_fixes.hpp
+ ../glm/detail/_swizzle.hpp
+ ../glm/detail/_swizzle_func.hpp
+ ../glm/detail/_vectorize.hpp
+ ../glm/detail/func_common.hpp
+ ../glm/detail/func_common.inl
+ ../glm/detail/func_common_simd.inl
+ ../glm/detail/func_exponential.hpp
+ ../glm/detail/func_exponential.inl
+ ../glm/detail/func_exponential_simd.inl
+ ../glm/detail/func_geometric.hpp
+ ../glm/detail/func_geometric.inl
+ ../glm/detail/func_geometric_simd.inl
+ ../glm/detail/func_integer.hpp
+ ../glm/detail/func_integer.inl
+ ../glm/detail/func_integer_simd.inl
+ ../glm/detail/func_matrix.hpp
+ ../glm/detail/func_matrix.inl
+ ../glm/detail/func_matrix_simd.inl
+ ../glm/detail/func_packing.hpp
+ ../glm/detail/func_packing.inl
+ ../glm/detail/func_packing_simd.inl
+ ../glm/detail/func_trigonometric.hpp
+ ../glm/detail/func_trigonometric.inl
+ ../glm/detail/func_trigonometric_simd.inl
+ ../glm/detail/func_vector_relational.hpp
+ ../glm/detail/func_vector_relational.inl
+ ../glm/detail/func_vector_relational_simd.inl
+ ../glm/detail/precision.hpp
+ ../glm/detail/setup.hpp
+ ../glm/detail/type_float.hpp
+ ../glm/detail/type_half.hpp
+ ../glm/detail/type_half.inl
+ ../glm/detail/type_int.hpp
+ ../glm/detail/type_mat.hpp
+ ../glm/detail/type_mat2x2.hpp
+ ../glm/detail/type_mat2x2.inl
+ ../glm/detail/type_mat2x3.hpp
+ ../glm/detail/type_mat2x3.inl
+ ../glm/detail/type_mat2x4.hpp
+ ../glm/detail/type_mat2x4.inl
+ ../glm/detail/type_mat3x2.hpp
+ ../glm/detail/type_mat3x2.inl
+ ../glm/detail/type_mat3x3.hpp
+ ../glm/detail/type_mat3x3.inl
+ ../glm/detail/type_mat3x4.hpp
+ ../glm/detail/type_mat3x4.inl
+ ../glm/detail/type_mat4x2.hpp
+ ../glm/detail/type_mat4x2.inl
+ ../glm/detail/type_mat4x3.hpp
+ ../glm/detail/type_mat4x3.inl
+ ../glm/detail/type_mat4x4.hpp
+ ../glm/detail/type_mat4x4.inl
+ ../glm/detail/type_mat4x4_simd.inl
+ ../glm/detail/type_vec.hpp
+ ../glm/detail/type_vec1.hpp
+ ../glm/detail/type_vec1.inl
+ ../glm/detail/type_vec2.hpp
+ ../glm/detail/type_vec2.inl
+ ../glm/detail/type_vec3.hpp
+ ../glm/detail/type_vec3.inl
+ ../glm/detail/type_vec4.hpp
+ ../glm/detail/type_vec4.inl
+ ../glm/detail/type_vec4_simd.inl
+ ../glm/exponential.hpp
+ ../glm/fwd.hpp
+ ../glm/geometric.hpp
+ ../glm/integer.hpp
+ ../glm/mat2x2.hpp
+ ../glm/mat2x3.hpp
+ ../glm/mat2x4.hpp
+ ../glm/mat3x2.hpp
+ ../glm/mat3x3.hpp
+ ../glm/mat3x4.hpp
+ ../glm/mat4x2.hpp
+ ../glm/mat4x3.hpp
+ ../glm/mat4x4.hpp
+ ../glm/matrix.hpp
+ ../glm/packing.hpp
+ ../glm/simd/common.h
+ ../glm/simd/exponential.h
+ ../glm/simd/geometric.h
+ ../glm/simd/integer.h
+ ../glm/simd/matrix.h
+ ../glm/simd/platform.h
+ ../glm/trigonometric.hpp
+ ../glm/vec2.hpp
+ ../glm/vec3.hpp
+ ../glm/vec4.hpp
+ ../glm/vector_relational.hpp
+ /Users/alban/Cours/Rage/src/OpenGL/Object/Shapes/./Shape.h
+ /Users/alban/Cours/Rage/src/OpenGL/Object/Shapes/Tetrahedron.cpp
+ /Users/alban/Cours/Rage/src/OpenGL/Object/Shapes/Tetrahedron.h
 CMakeFiles/RAGE.dir/src/OpenGL/Object/mesh.cpp.o
  ..//./src/OpenGL/opengl_stuff.h
  ..//glm/glm.hpp
@@ -264,7 +459,12 @@ CMakeFiles/RAGE.dir/src/OpenGL/Object/mesh.cpp.o
  /Users/alban/Cours/Rage/src/OpenGL/Object/mesh.cpp
  /Users/alban/Cours/Rage/src/OpenGL/Object/mesh.h
 CMakeFiles/RAGE.dir/src/OpenGL/Object/model.cpp.o
+ ..//glm/glm.hpp
  ..//glm/mat4x4.hpp
+ ..//src/OpenGL/Object/Shapes/Shape.h
+ ..//src/OpenGL/Object/Shapes/Sphere.h
+ ..//src/OpenGL/Object/Shapes/Tetrahedron.h
+ ../glm/common.hpp
  ../glm/detail/_fixes.hpp
  ../glm/detail/_swizzle.hpp
  ../glm/detail/_swizzle_func.hpp
@@ -278,15 +478,26 @@ CMakeFiles/RAGE.dir/src/OpenGL/Object/model.cpp.o
  ../glm/detail/func_geometric.hpp
  ../glm/detail/func_geometric.inl
  ../glm/detail/func_geometric_simd.inl
+ ../glm/detail/func_integer.hpp
+ ../glm/detail/func_integer.inl
+ ../glm/detail/func_integer_simd.inl
  ../glm/detail/func_matrix.hpp
  ../glm/detail/func_matrix.inl
  ../glm/detail/func_matrix_simd.inl
+ ../glm/detail/func_packing.hpp
+ ../glm/detail/func_packing.inl
+ ../glm/detail/func_packing_simd.inl
+ ../glm/detail/func_trigonometric.hpp
+ ../glm/detail/func_trigonometric.inl
+ ../glm/detail/func_trigonometric_simd.inl
  ../glm/detail/func_vector_relational.hpp
  ../glm/detail/func_vector_relational.inl
  ../glm/detail/func_vector_relational_simd.inl
  ../glm/detail/precision.hpp
  ../glm/detail/setup.hpp
  ../glm/detail/type_float.hpp
+ ../glm/detail/type_half.hpp
+ ../glm/detail/type_half.inl
  ../glm/detail/type_int.hpp
  ../glm/detail/type_mat.hpp
  ../glm/detail/type_mat2x2.hpp
@@ -318,8 +529,10 @@ CMakeFiles/RAGE.dir/src/OpenGL/Object/model.cpp.o
  ../glm/detail/type_vec4.hpp
  ../glm/detail/type_vec4.inl
  ../glm/detail/type_vec4_simd.inl
+ ../glm/exponential.hpp
  ../glm/fwd.hpp
  ../glm/geometric.hpp
+ ../glm/integer.hpp
  ../glm/mat2x2.hpp
  ../glm/mat2x3.hpp
  ../glm/mat2x4.hpp
@@ -329,14 +542,21 @@ CMakeFiles/RAGE.dir/src/OpenGL/Object/model.cpp.o
  ../glm/mat4x2.hpp
  ../glm/mat4x3.hpp
  ../glm/mat4x4.hpp
+ ../glm/matrix.hpp
+ ../glm/packing.hpp
  ../glm/simd/common.h
  ../glm/simd/exponential.h
  ../glm/simd/geometric.h
+ ../glm/simd/integer.h
  ../glm/simd/matrix.h
  ../glm/simd/platform.h
+ ../glm/trigonometric.hpp
  ../glm/vec2.hpp
  ../glm/vec3.hpp
  ../glm/vec4.hpp
+ ../glm/vector_relational.hpp
+ ../src/OpenGL/Object/Shapes/./Shape.h
+ ../src/OpenGL/Object/mesh.h
  /Users/alban/Cours/Rage/src/OpenGL/Object/mesh.h
  /Users/alban/Cours/Rage/src/OpenGL/Object/model.cpp
  /Users/alban/Cours/Rage/src/OpenGL/Object/model.h
@@ -383,6 +603,9 @@ CMakeFiles/RAGE.dir/src/OpenGL/Renderer/Renderer.cpp.o
  ..//glm/gtc/matrix_transform.hpp
  ..//glm/gtc/type_ptr.hpp
  ..//glm/mat4x4.hpp
+ ..//src/OpenGL/Object/Shapes/Shape.h
+ ..//src/OpenGL/Object/Shapes/Sphere.h
+ ..//src/OpenGL/Object/Shapes/Tetrahedron.h
  ../glm/common.hpp
  ../glm/detail/_fixes.hpp
  ../glm/detail/_swizzle.hpp
@@ -479,6 +702,7 @@ CMakeFiles/RAGE.dir/src/OpenGL/Renderer/Renderer.cpp.o
  ../glm/vec3.hpp
  ../glm/vec4.hpp
  ../glm/vector_relational.hpp
+ ../src/OpenGL/Object/Shapes/./Shape.h
  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers/gl3.h
  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers/gl3ext.h
  /Users/alban/Cours/Rage/src/OpenGL/Renderer/Renderer.cpp
@@ -849,6 +1073,9 @@ CMakeFiles/RAGE.dir/src/Qt/mainwindow.cpp.o
  ..//glm/gtc/matrix_transform.hpp
  ..//glm/gtc/type_ptr.hpp
  ..//glm/mat4x4.hpp
+ ..//src/OpenGL/Object/Shapes/Shape.h
+ ..//src/OpenGL/Object/Shapes/Sphere.h
+ ..//src/OpenGL/Object/Shapes/Tetrahedron.h
  ../glm/common.hpp
  ../glm/detail/_fixes.hpp
  ../glm/detail/_swizzle.hpp
@@ -945,6 +1172,8 @@ CMakeFiles/RAGE.dir/src/Qt/mainwindow.cpp.o
  ../glm/vec3.hpp
  ../glm/vec4.hpp
  ../glm/vector_relational.hpp
+ ../src/OpenGL/Object/Shapes/./Shape.h
+ ../src/OpenGL/Object/mesh.h
  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers/gl3.h
  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers/gl3ext.h
  /Users/alban/Cours/Rage/src/Qt/mainwindow.cpp
@@ -1009,6 +1238,9 @@ CMakeFiles/RAGE.dir/src/Qt/myopenglwidget.cpp.o
  ..//glm/gtc/matrix_transform.hpp
  ..//glm/gtc/type_ptr.hpp
  ..//glm/mat4x4.hpp
+ ..//src/OpenGL/Object/Shapes/Shape.h
+ ..//src/OpenGL/Object/Shapes/Sphere.h
+ ..//src/OpenGL/Object/Shapes/Tetrahedron.h
  ../glm/common.hpp
  ../glm/detail/_fixes.hpp
  ../glm/detail/_swizzle.hpp
@@ -1107,6 +1339,8 @@ CMakeFiles/RAGE.dir/src/Qt/myopenglwidget.cpp.o
  ../glm/vec3.hpp
  ../glm/vec4.hpp
  ../glm/vector_relational.hpp
+ ../src/OpenGL/Object/Shapes/./Shape.h
+ ../src/OpenGL/Object/mesh.h
  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers/gl3.h
  /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers/gl3ext.h
  /Users/alban/Cours/Rage/src/Qt/myopenglwidget.cpp
