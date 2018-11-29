@@ -48,11 +48,10 @@ Renderer::Renderer(const int width, const int height, bool animation) : Scene(wi
   initLighting();
   initSSAO();
   //MESH LOADING AND STORAGE
-  //m_objects.push_back(Model("../DataFiles/CylinderAnim.obj"));
-  /*m_objects.push_back(Model(Shape::TETRAHEDRON));
-  m_objects.push_back(Model(0.1,glm::vec3(-1.1,0.0,0.0)));
-  m_objects.push_back(Model(0.1,glm::vec3(1.1,0.0,0.0)));*/
-  m_objects.push_back(Bone());
+  m_objects.push_back(Model("../DataFiles/CylinderAnim.obj"));
+  m_bones.push_back(Bone());
+  m_bones[0].addChild();
+
   m_animation = true;
   //POSTPROCESS QUAD INIT
   m_postProcessScreen.quadLoad();
@@ -114,6 +113,10 @@ void Renderer::draw(){
   for(const auto& model : m_objects){
       glUniformMatrix4fv( glGetUniformLocation(GBUFFERRENDER, "model"), 1, GL_FALSE, glm::value_ptr(model.m_model));
       model.draw();
+  }
+  for(const auto& bone : m_bones){
+      glUniformMatrix4fv( glGetUniformLocation(GBUFFERRENDER, "model"), 1, GL_FALSE, glm::value_ptr(bone.m_model));
+      bone.draw();
   }
 
   if(computeSSAO){
@@ -403,10 +406,17 @@ void Renderer::mouseclick(int button, float xpos, float ypos) {
   _button = button;
   _mousex = xpos;
   _mousey = ypos;
+  //TODO RAYCAST ICI
   _camera->processmouseclick(_button, xpos, ypos);
 }
 
 void Renderer::mousemove(float xpos, float ypos) {
+  //TODO CALCUL DE ROTATION ICI
+  //Boutton gauche
+  //Rotation haut-bas autour de la fromCam -> BoneOrig
+  //Rotation gauche-droit par rapport à l'axe direction x (fromCam Bone Orig)
+  //Boutton droit
+  //Pareil mais clamper dans la directionde plus grand angle
   _camera->processmousemovement(_button, xpos, ypos, true);
 }
 

@@ -13,6 +13,7 @@
 class Model
 {
 public:
+   virtual ~Model(){}
     /*  Functions   */
     //Generate a sphere
     Model(unsigned char c){/*ONLY CALL FROM INHERITANCE*/}
@@ -23,7 +24,7 @@ public:
     {
         loadModel(path);
     }
-    void draw() const;
+    virtual void draw() const;
     vector<Mesh> m_meshes;
     glm::mat4 m_model;
 private:

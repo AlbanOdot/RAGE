@@ -16,7 +16,7 @@ Sphere::Sphere(glm::vec3 center, float radius) : Shape(SPHERE), m_center(center)
           float c = std::sin( phi ) * std::sin( theta );
           Normal( a,b,c);
           Colors(a,b,c);
-          Point3(radius * a - center.x,radius * b - center.y,radius * c - center.z);
+          Point3(radius * a + center.x,radius * b + center.y,radius * c + center.z);
           Point2((float)u/slices,(float)v/stacks);
 
           // Regular triangles

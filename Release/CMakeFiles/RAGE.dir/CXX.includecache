@@ -6,41 +6,9 @@
 
 #IncludeRegexTransform: 
 
-.././src/OpenGL/Buffers/FrameBuffers/FrameBuffer.h
-gl3.h
--
-gl3ext.h
--
-iostream
--
-
-.././src/OpenGL/Buffers/FrameBuffers/Renderbuffer.h
-FrameBuffer.h
-.././src/OpenGL/Buffers/FrameBuffers/FrameBuffer.h
-
-.././src/OpenGL/Object/mesh.h
-vector
--
-
-..//./src/OpenGL/Buffers/FrameBuffers/GBuffer.h
-Renderbuffer.h
-.././src/OpenGL/Buffers/FrameBuffers/Renderbuffer.h
-
-..//./src/OpenGL/Buffers/FrameBuffers/RGBBuffer.h
-Renderbuffer.h
-.././src/OpenGL/Buffers/FrameBuffers/Renderbuffer.h
-
-..//./src/OpenGL/Buffers/FrameBuffers/RedBuffer.h
-Renderbuffer.h
-.././src/OpenGL/Buffers/FrameBuffers/Renderbuffer.h
-
-..//./src/OpenGL/Camera/camera.h
-./src/OpenGL/opengl_stuff.h
-.././src/OpenGL/Camera/./src/OpenGL/opengl_stuff.h
-
-..//./src/OpenGL/Object/model.h
+..//./src/OpenGL/Object/Model/model.h
 mesh.h
-.././src/OpenGL/Object/mesh.h
+.././src/OpenGL/Object/Model/mesh.h
 string
 -
 assimp/Importer.hpp
@@ -52,21 +20,13 @@ assimp/postprocess.h
 glm/mat4x4.hpp
 -
 src/OpenGL/Object/Shapes/Shape.h
-.././src/OpenGL/Object/src/OpenGL/Object/Shapes/Shape.h
+.././src/OpenGL/Object/Model/src/OpenGL/Object/Shapes/Shape.h
 src/OpenGL/Object/Shapes/Sphere.h
-.././src/OpenGL/Object/src/OpenGL/Object/Shapes/Sphere.h
+.././src/OpenGL/Object/Model/src/OpenGL/Object/Shapes/Sphere.h
 src/OpenGL/Object/Shapes/Tetrahedron.h
-.././src/OpenGL/Object/src/OpenGL/Object/Shapes/Tetrahedron.h
+.././src/OpenGL/Object/Model/src/OpenGL/Object/Shapes/Tetrahedron.h
 src/OpenGL/Object/Shapes/Cristal.h
-.././src/OpenGL/Object/src/OpenGL/Object/Shapes/Cristal.h
-
-..//./src/OpenGL/ShadersUtils/shadermanager.h
-./src/OpenGL/opengl_stuff.h
-.././src/OpenGL/ShadersUtils/./src/OpenGL/opengl_stuff.h
-vector
--
-string
--
+.././src/OpenGL/Object/Model/src/OpenGL/Object/Shapes/Cristal.h
 
 ..//./src/OpenGL/opengl_stuff.h
 OpenGL/gl3.h
@@ -195,8 +155,10 @@ detail/type_mat4x4.hpp
 ../glm/detail/type_mat4x4.hpp
 
 ..//src/OpenGL/Object/Animation/Bone.h
-./src/OpenGL/Object/model.h
-../src/OpenGL/Object/Animation/./src/OpenGL/Object/model.h
+vector
+-
+./src/OpenGL/Object/Model/model.h
+../src/OpenGL/Object/Animation/./src/OpenGL/Object/Model/model.h
 
 ..//src/OpenGL/Object/Shapes/Cristal.h
 ./Shape.h
@@ -205,8 +167,8 @@ glm/glm.hpp
 -
 
 ..//src/OpenGL/Object/Shapes/Shape.h
-../mesh.h
-../src/OpenGL/Object/mesh.h
+../Model/mesh.h
+../src/OpenGL/Object/Model/mesh.h
 
 ..//src/OpenGL/Object/Shapes/Sphere.h
 ./Shape.h
@@ -905,12 +867,8 @@ detail/func_vector_relational.hpp
 ../glm/detail/func_vector_relational.hpp
 
 ../src/OpenGL/Object/Shapes/./Shape.h
-../mesh.h
-../src/OpenGL/Object/Shapes/mesh.h
-
-../src/OpenGL/Object/mesh.h
-vector
--
+../Model/mesh.h
+../src/OpenGL/Object/Shapes/Model/mesh.h
 
 /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers/gl3.h
 windows.h
@@ -926,13 +884,65 @@ OpenGL/gltypes.h
 windows.h
 -
 
-/Users/alban/Cours/Rage/src/OpenGL/Object/Animation/Bone.cpp
-Bone.h
-/Users/alban/Cours/Rage/src/OpenGL/Object/Animation/Bone.h
+/Users/alban/Cours/Rage/src/OpenGL/Buffers/FrameBuffers/FrameBuffer.h
+gl3.h
+-
+gl3ext.h
+-
+iostream
+-
+
+/Users/alban/Cours/Rage/src/OpenGL/Buffers/FrameBuffers/GBuffer.h
+Renderbuffer.h
+/Users/alban/Cours/Rage/src/OpenGL/Buffers/FrameBuffers/Renderbuffer.h
+
+/Users/alban/Cours/Rage/src/OpenGL/Buffers/FrameBuffers/RGBBuffer.h
+Renderbuffer.h
+/Users/alban/Cours/Rage/src/OpenGL/Buffers/FrameBuffers/Renderbuffer.h
+
+/Users/alban/Cours/Rage/src/OpenGL/Buffers/FrameBuffers/RedBuffer.h
+Renderbuffer.h
+/Users/alban/Cours/Rage/src/OpenGL/Buffers/FrameBuffers/Renderbuffer.h
+
+/Users/alban/Cours/Rage/src/OpenGL/Buffers/FrameBuffers/Renderbuffer.h
+FrameBuffer.h
+/Users/alban/Cours/Rage/src/OpenGL/Buffers/FrameBuffers/FrameBuffer.h
+
+/Users/alban/Cours/Rage/src/OpenGL/Camera/camera.h
+./src/OpenGL/opengl_stuff.h
+/Users/alban/Cours/Rage/src/OpenGL/Camera/./src/OpenGL/opengl_stuff.h
 
 /Users/alban/Cours/Rage/src/OpenGL/Object/Animation/Bone.h
-./src/OpenGL/Object/model.h
-/Users/alban/Cours/Rage/src/OpenGL/Object/Animation/./src/OpenGL/Object/model.h
+vector
+-
+./src/OpenGL/Object/Model/model.h
+/Users/alban/Cours/Rage/src/OpenGL/Object/Animation/./src/OpenGL/Object/Model/model.h
+
+/Users/alban/Cours/Rage/src/OpenGL/Object/Model/mesh.h
+vector
+-
+
+/Users/alban/Cours/Rage/src/OpenGL/Object/Model/model.h
+mesh.h
+/Users/alban/Cours/Rage/src/OpenGL/Object/Model/mesh.h
+string
+-
+assimp/Importer.hpp
+-
+assimp/scene.h
+-
+assimp/postprocess.h
+-
+glm/mat4x4.hpp
+-
+src/OpenGL/Object/Shapes/Shape.h
+/Users/alban/Cours/Rage/src/OpenGL/Object/Model/src/OpenGL/Object/Shapes/Shape.h
+src/OpenGL/Object/Shapes/Sphere.h
+/Users/alban/Cours/Rage/src/OpenGL/Object/Model/src/OpenGL/Object/Shapes/Sphere.h
+src/OpenGL/Object/Shapes/Tetrahedron.h
+/Users/alban/Cours/Rage/src/OpenGL/Object/Model/src/OpenGL/Object/Shapes/Tetrahedron.h
+src/OpenGL/Object/Shapes/Cristal.h
+/Users/alban/Cours/Rage/src/OpenGL/Object/Model/src/OpenGL/Object/Shapes/Cristal.h
 
 /Users/alban/Cours/Rage/src/OpenGL/Renderer/Renderer.cpp
 unistd.h
@@ -951,18 +961,20 @@ iostream
 /Users/alban/Cours/Rage/src/OpenGL/Renderer/Renderer.h
 scene.h
 /Users/alban/Cours/Rage/src/OpenGL/Renderer/scene.h
-./src/OpenGL/Camera/camera.h
-/Users/alban/Cours/Rage/src/OpenGL/Renderer/./src/OpenGL/Camera/camera.h
-./src/OpenGL/Buffers/FrameBuffers/RGBBuffer.h
-/Users/alban/Cours/Rage/src/OpenGL/Renderer/./src/OpenGL/Buffers/FrameBuffers/RGBBuffer.h
-./src/OpenGL/Buffers/FrameBuffers/GBuffer.h
-/Users/alban/Cours/Rage/src/OpenGL/Renderer/./src/OpenGL/Buffers/FrameBuffers/GBuffer.h
-./src/OpenGL/Buffers/FrameBuffers/RedBuffer.h
-/Users/alban/Cours/Rage/src/OpenGL/Renderer/./src/OpenGL/Buffers/FrameBuffers/RedBuffer.h
-./src/OpenGL/Object/model.h
-/Users/alban/Cours/Rage/src/OpenGL/Renderer/./src/OpenGL/Object/model.h
-./src/OpenGL/ShadersUtils/shadermanager.h
-/Users/alban/Cours/Rage/src/OpenGL/Renderer/./src/OpenGL/ShadersUtils/shadermanager.h
+../Camera/camera.h
+/Users/alban/Cours/Rage/src/OpenGL/Camera/camera.h
+../Buffers/FrameBuffers/RGBBuffer.h
+/Users/alban/Cours/Rage/src/OpenGL/Buffers/FrameBuffers/RGBBuffer.h
+../Buffers/FrameBuffers/GBuffer.h
+/Users/alban/Cours/Rage/src/OpenGL/Buffers/FrameBuffers/GBuffer.h
+../Buffers/FrameBuffers/RedBuffer.h
+/Users/alban/Cours/Rage/src/OpenGL/Buffers/FrameBuffers/RedBuffer.h
+../Object/Model/model.h
+/Users/alban/Cours/Rage/src/OpenGL/Object/Model/model.h
+../ShadersUtils/shadermanager.h
+/Users/alban/Cours/Rage/src/OpenGL/ShadersUtils/shadermanager.h
+../Object/Animation/Bone.h
+/Users/alban/Cours/Rage/src/OpenGL/Object/Animation/Bone.h
 memory
 -
 functional
@@ -973,6 +985,14 @@ vector
 -
 ./src/OpenGL/opengl_stuff.h
 /Users/alban/Cours/Rage/src/OpenGL/Renderer/./src/OpenGL/opengl_stuff.h
+
+/Users/alban/Cours/Rage/src/OpenGL/ShadersUtils/shadermanager.h
+./src/OpenGL/opengl_stuff.h
+/Users/alban/Cours/Rage/src/OpenGL/ShadersUtils/./src/OpenGL/opengl_stuff.h
+vector
+-
+string
+-
 
 /usr/local/include/assimp/./Compiler/poppack1.h
 

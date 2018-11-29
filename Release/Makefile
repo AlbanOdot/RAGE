@@ -379,6 +379,33 @@ src/OpenGL/Camera/camera.cpp.s:
 	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Camera/camera.cpp.s
 .PHONY : src/OpenGL/Camera/camera.cpp.s
 
+src/OpenGL/Object/Animation/AnimatedModel.o: src/OpenGL/Object/Animation/AnimatedModel.cpp.o
+
+.PHONY : src/OpenGL/Object/Animation/AnimatedModel.o
+
+# target to build an object file
+src/OpenGL/Object/Animation/AnimatedModel.cpp.o:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Animation/AnimatedModel.cpp.o
+.PHONY : src/OpenGL/Object/Animation/AnimatedModel.cpp.o
+
+src/OpenGL/Object/Animation/AnimatedModel.i: src/OpenGL/Object/Animation/AnimatedModel.cpp.i
+
+.PHONY : src/OpenGL/Object/Animation/AnimatedModel.i
+
+# target to preprocess a source file
+src/OpenGL/Object/Animation/AnimatedModel.cpp.i:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Animation/AnimatedModel.cpp.i
+.PHONY : src/OpenGL/Object/Animation/AnimatedModel.cpp.i
+
+src/OpenGL/Object/Animation/AnimatedModel.s: src/OpenGL/Object/Animation/AnimatedModel.cpp.s
+
+.PHONY : src/OpenGL/Object/Animation/AnimatedModel.s
+
+# target to generate assembly for a file
+src/OpenGL/Object/Animation/AnimatedModel.cpp.s:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Animation/AnimatedModel.cpp.s
+.PHONY : src/OpenGL/Object/Animation/AnimatedModel.cpp.s
+
 src/OpenGL/Object/Animation/Bone.o: src/OpenGL/Object/Animation/Bone.cpp.o
 
 .PHONY : src/OpenGL/Object/Animation/Bone.o
@@ -405,6 +432,60 @@ src/OpenGL/Object/Animation/Bone.s: src/OpenGL/Object/Animation/Bone.cpp.s
 src/OpenGL/Object/Animation/Bone.cpp.s:
 	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Animation/Bone.cpp.s
 .PHONY : src/OpenGL/Object/Animation/Bone.cpp.s
+
+src/OpenGL/Object/Model/mesh.o: src/OpenGL/Object/Model/mesh.cpp.o
+
+.PHONY : src/OpenGL/Object/Model/mesh.o
+
+# target to build an object file
+src/OpenGL/Object/Model/mesh.cpp.o:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Model/mesh.cpp.o
+.PHONY : src/OpenGL/Object/Model/mesh.cpp.o
+
+src/OpenGL/Object/Model/mesh.i: src/OpenGL/Object/Model/mesh.cpp.i
+
+.PHONY : src/OpenGL/Object/Model/mesh.i
+
+# target to preprocess a source file
+src/OpenGL/Object/Model/mesh.cpp.i:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Model/mesh.cpp.i
+.PHONY : src/OpenGL/Object/Model/mesh.cpp.i
+
+src/OpenGL/Object/Model/mesh.s: src/OpenGL/Object/Model/mesh.cpp.s
+
+.PHONY : src/OpenGL/Object/Model/mesh.s
+
+# target to generate assembly for a file
+src/OpenGL/Object/Model/mesh.cpp.s:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Model/mesh.cpp.s
+.PHONY : src/OpenGL/Object/Model/mesh.cpp.s
+
+src/OpenGL/Object/Model/model.o: src/OpenGL/Object/Model/model.cpp.o
+
+.PHONY : src/OpenGL/Object/Model/model.o
+
+# target to build an object file
+src/OpenGL/Object/Model/model.cpp.o:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Model/model.cpp.o
+.PHONY : src/OpenGL/Object/Model/model.cpp.o
+
+src/OpenGL/Object/Model/model.i: src/OpenGL/Object/Model/model.cpp.i
+
+.PHONY : src/OpenGL/Object/Model/model.i
+
+# target to preprocess a source file
+src/OpenGL/Object/Model/model.cpp.i:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Model/model.cpp.i
+.PHONY : src/OpenGL/Object/Model/model.cpp.i
+
+src/OpenGL/Object/Model/model.s: src/OpenGL/Object/Model/model.cpp.s
+
+.PHONY : src/OpenGL/Object/Model/model.s
+
+# target to generate assembly for a file
+src/OpenGL/Object/Model/model.cpp.s:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Model/model.cpp.s
+.PHONY : src/OpenGL/Object/Model/model.cpp.s
 
 src/OpenGL/Object/Shapes/Cristal.o: src/OpenGL/Object/Shapes/Cristal.cpp.o
 
@@ -486,60 +567,6 @@ src/OpenGL/Object/Shapes/Tetrahedron.s: src/OpenGL/Object/Shapes/Tetrahedron.cpp
 src/OpenGL/Object/Shapes/Tetrahedron.cpp.s:
 	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Tetrahedron.cpp.s
 .PHONY : src/OpenGL/Object/Shapes/Tetrahedron.cpp.s
-
-src/OpenGL/Object/mesh.o: src/OpenGL/Object/mesh.cpp.o
-
-.PHONY : src/OpenGL/Object/mesh.o
-
-# target to build an object file
-src/OpenGL/Object/mesh.cpp.o:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/mesh.cpp.o
-.PHONY : src/OpenGL/Object/mesh.cpp.o
-
-src/OpenGL/Object/mesh.i: src/OpenGL/Object/mesh.cpp.i
-
-.PHONY : src/OpenGL/Object/mesh.i
-
-# target to preprocess a source file
-src/OpenGL/Object/mesh.cpp.i:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/mesh.cpp.i
-.PHONY : src/OpenGL/Object/mesh.cpp.i
-
-src/OpenGL/Object/mesh.s: src/OpenGL/Object/mesh.cpp.s
-
-.PHONY : src/OpenGL/Object/mesh.s
-
-# target to generate assembly for a file
-src/OpenGL/Object/mesh.cpp.s:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/mesh.cpp.s
-.PHONY : src/OpenGL/Object/mesh.cpp.s
-
-src/OpenGL/Object/model.o: src/OpenGL/Object/model.cpp.o
-
-.PHONY : src/OpenGL/Object/model.o
-
-# target to build an object file
-src/OpenGL/Object/model.cpp.o:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/model.cpp.o
-.PHONY : src/OpenGL/Object/model.cpp.o
-
-src/OpenGL/Object/model.i: src/OpenGL/Object/model.cpp.i
-
-.PHONY : src/OpenGL/Object/model.i
-
-# target to preprocess a source file
-src/OpenGL/Object/model.cpp.i:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/model.cpp.i
-.PHONY : src/OpenGL/Object/model.cpp.i
-
-src/OpenGL/Object/model.s: src/OpenGL/Object/model.cpp.s
-
-.PHONY : src/OpenGL/Object/model.s
-
-# target to generate assembly for a file
-src/OpenGL/Object/model.cpp.s:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/model.cpp.s
-.PHONY : src/OpenGL/Object/model.cpp.s
 
 src/OpenGL/Renderer/Renderer.o: src/OpenGL/Renderer/Renderer.cpp.o
 
@@ -767,9 +794,18 @@ help:
 	@echo "... src/OpenGL/Camera/camera.o"
 	@echo "... src/OpenGL/Camera/camera.i"
 	@echo "... src/OpenGL/Camera/camera.s"
+	@echo "... src/OpenGL/Object/Animation/AnimatedModel.o"
+	@echo "... src/OpenGL/Object/Animation/AnimatedModel.i"
+	@echo "... src/OpenGL/Object/Animation/AnimatedModel.s"
 	@echo "... src/OpenGL/Object/Animation/Bone.o"
 	@echo "... src/OpenGL/Object/Animation/Bone.i"
 	@echo "... src/OpenGL/Object/Animation/Bone.s"
+	@echo "... src/OpenGL/Object/Model/mesh.o"
+	@echo "... src/OpenGL/Object/Model/mesh.i"
+	@echo "... src/OpenGL/Object/Model/mesh.s"
+	@echo "... src/OpenGL/Object/Model/model.o"
+	@echo "... src/OpenGL/Object/Model/model.i"
+	@echo "... src/OpenGL/Object/Model/model.s"
 	@echo "... src/OpenGL/Object/Shapes/Cristal.o"
 	@echo "... src/OpenGL/Object/Shapes/Cristal.i"
 	@echo "... src/OpenGL/Object/Shapes/Cristal.s"
@@ -779,12 +815,6 @@ help:
 	@echo "... src/OpenGL/Object/Shapes/Tetrahedron.o"
 	@echo "... src/OpenGL/Object/Shapes/Tetrahedron.i"
 	@echo "... src/OpenGL/Object/Shapes/Tetrahedron.s"
-	@echo "... src/OpenGL/Object/mesh.o"
-	@echo "... src/OpenGL/Object/mesh.i"
-	@echo "... src/OpenGL/Object/mesh.s"
-	@echo "... src/OpenGL/Object/model.o"
-	@echo "... src/OpenGL/Object/model.i"
-	@echo "... src/OpenGL/Object/model.s"
 	@echo "... src/OpenGL/Renderer/Renderer.o"
 	@echo "... src/OpenGL/Renderer/Renderer.i"
 	@echo "... src/OpenGL/Renderer/Renderer.s"

@@ -1,6 +1,6 @@
 #ifndef SHAPE_H
 #define SHAPE_H
-#include "../mesh.h"
+#include "../Model/mesh.h"
 
 class Shape : public Mesh
 {

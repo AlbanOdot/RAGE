@@ -20,6 +20,7 @@ protected:
   unsigned int m_VAO, m_VBO, m_NBO, m_UVBO, m_CRBO, m_EBO;
   /*  Functions    */
   void setupMesh();
+
   inline void Triangle(unsigned int a,unsigned int b, unsigned int c) { m_indices.push_back(a); m_indices.push_back(b); m_indices.push_back(c);}
   inline void Point3(float a, float b, float c) { m_vertices.push_back(a); m_vertices.push_back(b); m_vertices.push_back(c);}
   inline void Colors(float a, float b, float c) { m_colors.push_back(a); m_colors.push_back(b); m_colors.push_back(c);}

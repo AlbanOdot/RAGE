@@ -3,12 +3,13 @@
 
 #include "scene.h"
 
-#include "./src/OpenGL/Camera/camera.h"
-#include "./src/OpenGL/Buffers/FrameBuffers/RGBBuffer.h"
-#include "./src/OpenGL/Buffers/FrameBuffers/GBuffer.h"
-#include "./src/OpenGL/Buffers/FrameBuffers/RedBuffer.h"
-#include "./src/OpenGL/Object/model.h"
-#include "./src/OpenGL/ShadersUtils/shadermanager.h"
+#include "../Camera/camera.h"
+#include "../Buffers/FrameBuffers/RGBBuffer.h"
+#include "../Buffers/FrameBuffers/GBuffer.h"
+#include "../Buffers/FrameBuffers/RedBuffer.h"
+#include "../Object/Model/model.h"
+#include "../ShadersUtils/shadermanager.h"
+#include "../Object/Animation/Bone.h"
 
 #include <memory>
 #include <functional>
@@ -101,6 +102,7 @@ private:
 
     //Change this to vector if you need multiple objects
     std::vector<Model> m_objects;
+    std::vector<Bone> m_bones;
 
     //PostProcess stuff
     GLuint RENDERPROG;
