@@ -184,6 +184,12 @@
 		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Animation/Bone.h">
 			<Option target="RAGE"/>
 		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Shapes/Cristal.cpp">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Shapes/Cristal.h">
+			<Option target="RAGE"/>
+		</Unit>
 		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Shapes/Shape.h">
 			<Option target="RAGE"/>
 		</Unit>

@@ -1,6 +1,7 @@
 #include <unistd.h>
 #include "Renderer.h"
 #include "src/OpenGL/Object/Shapes/Sphere.h"
+#include "src/OpenGL/Object/Animation/Bone.h"
 #include <random>
 #include <iostream>
 #define GL_SILENCE_DEPRECATION 1
@@ -48,10 +49,10 @@ Renderer::Renderer(const int width, const int height, bool animation) : Scene(wi
   initSSAO();
   //MESH LOADING AND STORAGE
   //m_objects.push_back(Model("../DataFiles/CylinderAnim.obj"));
-  m_objects.push_back(Model(Shape::TETRAHEDRON));
+  /*m_objects.push_back(Model(Shape::TETRAHEDRON));
   m_objects.push_back(Model(0.1,glm::vec3(-1.1,0.0,0.0)));
-  m_objects.push_back(Model(0.1,glm::vec3(1.1,0.0,0.0)));
-
+  m_objects.push_back(Model(0.1,glm::vec3(1.1,0.0,0.0)));*/
+  m_objects.push_back(Bone());
   m_animation = true;
   //POSTPROCESS QUAD INIT
   m_postProcessScreen.quadLoad();

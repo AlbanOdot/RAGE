@@ -406,6 +406,33 @@ src/OpenGL/Object/Animation/Bone.cpp.s:
 	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Animation/Bone.cpp.s
 .PHONY : src/OpenGL/Object/Animation/Bone.cpp.s
 
+src/OpenGL/Object/Shapes/Cristal.o: src/OpenGL/Object/Shapes/Cristal.cpp.o
+
+.PHONY : src/OpenGL/Object/Shapes/Cristal.o
+
+# target to build an object file
+src/OpenGL/Object/Shapes/Cristal.cpp.o:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Cristal.cpp.o
+.PHONY : src/OpenGL/Object/Shapes/Cristal.cpp.o
+
+src/OpenGL/Object/Shapes/Cristal.i: src/OpenGL/Object/Shapes/Cristal.cpp.i
+
+.PHONY : src/OpenGL/Object/Shapes/Cristal.i
+
+# target to preprocess a source file
+src/OpenGL/Object/Shapes/Cristal.cpp.i:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Cristal.cpp.i
+.PHONY : src/OpenGL/Object/Shapes/Cristal.cpp.i
+
+src/OpenGL/Object/Shapes/Cristal.s: src/OpenGL/Object/Shapes/Cristal.cpp.s
+
+.PHONY : src/OpenGL/Object/Shapes/Cristal.s
+
+# target to generate assembly for a file
+src/OpenGL/Object/Shapes/Cristal.cpp.s:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Cristal.cpp.s
+.PHONY : src/OpenGL/Object/Shapes/Cristal.cpp.s
+
 src/OpenGL/Object/Shapes/Sphere.o: src/OpenGL/Object/Shapes/Sphere.cpp.o
 
 .PHONY : src/OpenGL/Object/Shapes/Sphere.o
@@ -743,6 +770,9 @@ help:
 	@echo "... src/OpenGL/Object/Animation/Bone.o"
 	@echo "... src/OpenGL/Object/Animation/Bone.i"
 	@echo "... src/OpenGL/Object/Animation/Bone.s"
+	@echo "... src/OpenGL/Object/Shapes/Cristal.o"
+	@echo "... src/OpenGL/Object/Shapes/Cristal.i"
+	@echo "... src/OpenGL/Object/Shapes/Cristal.s"
 	@echo "... src/OpenGL/Object/Shapes/Sphere.o"
 	@echo "... src/OpenGL/Object/Shapes/Sphere.i"
 	@echo "... src/OpenGL/Object/Shapes/Sphere.s"

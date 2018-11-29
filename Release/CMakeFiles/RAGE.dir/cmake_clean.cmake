@@ -11,6 +11,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/Renderbuffer.cpp.o"
   "CMakeFiles/RAGE.dir/src/OpenGL/Camera/camera.cpp.o"
   "CMakeFiles/RAGE.dir/src/OpenGL/Object/Animation/Bone.cpp.o"
+  "CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Cristal.cpp.o"
   "CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Sphere.cpp.o"
   "CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Tetrahedron.cpp.o"
   "CMakeFiles/RAGE.dir/src/OpenGL/Object/mesh.cpp.o"

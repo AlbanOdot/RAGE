@@ -9,12 +9,13 @@
 #include "src/OpenGL/Object/Shapes/Shape.h"
 #include "src/OpenGL/Object/Shapes/Sphere.h"
 #include "src/OpenGL/Object/Shapes/Tetrahedron.h"
-
+#include "src/OpenGL/Object/Shapes/Cristal.h"
 class Model
 {
 public:
     /*  Functions   */
     //Generate a sphere
+    Model(unsigned char c){/*ONLY CALL FROM INHERITANCE*/}
     Model(float radius,glm::vec3 center = glm::vec3(0.,0.,0.));
     //Generate generic shape
     Model(Shape::SHAPE s,glm::vec3 origin = glm::vec3(-1.0,0.0,0.0), glm::vec3 direction = glm::vec3(1.0,0.0,0.0), float length = 2.0, float radius = 0.5);
