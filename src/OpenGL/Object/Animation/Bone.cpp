@@ -1,14 +1,41 @@
 #include "Bone.h"
 #include <iostream>
+#define GLM_ENABLE_EXPERIMENTAL
+#include <glm/gtx/transform.hpp>
+#include <glm/gtx/vector_angle.hpp>
+#include "./src/Math/Algorithm.h"
+
 unsigned int Bone::m_bone_count = 0;
 
 Bone::Bone(glm::vec3 origin , glm::vec3 direction, float length , float radius )
-  : Model(static_cast<unsigned char>('c')), m_id(m_bone_count++), m_root(true), m_origin(origin), m_direction(direction), m_length(length), m_radius(radius)
+  : Model(static_cast<unsigned char>('c')), m_id(m_bone_count++), m_root(true), m_origin(origin), m_direction(glm::normalize(direction)), m_length(length), m_radius(radius)
 {
-  m_meshes.push_back(Cristal(m_origin,m_direction,m_length-m_radius/2,m_radius));
+  direction = glm::normalize(direction);
+  m_meshes.push_back(Cristal(origin,direction,length,radius));
   float sRadius = 0.25f * m_radius;
-  m_meshes.push_back(Sphere(origin + (length - sRadius) * direction, sRadius ));
+  m_meshes.push_back(Sphere(origin + (length + sRadius*0.5f) * direction, sRadius ));
   m_meshes.push_back(Sphere(origin - sRadius * direction,sRadius));//When Bone is not root we remove this
+
+  //AABB computation
+  glm::vec3 up(0,1,0);
+  glm::vec3 base1(glm::rotateX(direction,(float)M_PI * 0.25f));
+  glm::vec3 base2(glm::rotateY(direction,(float)M_PI * 0.75f));
+  //Find orthonormal basis
+  GramSchmidt(direction,base1,base2);
+  glm::vec3 a = radius * base1 + origin;
+  glm::vec3 b = radius * base2 + origin;
+  glm::vec3 c = -radius * base1 + origin;
+  glm::vec3 d = -radius * base2 + origin;
+  //Si c'est le root on inclut la première sphere
+  if(m_root){
+      a -= 2.f*sRadius * direction;
+      b -= 2.f*sRadius * direction;
+      c -= 2.f*sRadius * direction;
+      d -= 2.f*sRadius * direction;
+    }
+
+  //+radius pour les deux spheres
+  m_aabb.computeAABB(a,b,c,d,direction,length + radius);
 }
 
 void Bone::draw() const{
@@ -22,6 +49,8 @@ void Bone::draw() const{
   for(const auto& child : m_children){
       child.draw();
     }
+  if(m_draw_aabb)
+    m_aabb.draw();
 }
 
 /* Hierarchy functions */
@@ -29,7 +58,6 @@ Bone Bone::addChild(glm::vec3 direction, float length, float radius){
   Bone child(m_origin + m_length * m_direction, direction, length, radius);
   child.setRoot(false);
   m_children.push_back(child);
-  cout << "Bone "<< m_id<<" now has "<< m_children.size() << " child(ren)"<<endl;
   return child;
 }
 
@@ -38,15 +66,7 @@ void Bone::addChild(Bone& child){
   m_children.push_back(child);
 }
 
-Bone Bone::addParent(glm::vec3 direction, float length, float radius){
-  m_root = false;
-  Bone parent(m_origin - m_length*m_direction, direction, length, radius);
-  m_parents.push_back(parent);
-  return parent;
-}
-
 void Bone::addParent(const Bone& parent){
-  m_root = false;
   m_parents.push_back(parent);
 }
 
@@ -59,6 +79,7 @@ void Bone::setRoot(bool root){
 
 /* Hierarchy  action functions */
 void Bone::rotate(float theta, glm::vec3 u){
+  m_model = glm::rotate(m_model, theta, u);
   float ct = glm::cos(theta);
   float st = glm::sin(theta);
   float uct = 1.f - ct;

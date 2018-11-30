@@ -136,6 +136,12 @@
 		<Unit filename="/Users/alban/Cours/Rage/src/Main/main.cpp">
 			<Option target="RAGE"/>
 		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/Math/Algorithm.cpp">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/Math/Algorithm.h">
+			<Option target="RAGE"/>
+		</Unit>
 		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Buffers/DataBuffers/Float3BufferObject.cpp">
 			<Option target="RAGE"/>
 		</Unit>
@@ -190,6 +196,18 @@
 		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Animation/Bone.h">
 			<Option target="RAGE"/>
 		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Model/AABB.cpp">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Model/AABB.h">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Model/OBB.cpp">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Model/OBB.h">
+			<Option target="RAGE"/>
+		</Unit>
 		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Model/mesh.cpp">
 			<Option target="RAGE"/>
 		</Unit>
@@ -206,6 +224,12 @@
 			<Option target="RAGE"/>
 		</Unit>
 		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Shapes/Cristal.h">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Shapes/Cube.cpp">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Shapes/Cube.h">
 			<Option target="RAGE"/>
 		</Unit>
 		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Shapes/Shape.h">

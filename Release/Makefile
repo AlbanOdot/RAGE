@@ -190,6 +190,33 @@ src/Main/main.cpp.s:
 	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/Main/main.cpp.s
 .PHONY : src/Main/main.cpp.s
 
+src/Math/Algorithm.o: src/Math/Algorithm.cpp.o
+
+.PHONY : src/Math/Algorithm.o
+
+# target to build an object file
+src/Math/Algorithm.cpp.o:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/Math/Algorithm.cpp.o
+.PHONY : src/Math/Algorithm.cpp.o
+
+src/Math/Algorithm.i: src/Math/Algorithm.cpp.i
+
+.PHONY : src/Math/Algorithm.i
+
+# target to preprocess a source file
+src/Math/Algorithm.cpp.i:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/Math/Algorithm.cpp.i
+.PHONY : src/Math/Algorithm.cpp.i
+
+src/Math/Algorithm.s: src/Math/Algorithm.cpp.s
+
+.PHONY : src/Math/Algorithm.s
+
+# target to generate assembly for a file
+src/Math/Algorithm.cpp.s:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/Math/Algorithm.cpp.s
+.PHONY : src/Math/Algorithm.cpp.s
+
 src/OpenGL/Buffers/DataBuffers/Float3BufferObject.o: src/OpenGL/Buffers/DataBuffers/Float3BufferObject.cpp.o
 
 .PHONY : src/OpenGL/Buffers/DataBuffers/Float3BufferObject.o
@@ -433,6 +460,60 @@ src/OpenGL/Object/Animation/Bone.cpp.s:
 	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Animation/Bone.cpp.s
 .PHONY : src/OpenGL/Object/Animation/Bone.cpp.s
 
+src/OpenGL/Object/Model/AABB.o: src/OpenGL/Object/Model/AABB.cpp.o
+
+.PHONY : src/OpenGL/Object/Model/AABB.o
+
+# target to build an object file
+src/OpenGL/Object/Model/AABB.cpp.o:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Model/AABB.cpp.o
+.PHONY : src/OpenGL/Object/Model/AABB.cpp.o
+
+src/OpenGL/Object/Model/AABB.i: src/OpenGL/Object/Model/AABB.cpp.i
+
+.PHONY : src/OpenGL/Object/Model/AABB.i
+
+# target to preprocess a source file
+src/OpenGL/Object/Model/AABB.cpp.i:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Model/AABB.cpp.i
+.PHONY : src/OpenGL/Object/Model/AABB.cpp.i
+
+src/OpenGL/Object/Model/AABB.s: src/OpenGL/Object/Model/AABB.cpp.s
+
+.PHONY : src/OpenGL/Object/Model/AABB.s
+
+# target to generate assembly for a file
+src/OpenGL/Object/Model/AABB.cpp.s:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Model/AABB.cpp.s
+.PHONY : src/OpenGL/Object/Model/AABB.cpp.s
+
+src/OpenGL/Object/Model/OBB.o: src/OpenGL/Object/Model/OBB.cpp.o
+
+.PHONY : src/OpenGL/Object/Model/OBB.o
+
+# target to build an object file
+src/OpenGL/Object/Model/OBB.cpp.o:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Model/OBB.cpp.o
+.PHONY : src/OpenGL/Object/Model/OBB.cpp.o
+
+src/OpenGL/Object/Model/OBB.i: src/OpenGL/Object/Model/OBB.cpp.i
+
+.PHONY : src/OpenGL/Object/Model/OBB.i
+
+# target to preprocess a source file
+src/OpenGL/Object/Model/OBB.cpp.i:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Model/OBB.cpp.i
+.PHONY : src/OpenGL/Object/Model/OBB.cpp.i
+
+src/OpenGL/Object/Model/OBB.s: src/OpenGL/Object/Model/OBB.cpp.s
+
+.PHONY : src/OpenGL/Object/Model/OBB.s
+
+# target to generate assembly for a file
+src/OpenGL/Object/Model/OBB.cpp.s:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Model/OBB.cpp.s
+.PHONY : src/OpenGL/Object/Model/OBB.cpp.s
+
 src/OpenGL/Object/Model/mesh.o: src/OpenGL/Object/Model/mesh.cpp.o
 
 .PHONY : src/OpenGL/Object/Model/mesh.o
@@ -513,6 +594,33 @@ src/OpenGL/Object/Shapes/Cristal.s: src/OpenGL/Object/Shapes/Cristal.cpp.s
 src/OpenGL/Object/Shapes/Cristal.cpp.s:
 	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Cristal.cpp.s
 .PHONY : src/OpenGL/Object/Shapes/Cristal.cpp.s
+
+src/OpenGL/Object/Shapes/Cube.o: src/OpenGL/Object/Shapes/Cube.cpp.o
+
+.PHONY : src/OpenGL/Object/Shapes/Cube.o
+
+# target to build an object file
+src/OpenGL/Object/Shapes/Cube.cpp.o:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Cube.cpp.o
+.PHONY : src/OpenGL/Object/Shapes/Cube.cpp.o
+
+src/OpenGL/Object/Shapes/Cube.i: src/OpenGL/Object/Shapes/Cube.cpp.i
+
+.PHONY : src/OpenGL/Object/Shapes/Cube.i
+
+# target to preprocess a source file
+src/OpenGL/Object/Shapes/Cube.cpp.i:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Cube.cpp.i
+.PHONY : src/OpenGL/Object/Shapes/Cube.cpp.i
+
+src/OpenGL/Object/Shapes/Cube.s: src/OpenGL/Object/Shapes/Cube.cpp.s
+
+.PHONY : src/OpenGL/Object/Shapes/Cube.s
+
+# target to generate assembly for a file
+src/OpenGL/Object/Shapes/Cube.cpp.s:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Cube.cpp.s
+.PHONY : src/OpenGL/Object/Shapes/Cube.cpp.s
 
 src/OpenGL/Object/Shapes/Sphere.o: src/OpenGL/Object/Shapes/Sphere.cpp.o
 
@@ -773,6 +881,9 @@ help:
 	@echo "... src/Main/main.o"
 	@echo "... src/Main/main.i"
 	@echo "... src/Main/main.s"
+	@echo "... src/Math/Algorithm.o"
+	@echo "... src/Math/Algorithm.i"
+	@echo "... src/Math/Algorithm.s"
 	@echo "... src/OpenGL/Buffers/DataBuffers/Float3BufferObject.o"
 	@echo "... src/OpenGL/Buffers/DataBuffers/Float3BufferObject.i"
 	@echo "... src/OpenGL/Buffers/DataBuffers/Float3BufferObject.s"
@@ -800,6 +911,12 @@ help:
 	@echo "... src/OpenGL/Object/Animation/Bone.o"
 	@echo "... src/OpenGL/Object/Animation/Bone.i"
 	@echo "... src/OpenGL/Object/Animation/Bone.s"
+	@echo "... src/OpenGL/Object/Model/AABB.o"
+	@echo "... src/OpenGL/Object/Model/AABB.i"
+	@echo "... src/OpenGL/Object/Model/AABB.s"
+	@echo "... src/OpenGL/Object/Model/OBB.o"
+	@echo "... src/OpenGL/Object/Model/OBB.i"
+	@echo "... src/OpenGL/Object/Model/OBB.s"
 	@echo "... src/OpenGL/Object/Model/mesh.o"
 	@echo "... src/OpenGL/Object/Model/mesh.i"
 	@echo "... src/OpenGL/Object/Model/mesh.s"
@@ -809,6 +926,9 @@ help:
 	@echo "... src/OpenGL/Object/Shapes/Cristal.o"
 	@echo "... src/OpenGL/Object/Shapes/Cristal.i"
 	@echo "... src/OpenGL/Object/Shapes/Cristal.s"
+	@echo "... src/OpenGL/Object/Shapes/Cube.o"
+	@echo "... src/OpenGL/Object/Shapes/Cube.i"
+	@echo "... src/OpenGL/Object/Shapes/Cube.s"
 	@echo "... src/OpenGL/Object/Shapes/Sphere.o"
 	@echo "... src/OpenGL/Object/Shapes/Sphere.i"
 	@echo "... src/OpenGL/Object/Shapes/Sphere.s"

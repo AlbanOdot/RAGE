@@ -49,8 +49,10 @@ Renderer::Renderer(const int width, const int height, bool animation) : Scene(wi
   initSSAO();
   //MESH LOADING AND STORAGE
   m_objects.push_back(Model("../DataFiles/CylinderAnim.obj"));
-  m_bones.push_back(Bone());
-  m_bones[0].addChild();
+  m_bones.push_back(Bone(glm::vec3(0.0,.0,0.0),glm::vec3(1.0,1.0,0.0)));
+  m_bones[0].addChild(glm::vec3(-1.,1,0));
+  //m_bones[0].addChild();
+  //Bone test = m_bones[0].addChild(glm::vec3(1.0,1.0,0.0));
 
   m_animation = true;
   //POSTPROCESS QUAD INIT
@@ -407,6 +409,7 @@ void Renderer::mouseclick(int button, float xpos, float ypos) {
   _mousex = xpos;
   _mousey = ypos;
   //TODO RAYCAST ICI
+
   _camera->processmouseclick(_button, xpos, ypos);
 }
 
@@ -465,6 +468,10 @@ bool Renderer::keyboard(unsigned char k) {
     case 'Z':
       computeSSAO = !computeSSAO;
       displayInfo();
+      return true;
+    case 'B':
+      m_draw_aabb = !m_draw_aabb;
+      setDrawAABB(m_draw_aabb);
       return true;
       //###########FXAA###############
     case 'a':

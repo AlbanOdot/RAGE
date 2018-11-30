@@ -153,11 +153,6 @@ private:
 
     ShaderManager programs;
 
-    // for mouse management
-    int _button; // 0 --> left. 1 --> right. 2 --> middle. 3 --> other
-    float _mousex{0};
-    float _mousey{0};
-
     // Camera
     std::unique_ptr<Camera> _camera;
 
@@ -167,6 +162,16 @@ private:
 
     //Booleans
     bool m_animation = false;
+    bool m_draw_aabb = false;
+
+    //Booleans functions
+    void setDrawAABB(bool d) { for(auto& model : m_objects){
+                                  model.setAABB(d);
+                                }
+                               for(auto& bone : m_bones){
+                                   bone.setAABB(d);
+                                 }
+                             }
 };
 
 

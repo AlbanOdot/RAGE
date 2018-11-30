@@ -1,11 +1,10 @@
 #ifndef SHAPE_H
 #define SHAPE_H
 #include "../Model/mesh.h"
-
 class Shape : public Mesh
 {
 public:
-  typedef enum {SPHERE,CYLINDER,TETRAHEDRON,ICOSAHEDRON, CRISTAL} SHAPE;
+  typedef enum {SPHERE,CYLINDER,TETRAHEDRON,ICOSAHEDRON, CRISTAL, CUBE} SHAPE;
 
   Shape(vector<float> vertices, vector<float> normals, vector<float> UV, vector<float> colors, vector<unsigned int> indices, SHAPE shape):
     Mesh(vertices, normals, UV, colors, indices), m_shape(shape){}

@@ -1,11 +1,17 @@
 #include "model.h"
 #include <iostream>
-
+#include "../../opengl_stuff.h"
 
 void Model::draw() const{
   for(const auto& mesh : m_meshes ){
       mesh.draw();
     }
+
+  if( m_draw_aabb ){
+      glLineWidth(2.0f);
+      m_aabb.draw();
+    }
+
 }
 
 string getFileName(const string& s) {
@@ -37,6 +43,9 @@ void Model::loadModel(string path){
   m_directory = path.substr(0, path.find_last_of('/'));
 
   processNode(scene->mRootNode, scene);
+  m_draw_aabb = true;
+  m_aabb.computeAABB(m_meshes);
+
 }
 
 void Model::processNode(aiNode *node, const aiScene *scene){

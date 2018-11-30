@@ -6,14 +6,13 @@
 class Bone : public Model
 {
 public:
-  Bone(glm::vec3 origin = glm::vec3(-1.0,0.0,0.0), glm::vec3 direction = glm::vec3(1.0,0.0,0.0), float length = 2.0, float radius = 0.3);
+  Bone(glm::vec3 origin = glm::vec3(-1.0,0.0,0.0), glm::vec3 direction = glm::vec3(1.0,0.0,0.0), float length = 2.0f, float radius = 0.3f);
   virtual void draw() const;
 
   /* Hierarchy functions */
-  Bone addChild(glm::vec3 direction = glm::vec3(1.0,0.0,0.0), float length = 2.0, float radius = 0.3);
+  Bone addChild(glm::vec3 direction = glm::vec3(1.0,0.0,0.0), float length = 2.0f, float radius = 0.3f);
   void addChild(Bone& child);
 
-  Bone addParent(glm::vec3 direction = glm::vec3(1.0,0.0,0.0), float length = 2.0, float radius = 0.3);
   void addParent(const Bone& parent);
 
   void setRoot(bool root);

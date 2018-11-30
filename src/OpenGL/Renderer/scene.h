@@ -30,8 +30,13 @@ protected:
     int _height;
     // Rendering mode (true is filled, false is wireframed
     bool _drawfill;
-private:
 
+    // for mouse management
+    float m_mouseX_click{0};
+    float m_mouseY_click{0};
+    float _mousex{0};
+    float _mousey{0};
+    int _button; // 0 --> left. 1 --> right. 2 --> middle. 3 --> other
 };
 
 

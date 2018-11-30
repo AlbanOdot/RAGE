@@ -6,7 +6,9 @@
 #include <iostream>
 /*------------------------------------------------------------------------------------------------------------------------*/
 
-Camera::Camera(glm::vec3 position, glm::vec3 up, glm::vec3 look, float zoom) : _position(position), _front(look-position), _up(up), _zoom(zoom) {
+Camera::Camera(glm::vec3 position, glm::vec3 up, glm::vec3 look, float zoom)
+  : _position(position), _front(look-position), _up(up), _zoom(zoom)
+{
 
 }
 
