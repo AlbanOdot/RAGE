@@ -30,6 +30,7 @@ FILE(GLOB_RECURSE
 FILE(GLOB_RECURSE
     folder_header
     ${CMAKE_SOURCE_DIR}/src/*.h
+    ${CMAKE_SOURCE_DIR}/src/*.hpp
 
 )
 

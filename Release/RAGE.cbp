@@ -148,6 +148,9 @@
 		<Unit filename="/Users/alban/Cours/Rage/src/Math/RayCast.inl">
 			<Option target="RAGE"/>
 		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/Math/dualquaternion.h">
+			<Option target="RAGE"/>
+		</Unit>
 		<Unit filename="/Users/alban/Cours/Rage/src/Math/ray.h">
 			<Option target="RAGE"/>
 		</Unit>
@@ -187,10 +190,16 @@
 		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Buffers/FrameBuffers/Renderbuffer.h">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Camera/camera.cpp">
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Camera/Camera.cpp">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Camera/camera.h">
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Camera/Camera.hpp">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Camera/TrackBall.cpp">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Camera/TrackBall.hpp">
 			<Option target="RAGE"/>
 		</Unit>
 		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Animation/AnimatedModel.cpp">

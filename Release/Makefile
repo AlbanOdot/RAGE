@@ -352,32 +352,59 @@ src/OpenGL/Buffers/FrameBuffers/Renderbuffer.cpp.s:
 	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/Renderbuffer.cpp.s
 .PHONY : src/OpenGL/Buffers/FrameBuffers/Renderbuffer.cpp.s
 
-src/OpenGL/Camera/camera.o: src/OpenGL/Camera/camera.cpp.o
+src/OpenGL/Camera/Camera.o: src/OpenGL/Camera/Camera.cpp.o
 
-.PHONY : src/OpenGL/Camera/camera.o
+.PHONY : src/OpenGL/Camera/Camera.o
 
 # target to build an object file
-src/OpenGL/Camera/camera.cpp.o:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Camera/camera.cpp.o
-.PHONY : src/OpenGL/Camera/camera.cpp.o
+src/OpenGL/Camera/Camera.cpp.o:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Camera/Camera.cpp.o
+.PHONY : src/OpenGL/Camera/Camera.cpp.o
 
-src/OpenGL/Camera/camera.i: src/OpenGL/Camera/camera.cpp.i
+src/OpenGL/Camera/Camera.i: src/OpenGL/Camera/Camera.cpp.i
 
-.PHONY : src/OpenGL/Camera/camera.i
+.PHONY : src/OpenGL/Camera/Camera.i
 
 # target to preprocess a source file
-src/OpenGL/Camera/camera.cpp.i:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Camera/camera.cpp.i
-.PHONY : src/OpenGL/Camera/camera.cpp.i
+src/OpenGL/Camera/Camera.cpp.i:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Camera/Camera.cpp.i
+.PHONY : src/OpenGL/Camera/Camera.cpp.i
 
-src/OpenGL/Camera/camera.s: src/OpenGL/Camera/camera.cpp.s
+src/OpenGL/Camera/Camera.s: src/OpenGL/Camera/Camera.cpp.s
 
-.PHONY : src/OpenGL/Camera/camera.s
+.PHONY : src/OpenGL/Camera/Camera.s
 
 # target to generate assembly for a file
-src/OpenGL/Camera/camera.cpp.s:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Camera/camera.cpp.s
-.PHONY : src/OpenGL/Camera/camera.cpp.s
+src/OpenGL/Camera/Camera.cpp.s:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Camera/Camera.cpp.s
+.PHONY : src/OpenGL/Camera/Camera.cpp.s
+
+src/OpenGL/Camera/TrackBall.o: src/OpenGL/Camera/TrackBall.cpp.o
+
+.PHONY : src/OpenGL/Camera/TrackBall.o
+
+# target to build an object file
+src/OpenGL/Camera/TrackBall.cpp.o:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Camera/TrackBall.cpp.o
+.PHONY : src/OpenGL/Camera/TrackBall.cpp.o
+
+src/OpenGL/Camera/TrackBall.i: src/OpenGL/Camera/TrackBall.cpp.i
+
+.PHONY : src/OpenGL/Camera/TrackBall.i
+
+# target to preprocess a source file
+src/OpenGL/Camera/TrackBall.cpp.i:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Camera/TrackBall.cpp.i
+.PHONY : src/OpenGL/Camera/TrackBall.cpp.i
+
+src/OpenGL/Camera/TrackBall.s: src/OpenGL/Camera/TrackBall.cpp.s
+
+.PHONY : src/OpenGL/Camera/TrackBall.s
+
+# target to generate assembly for a file
+src/OpenGL/Camera/TrackBall.cpp.s:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Camera/TrackBall.cpp.s
+.PHONY : src/OpenGL/Camera/TrackBall.cpp.s
 
 src/OpenGL/Object/Animation/AnimatedModel.o: src/OpenGL/Object/Animation/AnimatedModel.cpp.o
 
@@ -872,9 +899,12 @@ help:
 	@echo "... src/OpenGL/Buffers/FrameBuffers/Renderbuffer.o"
 	@echo "... src/OpenGL/Buffers/FrameBuffers/Renderbuffer.i"
 	@echo "... src/OpenGL/Buffers/FrameBuffers/Renderbuffer.s"
-	@echo "... src/OpenGL/Camera/camera.o"
-	@echo "... src/OpenGL/Camera/camera.i"
-	@echo "... src/OpenGL/Camera/camera.s"
+	@echo "... src/OpenGL/Camera/Camera.o"
+	@echo "... src/OpenGL/Camera/Camera.i"
+	@echo "... src/OpenGL/Camera/Camera.s"
+	@echo "... src/OpenGL/Camera/TrackBall.o"
+	@echo "... src/OpenGL/Camera/TrackBall.i"
+	@echo "... src/OpenGL/Camera/TrackBall.s"
 	@echo "... src/OpenGL/Object/Animation/AnimatedModel.o"
 	@echo "... src/OpenGL/Object/Animation/AnimatedModel.i"
 	@echo "... src/OpenGL/Object/Animation/AnimatedModel.s"

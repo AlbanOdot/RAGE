@@ -5,6 +5,9 @@ AABB::AABB() {}
 AABB::AABB(std::vector<Mesh> meshes){
   computeAABB(meshes);
 }
+AABB::AABB(const glm::vec3& min, const glm::vec3& max){
+  m_box.computeCube(min,max);
+}
 
 void AABB::computeAABB(std::vector<Mesh> meshes){
   glm::vec3 m_min = glm::vec3(meshes[0].m_vertices[0],meshes[0].m_vertices[1],meshes[0].m_vertices[2]);

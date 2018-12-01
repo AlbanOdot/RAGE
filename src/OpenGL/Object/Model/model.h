@@ -22,12 +22,20 @@ public:
   Model(float radius,glm::vec3 center = glm::vec3(0.,0.,0.));
   //Generate generic shape
   Model(Shape::SHAPE s,glm::vec3 origin = glm::vec3(-1.0,0.0,0.0), glm::vec3 direction = glm::vec3(1.0,0.0,0.0), float length = 2.0, float radius = 0.5);
-  Model(string path)
-  {
-    loadModel(path);
-  }
+  Model(string path){loadModel(path);}
+  /* ROTATION AND MODEL CHANGE STUF */
+  virtual void translate(glm::vec3 vec);
+  virtual void translate(float x, float y, float z);
+  virtual void rotate(float angle, glm::vec3 vec);
+  virtual void rotate(const glm::mat4& R);
+  virtual void stretch(glm::vec3 direction, float length);
+
+
+
+
   virtual void draw() const;
   virtual void setAABB(bool d) { m_draw_aabb = d;}
+
   glm::mat4 m_model;
   AABB aabb() const { return m_aabb;}
 protected:

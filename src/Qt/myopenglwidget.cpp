@@ -7,7 +7,7 @@
 #include <iostream>
 #include <stdexcept>
 
-#include "./src/OpenGL/Camera/camera.h"
+#include "./src/OpenGL/Camera/Camera.hpp"
 #include "./src/OpenGL/Renderer/Renderer.h"
 
 MyOpenGLWidget::MyOpenGLWidget(QWidget *parent) :QOpenGLWidget(parent), QOpenGLFunctions_4_1_Core(), _scene(nullptr), _lastime(0) {
@@ -88,7 +88,7 @@ void MyOpenGLWidget::keyPressEvent(QKeyEvent *event) {
         case Qt::Key_Up:
         case Qt::Key_Right:
         case Qt::Key_Down:
-            _scene->keyboardmove(event->key()-Qt::Key_Left, 1./100/*double(_lastime)/10.*/);
+            _scene->keyboardmove(event->key()-Qt::Key_Left, double(_lastime)/10.);
             update();
         break;
         // Wireframe key

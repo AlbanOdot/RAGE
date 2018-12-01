@@ -4,6 +4,8 @@
 
 class Ray {
 public:
+  //RENDERER TracBall position               direction
+  Ray():              m_o(glm::vec3(0,0,3)), m_d(glm::vec3(0,0,-1)), m_t(0){}
   Ray(glm::vec3 orig, glm::vec3 dir) : m_o(orig), m_d(dir), m_t(0){}
   glm::vec3 m_o;//origin
   glm::vec3 m_d;//direction

@@ -118,3 +118,26 @@ Model::Model(Shape::SHAPE s,glm::vec3 origin , glm::vec3 direction, float length
       break;
     }
 }
+
+void Model::translate(glm::vec3 vec){
+    m_model = glm::translate(m_model,vec);
+}
+
+void Model::translate(float x, float y, float z){
+    m_model = glm::translate(m_model,glm::vec3(x,y,z));
+}
+
+void Model::rotate(float angle, glm::vec3 vec){
+    m_model = glm::rotate(m_model, glm::radians(angle), vec);
+}
+
+void Model::rotate(const glm::mat4& R){
+  m_model = R;
+}
+void Model::stretch(glm::vec3 direction, float length){
+  glm::vec3 stretch = length * direction;
+  m_model[0][0] = stretch.x;
+  m_model[1][1] = stretch.y;
+  m_model[2][2] = stretch.z;
+}
+

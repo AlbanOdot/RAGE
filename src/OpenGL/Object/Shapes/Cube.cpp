@@ -3,7 +3,7 @@
 #include "../../opengl_stuff.h"
 Cube::Cube() : Shape(CUBE){}
 
-Cube::Cube(glm::vec3 min, glm::vec3 max) : Shape(CUBE){
+Cube::Cube(glm::vec3 min, glm::vec3 max) : Shape(CUBE), m_max(max), m_min(min){
   computeCube(min,max);
 }
 
@@ -87,6 +87,8 @@ void Cube::computeCube(glm::vec3 a,glm::vec3 b,glm::vec3 c,glm::vec3 d,glm::vec3
   m_botRightFront = b + dir * length;
   m_topRightBack =  d + dir*length;
   m_botRightBack =  c + dir * length;
+  m_min = m_botLeftBack;
+  m_max = m_topRightFront;
 
   /*
    *          0-----3

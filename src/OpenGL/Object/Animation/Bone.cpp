@@ -83,15 +83,15 @@ Bone Bone::addChild(deque<int> path,glm::vec3 direction, float length, float rad
   return m_children[son].addChild(path, direction,length,radius);
 }
 
-int Bone::clickOnSkeletton(Ray& r)const{
+Bone * Bone::clickOnSkeletton(Ray& r){
   if(Math::RayCast::vsAABB(r,m_aabb))
-    return (int)m_id;
-  int ID = -1;
-  for(const auto& child : m_children){
-      if( (ID = child.clickOnSkeletton(r)) != -1)
-        return ID;
+    return this;
+  Bone * clicked;
+  for(auto& child : m_children){
+      if( (clicked = child.clickOnSkeletton(r)) != nullptr)
+        return clicked;
     }
-  return -1;
+  return nullptr;
 }
 
 void Bone::setAABB(bool d){
@@ -114,28 +114,19 @@ void Bone::setRoot(bool root){
 
 /* Hierarchy  action functions */
 void Bone::rotate(float theta, glm::vec3 u){
+  m_model = glm::translate(m_model,-m_origin);
   m_model = glm::rotate(m_model, theta, u);
-  float ct = glm::cos(theta);
-  float st = glm::sin(theta);
-  float uct = 1.f - ct;
-  glm::mat4 R;
-  R[0][0] = ct + u.x*u.x *uct; R[0][1] = u.x*u.y*uct - u.z*st; R[0][2] = u.x*u.z*uct + u.y*st;
-  R[1][0] = R[0][1]; R[1][1] = ct + u.y*u.y*uct;R[1][2] = u.y*u.z*uct-u.x*st;
-  R[2][0] = R[0][2]; R[2][1] = R[1][2]; R[2][2] = ct + u.z*u.z*uct;
-  R[3][0] = m_origin.x;R[3][1] = m_origin.y;R[3][2] = m_origin.z;
-
-  m_model *= R;
+  m_model = glm::translate(m_model,m_origin);
   for(auto& child : m_children){
-      child.rotate(R);
+      child.rotate(m_model);
     }
-
 }
 //void rotate(Quaternion q);
 //void stretch(glm::vec3 direction, float length);
 
 /* Action functions */
 void Bone::rotate(const glm::mat4& R){
-  m_model *= R;
+  m_model = R;
   for(auto& child : m_children){
       child.rotate(R);
     }

@@ -28,19 +28,16 @@ Renderer::Renderer(const int width, const int height, const std::string& filenam
   //POSTPROCESS SHADERS
   initLighting();
   initSSAO();
-  initHDR();
-  initBloom();
-  initFXAA();
   //MESH LOADING AND STORAGE
   m_objects.push_back(Model(filename));
   m_animation = false;
   //POSTPROCESS QUAD INIT
   m_postProcessScreen.quadLoad();
   //CAMERA STUFF
-  _camera.reset(new TrackballCamera(glm::vec3(0.f, 0.f, 3.f)));
-  _camera->setviewport(glm::vec4(0.f, 0.f, _width, _height));
-  m_view = _camera->viewmatrix();
-  m_projection = glm::perspective(_camera->zoom(), float(_width) / float(_height), 0.1f, 100.0f);
+  _camera.reset(new TrackBall());
+  _camera->resizeCamera(_width,_height);
+  m_view = _camera->GetViewMatrix();
+  m_projection = _camera->GetProjMatrix();
 }
 
 Renderer::Renderer(const int width, const int height, bool animation) : Scene(width, height), _camera(nullptr) {
@@ -55,46 +52,27 @@ Renderer::Renderer(const int width, const int height, bool animation) : Scene(wi
   //MESH LOADING AND STORAGE
   //m_objects.push_back(Model("../DataFiles/CylinderAnim.obj"));
 
-  m_bones.push_back(Bone(glm::vec3(-1.0,.0,0.0),glm::vec3(1.0,.0,0.0)));
+  m_bones.push_back(Bone(glm::vec3(1.0,.0,0.0),glm::vec3(1.0,.0,0.0)));
   m_bones[0].addChild(glm::vec3(1.0,1.0,0.0));
-  //m_bones[0].addChild(glm::vec3(-1,-1,0));
-
+  /*m_bones[0].addChild(glm::vec3(-1,-1,0));
+  std::deque<int> path = {1};
+  m_bones[0].addChild(path);
+  path = {1,0};
+  m_bones[0].addChild(path);*/
 
   m_animation = true;
   //POSTPROCESS QUAD INIT
   m_postProcessScreen.quadLoad();
   //CAMERA STUFF
-  _camera.reset(new TrackballCamera(glm::vec3(0.f, 0.f, 3.f)));
-  _camera->setviewport(glm::vec4(0.f, 0.f, _width, _height));
-  m_view = _camera->viewmatrix();
-  m_projection = glm::perspective(_camera->zoom(), float(_width) / float(_height), 0.1f, 100.0f);
+  _camera.reset(new TrackBall());
+  _camera->resizeCamera(_width,_height);
+  m_view = _camera->GetViewMatrix();
+  m_projection = _camera->GetProjMatrix();
 }
 
 void Renderer::animationDraw(){
 
-  glBindFramebuffer(GL_FRAMEBUFFER, 1);
 
-  glClear(GL_COLOR_BUFFER_BIT);
-  glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
-  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-  glDisable(GL_DEPTH_TEST);
-
-  glUseProgram(RENDERPROG);
-  glActiveTexture(GL_TEXTURE0);
-  glBindTexture(GL_TEXTURE_2D, m_GBuffer.position());
-  glActiveTexture(GL_TEXTURE1);
-  glBindTexture(GL_TEXTURE_2D, m_GBuffer.normal());
-  glActiveTexture(GL_TEXTURE2);
-  glBindTexture(GL_TEXTURE_2D, m_GBuffer.albedo());
-  glActiveTexture(GL_TEXTURE3);
-  glBindTexture(GL_TEXTURE_2D, ssaoBufferBlur.buffer());
-
-  glUniform1i(glGetUniformLocation(RENDERPROG, "position"), 0);
-  glUniform1i(glGetUniformLocation(RENDERPROG, "normal"), 1);
-  glUniform1i(glGetUniformLocation(RENDERPROG, "albedo"), 2);
-  glUniform1i(glGetUniformLocation(RENDERPROG, "ssao"), 3);
-
-  m_postProcessScreen.quadDraw();
 
 }
 
@@ -117,15 +95,15 @@ void Renderer::draw(){
   glUseProgram(GBUFFERRENDER);
   glUniformMatrix4fv( glGetUniformLocation(GBUFFERRENDER, "view"), 1, GL_FALSE, glm::value_ptr(m_view));
   glUniformMatrix4fv( glGetUniformLocation(GBUFFERRENDER, "projection"), 1, GL_FALSE, glm::value_ptr(m_projection));
-  m_view = _camera->viewmatrix();
+  m_view = _camera->GetViewMatrix();
   for(const auto& model : m_objects){
       glUniformMatrix4fv( glGetUniformLocation(GBUFFERRENDER, "model"), 1, GL_FALSE, glm::value_ptr(model.m_model));
       model.draw();
-  }
+    }
   for(const auto& bone : m_bones){
       glUniformMatrix4fv( glGetUniformLocation(GBUFFERRENDER, "model"), 1, GL_FALSE, glm::value_ptr(bone.m_model));
       bone.draw();
-  }
+    }
 
   if(computeSSAO){
       ssaoBuffer.bind();
@@ -169,18 +147,13 @@ void Renderer::draw(){
 
     }
 
-  if( m_animation){
-      animationDraw();
-      return;
-    }
+  glBindFramebuffer(GL_FRAMEBUFFER, 1);
 
-  //2eme passe de rendu on combine G_BUFFER et ssaoBlur
-  renderBuffer.bind();
   glClear(GL_COLOR_BUFFER_BIT);
   glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   glDisable(GL_DEPTH_TEST);
-  glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
   glUseProgram(RENDERPROG);
   glActiveTexture(GL_TEXTURE0);
   glBindTexture(GL_TEXTURE_2D, m_GBuffer.position());
@@ -190,83 +163,13 @@ void Renderer::draw(){
   glBindTexture(GL_TEXTURE_2D, m_GBuffer.albedo());
   glActiveTexture(GL_TEXTURE3);
   glBindTexture(GL_TEXTURE_2D, ssaoBufferBlur.buffer());
+
   glUniform1i(glGetUniformLocation(RENDERPROG, "position"), 0);
   glUniform1i(glGetUniformLocation(RENDERPROG, "normal"), 1);
   glUniform1i(glGetUniformLocation(RENDERPROG, "albedo"), 2);
   glUniform1i(glGetUniformLocation(RENDERPROG, "ssao"), 3);
-  m_postProcessScreen.quadDraw();
 
-  //FXAA
-  //fxaaBuffer.bind();
-  glBindFramebuffer(GL_FRAMEBUFFER, 1);
-  glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
-  glDisable(GL_DEPTH_TEST);
-  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-  glUseProgram(FXAAPROG);
-  glActiveTexture(GL_TEXTURE0);
-  glBindTexture(GL_TEXTURE_2D,  renderBuffer.buffer());
-  glUniform1f(glGetUniformLocation(FXAAPROG,"minThreshold"),minThresholdFXAA);
-  glUniform1f(glGetUniformLocation(FXAAPROG,"maxThreshold"),maxThresholdFXAA);
-  glUniform1i(glGetUniformLocation(FXAAPROG, "showContour"),showContourFXAA);
-  glUniform2fv(glGetUniformLocation(FXAAPROG, "inverseScreenSize"),1,invSS);
-  glUniform1i(glGetUniformLocation(FXAAPROG, "computeFXAA"),computeFXAA);
   m_postProcessScreen.quadDraw();
-
-/*  //TODO A corriger
-  //BLOOM
-  bloomBuffer.bind();
-  glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
-  glDisable(GL_DEPTH_TEST);
-  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-  glUseProgram(BLOOMPROG);
-  glActiveTexture(GL_TEXTURE0);
-  glBindTexture(GL_TEXTURE_2D,  fxaaBuffer.buffer());
-  m_postProcessScreen.quadDraw();
-  //BLUR
-  //VERTICAL PASS
-  blurBufferVert.bind();
-  glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
-  glDisable(GL_DEPTH_TEST);
-  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-  glUseProgram(BLURPROG);
-  glActiveTexture(GL_TEXTURE0);
-  glBindTexture(GL_TEXTURE_2D,  bloomBuffer.buffer());
-  glUniform2fv(glGetUniformLocation(BLURPROG, "texelStep"),1,invSS);
-  glUniform1f(glGetUniformLocation(BLURPROG, "horizontal"),0.);
-  m_postProcessScreen.quadDraw();
-  //HORIZONTAL PASS
-  //blurBufferHori.bind();
-  glBindFramebuffer(GL_FRAMEBUFFER, 1);
-  glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
-  glDisable(GL_DEPTH_TEST);
-  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-  glActiveTexture(GL_TEXTURE0);
-  glBindTexture(GL_TEXTURE_2D,  blurBufferVert.buffer());
-  glUniform2fv(glGetUniformLocation(BLURPROG, "texelStep"),1,invSS);
-  glUniform1i(glGetUniformLocation(BLURPROG, "horizontal"),1.);
-  m_postProcessScreen.quadDraw();
-
-
-  //HDR
-  glBindFramebuffer(GL_FRAMEBUFFER, 1);
-  glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
-  glDisable(GL_DEPTH_TEST);
-  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-  glUseProgram(HDRPROG);
-  glActiveTexture(GL_TEXTURE0);
-  glBindTexture(GL_TEXTURE_2D,  blurBufferHori.buffer());
-  glActiveTexture(GL_TEXTURE1);
-  glBindTexture(GL_TEXTURE_2D,  fxaaBuffer.buffer());
-  glUniform1i(glGetUniformLocation(HDRPROG,"screenTexture"),1);
-  glUniform1i(glGetUniformLocation(HDRPROG,"brightTexture"),0);
-  glUniform1f(glGetUniformLocation(HDRPROG, "gamma"),gammaHDR);
-  glUniform1f(glGetUniformLocation(HDRPROG, "exposure"),exposureHDR);
-  glUniform1f(glGetUniformLocation(HDRPROG, "BLOOM"),computeBLOOM ? 1.0 : 0.0);
-  glUniform1i(glGetUniformLocation(HDRPROG,"computeHDR"),computeHDR);
-  m_postProcessScreen.quadDraw();
-  */
-
-
 }
 
 void Renderer::initPreprocess(){
@@ -360,69 +263,26 @@ void Renderer::initLighting(){
   glUniform1i(glGetUniformLocation(RENDERPROG, "lightCount"), nbLights);
   glUniform3fv(glGetUniformLocation(RENDERPROG,"LiPosition"), nbLights, LiPosition);
   glUniform3fv(glGetUniformLocation(RENDERPROG,"LiColor"), nbLights, LiColor);
-
 }
-
-void Renderer::initHDR(){
-  gammaHDR = 1.0;
-  exposureHDR = 1.0;
-  computeHDR = true;
-  char buff[1000];
-  getcwd(buff,1000);
-  std::string wd(buff);
-  std::string vshPath = wd +  std::string("/../src/OpenGL/Shader/PostProcess/pass.vert.glsl");
-  std::string hdrPath = wd + std::string("/../src/OpenGL/Shader/PostProcess/hdr.frag.glsl");
-  HDRPROG = programs.computeAddPostProgramm(vshPath,hdrPath);
-
-}
-
-void Renderer::initBloom(){
-  computeBLOOM = true;
-  char buff[1000];
-  getcwd(buff,1000);
-  std::string wd(buff);
-  std::string vshPath = wd +  std::string("/../src/OpenGL/Shader/PostProcess/pass.vert.glsl");
-  std::string bloomPath = wd + std::string("/../src/OpenGL/Shader/PostProcess/BLOOM.frag.glsl");
-  std::string bloomBlurPath = wd + std::string("/../src/OpenGL/Shader/PostProcess/BLOOMBLUR.frag.glsl");
-  BLOOMPROG = programs.computeAddPostProgramm(vshPath,bloomPath);
-  glUniform1i(glGetUniformLocation(BLOOMPROG, "screenTexture"), 0);
-  BLURPROG = programs.computeAddPostProgramm(vshPath,bloomBlurPath);
-  glUniform1i(glGetUniformLocation(BLURPROG, "screenTexture"), 0);
-  glUniform2fv(glGetUniformLocation(FXAAPROG, "inverseScreenSize"),1,invSS);
-}
-
-void Renderer::initFXAA(){
-  showContourFXAA = false;
-  computeFXAA = true;
-  minThresholdFXAA = 0.0312;
-  maxThresholdFXAA = 0.125;
-  char buff[1000];
-  getcwd(buff,1000);
-  std::string wd(buff);
-  std::string vshPath = wd +  std::string("/../src/OpenGL/Shader/PostProcess/pass.vert.glsl");
-  std::string fxxPath = wd + std::string("/../src/OpenGL/Shader/PostProcess/FXAA.frag.glsl");
-  FXAAPROG = programs.computeAddPostProgramm(vshPath,fxxPath);
-  glUniform1i(glGetUniformLocation(FXAAPROG, "screenTexture"), 0);
-}
-
 
 void Renderer::wheelEvent( const int down){
-  _camera->processmousescroll(down);
+  _camera->mouseScroll(down);
 }
 
 void Renderer::mouseclick(int button, float xpos, float ypos) {
-  _button = button;
-  _mousex = xpos;
-  _mousey = ypos;
-  //TODO RAYCAST ICI
-  Ray r = _camera->generateRay(xpos,ypos);
-  int ID = -1;
-  for(const auto& bone : m_bones){
-      if((ID = bone.clickOnSkeletton(r)) != -1 ){
-          cout << "You clicked on bone : "<<ID<<endl;
+  lastX[button] = xpos;
+  lastY[button] = ypos;
+  firstMouse[button] = false;
+  m_last_button = button;
+  if( button == LEFT_BUTTON){
+      m_renderer_ray = _camera->getRayFromScreen(xpos,ypos);
+      for(auto& bone : m_bones){
+          if((m_clicked_bone = bone.clickOnSkeletton(m_renderer_ray)) != nullptr ){
+              cout << "You clicked on bone : "<<m_clicked_bone->ID()<<endl;
+            }
         }
     }
-  _camera->processmouseclick(_button, xpos, ypos);
+  //shortcut->mouseclick(button, xpos, ypos);
 }
 
 void Renderer::mousemove(float xpos, float ypos) {
@@ -432,109 +292,59 @@ void Renderer::mousemove(float xpos, float ypos) {
   //Rotation gauche-droit par rapport à l'axe direction x (fromCam Bone Orig)
   //Boutton droit
   //Pareil mais clamper dans la directionde plus grand angle
-  _camera->processmousemovement(_button, xpos, ypos, true);
+  float xOffset = xpos - lastX[m_last_button];
+  float yOffset = lastY[m_last_button] - ypos;
+  lastX[m_last_button] = xpos;
+  lastY[m_last_button] = ypos;
+
+  if(m_animation){
+      switch(m_last_button){
+        case RIGHT_BUTTON: break;
+        case LEFT_BUTTON:
+          if(m_clicked_bone) m_clicked_bone->rotate(2.f * (float)M_PI * xOffset * invSS[0],m_clicked_bone->origin() - _camera->m_position);
+          break;
+        case MIDDLE_BUTTON:break;
+        case NO_BUTTON: break;
+        }
+
+    }else{
+      _camera->mouseMovement(xOffset, yOffset, true);
+    }
+
 }
 
 void Renderer::keyboardmove(int key, double time) {
-  _camera->processkeyboard(Camera_Movement(key), time);
+  _camera->keyboard(Movement(key), time);
 }
 
 bool Renderer::keyboard(unsigned char k) {
-  std::string OnOff;
-  auto displayInfo = [&](){        std::cout << "******************************"<<std::endl;
-      std::cout << "*     Post process status    *"<<std::endl;
-      std::cout << "******************************"<<std::endl;
-      OnOff = computeFXAA ? "[ON] " : "[OFF]";
-      std::cout << "* FXAA :  " << OnOff <<"              *  min threshold : "<< minThresholdFXAA <<"     max threshold : "<<maxThresholdFXAA<<std::endl;
-      OnOff = computeSSAO ? "[ON] " : "[OFF]";
-      std::cout << "* SSAO :  " << OnOff <<"              *  radius : " <<ssaoRadius<<"    bias : "<< ssaoBias<<std::endl;
-      OnOff = computeBLOOM ? "[ON] " : "[OFF]";
-      std::cout << "* Bloom : " << OnOff <<"              *"<<std::endl;
-      OnOff = computeHDR ? "[ON] " : "[OFF]";
-      std::cout << "* HDR :   " << OnOff <<"              *  gamma : "<<gammaHDR<<"    exposure : "<<exposureHDR<<std::endl;
-      std::cout << "******************************"<<std::endl;
-      std::cout <<std::endl;
-      std::cout <<std::endl;
-      std::cout <<std::endl;};
-
   switch(k) {
     //TOOGLE OPTIONS - MAJ
-    case 'E':
-      computeBLOOM = !computeBLOOM;
-      displayInfo();
-      return true;
-    case 'R':
-      computeHDR = !computeHDR;
-      displayInfo();
-      return true;
-    case '&':
-      showContourFXAA = !showContourFXAA;
-      computeFXAA = true;
-      displayInfo();
-      return true;
-    case 'A':
-      computeFXAA = !computeFXAA;
-      showContourFXAA = false;
-      displayInfo();
-      return true;
-    case 'Z':
+    case 'S':
       computeSSAO = !computeSSAO;
-      displayInfo();
       return true;
     case 'B':
       m_draw_aabb = !m_draw_aabb;
       setDrawAABB(m_draw_aabb);
       return true;
-      //###########FXAA###############
-    case 'a':
-      minThresholdFXAA = minThresholdFXAA - 0.01 > 0 ? minThresholdFXAA - 0.010 : 0.0;
-      displayInfo();
+    case 'F':
+      _camera->fitScene(m_objects);
       return true;
-    case 'z':
-      minThresholdFXAA = minThresholdFXAA + 0.01 < maxThresholdFXAA ? minThresholdFXAA + 0.01 : maxThresholdFXAA;
-      displayInfo();
-      return true;
-    case 'q':
-      maxThresholdFXAA = maxThresholdFXAA - 0.01 > minThresholdFXAA ? maxThresholdFXAA - 0.01 : minThresholdFXAA;
-      displayInfo();
-      return true;
-    case 's':
-      maxThresholdFXAA = maxThresholdFXAA + 0.01 < 0.5 ? maxThresholdFXAA + 0.01 : 0.5;
-      displayInfo();
+    case 'A':
+      m_animation = !m_animation;
       return true;
       //##########SSAO##############
     case 'e':
-      ssaoRadius = ssaoRadius - 0.05 > 0.f ? ssaoRadius - 0.05 : 0.0;
-      displayInfo();
+      ssaoRadius = ssaoRadius - 0.05f > 0.f ? ssaoRadius - 0.05f : 0.0f;
       return true;
     case 'r':
-      ssaoRadius = ssaoRadius + 0.05 < 1.5 ? ssaoRadius + 0.05 : 1.5;
-      displayInfo();
+      ssaoRadius = ssaoRadius + 0.05f < 1.5 ? ssaoRadius + 0.05f : 1.5f;
       return true;
     case 'd':
-      ssaoBias = ssaoBias - 0.005 >0.0 ? ssaoBias - 0.005 : 0.0;
-      displayInfo();
+      ssaoBias = ssaoBias - 0.005f >0.0f ? ssaoBias - 0.005f : 0.0f;
       return true;
     case 'f':
-      ssaoBias = ssaoBias + 0.005 < 0.25 ? ssaoBias + 0.005 : 0.25;
-      displayInfo();
-      return true;
-      //##############HDR+BLOOM##############
-    case 'g':
-      gammaHDR = gammaHDR - 0.1 < 0.0 ? 0. : gammaHDR- 0.1;
-      displayInfo();
-      return true;
-    case 'h':
-      gammaHDR = gammaHDR + 0.1 < 3. ? gammaHDR + 0.1 : 3.0;
-      displayInfo();
-      return true;
-    case 't':
-      exposureHDR = exposureHDR -0.1 < 0. ? 0.0 : exposureHDR - 0.1;
-      displayInfo();
-      return true;
-    case 'y':
-      exposureHDR = exposureHDR + 0.1 < 3. ? exposureHDR + 0.1 : 0.0;
-      displayInfo();
+      ssaoBias = ssaoBias + 0.005f < 0.25f ? ssaoBias + 0.005f : 0.25;
       return true;
     default:
       return false;
@@ -552,5 +362,5 @@ void Renderer::resizeBuffers(int w, int h){
 void Renderer::resize(int w, int h){
   resizeBuffers(w,h);
   Scene::resize(w, h);
-  _camera->setviewport(glm::vec4(0.f, 0.f, _width, _height));
+  _camera->resizeCamera(_width, _height);
 }
