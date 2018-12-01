@@ -1,7 +1,9 @@
 #ifndef BONE_H
 #define BONE_H
 #include <vector>
+#include <deque>
 #include "./src/OpenGL/Object/Model/model.h"
+#include "./src/Math/RayCast.h"
 
 class Bone : public Model
 {
@@ -11,8 +13,11 @@ public:
 
   /* Hierarchy functions */
   Bone addChild(glm::vec3 direction = glm::vec3(1.0,0.0,0.0), float length = 2.0f, float radius = 0.3f);
+  Bone addChild(deque<int> path,glm::vec3 direction = glm::vec3(1.0,0.0,0.0), float length = 2.0f, float radius = 0.3f);
   void addChild(Bone& child);
 
+  virtual void setAABB(bool d);
+  virtual int clickOnSkeletton(Ray& r) const;
   void addParent(const Bone& parent);
 
   void setRoot(bool root);
@@ -26,8 +31,10 @@ public:
   /* Action functions */
   void rotate(const glm::mat4& R);
   void rotateLocal(float theta, glm::vec3 axis);
+
   //void rotateLocal(Quaternion q);
 
+  unsigned int ID() const { return m_id;}
 protected:
   static unsigned int m_bone_count;
   unsigned int m_id;

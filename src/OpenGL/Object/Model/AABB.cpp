@@ -1,9 +1,8 @@
 #include "AABB.h"
-#include <iostream>
 #include "../../opengl_stuff.h"
-AABB::AABB() : Mesh (){}
+AABB::AABB() {}
 
-AABB::AABB(std::vector<Mesh> meshes) : Mesh(){
+AABB::AABB(std::vector<Mesh> meshes){
   computeAABB(meshes);
 }
 
@@ -22,15 +21,15 @@ void AABB::computeAABB(std::vector<Mesh> meshes){
           m_max.z = mesh.m_vertices[i+2] > m_max.z ? mesh.m_vertices[i+2] : m_max.z;
         }
     }
-    box.computeCube(m_min,m_max);
+    m_box.computeCube(m_min,m_max);
 }
 
 void AABB::draw() const{
   glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-  box.draw();
+  m_box.draw();
   glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
 void AABB::computeAABB(glm::vec3 a,glm::vec3 b,glm::vec3 c,glm::vec3 d,glm::vec3 dir,float length){
-  box.computeCube(a,b,c,d,dir,length);
+  m_box.computeCube(a,b,c,d,dir,length);
 }

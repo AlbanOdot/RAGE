@@ -1,9 +1,7 @@
 #include "Bone.h"
 #include <iostream>
-#define GLM_ENABLE_EXPERIMENTAL
-#include <glm/gtx/transform.hpp>
-#include <glm/gtx/vector_angle.hpp>
 #include "./src/Math/Algorithm.h"
+#include <random>
 
 unsigned int Bone::m_bone_count = 0;
 
@@ -17,11 +15,18 @@ Bone::Bone(glm::vec3 origin , glm::vec3 direction, float length , float radius )
   m_meshes.push_back(Sphere(origin - sRadius * direction,sRadius));//When Bone is not root we remove this
 
   //AABB computation
-  glm::vec3 up(0,1,0);
-  glm::vec3 base1(glm::rotateX(direction,(float)M_PI * 0.25f));
-  glm::vec3 base2(glm::rotateY(direction,(float)M_PI * 0.75f));
+  //On swap les coordonnées pour avoir une base de R^3
+  std::uniform_real_distribution<float> randomFloats(0.0001f,0.99f);
+  std::default_random_engine  generator;
+  float bias = randomFloats(generator);
+  // For all bias  :  bias != (2 - bias) != bias^2 <=> 0<bias<1
+  glm::vec3 base1(bias * direction.y, (2.f - bias) * direction.x, bias * bias *direction.z);
+  bias = randomFloats(generator);
+  glm::vec3 base2(bias * direction.y, (2.f - bias) * direction.z, bias * bias *direction.x);
+  base1 = glm::normalize(base1);
+  base2 = glm::normalize(base2);
   //Find orthonormal basis
-  GramSchmidt(direction,base1,base2);
+  Math::Algorithm::GramSchmidt(direction,base1,base2);
   glm::vec3 a = radius * base1 + origin;
   glm::vec3 b = radius * base2 + origin;
   glm::vec3 c = -radius * base1 + origin;
@@ -36,6 +41,7 @@ Bone::Bone(glm::vec3 origin , glm::vec3 direction, float length , float radius )
 
   //+radius pour les deux spheres
   m_aabb.computeAABB(a,b,c,d,direction,length + radius);
+  //m_aabb.computeAABB(m_meshes);
 }
 
 void Bone::draw() const{
@@ -49,8 +55,9 @@ void Bone::draw() const{
   for(const auto& child : m_children){
       child.draw();
     }
-  if(m_draw_aabb)
-    m_aabb.draw();
+  if(m_draw_aabb){
+      m_aabb.draw();
+    }
 }
 
 /* Hierarchy functions */
@@ -66,6 +73,34 @@ void Bone::addChild(Bone& child){
   m_children.push_back(child);
 }
 
+Bone Bone::addChild(deque<int> path,glm::vec3 direction, float length, float radius){
+  if(path.size() == 0)
+    return addChild(direction, length, radius);
+  int son = path[0];
+  if(son >= m_children.size())
+    return Bone();
+  path.pop_front();
+  return m_children[son].addChild(path, direction,length,radius);
+}
+
+int Bone::clickOnSkeletton(Ray& r)const{
+  if(Math::RayCast::vsAABB(r,m_aabb))
+    return (int)m_id;
+  int ID = -1;
+  for(const auto& child : m_children){
+      if( (ID = child.clickOnSkeletton(r)) != -1)
+        return ID;
+    }
+  return -1;
+}
+
+void Bone::setAABB(bool d){
+  cout << "Bone "<<m_id<< " has been set"<<endl;
+  m_draw_aabb = d;
+  for(auto& child : m_children){
+      child.setAABB(d);
+    }
+}
 void Bone::addParent(const Bone& parent){
   m_parents.push_back(parent);
 }
@@ -87,7 +122,7 @@ void Bone::rotate(float theta, glm::vec3 u){
   R[0][0] = ct + u.x*u.x *uct; R[0][1] = u.x*u.y*uct - u.z*st; R[0][2] = u.x*u.z*uct + u.y*st;
   R[1][0] = R[0][1]; R[1][1] = ct + u.y*u.y*uct;R[1][2] = u.y*u.z*uct-u.x*st;
   R[2][0] = R[0][2]; R[2][1] = R[1][2]; R[2][2] = ct + u.z*u.z*uct;
-  //TODO FINIR LE 4X4 POUR LA ROTATION
+  R[3][0] = m_origin.x;R[3][1] = m_origin.y;R[3][2] = m_origin.z;
 
   m_model *= R;
   for(auto& child : m_children){
@@ -101,6 +136,9 @@ void Bone::rotate(float theta, glm::vec3 u){
 /* Action functions */
 void Bone::rotate(const glm::mat4& R){
   m_model *= R;
+  for(auto& child : m_children){
+      child.rotate(R);
+    }
 }
 //void rotateLocal(float theta);
 //void rotateLocal(Quaternion q);

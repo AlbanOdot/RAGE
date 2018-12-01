@@ -28,7 +28,8 @@ public:
   }
   virtual void draw() const;
   virtual void setAABB(bool d) { m_draw_aabb = d;}
-    glm::mat4 m_model;
+  glm::mat4 m_model;
+  AABB aabb() const { return m_aabb;}
 protected:
   bool m_draw_aabb = false;
   vector<Mesh> m_meshes;

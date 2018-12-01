@@ -1,6 +1,7 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 #include "./src/OpenGL/opengl_stuff.h"
+#include "./src/Math/ray.h"
 
 // Defines several possible options for camera movement. Used as abstraction to stay away from window-system specific input methods
 enum Camera_Movement {
@@ -23,6 +24,7 @@ public:
 
     // Returns the view matrix calculated using Eular Angles and the LookAt Matrix
     glm::mat4 viewmatrix() const;
+    glm::mat4 projectionMatrix() const { return m_projection;}
     float &zoom();
     glm::vec3 &position();
 
@@ -37,6 +39,8 @@ public:
     // Processes input received from a mouse scroll-wheel event. Only requires input on the vertical wheel-axis
     virtual void processmousescroll(GLfloat yoffset);
 
+    virtual Ray generateRay(float mouse_x, float mouse_y);
+
 protected:
     float _dist = 1.f;
     glm::vec3 _position;
@@ -45,6 +49,7 @@ protected:
     float _zoom;
 
     glm::vec4 _viewport;
+    glm::mat4 m_projection;
 
     // mouse movement
     int _mousebutton;
@@ -108,7 +113,7 @@ private:
 class TrackballCamera : public Camera {
 public:
     TrackballCamera(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3 center = glm::vec3(0.0f, 0.0f, -1.0f));
-    ~TrackballCamera();
+    ~TrackballCamera() override;
 
     // Processes input received from any keyboard-like input system. Accepts input parameter in the form of camera defined ENUM (to abstract it from windowing systems)
     void processkeyboard(Camera_Movement direction, GLfloat deltaTime) override;
@@ -121,6 +126,8 @@ public:
 
     // Processes input received from a mouse scroll-wheel event. Only requires input on the vertical wheel-axis
     void processmousescroll(GLfloat yoffset) override;
+
+    Ray generateRay(float x, float y) override;
 
 private:
     // Distance to center

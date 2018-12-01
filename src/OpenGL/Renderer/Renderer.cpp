@@ -4,6 +4,11 @@
 #include "src/OpenGL/Object/Animation/Bone.h"
 #include <random>
 #include <iostream>
+#include "../../Math/Algorithm.h"
+#include <glm/gtx/quaternion.hpp>
+#include "./src/Math/RayCast.h"
+#include "glu.h"
+
 #define GL_SILENCE_DEPRECATION 1
 /*------------------------------------------------------------------------------------------------------------------------*/
 /*------------------------------------------------------------------------------------------------------------------------*/
@@ -48,11 +53,12 @@ Renderer::Renderer(const int width, const int height, bool animation) : Scene(wi
   initLighting();
   initSSAO();
   //MESH LOADING AND STORAGE
-  m_objects.push_back(Model("../DataFiles/CylinderAnim.obj"));
-  m_bones.push_back(Bone(glm::vec3(0.0,.0,0.0),glm::vec3(1.0,1.0,0.0)));
-  m_bones[0].addChild(glm::vec3(-1.,1,0));
-  //m_bones[0].addChild();
-  //Bone test = m_bones[0].addChild(glm::vec3(1.0,1.0,0.0));
+  //m_objects.push_back(Model("../DataFiles/CylinderAnim.obj"));
+
+  m_bones.push_back(Bone(glm::vec3(-1.0,.0,0.0),glm::vec3(1.0,.0,0.0)));
+  m_bones[0].addChild(glm::vec3(1.0,1.0,0.0));
+  //m_bones[0].addChild(glm::vec3(-1,-1,0));
+
 
   m_animation = true;
   //POSTPROCESS QUAD INIT
@@ -409,7 +415,13 @@ void Renderer::mouseclick(int button, float xpos, float ypos) {
   _mousex = xpos;
   _mousey = ypos;
   //TODO RAYCAST ICI
-
+  Ray r = _camera->generateRay(xpos,ypos);
+  int ID = -1;
+  for(const auto& bone : m_bones){
+      if((ID = bone.clickOnSkeletton(r)) != -1 ){
+          cout << "You clicked on bone : "<<ID<<endl;
+        }
+    }
   _camera->processmouseclick(_button, xpos, ypos);
 }
 

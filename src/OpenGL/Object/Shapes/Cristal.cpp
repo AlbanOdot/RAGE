@@ -1,12 +1,13 @@
 #include "Cristal.h"
+#include "./src/Math/Algorithm.h"
 
 Cristal::Cristal(glm::vec3 origin , glm::vec3 direction, float length, float radius)
-: Shape(CRISTAL), m_origin(origin), m_direction(direction), m_length(length), m_radius(radius)
+  : Shape(CRISTAL), m_origin(origin), m_direction(direction), m_length(length), m_radius(radius)
 {
   //Generate 4 points
-  glm::vec3 b0 = origin + glm::vec3(0.0,radius/2,0.0) + 0.3f * direction;
-  glm::vec3 b1 = origin + glm::vec3(0.0,-radius/2,0.0) + 0.3f * direction;
-  glm::vec3 b2 = origin + glm::vec3(0.0,0.0,radius/2) + 0.3f * direction;
+  glm::vec3 b0 = origin + glm::vec3(0.,0.5 * radius,0.0) + 0.3f * direction;
+  glm::vec3 b1 = origin + glm::vec3(0.,-0.5 * radius,0.0) + 0.3f * direction;
+  glm::vec3 b2 = origin + glm::vec3(0.0,0.0,0.5 * radius) + 0.3f * direction;
   glm::vec3 top = origin + length * direction;
   glm::vec3 bottom = origin;
 

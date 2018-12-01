@@ -4,12 +4,13 @@
 #include "gtx/norm.hpp"
 #include "gtc/matrix_transform.hpp"
 #include <iostream>
+
 /*------------------------------------------------------------------------------------------------------------------------*/
 
 Camera::Camera(glm::vec3 position, glm::vec3 up, glm::vec3 look, float zoom)
   : _position(position), _front(look-position), _up(up), _zoom(zoom)
 {
-
+  m_projection = glm::perspective(zoom, float(_viewport.z) / float(_viewport.w), 0.1f, 100.0f);
 }
 
 Camera::~Camera() {
@@ -48,8 +49,14 @@ glm::vec3 &Camera::position() {
 
 void Camera::setviewport(glm::vec4 viewport) {
     _viewport = viewport;
+    m_projection = glm::perspective(_zoom, float(_viewport.z) / float(_viewport.w), 0.1f, 100.0f);
+
 }
 
+Ray Camera::generateRay(float x, float y){
+  glm::vec3 u = glm::unProject(glm::vec3(x,_viewport.z-y,0.1),viewmatrix(),m_projection,_viewport);
+  return Ray(_position,u-_position);
+}
 
 /*------------------------------------------------------------------------------------------------------------------------*/
 
@@ -218,16 +225,13 @@ glm::vec3 TrackballCamera::getmouseprojectiononball(float xpos, float ypos){
 }
 
 glm::vec2 TrackballCamera::getmouseonscreen(float xpos, float ypos) {
-    return glm::vec2(
-                (xpos - _viewport.z * 0.5f) / (_viewport.z * 0.5f),
-                (ypos - _viewport.w * 0.5f) / (_viewport.w * 0.5f)
-                );
+    return glm::vec2((xpos - _viewport.z * 0.5f) / (_viewport.z * 0.5f),(ypos - _viewport.w * 0.5f) / (_viewport.w * 0.5f));
 }
 
 void TrackballCamera::rotatecamera() {
     glm::vec3 direction = _rotend - _rotstart;
     float velocity = glm::length(direction);
-    if (velocity > 0.0001) {
+    if (velocity > 0.0001f) {
         glm::vec3 axis = glm::cross(_rotend, _rotstart);
         float length = glm::length(axis);
         axis = glm::normalize(axis);
@@ -254,4 +258,8 @@ void TrackballCamera::pancamera() {
     }
 }
 
+Ray TrackballCamera::generateRay(float x, float y){
+  glm::vec3 u = glm::unProject(glm::vec3(_viewport.z - x,_viewport.w-y,0.1),viewmatrix(),m_projection,_viewport);
+  return Ray(_position,u-_position);
+}
 

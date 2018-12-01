@@ -78,15 +78,15 @@ void Cube::computeCube(glm::vec3 a,glm::vec3 b,glm::vec3 c,glm::vec3 d,glm::vec3
   //TODO Faire un cube de tout ce bordel
 
   //left face
-  m_topLeftFront = b + dir * length;
+  m_topLeftFront = a;
   m_botLeftFront = b;
-  m_topLeftBack =  c + dir * length;
+  m_topLeftBack =  d;
   m_botLeftBack =  c;
   //right face
-  m_topRightFront = a+dir*length;
-  m_botRightFront = a;
-  m_topRightBack =  d+dir*length;
-  m_botRightBack =  d;
+  m_topRightFront = a + dir * length;
+  m_botRightFront = b + dir * length;
+  m_topRightBack =  d + dir*length;
+  m_botRightBack =  c + dir * length;
 
   /*
    *          0-----3

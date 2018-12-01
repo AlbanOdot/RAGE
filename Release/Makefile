@@ -190,33 +190,6 @@ src/Main/main.cpp.s:
 	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/Main/main.cpp.s
 .PHONY : src/Main/main.cpp.s
 
-src/Math/Algorithm.o: src/Math/Algorithm.cpp.o
-
-.PHONY : src/Math/Algorithm.o
-
-# target to build an object file
-src/Math/Algorithm.cpp.o:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/Math/Algorithm.cpp.o
-.PHONY : src/Math/Algorithm.cpp.o
-
-src/Math/Algorithm.i: src/Math/Algorithm.cpp.i
-
-.PHONY : src/Math/Algorithm.i
-
-# target to preprocess a source file
-src/Math/Algorithm.cpp.i:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/Math/Algorithm.cpp.i
-.PHONY : src/Math/Algorithm.cpp.i
-
-src/Math/Algorithm.s: src/Math/Algorithm.cpp.s
-
-.PHONY : src/Math/Algorithm.s
-
-# target to generate assembly for a file
-src/Math/Algorithm.cpp.s:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/Math/Algorithm.cpp.s
-.PHONY : src/Math/Algorithm.cpp.s
-
 src/OpenGL/Buffers/DataBuffers/Float3BufferObject.o: src/OpenGL/Buffers/DataBuffers/Float3BufferObject.cpp.o
 
 .PHONY : src/OpenGL/Buffers/DataBuffers/Float3BufferObject.o
@@ -881,9 +854,6 @@ help:
 	@echo "... src/Main/main.o"
 	@echo "... src/Main/main.i"
 	@echo "... src/Main/main.s"
-	@echo "... src/Math/Algorithm.o"
-	@echo "... src/Math/Algorithm.i"
-	@echo "... src/Math/Algorithm.s"
 	@echo "... src/OpenGL/Buffers/DataBuffers/Float3BufferObject.o"
 	@echo "... src/OpenGL/Buffers/DataBuffers/Float3BufferObject.i"
 	@echo "... src/OpenGL/Buffers/DataBuffers/Float3BufferObject.s"

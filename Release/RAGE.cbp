@@ -136,10 +136,19 @@
 		<Unit filename="/Users/alban/Cours/Rage/src/Main/main.cpp">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/Math/Algorithm.cpp">
+		<Unit filename="/Users/alban/Cours/Rage/src/Math/Algorithm.h">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/Math/Algorithm.h">
+		<Unit filename="/Users/alban/Cours/Rage/src/Math/Algorithm.inl">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/Math/RayCast.h">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/Math/RayCast.inl">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/Math/ray.h">
 			<Option target="RAGE"/>
 		</Unit>
 		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Buffers/DataBuffers/Float3BufferObject.cpp">
