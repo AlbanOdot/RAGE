@@ -2,7 +2,7 @@
 #define BONE_H
 #include <vector>
 #include <deque>
-#include "./src/OpenGL/Object/Model/model.h"
+#include "./src/OpenGL/Object/Model/Model.h"
 #include "./src/Math/RayCast.h"
 
 class Bone : public Model
@@ -11,7 +11,7 @@ public:
   /* CONSTRUCTOR AND INTERACTION FUNCTIONS */
   Bone(glm::vec3 origin = glm::vec3(-1.0,0.0,0.0), glm::vec3 direction = glm::vec3(1.0,0.0,0.0), float length = 2.0f, float radius = 0.3f);
   virtual void draw() const;
-  virtual void setAABB(bool d);
+  virtual void showAABB(bool d);
   virtual Bone* clickOnSkeletton(Ray& r);
 
   /* Hierarchy functions */
@@ -29,7 +29,7 @@ public:
   float radius() const { return m_radius;}
 
   /* Action Function */
-  void rotate(float theta, glm::vec3 axis) override;
+  void rotate(float theta, const glm::vec3& axis) override;
   void rotate(const glm::mat4& R) override;
   //void stretch(glm::vec3 direction, float length) override;
 

@@ -68,12 +68,7 @@ Renderer::Renderer(const int width, const int height, bool animation) : Scene(wi
   _camera->resizeCamera(_width,_height);
   m_view = _camera->GetViewMatrix();
   m_projection = _camera->GetProjMatrix();
-}
-
-void Renderer::animationDraw(){
-
-
-
+(void)animation;
 }
 
 void Renderer::draw(){
@@ -97,11 +92,11 @@ void Renderer::draw(){
   glUniformMatrix4fv( glGetUniformLocation(GBUFFERRENDER, "projection"), 1, GL_FALSE, glm::value_ptr(m_projection));
   m_view = _camera->GetViewMatrix();
   for(const auto& model : m_objects){
-      glUniformMatrix4fv( glGetUniformLocation(GBUFFERRENDER, "model"), 1, GL_FALSE, glm::value_ptr(model.m_model));
+      glUniformMatrix4fv( glGetUniformLocation(GBUFFERRENDER, "model"), 1, GL_FALSE, glm::value_ptr(model.model()));
       model.draw();
     }
   for(const auto& bone : m_bones){
-      glUniformMatrix4fv( glGetUniformLocation(GBUFFERRENDER, "model"), 1, GL_FALSE, glm::value_ptr(bone.m_model));
+      glUniformMatrix4fv( glGetUniformLocation(GBUFFERRENDER, "model"), 1, GL_FALSE, glm::value_ptr(bone.model()));
       bone.draw();
     }
 
@@ -234,16 +229,16 @@ void Renderer::initSSAO(){
 }
 
 void Renderer::initLighting(){
-  std::uniform_real_distribution<GLfloat> randompos(1.0,40.0);
-  std::uniform_real_distribution<GLfloat> randomcol(0.0,2.0);
+  std::uniform_real_distribution<GLfloat> randompos(1.0f,40.0f);
+  std::uniform_real_distribution<GLfloat> randomcol(0.0f,2.0f);
   std::default_random_engine  generator;
-  std::vector<float> pos3 = {1.,1.,1., 1.,-1.,1., -1,0.,1};
-  float LiColor[9] = {0.1,0.1,0.1, 0.1,0.1,0.1, 0.1,0.1,0.1};
+  std::vector<float> pos3 = {1.f,1.f,1.f, 1.f,-1.f,1.f, -1.f,0.f,1.f};
+  float LiColor[9] = {0.1f,0.1f,0.1f, 0.1f,0.1f,0.1f, 0.1f,0.1f,0.1f};
   nbLights = 0;
   for(    ; nbLights<3; ++nbLights){
       glm::vec3 pos(pos3[3*nbLights], pos3[3*nbLights+1], pos3[3*nbLights+3]);
       pos = glm::normalize(pos);
-      pos *= 50.;
+      pos *= 50.f;
       LiPosition[3*nbLights]  = pos[0];
       LiPosition[3*nbLights+1]= pos[1];
       LiPosition[3*nbLights+3]= pos[2];
@@ -363,4 +358,15 @@ void Renderer::resize(int w, int h){
   resizeBuffers(w,h);
   Scene::resize(w, h);
   _camera->resizeCamera(_width, _height);
+}
+
+void Renderer::setDrawAABB(bool d)
+{
+  for(auto& model : m_objects){
+      model.showAABB(d);
+    }
+  for(auto& bone : m_bones){
+      bone.showAABB(d);
+    }
+
 }

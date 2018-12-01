@@ -3,7 +3,7 @@
 
 #include <src/Math/ray.h>
 #include <src/OpenGL/Object/Model/AABB.h>
-#include "./src/OpenGL/Object/Model/model.h"
+#include "./src/OpenGL/Object/Model/Model.h"
 #include <string>
 #include <glm.hpp>
 

@@ -38,7 +38,7 @@ glm/gtx/intersect.hpp
 iostream
 -
 
-.././src/OpenGL/Object/Model/mesh.h
+.././src/OpenGL/Object/Model/Mesh.h
 vector
 -
 glm.hpp
@@ -72,15 +72,7 @@ glm.hpp
 ../Shapes/Cube.h
 .././src/OpenGL/Object/Shapes/Cube.h
 
-..//./src/OpenGL/Object/Model/mesh.h
-vector
--
-glm.hpp
--
-
-..//./src/OpenGL/Object/Model/model.h
-mesh.h
-.././src/OpenGL/Object/Model/mesh.h
+..//./src/OpenGL/Object/Model/Model.h
 string
 -
 assimp/Importer.hpp
@@ -91,16 +83,28 @@ assimp/postprocess.h
 -
 glm/mat4x4.hpp
 -
-src/OpenGL/Object/Shapes/Shape.h
-.././src/OpenGL/Object/Model/src/OpenGL/Object/Shapes/Shape.h
-src/OpenGL/Object/Shapes/Sphere.h
-.././src/OpenGL/Object/Model/src/OpenGL/Object/Shapes/Sphere.h
-src/OpenGL/Object/Shapes/Tetrahedron.h
-.././src/OpenGL/Object/Model/src/OpenGL/Object/Shapes/Tetrahedron.h
-src/OpenGL/Object/Shapes/Cristal.h
-.././src/OpenGL/Object/Model/src/OpenGL/Object/Shapes/Cristal.h
+Mesh.h
+.././src/OpenGL/Object/Model/Mesh.h
 src/OpenGL/Object/Model/AABB.h
 .././src/OpenGL/Object/Model/src/OpenGL/Object/Model/AABB.h
+
+..//./src/OpenGL/Object/Model/mesh.h
+vector
+-
+glm.hpp
+-
+
+..//./src/OpenGL/Object/Shapes/shapes.h
+src/OpenGL/Object/Shapes/Cristal.h
+.././src/OpenGL/Object/Shapes/src/OpenGL/Object/Shapes/Cristal.h
+src/OpenGL/Object/Shapes/Cube.h
+.././src/OpenGL/Object/Shapes/src/OpenGL/Object/Shapes/Cube.h
+src/OpenGL/Object/Shapes/Shape.h
+.././src/OpenGL/Object/Shapes/src/OpenGL/Object/Shapes/Shape.h
+src/OpenGL/Object/Shapes/Sphere.h
+.././src/OpenGL/Object/Shapes/src/OpenGL/Object/Shapes/Sphere.h
+src/OpenGL/Object/Shapes/Tetrahedron.h
+.././src/OpenGL/Object/Shapes/src/OpenGL/Object/Shapes/Tetrahedron.h
 
 ..//glm/glm.hpp
 detail/_fixes.hpp
@@ -208,9 +212,15 @@ detail/type_mat4x4.hpp
 glm/glm.hpp
 -
 
+..//src/OpenGL/Object/Shapes/Cube.h
+glm.hpp
+../src/OpenGL/Object/Shapes/glm.hpp
+Shape.h
+../src/OpenGL/Object/Shapes/Shape.h
+
 ..//src/OpenGL/Object/Shapes/Shape.h
-../Model/mesh.h
-../src/OpenGL/Object/Model/mesh.h
+../Model/Mesh.h
+../src/OpenGL/Object/Model/Mesh.h
 
 ..//src/OpenGL/Object/Shapes/Sphere.h
 ./Shape.h
@@ -1072,15 +1082,15 @@ detail/type_vec4.hpp
 detail/func_vector_relational.hpp
 ../glm/detail/func_vector_relational.hpp
 
-../src/OpenGL/Object/Model/mesh.h
+../src/OpenGL/Object/Model/Mesh.h
 vector
 -
 glm.hpp
 -
 
 ../src/OpenGL/Object/Shapes/./Shape.h
-../Model/mesh.h
-../src/OpenGL/Object/Shapes/Model/mesh.h
+../Model/Mesh.h
+../src/OpenGL/Object/Shapes/Model/Mesh.h
 
 ../src/OpenGL/Object/Shapes/Cube.h
 glm.hpp
@@ -1089,8 +1099,8 @@ Shape.h
 ../src/OpenGL/Object/Shapes/Shape.h
 
 ../src/OpenGL/Object/Shapes/Shape.h
-../Model/mesh.h
-../src/OpenGL/Object/Model/mesh.h
+../Model/Mesh.h
+../src/OpenGL/Object/Model/Mesh.h
 
 /Users/alban/Cours/Rage/src/OpenGL/Object/Animation/Bone.cpp
 Bone.h
@@ -1099,6 +1109,8 @@ iostream
 -
 ./src/Math/Algorithm.h
 /Users/alban/Cours/Rage/src/OpenGL/Object/Animation/./src/Math/Algorithm.h
+./src/OpenGL/Object/Shapes/shapes.h
+/Users/alban/Cours/Rage/src/OpenGL/Object/Animation/./src/OpenGL/Object/Shapes/shapes.h
 random
 -
 
@@ -1107,8 +1119,8 @@ vector
 -
 deque
 -
-./src/OpenGL/Object/Model/model.h
-/Users/alban/Cours/Rage/src/OpenGL/Object/Animation/./src/OpenGL/Object/Model/model.h
+./src/OpenGL/Object/Model/Model.h
+/Users/alban/Cours/Rage/src/OpenGL/Object/Animation/./src/OpenGL/Object/Model/Model.h
 ./src/Math/RayCast.h
 /Users/alban/Cours/Rage/src/OpenGL/Object/Animation/./src/Math/RayCast.h
 
@@ -1215,6 +1227,10 @@ limits
 -
 cmath
 -
+
+/usr/local/include/assimp/mesh.h
+types.h
+/usr/local/include/assimp/types.h
 
 /usr/local/include/assimp/metadata.h
 Compiler/pstdint.h

@@ -1,12 +1,13 @@
 #include "Bone.h"
 #include <iostream>
 #include "./src/Math/Algorithm.h"
+#include "./src/OpenGL/Object/Shapes/shapes.h"
 #include <random>
 
 unsigned int Bone::m_bone_count = 0;
 
 Bone::Bone(glm::vec3 origin , glm::vec3 direction, float length , float radius )
-  : Model(static_cast<unsigned char>('c')), m_id(m_bone_count++), m_root(true), m_origin(origin), m_direction(glm::normalize(direction)), m_length(length), m_radius(radius)
+  : Model(), m_id(m_bone_count++), m_root(true), m_origin(origin), m_direction(glm::normalize(direction)), m_length(length), m_radius(radius)
 {
   direction = glm::normalize(direction);
   m_meshes.push_back(Cristal(origin,direction,length,radius));
@@ -94,11 +95,11 @@ Bone * Bone::clickOnSkeletton(Ray& r){
   return nullptr;
 }
 
-void Bone::setAABB(bool d){
+void Bone::showAABB(bool d){
   cout << "Bone "<<m_id<< " has been set"<<endl;
   m_draw_aabb = d;
   for(auto& child : m_children){
-      child.setAABB(d);
+      child.showAABB(d);
     }
 }
 void Bone::addParent(const Bone& parent){
@@ -113,10 +114,10 @@ void Bone::setRoot(bool root){
 }
 
 /* Hierarchy  action functions */
-void Bone::rotate(float theta, glm::vec3 u){
-  m_model = glm::translate(m_model,-m_origin);
+void Bone::rotate(float theta, const glm::vec3& u){
+  //m_model = glm::translate(m_model,-m_origin);
   m_model = glm::rotate(m_model, theta, u);
-  m_model = glm::translate(m_model,m_origin);
+  //m_model = glm::translate(m_model,m_origin);
   for(auto& child : m_children){
       child.rotate(m_model);
     }

@@ -487,6 +487,60 @@ src/OpenGL/Object/Model/AABB.cpp.s:
 	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Model/AABB.cpp.s
 .PHONY : src/OpenGL/Object/Model/AABB.cpp.s
 
+src/OpenGL/Object/Model/Mesh.o: src/OpenGL/Object/Model/Mesh.cpp.o
+
+.PHONY : src/OpenGL/Object/Model/Mesh.o
+
+# target to build an object file
+src/OpenGL/Object/Model/Mesh.cpp.o:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Model/Mesh.cpp.o
+.PHONY : src/OpenGL/Object/Model/Mesh.cpp.o
+
+src/OpenGL/Object/Model/Mesh.i: src/OpenGL/Object/Model/Mesh.cpp.i
+
+.PHONY : src/OpenGL/Object/Model/Mesh.i
+
+# target to preprocess a source file
+src/OpenGL/Object/Model/Mesh.cpp.i:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Model/Mesh.cpp.i
+.PHONY : src/OpenGL/Object/Model/Mesh.cpp.i
+
+src/OpenGL/Object/Model/Mesh.s: src/OpenGL/Object/Model/Mesh.cpp.s
+
+.PHONY : src/OpenGL/Object/Model/Mesh.s
+
+# target to generate assembly for a file
+src/OpenGL/Object/Model/Mesh.cpp.s:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Model/Mesh.cpp.s
+.PHONY : src/OpenGL/Object/Model/Mesh.cpp.s
+
+src/OpenGL/Object/Model/Model.o: src/OpenGL/Object/Model/Model.cpp.o
+
+.PHONY : src/OpenGL/Object/Model/Model.o
+
+# target to build an object file
+src/OpenGL/Object/Model/Model.cpp.o:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Model/Model.cpp.o
+.PHONY : src/OpenGL/Object/Model/Model.cpp.o
+
+src/OpenGL/Object/Model/Model.i: src/OpenGL/Object/Model/Model.cpp.i
+
+.PHONY : src/OpenGL/Object/Model/Model.i
+
+# target to preprocess a source file
+src/OpenGL/Object/Model/Model.cpp.i:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Model/Model.cpp.i
+.PHONY : src/OpenGL/Object/Model/Model.cpp.i
+
+src/OpenGL/Object/Model/Model.s: src/OpenGL/Object/Model/Model.cpp.s
+
+.PHONY : src/OpenGL/Object/Model/Model.s
+
+# target to generate assembly for a file
+src/OpenGL/Object/Model/Model.cpp.s:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Model/Model.cpp.s
+.PHONY : src/OpenGL/Object/Model/Model.cpp.s
+
 src/OpenGL/Object/Model/OBB.o: src/OpenGL/Object/Model/OBB.cpp.o
 
 .PHONY : src/OpenGL/Object/Model/OBB.o
@@ -514,59 +568,32 @@ src/OpenGL/Object/Model/OBB.cpp.s:
 	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Model/OBB.cpp.s
 .PHONY : src/OpenGL/Object/Model/OBB.cpp.s
 
-src/OpenGL/Object/Model/mesh.o: src/OpenGL/Object/Model/mesh.cpp.o
+src/OpenGL/Object/Model/ShapeModel.o: src/OpenGL/Object/Model/ShapeModel.cpp.o
 
-.PHONY : src/OpenGL/Object/Model/mesh.o
-
-# target to build an object file
-src/OpenGL/Object/Model/mesh.cpp.o:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Model/mesh.cpp.o
-.PHONY : src/OpenGL/Object/Model/mesh.cpp.o
-
-src/OpenGL/Object/Model/mesh.i: src/OpenGL/Object/Model/mesh.cpp.i
-
-.PHONY : src/OpenGL/Object/Model/mesh.i
-
-# target to preprocess a source file
-src/OpenGL/Object/Model/mesh.cpp.i:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Model/mesh.cpp.i
-.PHONY : src/OpenGL/Object/Model/mesh.cpp.i
-
-src/OpenGL/Object/Model/mesh.s: src/OpenGL/Object/Model/mesh.cpp.s
-
-.PHONY : src/OpenGL/Object/Model/mesh.s
-
-# target to generate assembly for a file
-src/OpenGL/Object/Model/mesh.cpp.s:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Model/mesh.cpp.s
-.PHONY : src/OpenGL/Object/Model/mesh.cpp.s
-
-src/OpenGL/Object/Model/model.o: src/OpenGL/Object/Model/model.cpp.o
-
-.PHONY : src/OpenGL/Object/Model/model.o
+.PHONY : src/OpenGL/Object/Model/ShapeModel.o
 
 # target to build an object file
-src/OpenGL/Object/Model/model.cpp.o:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Model/model.cpp.o
-.PHONY : src/OpenGL/Object/Model/model.cpp.o
+src/OpenGL/Object/Model/ShapeModel.cpp.o:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Model/ShapeModel.cpp.o
+.PHONY : src/OpenGL/Object/Model/ShapeModel.cpp.o
 
-src/OpenGL/Object/Model/model.i: src/OpenGL/Object/Model/model.cpp.i
+src/OpenGL/Object/Model/ShapeModel.i: src/OpenGL/Object/Model/ShapeModel.cpp.i
 
-.PHONY : src/OpenGL/Object/Model/model.i
+.PHONY : src/OpenGL/Object/Model/ShapeModel.i
 
 # target to preprocess a source file
-src/OpenGL/Object/Model/model.cpp.i:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Model/model.cpp.i
-.PHONY : src/OpenGL/Object/Model/model.cpp.i
+src/OpenGL/Object/Model/ShapeModel.cpp.i:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Model/ShapeModel.cpp.i
+.PHONY : src/OpenGL/Object/Model/ShapeModel.cpp.i
 
-src/OpenGL/Object/Model/model.s: src/OpenGL/Object/Model/model.cpp.s
+src/OpenGL/Object/Model/ShapeModel.s: src/OpenGL/Object/Model/ShapeModel.cpp.s
 
-.PHONY : src/OpenGL/Object/Model/model.s
+.PHONY : src/OpenGL/Object/Model/ShapeModel.s
 
 # target to generate assembly for a file
-src/OpenGL/Object/Model/model.cpp.s:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Model/model.cpp.s
-.PHONY : src/OpenGL/Object/Model/model.cpp.s
+src/OpenGL/Object/Model/ShapeModel.cpp.s:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Model/ShapeModel.cpp.s
+.PHONY : src/OpenGL/Object/Model/ShapeModel.cpp.s
 
 src/OpenGL/Object/Shapes/Cristal.o: src/OpenGL/Object/Shapes/Cristal.cpp.o
 
@@ -914,15 +941,18 @@ help:
 	@echo "... src/OpenGL/Object/Model/AABB.o"
 	@echo "... src/OpenGL/Object/Model/AABB.i"
 	@echo "... src/OpenGL/Object/Model/AABB.s"
+	@echo "... src/OpenGL/Object/Model/Mesh.o"
+	@echo "... src/OpenGL/Object/Model/Mesh.i"
+	@echo "... src/OpenGL/Object/Model/Mesh.s"
+	@echo "... src/OpenGL/Object/Model/Model.o"
+	@echo "... src/OpenGL/Object/Model/Model.i"
+	@echo "... src/OpenGL/Object/Model/Model.s"
 	@echo "... src/OpenGL/Object/Model/OBB.o"
 	@echo "... src/OpenGL/Object/Model/OBB.i"
 	@echo "... src/OpenGL/Object/Model/OBB.s"
-	@echo "... src/OpenGL/Object/Model/mesh.o"
-	@echo "... src/OpenGL/Object/Model/mesh.i"
-	@echo "... src/OpenGL/Object/Model/mesh.s"
-	@echo "... src/OpenGL/Object/Model/model.o"
-	@echo "... src/OpenGL/Object/Model/model.i"
-	@echo "... src/OpenGL/Object/Model/model.s"
+	@echo "... src/OpenGL/Object/Model/ShapeModel.o"
+	@echo "... src/OpenGL/Object/Model/ShapeModel.i"
+	@echo "... src/OpenGL/Object/Model/ShapeModel.s"
 	@echo "... src/OpenGL/Object/Shapes/Cristal.o"
 	@echo "... src/OpenGL/Object/Shapes/Cristal.i"
 	@echo "... src/OpenGL/Object/Shapes/Cristal.s"

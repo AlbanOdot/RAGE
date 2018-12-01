@@ -1,58 +1,76 @@
-#ifndef MODEL_H
-#define MODEL_H
-#include "mesh.h"
+#ifndef Model_H
+#define Model_H
 #include <string>
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 #include <glm/mat4x4.hpp>
-#include "src/OpenGL/Object/Shapes/Shape.h"
-#include "src/OpenGL/Object/Shapes/Sphere.h"
-#include "src/OpenGL/Object/Shapes/Tetrahedron.h"
-#include "src/OpenGL/Object/Shapes/Cristal.h"
+
+#include "Mesh.h"
 #include "src/OpenGL/Object/Model/AABB.h"
+
+
+/*
+ *
+ *
+ * Inherit this one if you need a mesh with a model matrix
+ *
+ *
+*/
+
 
 class Model
 {
 public:
-  virtual ~Model(){}
-  /*  Functions   */
-  //Generate a sphere
-  Model(unsigned char c){/*ONLY CALL FROM INHERITANCE*/}
-  Model(float radius,glm::vec3 center = glm::vec3(0.,0.,0.));
-  //Generate generic shape
-  Model(Shape::SHAPE s,glm::vec3 origin = glm::vec3(-1.0,0.0,0.0), glm::vec3 direction = glm::vec3(1.0,0.0,0.0), float length = 2.0, float radius = 0.5);
+  /* Constructors n shiet */
+  Model();
+  virtual ~Model();
+  //Load a mesh from a file
   Model(string path){loadModel(path);}
+
   /* ROTATION AND MODEL CHANGE STUF */
-  virtual void translate(glm::vec3 vec);
+  virtual void translate(const glm::vec3& vec);
   virtual void translate(float x, float y, float z);
-  virtual void rotate(float angle, glm::vec3 vec);
+  //virtual void translate(const Quaternion& q);
+
+  virtual void rotate(float angle, const glm::vec3& vec);
   virtual void rotate(const glm::mat4& R);
-  virtual void stretch(glm::vec3 direction, float length);
+  //virtual void rotate(const Quaternion& q);
 
+  virtual void stretch(float length, const glm::vec3& direction = glm::vec3(1,1,1));
+  virtual void stretch(float x = 1.f, float y = 1.f, float z = 1.f);
+  //On peut faire ca avec des quaternions ?
 
-
-
+  /* Draw related stuff */
   virtual void draw() const;
-  virtual void setAABB(bool d) { m_draw_aabb = d;}
+  virtual void displayAABB(bool d) { m_draw_aabb = d;}
 
-  glm::mat4 m_model;
-  AABB aabb() const { return m_aabb;}
+  /* Accessors */
+  AABB aabb()           const { return m_aabb;}
+  glm::mat4 model()     const { return m_model;}
+  bool displayAABB()    const { return m_draw_aabb;}
+  vector<Mesh> meshes() const {return m_meshes;}
+  vector<Mesh>& meshes()      { return m_meshes;}
+  string directory()    const { return m_directory;}
+  /* Setters */
+  void aabb(const AABB aabb)        { m_aabb = aabb;}
+  void model(const glm::mat4 model) { m_model = model;}
+  void meshes(const Mesh m)         { m_meshes.push_back(m); m_aabb.computeAABB(m_meshes);}
+  void showAABB(bool display)       { m_draw_aabb = display;}
 protected:
-  bool m_draw_aabb = false;
+  glm::mat4 m_model;
+  bool m_draw_aabb;
+  bool m_dirty_model;
   vector<Mesh> m_meshes;
   AABB m_aabb;
-private:
-  /*  Model Data  */
-
   string m_directory;
+private:
 
   /*  Functions   */
   void loadModel(const string path);
   void processNode(aiNode *node, const aiScene *scene);
   Mesh processMesh(aiMesh *mesh);
   //vector<Texture> loadMaterialTextures(aiMaterial *mat, aiTextureType type,string typeName);
-
 };
 
-#endif // MODEL_H
+#endif // Model_H

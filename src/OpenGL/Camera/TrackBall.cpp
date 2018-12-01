@@ -81,12 +81,15 @@ void TrackBall::fitScene(AABB aabb){
 void TrackBall::fitScene(std::vector<Model> models){
   glm::vec3 min = glm::vec3(9999999999999999.f,9999999999999999.f,9999999999999999.f);
   glm::vec3 max = -min;
+  //Get AABB of the whole scene
   for(const auto& model : models){
       glm::vec3 modelMin = model.aabb().min();
       glm::vec3 modelMax = model.aabb().max();
+
       min.x = min.x > modelMin.x ? modelMin.x : min.x;
       min.y = min.y > modelMin.y ? modelMin.y : min.y;
       min.z = min.z > modelMin.z ? modelMin.z : min.z;
+
       max.x = max.x < modelMax.x ? modelMax.x : max.x;
       max.y = max.y < modelMax.y ? modelMax.y : max.y;
       max.z = max.z < modelMax.z ? modelMax.z : max.z;

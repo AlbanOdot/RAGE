@@ -1,18 +1,11 @@
-#include "model.h"
+#include "Model.h"
 #include <iostream>
 #include "../../opengl_stuff.h"
 
-void Model::draw() const{
-  for(const auto& mesh : m_meshes ){
-      mesh.draw();
-    }
 
-  if( m_draw_aabb ){
-      glLineWidth(2.0f);
-      m_aabb.draw();
-    }
+Model::Model() : m_draw_aabb(false), m_dirty_model(false), m_directory(""){}
 
-}
+Model::~Model(){}
 
 string getFileName(const string& s) {
 
@@ -61,6 +54,7 @@ void Model::processNode(aiNode *node, const aiScene *scene){
       processNode(node->mChildren[i], scene);
     }
 }
+
 Mesh Model::processMesh(aiMesh *mesh){
   vector<unsigned int> indices;
   vector<float> vertices;
@@ -102,42 +96,53 @@ Mesh Model::processMesh(aiMesh *mesh){
   return Mesh(vertices,normals,uv,colors,indices);
 }
 
-//Generate a sphere
-Model::Model(float radius,glm::vec3 center){
-  m_meshes.push_back(Sphere(center, radius));
-}
-//Generate generic shape
-Model::Model(Shape::SHAPE s,glm::vec3 origin , glm::vec3 direction, float length, float radius){
-  //TODO IMPLEMENTER CA
-  switch(s){
-    case Shape::SHAPE::TETRAHEDRON:
-      m_meshes.push_back(Tetrahedron(origin,direction,length,radius));
-    break;
-    default:
-      loadModel("../DataFiles/CylinderAnim.obj");
-      break;
+void Model::draw() const{
+  for(const auto& mesh : m_meshes ){
+      mesh.draw();
     }
+
+  if( m_draw_aabb ){
+      glLineWidth(2.0f);
+      m_aabb.draw();
+    }
+
 }
 
-void Model::translate(glm::vec3 vec){
-    m_model = glm::translate(m_model,vec);
+void Model::translate(const glm::vec3& vec){
+  m_model = glm::translate(m_model,vec);
 }
 
 void Model::translate(float x, float y, float z){
-    m_model = glm::translate(m_model,glm::vec3(x,y,z));
+  m_model = glm::translate(m_model,glm::vec3(x,y,z));
 }
+/*
+void Model::translate(const Quaternion& q){
+  m_model =
+}
+*/
 
-void Model::rotate(float angle, glm::vec3 vec){
-    m_model = glm::rotate(m_model, glm::radians(angle), vec);
+void Model::rotate(float angle, const glm::vec3& vec){
+  m_model = glm::rotate(m_model, glm::radians(angle), vec);
 }
 
 void Model::rotate(const glm::mat4& R){
   m_model = R;
 }
-void Model::stretch(glm::vec3 direction, float length){
+
+/*
+void Model::rotate(const Quaternion& q){
+  m_model =
+}*/
+
+void Model::stretch(float length, const glm::vec3& direction){
   glm::vec3 stretch = length * direction;
   m_model[0][0] = stretch.x;
   m_model[1][1] = stretch.y;
   m_model[2][2] = stretch.z;
 }
 
+void Model::stretch(float x, float y, float z){
+  m_model[0][0] = x;
+  m_model[1][1] = y;
+  m_model[2][2] = z;
+}

@@ -1,5 +1,6 @@
 #include "AABB.h"
 #include "../../opengl_stuff.h"
+
 AABB::AABB() {}
 
 AABB::AABB(std::vector<Mesh> meshes){

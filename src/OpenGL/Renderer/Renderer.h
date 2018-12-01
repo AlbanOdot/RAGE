@@ -88,7 +88,6 @@ public:
   void wheelEvent( const int down) override;
   void resizeBuffers(int w, int h);
 
-  void animationDraw();
 
   //INIT
   void initPreprocess();
@@ -139,13 +138,7 @@ private:
   bool m_draw_aabb = false;
 
   //Booleans functions
-  void setDrawAABB(bool d) { for(auto& model : m_objects){
-        model.setAABB(d);
-      }
-                             for(auto& bone : m_bones){
-                                 bone.setAABB(d);
-                               }
-                           }
+  void setDrawAABB(bool d);
 };
 
 
