@@ -1,6 +1,6 @@
 #ifndef RAYCAST_H
 #define RAYCAST_H
-#include "./src/OpenGL/Object/Model/mesh.h"
+#include "./src/OpenGL/Object/Model/Mesh.h"
 #include "./src/OpenGL/Object/Model/AABB.h"
 #include "./src/Math/ray.h"
 

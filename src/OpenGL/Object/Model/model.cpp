@@ -3,7 +3,7 @@
 #include "../../opengl_stuff.h"
 
 
-Model::Model() : m_draw_aabb(false), m_dirty_model(false), m_directory(""){}
+Model::Model() : m_draw_aabb(false), m_dirty_model(false), m_animated(false), m_directory(""){}
 
 Model::~Model(){}
 
@@ -97,6 +97,7 @@ Mesh Model::processMesh(aiMesh *mesh){
 }
 
 void Model::draw() const{
+  cout << "Draw de Model"<<endl;
   for(const auto& mesh : m_meshes ){
       mesh.draw();
     }
@@ -112,8 +113,12 @@ void Model::translate(const glm::vec3& vec){
   m_model = glm::translate(m_model,vec);
 }
 
-void Model::translate(float x, float y, float z){
+void Model::translate(const float x, const float y, const float z){
   m_model = glm::translate(m_model,glm::vec3(x,y,z));
+}
+
+void Model::translate(const glm::mat4& T){
+  m_model = T;
 }
 /*
 void Model::translate(const Quaternion& q){
@@ -121,12 +126,16 @@ void Model::translate(const Quaternion& q){
 }
 */
 
-void Model::rotate(float angle, const glm::vec3& vec){
+void Model::rotate(const float angle, const glm::vec3& vec){
   m_model = glm::rotate(m_model, glm::radians(angle), vec);
 }
 
-void Model::rotate(const glm::mat4& R){
+void Model::rotate(const glm::mat4 R){
   m_model = R;
+}
+
+void Model::rotate(const float angle, const float x, const float y, const float z){
+  m_model = glm::rotate(m_model, glm::radians(angle), glm::vec3(x,y,z));
 }
 
 /*
@@ -134,14 +143,14 @@ void Model::rotate(const Quaternion& q){
   m_model =
 }*/
 
-void Model::stretch(float length, const glm::vec3& direction){
+void Model::stretch(const float length, const glm::vec3& direction){
   glm::vec3 stretch = length * direction;
   m_model[0][0] = stretch.x;
   m_model[1][1] = stretch.y;
   m_model[2][2] = stretch.z;
 }
 
-void Model::stretch(float x, float y, float z){
+void Model::stretch(const float x, const float y, const float z){
   m_model[0][0] = x;
   m_model[1][1] = y;
   m_model[2][2] = z;

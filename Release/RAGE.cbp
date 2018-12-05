@@ -190,6 +190,12 @@
 		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Buffers/FrameBuffers/Renderbuffer.h">
 			<Option target="RAGE"/>
 		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Buffers/FrameBuffers/Textures/RedTexture.cpp">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Buffers/FrameBuffers/Textures/RedTexture.h">
+			<Option target="RAGE"/>
+		</Unit>
 		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Camera/Camera.cpp">
 			<Option target="RAGE"/>
 		</Unit>
@@ -200,12 +206,6 @@
 			<Option target="RAGE"/>
 		</Unit>
 		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Camera/TrackBall.hpp">
-			<Option target="RAGE"/>
-		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Animation/AnimatedModel.cpp">
-			<Option target="RAGE"/>
-		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Animation/AnimatedModel.h">
 			<Option target="RAGE"/>
 		</Unit>
 		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Animation/Bone.cpp">
@@ -254,6 +254,12 @@
 			<Option target="RAGE"/>
 		</Unit>
 		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Shapes/Cube.h">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Shapes/Cylinder.cpp">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Shapes/Cylinder.h">
 			<Option target="RAGE"/>
 		</Unit>
 		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Shapes/Shape.h">

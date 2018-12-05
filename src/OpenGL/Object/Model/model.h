@@ -30,37 +30,42 @@ public:
 
   /* ROTATION AND MODEL CHANGE STUF */
   virtual void translate(const glm::vec3& vec);
-  virtual void translate(float x, float y, float z);
+  virtual void translate(const float x,const  float y,const  float z);
+  virtual void translate(const glm::mat4& T);
   //virtual void translate(const Quaternion& q);
 
-  virtual void rotate(float angle, const glm::vec3& vec);
-  virtual void rotate(const glm::mat4& R);
+  virtual void rotate(const float angle,const glm::vec3& vec);
+  virtual void rotate(const float angle,const  float x,const  float y,const  float z);
+  virtual void rotate(const glm::mat4 R);
   //virtual void rotate(const Quaternion& q);
 
-  virtual void stretch(float length, const glm::vec3& direction = glm::vec3(1,1,1));
-  virtual void stretch(float x = 1.f, float y = 1.f, float z = 1.f);
+  virtual void stretch(const float length, const glm::vec3& direction = glm::vec3(1,1,1));
+  virtual void stretch(const float x,const  float y,const  float z);
   //On peut faire ca avec des quaternions ?
 
   /* Draw related stuff */
   virtual void draw() const;
-  virtual void displayAABB(bool d) { m_draw_aabb = d;}
 
   /* Accessors */
   AABB aabb()           const { return m_aabb;}
   glm::mat4 model()     const { return m_model;}
+  //virtual glm::mat4* getModels() { return &m_model;}
   bool displayAABB()    const { return m_draw_aabb;}
   vector<Mesh> meshes() const {return m_meshes;}
   vector<Mesh>& meshes()      { return m_meshes;}
   string directory()    const { return m_directory;}
+  //unsigned int boneCount() const { return m_meshes[0].boneCount();}
+  bool animated() const { return m_animated;}
   /* Setters */
   void aabb(const AABB aabb)        { m_aabb = aabb;}
   void model(const glm::mat4 model) { m_model = model;}
   void meshes(const Mesh m)         { m_meshes.push_back(m); m_aabb.computeAABB(m_meshes);}
-  void showAABB(bool display)       { m_draw_aabb = display;}
+  virtual void displayAABB(bool d)  { m_draw_aabb = d;}
 protected:
   glm::mat4 m_model;
   bool m_draw_aabb;
   bool m_dirty_model;
+  bool m_animated;
   vector<Mesh> m_meshes;
   AABB m_aabb;
   string m_directory;

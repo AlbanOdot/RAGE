@@ -352,6 +352,33 @@ src/OpenGL/Buffers/FrameBuffers/Renderbuffer.cpp.s:
 	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/Renderbuffer.cpp.s
 .PHONY : src/OpenGL/Buffers/FrameBuffers/Renderbuffer.cpp.s
 
+src/OpenGL/Buffers/FrameBuffers/Textures/RedTexture.o: src/OpenGL/Buffers/FrameBuffers/Textures/RedTexture.cpp.o
+
+.PHONY : src/OpenGL/Buffers/FrameBuffers/Textures/RedTexture.o
+
+# target to build an object file
+src/OpenGL/Buffers/FrameBuffers/Textures/RedTexture.cpp.o:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/Textures/RedTexture.cpp.o
+.PHONY : src/OpenGL/Buffers/FrameBuffers/Textures/RedTexture.cpp.o
+
+src/OpenGL/Buffers/FrameBuffers/Textures/RedTexture.i: src/OpenGL/Buffers/FrameBuffers/Textures/RedTexture.cpp.i
+
+.PHONY : src/OpenGL/Buffers/FrameBuffers/Textures/RedTexture.i
+
+# target to preprocess a source file
+src/OpenGL/Buffers/FrameBuffers/Textures/RedTexture.cpp.i:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/Textures/RedTexture.cpp.i
+.PHONY : src/OpenGL/Buffers/FrameBuffers/Textures/RedTexture.cpp.i
+
+src/OpenGL/Buffers/FrameBuffers/Textures/RedTexture.s: src/OpenGL/Buffers/FrameBuffers/Textures/RedTexture.cpp.s
+
+.PHONY : src/OpenGL/Buffers/FrameBuffers/Textures/RedTexture.s
+
+# target to generate assembly for a file
+src/OpenGL/Buffers/FrameBuffers/Textures/RedTexture.cpp.s:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/Textures/RedTexture.cpp.s
+.PHONY : src/OpenGL/Buffers/FrameBuffers/Textures/RedTexture.cpp.s
+
 src/OpenGL/Camera/Camera.o: src/OpenGL/Camera/Camera.cpp.o
 
 .PHONY : src/OpenGL/Camera/Camera.o
@@ -405,33 +432,6 @@ src/OpenGL/Camera/TrackBall.s: src/OpenGL/Camera/TrackBall.cpp.s
 src/OpenGL/Camera/TrackBall.cpp.s:
 	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Camera/TrackBall.cpp.s
 .PHONY : src/OpenGL/Camera/TrackBall.cpp.s
-
-src/OpenGL/Object/Animation/AnimatedModel.o: src/OpenGL/Object/Animation/AnimatedModel.cpp.o
-
-.PHONY : src/OpenGL/Object/Animation/AnimatedModel.o
-
-# target to build an object file
-src/OpenGL/Object/Animation/AnimatedModel.cpp.o:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Animation/AnimatedModel.cpp.o
-.PHONY : src/OpenGL/Object/Animation/AnimatedModel.cpp.o
-
-src/OpenGL/Object/Animation/AnimatedModel.i: src/OpenGL/Object/Animation/AnimatedModel.cpp.i
-
-.PHONY : src/OpenGL/Object/Animation/AnimatedModel.i
-
-# target to preprocess a source file
-src/OpenGL/Object/Animation/AnimatedModel.cpp.i:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Animation/AnimatedModel.cpp.i
-.PHONY : src/OpenGL/Object/Animation/AnimatedModel.cpp.i
-
-src/OpenGL/Object/Animation/AnimatedModel.s: src/OpenGL/Object/Animation/AnimatedModel.cpp.s
-
-.PHONY : src/OpenGL/Object/Animation/AnimatedModel.s
-
-# target to generate assembly for a file
-src/OpenGL/Object/Animation/AnimatedModel.cpp.s:
-	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Animation/AnimatedModel.cpp.s
-.PHONY : src/OpenGL/Object/Animation/AnimatedModel.cpp.s
 
 src/OpenGL/Object/Animation/Bone.o: src/OpenGL/Object/Animation/Bone.cpp.o
 
@@ -648,6 +648,33 @@ src/OpenGL/Object/Shapes/Cube.s: src/OpenGL/Object/Shapes/Cube.cpp.s
 src/OpenGL/Object/Shapes/Cube.cpp.s:
 	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Cube.cpp.s
 .PHONY : src/OpenGL/Object/Shapes/Cube.cpp.s
+
+src/OpenGL/Object/Shapes/Cylinder.o: src/OpenGL/Object/Shapes/Cylinder.cpp.o
+
+.PHONY : src/OpenGL/Object/Shapes/Cylinder.o
+
+# target to build an object file
+src/OpenGL/Object/Shapes/Cylinder.cpp.o:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Cylinder.cpp.o
+.PHONY : src/OpenGL/Object/Shapes/Cylinder.cpp.o
+
+src/OpenGL/Object/Shapes/Cylinder.i: src/OpenGL/Object/Shapes/Cylinder.cpp.i
+
+.PHONY : src/OpenGL/Object/Shapes/Cylinder.i
+
+# target to preprocess a source file
+src/OpenGL/Object/Shapes/Cylinder.cpp.i:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Cylinder.cpp.i
+.PHONY : src/OpenGL/Object/Shapes/Cylinder.cpp.i
+
+src/OpenGL/Object/Shapes/Cylinder.s: src/OpenGL/Object/Shapes/Cylinder.cpp.s
+
+.PHONY : src/OpenGL/Object/Shapes/Cylinder.s
+
+# target to generate assembly for a file
+src/OpenGL/Object/Shapes/Cylinder.cpp.s:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Cylinder.cpp.s
+.PHONY : src/OpenGL/Object/Shapes/Cylinder.cpp.s
 
 src/OpenGL/Object/Shapes/Sphere.o: src/OpenGL/Object/Shapes/Sphere.cpp.o
 
@@ -926,15 +953,15 @@ help:
 	@echo "... src/OpenGL/Buffers/FrameBuffers/Renderbuffer.o"
 	@echo "... src/OpenGL/Buffers/FrameBuffers/Renderbuffer.i"
 	@echo "... src/OpenGL/Buffers/FrameBuffers/Renderbuffer.s"
+	@echo "... src/OpenGL/Buffers/FrameBuffers/Textures/RedTexture.o"
+	@echo "... src/OpenGL/Buffers/FrameBuffers/Textures/RedTexture.i"
+	@echo "... src/OpenGL/Buffers/FrameBuffers/Textures/RedTexture.s"
 	@echo "... src/OpenGL/Camera/Camera.o"
 	@echo "... src/OpenGL/Camera/Camera.i"
 	@echo "... src/OpenGL/Camera/Camera.s"
 	@echo "... src/OpenGL/Camera/TrackBall.o"
 	@echo "... src/OpenGL/Camera/TrackBall.i"
 	@echo "... src/OpenGL/Camera/TrackBall.s"
-	@echo "... src/OpenGL/Object/Animation/AnimatedModel.o"
-	@echo "... src/OpenGL/Object/Animation/AnimatedModel.i"
-	@echo "... src/OpenGL/Object/Animation/AnimatedModel.s"
 	@echo "... src/OpenGL/Object/Animation/Bone.o"
 	@echo "... src/OpenGL/Object/Animation/Bone.i"
 	@echo "... src/OpenGL/Object/Animation/Bone.s"
@@ -959,6 +986,9 @@ help:
 	@echo "... src/OpenGL/Object/Shapes/Cube.o"
 	@echo "... src/OpenGL/Object/Shapes/Cube.i"
 	@echo "... src/OpenGL/Object/Shapes/Cube.s"
+	@echo "... src/OpenGL/Object/Shapes/Cylinder.o"
+	@echo "... src/OpenGL/Object/Shapes/Cylinder.i"
+	@echo "... src/OpenGL/Object/Shapes/Cylinder.s"
 	@echo "... src/OpenGL/Object/Shapes/Sphere.o"
 	@echo "... src/OpenGL/Object/Shapes/Sphere.i"
 	@echo "... src/OpenGL/Object/Shapes/Sphere.s"

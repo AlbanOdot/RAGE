@@ -10,6 +10,7 @@
  */
 #include "src/OpenGL/Object/Shapes/Cristal.h"
 #include "src/OpenGL/Object/Shapes/Cube.h"
+#include "src/OpenGL/Object/Shapes/Cylinder.h"
 #include "src/OpenGL/Object/Shapes/Shape.h"
 #include "src/OpenGL/Object/Shapes/Sphere.h"
 #include "src/OpenGL/Object/Shapes/Tetrahedron.h"

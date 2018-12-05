@@ -152,9 +152,22 @@ CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/Renderbuffer.cpp.s: cmake_fo
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/Renderbuffer.cpp.s"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alban/Cours/Rage/src/OpenGL/Buffers/FrameBuffers/Renderbuffer.cpp -o CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/Renderbuffer.cpp.s
 
+CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/Textures/RedTexture.cpp.o: CMakeFiles/RAGE.dir/flags.make
+CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/Textures/RedTexture.cpp.o: ../src/OpenGL/Buffers/FrameBuffers/Textures/RedTexture.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alban/Cours/Rage/Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/Textures/RedTexture.cpp.o"
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/Textures/RedTexture.cpp.o -c /Users/alban/Cours/Rage/src/OpenGL/Buffers/FrameBuffers/Textures/RedTexture.cpp
+
+CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/Textures/RedTexture.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/Textures/RedTexture.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alban/Cours/Rage/src/OpenGL/Buffers/FrameBuffers/Textures/RedTexture.cpp > CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/Textures/RedTexture.cpp.i
+
+CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/Textures/RedTexture.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/Textures/RedTexture.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alban/Cours/Rage/src/OpenGL/Buffers/FrameBuffers/Textures/RedTexture.cpp -o CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/Textures/RedTexture.cpp.s
+
 CMakeFiles/RAGE.dir/src/OpenGL/Camera/Camera.cpp.o: CMakeFiles/RAGE.dir/flags.make
 CMakeFiles/RAGE.dir/src/OpenGL/Camera/Camera.cpp.o: ../src/OpenGL/Camera/Camera.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alban/Cours/Rage/Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/RAGE.dir/src/OpenGL/Camera/Camera.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alban/Cours/Rage/Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/RAGE.dir/src/OpenGL/Camera/Camera.cpp.o"
 	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/RAGE.dir/src/OpenGL/Camera/Camera.cpp.o -c /Users/alban/Cours/Rage/src/OpenGL/Camera/Camera.cpp
 
 CMakeFiles/RAGE.dir/src/OpenGL/Camera/Camera.cpp.i: cmake_force
@@ -167,7 +180,7 @@ CMakeFiles/RAGE.dir/src/OpenGL/Camera/Camera.cpp.s: cmake_force
 
 CMakeFiles/RAGE.dir/src/OpenGL/Camera/TrackBall.cpp.o: CMakeFiles/RAGE.dir/flags.make
 CMakeFiles/RAGE.dir/src/OpenGL/Camera/TrackBall.cpp.o: ../src/OpenGL/Camera/TrackBall.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alban/Cours/Rage/Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/RAGE.dir/src/OpenGL/Camera/TrackBall.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alban/Cours/Rage/Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/RAGE.dir/src/OpenGL/Camera/TrackBall.cpp.o"
 	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/RAGE.dir/src/OpenGL/Camera/TrackBall.cpp.o -c /Users/alban/Cours/Rage/src/OpenGL/Camera/TrackBall.cpp
 
 CMakeFiles/RAGE.dir/src/OpenGL/Camera/TrackBall.cpp.i: cmake_force
@@ -177,19 +190,6 @@ CMakeFiles/RAGE.dir/src/OpenGL/Camera/TrackBall.cpp.i: cmake_force
 CMakeFiles/RAGE.dir/src/OpenGL/Camera/TrackBall.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RAGE.dir/src/OpenGL/Camera/TrackBall.cpp.s"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alban/Cours/Rage/src/OpenGL/Camera/TrackBall.cpp -o CMakeFiles/RAGE.dir/src/OpenGL/Camera/TrackBall.cpp.s
-
-CMakeFiles/RAGE.dir/src/OpenGL/Object/Animation/AnimatedModel.cpp.o: CMakeFiles/RAGE.dir/flags.make
-CMakeFiles/RAGE.dir/src/OpenGL/Object/Animation/AnimatedModel.cpp.o: ../src/OpenGL/Object/Animation/AnimatedModel.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alban/Cours/Rage/Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/RAGE.dir/src/OpenGL/Object/Animation/AnimatedModel.cpp.o"
-	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/RAGE.dir/src/OpenGL/Object/Animation/AnimatedModel.cpp.o -c /Users/alban/Cours/Rage/src/OpenGL/Object/Animation/AnimatedModel.cpp
-
-CMakeFiles/RAGE.dir/src/OpenGL/Object/Animation/AnimatedModel.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RAGE.dir/src/OpenGL/Object/Animation/AnimatedModel.cpp.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alban/Cours/Rage/src/OpenGL/Object/Animation/AnimatedModel.cpp > CMakeFiles/RAGE.dir/src/OpenGL/Object/Animation/AnimatedModel.cpp.i
-
-CMakeFiles/RAGE.dir/src/OpenGL/Object/Animation/AnimatedModel.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RAGE.dir/src/OpenGL/Object/Animation/AnimatedModel.cpp.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alban/Cours/Rage/src/OpenGL/Object/Animation/AnimatedModel.cpp -o CMakeFiles/RAGE.dir/src/OpenGL/Object/Animation/AnimatedModel.cpp.s
 
 CMakeFiles/RAGE.dir/src/OpenGL/Object/Animation/Bone.cpp.o: CMakeFiles/RAGE.dir/flags.make
 CMakeFiles/RAGE.dir/src/OpenGL/Object/Animation/Bone.cpp.o: ../src/OpenGL/Object/Animation/Bone.cpp
@@ -295,9 +295,22 @@ CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Cube.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Cube.cpp.s"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alban/Cours/Rage/src/OpenGL/Object/Shapes/Cube.cpp -o CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Cube.cpp.s
 
+CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Cylinder.cpp.o: CMakeFiles/RAGE.dir/flags.make
+CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Cylinder.cpp.o: ../src/OpenGL/Object/Shapes/Cylinder.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alban/Cours/Rage/Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Cylinder.cpp.o"
+	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Cylinder.cpp.o -c /Users/alban/Cours/Rage/src/OpenGL/Object/Shapes/Cylinder.cpp
+
+CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Cylinder.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Cylinder.cpp.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/alban/Cours/Rage/src/OpenGL/Object/Shapes/Cylinder.cpp > CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Cylinder.cpp.i
+
+CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Cylinder.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Cylinder.cpp.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/alban/Cours/Rage/src/OpenGL/Object/Shapes/Cylinder.cpp -o CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Cylinder.cpp.s
+
 CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Sphere.cpp.o: CMakeFiles/RAGE.dir/flags.make
 CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Sphere.cpp.o: ../src/OpenGL/Object/Shapes/Sphere.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alban/Cours/Rage/Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Sphere.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alban/Cours/Rage/Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Sphere.cpp.o"
 	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Sphere.cpp.o -c /Users/alban/Cours/Rage/src/OpenGL/Object/Shapes/Sphere.cpp
 
 CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Sphere.cpp.i: cmake_force
@@ -310,7 +323,7 @@ CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Sphere.cpp.s: cmake_force
 
 CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Tetrahedron.cpp.o: CMakeFiles/RAGE.dir/flags.make
 CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Tetrahedron.cpp.o: ../src/OpenGL/Object/Shapes/Tetrahedron.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alban/Cours/Rage/Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Tetrahedron.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alban/Cours/Rage/Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Tetrahedron.cpp.o"
 	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Tetrahedron.cpp.o -c /Users/alban/Cours/Rage/src/OpenGL/Object/Shapes/Tetrahedron.cpp
 
 CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Tetrahedron.cpp.i: cmake_force
@@ -323,7 +336,7 @@ CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Tetrahedron.cpp.s: cmake_force
 
 CMakeFiles/RAGE.dir/src/OpenGL/Renderer/Renderer.cpp.o: CMakeFiles/RAGE.dir/flags.make
 CMakeFiles/RAGE.dir/src/OpenGL/Renderer/Renderer.cpp.o: ../src/OpenGL/Renderer/Renderer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alban/Cours/Rage/Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/RAGE.dir/src/OpenGL/Renderer/Renderer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alban/Cours/Rage/Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/RAGE.dir/src/OpenGL/Renderer/Renderer.cpp.o"
 	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/RAGE.dir/src/OpenGL/Renderer/Renderer.cpp.o -c /Users/alban/Cours/Rage/src/OpenGL/Renderer/Renderer.cpp
 
 CMakeFiles/RAGE.dir/src/OpenGL/Renderer/Renderer.cpp.i: cmake_force
@@ -336,7 +349,7 @@ CMakeFiles/RAGE.dir/src/OpenGL/Renderer/Renderer.cpp.s: cmake_force
 
 CMakeFiles/RAGE.dir/src/OpenGL/Renderer/scene.cpp.o: CMakeFiles/RAGE.dir/flags.make
 CMakeFiles/RAGE.dir/src/OpenGL/Renderer/scene.cpp.o: ../src/OpenGL/Renderer/scene.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alban/Cours/Rage/Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/RAGE.dir/src/OpenGL/Renderer/scene.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alban/Cours/Rage/Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/RAGE.dir/src/OpenGL/Renderer/scene.cpp.o"
 	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/RAGE.dir/src/OpenGL/Renderer/scene.cpp.o -c /Users/alban/Cours/Rage/src/OpenGL/Renderer/scene.cpp
 
 CMakeFiles/RAGE.dir/src/OpenGL/Renderer/scene.cpp.i: cmake_force
@@ -349,7 +362,7 @@ CMakeFiles/RAGE.dir/src/OpenGL/Renderer/scene.cpp.s: cmake_force
 
 CMakeFiles/RAGE.dir/src/OpenGL/ShadersUtils/ShaderLoader.cpp.o: CMakeFiles/RAGE.dir/flags.make
 CMakeFiles/RAGE.dir/src/OpenGL/ShadersUtils/ShaderLoader.cpp.o: ../src/OpenGL/ShadersUtils/ShaderLoader.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alban/Cours/Rage/Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/RAGE.dir/src/OpenGL/ShadersUtils/ShaderLoader.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alban/Cours/Rage/Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/RAGE.dir/src/OpenGL/ShadersUtils/ShaderLoader.cpp.o"
 	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/RAGE.dir/src/OpenGL/ShadersUtils/ShaderLoader.cpp.o -c /Users/alban/Cours/Rage/src/OpenGL/ShadersUtils/ShaderLoader.cpp
 
 CMakeFiles/RAGE.dir/src/OpenGL/ShadersUtils/ShaderLoader.cpp.i: cmake_force
@@ -362,7 +375,7 @@ CMakeFiles/RAGE.dir/src/OpenGL/ShadersUtils/ShaderLoader.cpp.s: cmake_force
 
 CMakeFiles/RAGE.dir/src/OpenGL/ShadersUtils/postprocess.cpp.o: CMakeFiles/RAGE.dir/flags.make
 CMakeFiles/RAGE.dir/src/OpenGL/ShadersUtils/postprocess.cpp.o: ../src/OpenGL/ShadersUtils/postprocess.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alban/Cours/Rage/Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/RAGE.dir/src/OpenGL/ShadersUtils/postprocess.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alban/Cours/Rage/Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/RAGE.dir/src/OpenGL/ShadersUtils/postprocess.cpp.o"
 	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/RAGE.dir/src/OpenGL/ShadersUtils/postprocess.cpp.o -c /Users/alban/Cours/Rage/src/OpenGL/ShadersUtils/postprocess.cpp
 
 CMakeFiles/RAGE.dir/src/OpenGL/ShadersUtils/postprocess.cpp.i: cmake_force
@@ -375,7 +388,7 @@ CMakeFiles/RAGE.dir/src/OpenGL/ShadersUtils/postprocess.cpp.s: cmake_force
 
 CMakeFiles/RAGE.dir/src/OpenGL/ShadersUtils/shadermanager.cpp.o: CMakeFiles/RAGE.dir/flags.make
 CMakeFiles/RAGE.dir/src/OpenGL/ShadersUtils/shadermanager.cpp.o: ../src/OpenGL/ShadersUtils/shadermanager.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alban/Cours/Rage/Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/RAGE.dir/src/OpenGL/ShadersUtils/shadermanager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alban/Cours/Rage/Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/RAGE.dir/src/OpenGL/ShadersUtils/shadermanager.cpp.o"
 	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/RAGE.dir/src/OpenGL/ShadersUtils/shadermanager.cpp.o -c /Users/alban/Cours/Rage/src/OpenGL/ShadersUtils/shadermanager.cpp
 
 CMakeFiles/RAGE.dir/src/OpenGL/ShadersUtils/shadermanager.cpp.i: cmake_force
@@ -388,7 +401,7 @@ CMakeFiles/RAGE.dir/src/OpenGL/ShadersUtils/shadermanager.cpp.s: cmake_force
 
 CMakeFiles/RAGE.dir/src/Qt/mainwindow.cpp.o: CMakeFiles/RAGE.dir/flags.make
 CMakeFiles/RAGE.dir/src/Qt/mainwindow.cpp.o: ../src/Qt/mainwindow.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alban/Cours/Rage/Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/RAGE.dir/src/Qt/mainwindow.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alban/Cours/Rage/Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/RAGE.dir/src/Qt/mainwindow.cpp.o"
 	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/RAGE.dir/src/Qt/mainwindow.cpp.o -c /Users/alban/Cours/Rage/src/Qt/mainwindow.cpp
 
 CMakeFiles/RAGE.dir/src/Qt/mainwindow.cpp.i: cmake_force
@@ -401,7 +414,7 @@ CMakeFiles/RAGE.dir/src/Qt/mainwindow.cpp.s: cmake_force
 
 CMakeFiles/RAGE.dir/src/Qt/myopenglwidget.cpp.o: CMakeFiles/RAGE.dir/flags.make
 CMakeFiles/RAGE.dir/src/Qt/myopenglwidget.cpp.o: ../src/Qt/myopenglwidget.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alban/Cours/Rage/Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/RAGE.dir/src/Qt/myopenglwidget.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alban/Cours/Rage/Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/RAGE.dir/src/Qt/myopenglwidget.cpp.o"
 	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/RAGE.dir/src/Qt/myopenglwidget.cpp.o -c /Users/alban/Cours/Rage/src/Qt/myopenglwidget.cpp
 
 CMakeFiles/RAGE.dir/src/Qt/myopenglwidget.cpp.i: cmake_force
@@ -414,7 +427,7 @@ CMakeFiles/RAGE.dir/src/Qt/myopenglwidget.cpp.s: cmake_force
 
 CMakeFiles/RAGE.dir/RAGE_autogen/mocs_compilation.cpp.o: CMakeFiles/RAGE.dir/flags.make
 CMakeFiles/RAGE.dir/RAGE_autogen/mocs_compilation.cpp.o: RAGE_autogen/mocs_compilation.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alban/Cours/Rage/Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/RAGE.dir/RAGE_autogen/mocs_compilation.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/alban/Cours/Rage/Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object CMakeFiles/RAGE.dir/RAGE_autogen/mocs_compilation.cpp.o"
 	/usr/bin/clang++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/RAGE.dir/RAGE_autogen/mocs_compilation.cpp.o -c /Users/alban/Cours/Rage/Release/RAGE_autogen/mocs_compilation.cpp
 
 CMakeFiles/RAGE.dir/RAGE_autogen/mocs_compilation.cpp.i: cmake_force
@@ -434,9 +447,9 @@ RAGE_OBJECTS = \
 "CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/RGBbuffer.cpp.o" \
 "CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/RedBuffer.cpp.o" \
 "CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/Renderbuffer.cpp.o" \
+"CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/Textures/RedTexture.cpp.o" \
 "CMakeFiles/RAGE.dir/src/OpenGL/Camera/Camera.cpp.o" \
 "CMakeFiles/RAGE.dir/src/OpenGL/Camera/TrackBall.cpp.o" \
-"CMakeFiles/RAGE.dir/src/OpenGL/Object/Animation/AnimatedModel.cpp.o" \
 "CMakeFiles/RAGE.dir/src/OpenGL/Object/Animation/Bone.cpp.o" \
 "CMakeFiles/RAGE.dir/src/OpenGL/Object/Model/AABB.cpp.o" \
 "CMakeFiles/RAGE.dir/src/OpenGL/Object/Model/Mesh.cpp.o" \
@@ -445,6 +458,7 @@ RAGE_OBJECTS = \
 "CMakeFiles/RAGE.dir/src/OpenGL/Object/Model/ShapeModel.cpp.o" \
 "CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Cristal.cpp.o" \
 "CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Cube.cpp.o" \
+"CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Cylinder.cpp.o" \
 "CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Sphere.cpp.o" \
 "CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Tetrahedron.cpp.o" \
 "CMakeFiles/RAGE.dir/src/OpenGL/Renderer/Renderer.cpp.o" \
@@ -466,9 +480,9 @@ RAGE_EXTERNAL_OBJECTS =
 ../bin/RAGE: CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/RGBbuffer.cpp.o
 ../bin/RAGE: CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/RedBuffer.cpp.o
 ../bin/RAGE: CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/Renderbuffer.cpp.o
+../bin/RAGE: CMakeFiles/RAGE.dir/src/OpenGL/Buffers/FrameBuffers/Textures/RedTexture.cpp.o
 ../bin/RAGE: CMakeFiles/RAGE.dir/src/OpenGL/Camera/Camera.cpp.o
 ../bin/RAGE: CMakeFiles/RAGE.dir/src/OpenGL/Camera/TrackBall.cpp.o
-../bin/RAGE: CMakeFiles/RAGE.dir/src/OpenGL/Object/Animation/AnimatedModel.cpp.o
 ../bin/RAGE: CMakeFiles/RAGE.dir/src/OpenGL/Object/Animation/Bone.cpp.o
 ../bin/RAGE: CMakeFiles/RAGE.dir/src/OpenGL/Object/Model/AABB.cpp.o
 ../bin/RAGE: CMakeFiles/RAGE.dir/src/OpenGL/Object/Model/Mesh.cpp.o
@@ -477,6 +491,7 @@ RAGE_EXTERNAL_OBJECTS =
 ../bin/RAGE: CMakeFiles/RAGE.dir/src/OpenGL/Object/Model/ShapeModel.cpp.o
 ../bin/RAGE: CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Cristal.cpp.o
 ../bin/RAGE: CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Cube.cpp.o
+../bin/RAGE: CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Cylinder.cpp.o
 ../bin/RAGE: CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Sphere.cpp.o
 ../bin/RAGE: CMakeFiles/RAGE.dir/src/OpenGL/Object/Shapes/Tetrahedron.cpp.o
 ../bin/RAGE: CMakeFiles/RAGE.dir/src/OpenGL/Renderer/Renderer.cpp.o
@@ -495,7 +510,7 @@ RAGE_EXTERNAL_OBJECTS =
 ../bin/RAGE: /Users/alban/Qt/5.11.2/clang_64/lib/QtGui.framework/QtGui
 ../bin/RAGE: /Users/alban/Qt/5.11.2/clang_64/lib/QtCore.framework/QtCore
 ../bin/RAGE: CMakeFiles/RAGE.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/alban/Cours/Rage/Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Linking CXX executable ../bin/RAGE"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/alban/Cours/Rage/Release/CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Linking CXX executable ../bin/RAGE"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/RAGE.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

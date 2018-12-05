@@ -10,10 +10,11 @@ ShapeModel::ShapeModel(Shape::SHAPE s,glm::vec3 origin , glm::vec3 direction, fl
   //TODO IMPLEMENTER CA
   switch(s){
     case Shape::SPHERE:
-      Sphere(origin, radius);
+      addShape(Sphere(origin, radius));
       break;
     case Shape::CYLINDER:
       //TODO A pretty nice cylinder
+      addShape(Cylinder(origin,direction,length,radius));
       break;
     case Shape::TETRAHEDRON:
       addShape(Tetrahedron(origin,direction,length,radius));
@@ -38,7 +39,6 @@ ShapeModel::ShapeModel(Shape::SHAPE s,glm::vec3 origin , glm::vec3 direction, fl
 //SPHERE,CYLINDER,TETRAHEDRON,ICOSAHEDRON, CRISTAL, CUBE
 void ShapeModel::addShape(const Shape& shape)
 {
-  m_dirty_model = true;
   m_meshes.push_back(shape);
   switch(shape.type()){
     case Shape::SPHERE:

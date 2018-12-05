@@ -1,7 +1,7 @@
 #ifndef MODEL_H
 #define MODEL_H
 
-#include "../Shapes/Shapes.h"
+#include "../Shapes/shapes.h"
 #include "Model.h"
 
 /*
@@ -14,7 +14,7 @@
 class ShapeModel :public Model
 {
 public:
-  ShapeModel();
+  ShapeModel() : Model(){}
   //Generate generic shape from ../Shapes
   //Generate a sphere
   ShapeModel(float radius,glm::vec3 center = glm::vec3(0.,0.,0.));

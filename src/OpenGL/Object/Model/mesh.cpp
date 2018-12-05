@@ -2,13 +2,10 @@
 #include "./src/OpenGL/opengl_stuff.h"
 #include <iostream>
 
-Mesh::Mesh(vector<float> vertices, vector<float> normals, vector<float> UV, vector<float> colors, vector<unsigned int> indices)
+Mesh::Mesh(const vector<float> vertices, const vector<float> normals, const vector<float> UV,
+           const vector<float> colors,   const vector<unsigned int> indices)
+  : m_vertices(vertices), m_normals(normals), m_uv(UV), m_colors(colors), m_indices(indices)
 {
-  m_vertices = vertices;
-  m_normals = normals;
-  m_uv = UV;
-  m_colors = colors;
-  m_indices = indices;
   cout << "   Number of vertices : "<< m_vertices.size() / 3 <<endl;
   cout << "   Number of normals  : "<<m_normals.size() / 3   << endl;
   cout << "   Number of UV       : "<<m_uv.size() / 2        << endl;

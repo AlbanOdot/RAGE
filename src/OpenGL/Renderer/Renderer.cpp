@@ -40,7 +40,7 @@ Renderer::Renderer(const int width, const int height, const std::string& filenam
   m_projection = _camera->GetProjMatrix();
 }
 
-Renderer::Renderer(const int width, const int height, bool animation) : Scene(width, height), _camera(nullptr) {
+Renderer::Renderer(const int width, const int height, bool animation) : Scene(width, height), _camera(nullptr), m_clicked_bone(nullptr) {
   glCullFace(GL_FRONT_AND_BACK);
   resizeBuffers(2 * _width, 2 * _height);
 
@@ -50,15 +50,15 @@ Renderer::Renderer(const int width, const int height, bool animation) : Scene(wi
   initLighting();
   initSSAO();
   //MESH LOADING AND STORAGE
-  //m_objects.push_back(Model("../DataFiles/CylinderAnim.obj"));
+  //m_shapes.push_back(ShapeModel(0.5f,glm::vec3(0.f,0.f,-2.f)));
+  //m_objects.push_back(Model("../DataFiles/CenteredCylinder.obj"));
 
-  m_bones.push_back(Bone(glm::vec3(1.0,.0,0.0),glm::vec3(1.0,.0,0.0)));
-  m_bones[0].addChild(glm::vec3(1.0,1.0,0.0));
-  /*m_bones[0].addChild(glm::vec3(-1,-1,0));
-  std::deque<int> path = {1};
-  m_bones[0].addChild(path);
-  path = {1,0};
-  m_bones[0].addChild(path);*/
+  Bone skeletton1(glm::vec3(-2.f,.0,.0),glm::vec3(1.0,.0,0.0));
+  skeletton1.addChild(glm::vec3(1.0,1,0.0));
+  m_bones.push_back(skeletton1);
+
+
+  //m_bones.push_back(skeletton1.addChild(glm::vec3(-1.0,1,0.0)));
 
   m_animation = true;
   //POSTPROCESS QUAD INIT
@@ -68,7 +68,7 @@ Renderer::Renderer(const int width, const int height, bool animation) : Scene(wi
   _camera->resizeCamera(_width,_height);
   m_view = _camera->GetViewMatrix();
   m_projection = _camera->GetProjMatrix();
-(void)animation;
+  (void)animation;
 }
 
 void Renderer::draw(){
@@ -92,12 +92,22 @@ void Renderer::draw(){
   glUniformMatrix4fv( glGetUniformLocation(GBUFFERRENDER, "projection"), 1, GL_FALSE, glm::value_ptr(m_projection));
   m_view = _camera->GetViewMatrix();
   for(const auto& model : m_objects){
-      glUniformMatrix4fv( glGetUniformLocation(GBUFFERRENDER, "model"), 1, GL_FALSE, glm::value_ptr(model.model()));
+      glUniform1i(glGetUniformLocation(GBUFFERRENDER, "animated"), 0);
+      glUniformMatrix4fv( glGetUniformLocation(GBUFFERRENDER, "models"), 1, GL_FALSE,glm::value_ptr(model.model()));
       model.draw();
     }
-  for(const auto& bone : m_bones){
-      glUniformMatrix4fv( glGetUniformLocation(GBUFFERRENDER, "model"), 1, GL_FALSE, glm::value_ptr(bone.model()));
-      bone.draw();
+  /* for(const auto& model : m_shapes){
+      glUniform1i(glGetUniformLocation(GBUFFERRENDER, "animated"), 0);
+      glUniformMatrix4fv( glGetUniformLocation(GBUFFERRENDER, "models"), 1, GL_FALSE,glm::value_ptr(model.model()));
+      model.draw();
+    }*/
+
+  for(auto& skeletton : m_bones){
+      for(const auto& bone : skeletton.boneList()){
+          glUniform1i(glGetUniformLocation(GBUFFERRENDER, "animated"), 0);
+          glUniformMatrix4fv( glGetUniformLocation(GBUFFERRENDER, "models"), 1, GL_FALSE,glm::value_ptr(bone->model()));
+          bone->draw();
+        }
     }
 
   if(computeSSAO){
@@ -131,7 +141,6 @@ void Renderer::draw(){
       glBindTexture(GL_TEXTURE_2D,  ssaoBuffer.buffer());
       m_postProcessScreen.quadDraw();
     }else{
-      cout << "NO SSAO"<<endl;
       ssaoBuffer.bind();
       glClear(GL_COLOR_BUFFER_BIT);
       glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
@@ -181,17 +190,17 @@ void Renderer::initPreprocess(){
 }
 
 void Renderer::initSSAO(){
-  ssaoRadius = 0.5;
-  ssaoBias = 0.01;
+  ssaoRadius = 0.5f;
+  ssaoBias = 0.01f;
   std::uniform_real_distribution<GLfloat> randomFloats(0.0,1.0);
   std::default_random_engine  generator;
   for(unsigned int i = 0; i<63; ++i){
-      glm::vec3 sample(randomFloats(generator) * 2.0 - 1.0, randomFloats(generator) * 2.0 - 1.0, randomFloats(generator));
+      glm::vec3 sample(randomFloats(generator) * 2.0f- 1.0f, randomFloats(generator) * 2.0f - 1.0f, randomFloats(generator));
       sample = glm::normalize(sample);
       sample *= randomFloats(generator);
-      float scale = float(i) / 64.0;
+      float scale = float(i) / 64.0f;
       float scale2 = scale* scale;
-      scale = 0.1f * scale2 + 1.0f*(1.0-scale2);
+      scale = 0.1f * scale2 + 1.0f*(1.0f-scale2);
       sample *= scale;
       ssaoKernel[3*i]  = sample[0];
       ssaoKernel[3*i+1]= sample[1];
@@ -199,8 +208,8 @@ void Renderer::initSSAO(){
     }
 
   for(unsigned int i=0; i<15; i++){
-      ssaoNoise[3*i] = randomFloats(generator) *2.0 - 1.0;
-      ssaoNoise[3*i+1] = randomFloats(generator) * 2.0 -1.0;
+      ssaoNoise[3*i] = randomFloats(generator) *2.0f - 1.0f;
+      ssaoNoise[3*i+1] = randomFloats(generator) * 2.0f -1.0f;
       ssaoNoise[3*i+2] = 0.0;
     }
 
@@ -274,6 +283,7 @@ void Renderer::mouseclick(int button, float xpos, float ypos) {
       for(auto& bone : m_bones){
           if((m_clicked_bone = bone.clickOnSkeletton(m_renderer_ray)) != nullptr ){
               cout << "You clicked on bone : "<<m_clicked_bone->ID()<<endl;
+              break;
             }
         }
     }
@@ -282,9 +292,6 @@ void Renderer::mouseclick(int button, float xpos, float ypos) {
 
 void Renderer::mousemove(float xpos, float ypos) {
   //TODO CALCUL DE ROTATION ICI
-  //Boutton gauche
-  //Rotation haut-bas autour de la fromCam -> BoneOrig
-  //Rotation gauche-droit par rapport à l'axe direction x (fromCam Bone Orig)
   //Boutton droit
   //Pareil mais clamper dans la directionde plus grand angle
   float xOffset = xpos - lastX[m_last_button];
@@ -296,7 +303,14 @@ void Renderer::mousemove(float xpos, float ypos) {
       switch(m_last_button){
         case RIGHT_BUTTON: break;
         case LEFT_BUTTON:
-          if(m_clicked_bone) m_clicked_bone->rotate(2.f * (float)M_PI * xOffset * invSS[0],m_clicked_bone->origin() - _camera->m_position);
+
+          if(m_clicked_bone != nullptr){
+              glm::mat4 model = m_clicked_bone->model();
+              glm::vec3 ZCamAxis = m_view * model * glm::vec4(0,0,1,0);
+              glm::vec3 XCamAxis = m_view * model * glm::vec4(0,1,0,0);
+              m_clicked_bone->rotate(2.f * (float)M_PI * yOffset * invSS[0],ZCamAxis);
+              m_clicked_bone->rotate(2.f * (float)M_PI * xOffset * invSS[0],XCamAxis);
+            }
           break;
         case MIDDLE_BUTTON:break;
         case NO_BUTTON: break;
@@ -333,13 +347,13 @@ bool Renderer::keyboard(unsigned char k) {
       ssaoRadius = ssaoRadius - 0.05f > 0.f ? ssaoRadius - 0.05f : 0.0f;
       return true;
     case 'r':
-      ssaoRadius = ssaoRadius + 0.05f < 1.5 ? ssaoRadius + 0.05f : 1.5f;
+      ssaoRadius = ssaoRadius + 0.05f < 1.5f ? ssaoRadius + 0.05f : 1.5f;
       return true;
     case 'd':
       ssaoBias = ssaoBias - 0.005f >0.0f ? ssaoBias - 0.005f : 0.0f;
       return true;
     case 'f':
-      ssaoBias = ssaoBias + 0.005f < 0.25f ? ssaoBias + 0.005f : 0.25;
+      ssaoBias = ssaoBias + 0.005f < 0.25f ? ssaoBias + 0.005f : 0.25f;
       return true;
     default:
       return false;
@@ -363,10 +377,10 @@ void Renderer::resize(int w, int h){
 void Renderer::setDrawAABB(bool d)
 {
   for(auto& model : m_objects){
-      model.showAABB(d);
+      model.displayAABB(d);
     }
   for(auto& bone : m_bones){
-      bone.showAABB(d);
+      bone.displayAABB(d);
     }
 
 }

@@ -7,7 +7,9 @@
 #include "../Buffers/FrameBuffers/RGBbuffer.h"
 #include "../Buffers/FrameBuffers/GBuffer.h"
 #include "../Buffers/FrameBuffers/RedBuffer.h"
-#include "../Object/Model/model.h"
+#include "../Buffers/FrameBuffers/Textures/RedTexture.h"
+#include "../Object/Model/Model.h"
+#include "../Object/Model/ShapeModel.h"
 #include "../ShadersUtils/shadermanager.h"
 #include "../Object/Animation/Bone.h"
 
@@ -98,8 +100,11 @@ private:
 
   //Change this to vector if you need multiple objects
   std::vector<Model> m_objects;
+  std::vector<ShapeModel> m_shapes;
   std::vector<Bone> m_bones;
+
   Bone* m_clicked_bone;
+
   Ray m_renderer_ray;
 
   //PostProcess stuff
@@ -119,6 +124,7 @@ private:
   RedBuffer ssaoBufferBlur;
   float ssaoKernel[64*3];
   float ssaoNoise[16*3];
+  //FloatTexture noiseTexture;
   GLuint noiseTexture;
   float ssaoRadius;
   float ssaoBias;

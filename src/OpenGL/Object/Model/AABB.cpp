@@ -3,14 +3,14 @@
 
 AABB::AABB() {}
 
-AABB::AABB(std::vector<Mesh> meshes){
+AABB::AABB(const std::vector<Mesh>& meshes){
   computeAABB(meshes);
 }
 AABB::AABB(const glm::vec3& min, const glm::vec3& max){
   m_box.computeCube(min,max);
 }
 
-void AABB::computeAABB(std::vector<Mesh> meshes){
+void AABB::computeAABB(const std::vector<Mesh>& meshes){
   glm::vec3 m_min = glm::vec3(meshes[0].m_vertices[0],meshes[0].m_vertices[1],meshes[0].m_vertices[2]);
   glm::vec3 m_max = glm::vec3(meshes[0].m_vertices[0],meshes[0].m_vertices[1],meshes[0].m_vertices[2]);
   for(const auto& mesh : meshes){
@@ -34,6 +34,9 @@ void AABB::draw() const{
   glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 }
 
-void AABB::computeAABB(glm::vec3 a,glm::vec3 b,glm::vec3 c,glm::vec3 d,glm::vec3 dir,float length){
+void AABB::computeAABB(const glm::vec3& a, const glm::vec3& b, const glm::vec3& c, const glm::vec3& d, const glm::vec3& dir, const float length){
   m_box.computeCube(a,b,c,d,dir,length);
+}
+void AABB::computeAABB(const glm::vec3& min, const glm::vec3& max){
+  m_box.computeCube(min,max);
 }

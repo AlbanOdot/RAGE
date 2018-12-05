@@ -7,10 +7,10 @@ class AABB
 public:
   AABB();
   AABB(const glm::vec3& min, const glm::vec3& max);
-  AABB(std::vector<Mesh> model);
-  void computeAABB(std::vector<Mesh> model);
-  //
-  void computeAABB(glm::vec3 a,glm::vec3 b,glm::vec3 c,glm::vec3 d,glm::vec3 dir,float length);
+  AABB(const std::vector<Mesh>& model);
+  void computeAABB(const std::vector<Mesh>& model);
+  void computeAABB(const glm::vec3& a,const glm::vec3& b, const glm::vec3& c, const glm::vec3& d, const glm::vec3& dir, const float length);
+  void computeAABB(const glm::vec3& min, const glm::vec3& max);
   void draw() const;
   Mesh box() const { return m_box;}
   glm::vec3 center() const { return m_box.center();}
