@@ -3,17 +3,19 @@
 #include "./src/Math/Algorithm.h"
 #include "./src/OpenGL/Object/Shapes/shapes.h"
 #include <random>
+#include <cmath>
 
 unsigned int Bone::m_bone_count = 0;
 
 Bone::Bone(glm::vec3 origin , glm::vec3 direction, float length , float radius, bool root )
-  : Model(), m_id(m_bone_count++), m_root(root), m_origin(origin), m_direction(glm::normalize(direction)), m_length(length), m_radius(radius)
+  : BasicModel(), m_id(m_bone_count++), m_root(root), m_origin(origin), m_direction(glm::normalize(direction)), m_length(length), m_radius(radius)
 {
   computeBone(origin,direction,length,radius,root);
 }
 
 
 void Bone::computeBone(glm::vec3 origin , glm::vec3 direction, float length , float radius, bool root ){
+  m_meshes.clear();
   direction = glm::normalize(direction);
   m_meshes.push_back(Cristal(origin,direction,length,radius));
   float sRadius = 0.25f * m_radius;
@@ -22,33 +24,10 @@ void Bone::computeBone(glm::vec3 origin , glm::vec3 direction, float length , fl
       m_meshes.push_back(Sphere(origin - sRadius * direction,sRadius));
     }
   //AABB computation
-  //On swap les coordonnées pour avoir une base de R^3
-  std::uniform_real_distribution<float> randomFloats(0.0001f,0.99f);
-  std::default_random_engine  generator;
-  float bias = randomFloats(generator);
-  // For all bias  :  bias != (2 - bias) != bias^2 <=> 0<bias<1
-  glm::vec3 base1(bias * direction.y, (2.f - bias) * direction.x, bias * bias *direction.z);
-  bias = randomFloats(generator);
-  glm::vec3 base2(bias * direction.y, (2.f - bias) * direction.z, bias * bias *direction.x);
-  base1 = glm::normalize(base1);
-  base2 = glm::normalize(base2);
-  //Find orthonormal basis
-  Math::Algorithm::GramSchmidt(direction,base1,base2);
-  glm::vec3 a = radius * base1 + origin;
-  glm::vec3 b = radius * base2 + origin;
-  glm::vec3 c = -radius * base1 + origin;
-  glm::vec3 d = -radius * base2 + origin;
-  //Si c'est le root on inclut la première sphere
-  if(m_root){
-      a -= 2.f*sRadius * direction;
-      b -= 2.f*sRadius * direction;
-      c -= 2.f*sRadius * direction;
-      d -= 2.f*sRadius * direction;
-    }
-
-  //+radius pour les deux spheres
-  m_aabb.computeAABB(a,b,c,d,direction,length + radius);
-  //m_aabb.computeAABB(m_meshes);
+  computeBoneAABB();
+  //Calcul de la matrice rest_pose
+  m_rest_pose = glm::mat4(1.f);
+  m_rest_pose = glm::translate(m_rest_pose,m_origin);
 }
 void Bone::draw() const{
   //Draw self
@@ -63,6 +42,16 @@ void Bone::draw() const{
 /* Hierarchy functions */
 Bone Bone::addChild(glm::vec3 direction, float length, float radius){
   Bone child(m_origin + m_length * m_direction, direction, length, radius, false);
+  child.m_parent = this;
+  child.m_path = m_path;
+  child.m_path.emplace_back(m_children.size()); //We concatenate our path and add his spot
+  m_children.emplace_back(child);
+  return child;
+}
+
+Bone Bone::addChild(float length, float radius){
+  //TODO Debugger ce feature
+  Bone child(m_origin + m_length * glm::vec3(glm::vec4(m_direction,0) * m_model), m_direction, length, radius, false);
   child.m_parent = this;
   child.m_path = m_path;
   child.m_path.emplace_back(m_children.size()); //We concatenate our path and add his spot
@@ -110,26 +99,52 @@ void Bone::rotate(float theta, const glm::vec3& u){
   m_model = glm::rotate(m_model, theta, u);
   m_model = glm::translate(m_model,-m_origin);
   for(auto& child : m_children){
-      child.rotate(m_model);
+      child.rotateFromPoint(m_model,m_origin);
     }
 }
 
 /* Action functions */
-void Bone::rotate(const glm::mat4 R){
+void Bone::rotate(const glm::mat4& R){
   m_model = glm::translate(m_model,m_origin);
   m_model = R;
   m_model = glm::translate(m_model,-m_origin);
   for(auto& child : m_children){
-      child.rotate(m_model);
+      child.rotateFromPoint(m_model,m_origin);
     }
 }
 
 void Bone::rotate(float angle, float x, float y, float z){
   m_model = glm::rotate(m_model, angle, glm::vec3(x,y,z));
   for(auto& child : m_children){
-      child.rotate(m_model);
+      child.rotateFromPoint(m_model,m_origin);
     }
 }
+
+void Bone::rotateFromPoint(const float angle, const glm::vec3& vec, const glm::vec3& point){
+  m_model = glm::translate(m_model,point);
+  m_model = glm::rotate(m_model, angle, vec);
+  m_model = glm::translate(m_model,-point);
+  for(auto& child : m_children){
+      child.rotateFromPoint(m_model,point);
+    }
+}
+void Bone::rotateFromPoint(const glm::mat4& R, const glm::vec3& point){
+  //m_model = glm::translate(R,point);
+  m_model = R;
+  //m_model = glm::translate(m_model,-point);
+  for(auto& child : m_children){
+      child.rotateFromPoint(m_model,point);
+    }
+}
+void Bone::rotateFromPoint(const float angle, float x, float y, float z, const glm::vec3& point){
+  m_model = glm::translate(m_model,point);
+  m_model = glm::rotate(m_model, angle, glm::vec3(x,y,z));
+  m_model = glm::translate(m_model,-point);
+  for(auto& child : m_children){
+      child.rotateFromPoint(m_model,point);
+    }
+}
+
 //virtual void rotate(const Quaternion& q);
 
 void Bone::translate(const glm::vec3& vec){
@@ -194,4 +209,34 @@ vector< Bone *> Bone::boneList(){
       child.pushChild(list);
     }
   return list;
+}
+
+void Bone::computeBoneAABB() {
+  //On swap les coordonnées pour avoir une base de R^3
+  std::uniform_real_distribution<float> randomFloats(0.0001f,0.99f);
+  std::default_random_engine  generator;
+  float bias = randomFloats(generator);
+  // For all bias  :  bias != (2 - bias) != bias^2 <=> 0<bias<1
+  glm::vec3 base1(bias * m_direction.y, (2.f - bias) * m_direction.x, bias * bias *m_direction.z);
+  bias = randomFloats(generator);
+  glm::vec3 base2(bias * m_direction.y, (2.f - bias) * m_direction.z, bias * bias *m_direction.x);
+  base1 = glm::normalize(base1);
+  base2 = glm::normalize(base2);
+  //Find orthonormal basis
+  Math::Algorithm::GramSchmidt(m_direction,base1,base2);
+  glm::vec3 a = m_radius * base1 + m_origin;
+  glm::vec3 b = m_radius * base2 + m_origin;
+  glm::vec3 c = -m_radius * base1 + m_origin;
+  glm::vec3 d = -m_radius * base2 + m_origin;
+  //Si c'est le root on inclut la première sphere
+  if(m_root){
+      a -= 0.5f * m_radius * m_direction;
+      b -= 0.5f * m_radius * m_direction;
+      c -= 0.5f * m_radius * m_direction;
+      d -= 0.5f * m_radius * m_direction;
+    }
+
+  //+radius pour les deux spheres
+  m_aabb.computeAABB(a,b,c,d,m_direction,m_length + m_radius);
+
 }

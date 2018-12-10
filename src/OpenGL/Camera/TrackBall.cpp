@@ -78,7 +78,7 @@ void TrackBall::fitScene(AABB aabb){
     updateCameraVectors();
 }
 
-void TrackBall::fitScene(std::vector<Model> models){
+void TrackBall::fitScene(std::vector<BasicModel> models){
   glm::vec3 min = glm::vec3(9999999999999999.f,9999999999999999.f,9999999999999999.f);
   glm::vec3 max = -min;
   //Get AABB of the whole scene

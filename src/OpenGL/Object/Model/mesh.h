@@ -2,6 +2,7 @@
 #define MESH_H
 #include <vector>
 #include <glm.hpp>
+
 using namespace std;
 class Mesh
 {
@@ -12,7 +13,6 @@ public:
   vector<float> m_normals;
   vector<float> m_uv;
   vector<float> m_colors;
-  vector<float> m_weights;
   vector<unsigned int> m_indices;
 
   /*  Functions  */
@@ -21,12 +21,13 @@ public:
   Mesh();
   void draw() const;
 
+  /*  Functions    */
+  void setupMesh();
+  void resetMesh();
 protected:
   /*  Render data  */
   unsigned int m_VAO, m_VBO, m_NBO, m_UVBO, m_CRBO,m_EBO;
   unsigned int m_bones_count;
-  /*  Functions    */
-  void setupMesh();
 
   /* inlines */
   inline void Triangle(unsigned int a,unsigned int b, unsigned int c) { m_indices.push_back(a); m_indices.push_back(b); m_indices.push_back(c);}

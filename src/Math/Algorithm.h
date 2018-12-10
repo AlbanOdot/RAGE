@@ -5,6 +5,8 @@
 #include <glm/gtx/transform.hpp>
 #include <glm/gtx/vector_angle.hpp>
 
+#include <vector>
+
 namespace  Math{
 
   namespace Algorithm{
@@ -23,6 +25,13 @@ namespace  Math{
  *
  */
     inline glm::vec3 projection(const glm::vec3& v, const glm::vec3& u);
+
+    /*
+     *
+     *
+     *
+     */
+    inline void find4MaxValues(const std::vector<float>& findIn, glm::vec4& foundOut, glm::vec4& foundOutIdx);
   };
 };
 

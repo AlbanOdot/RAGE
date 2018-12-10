@@ -2,17 +2,18 @@
 #define BONE_H
 #include <vector>
 #include <deque>
-#include "./src/OpenGL/Object/Model/Model.h"
+#include "./src/OpenGL/Object/Model/BasicModel.h"
 #include "./src/Math/RayCast.h"
 
-class Bone : public Model
+class Bone : public BasicModel
 {
 public:
   /* CONSTRUCTORs */
   Bone(glm::vec3 origin = glm::vec3(-1.0,0.0,0.0), glm::vec3 direction = glm::vec3(1.0,0.0,0.0), float length = 2.0f, float radius = 0.3f, bool root = true);
   void            computeBone(glm::vec3 origin = glm::vec3(-1.0,0.0,0.0), glm::vec3 direction = glm::vec3(1.0,0.0,0.0), float length = 2.0f, float radius = 0.3f, bool root = true);
   /* Hierarchy functions */
-  Bone            addChild(glm::vec3 direction = glm::vec3(1.0,0.0,0.0), float length = 2.0f, float radius = 0.3f);
+  Bone            addChild(float length = 2.0f, float radius = 0.3f);
+  Bone            addChild(glm::vec3 direction, float length = 2.0f, float radius = 0.3f);
   Bone            addChild(deque<int> path,glm::vec3 direction, float length, float radius);
   void            addChild(Bone& child);
   virtual Bone*   clickOnSkeletton(Ray& r);
@@ -21,6 +22,8 @@ public:
   /* Acessors */
   bool            isRoot() const { return m_root;}
   void            setRoot(bool root);
+  void            setNewRestPose();
+  glm::mat4       restPose() const { return m_rest_pose;}
   glm::vec3       origin() const { return m_origin;}
   glm::vec3       direction() const { return m_direction;}
   float           length() const { return m_length;}
@@ -38,8 +41,11 @@ public:
   //virtual void translate(const Quaternion& q);
 
   virtual void rotate(const float angle, const glm::vec3& vec) override;
-  virtual void rotate(const glm::mat4 R) override;
+  virtual void rotate(const glm::mat4& R) override;
   virtual void rotate(const float angle, float x, float y, float z) override;
+  virtual void rotateFromPoint(const float angle, const glm::vec3& vec, const glm::vec3& point);
+  virtual void rotateFromPoint(const glm::mat4& R, const glm::vec3& point);
+  virtual void rotateFromPoint(const float angle, float x, float y, float z, const glm::vec3& point);
   //virtual void rotate(const Quaternion& q);
 
   virtual void stretch(const float length, const glm::vec3& direction = glm::vec3(1,1,1)) override;
@@ -50,10 +56,12 @@ public:
   virtual void draw() const override;
   virtual void displayAABB(const bool d) override;
   unsigned int ID() const { return m_id;}
+  void computeBoneAABB();
 protected:
   static unsigned int m_bone_count;
   unsigned int        m_id;
   vector<int>         m_path;
+
   /*  Hierarchy    */
   Bone*               m_parent;
   vector<Bone>        m_children;
@@ -61,6 +69,7 @@ protected:
 
   /* Bone data */
   glm::vec3           m_origin;
+  glm::mat4           m_rest_pose;
   glm::vec3           m_direction;
   float               m_length;
   float               m_radius;

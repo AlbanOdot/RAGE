@@ -25,7 +25,7 @@ public:
     void updateCameraVectors() override;
 
     void fitScene(AABB aabb) override;
-    void fitScene(std::vector<Model> models) override;
+    void fitScene(std::vector<BasicModel> models) override;
 
     glm::vec3 m_pointLook;
     float m_distance;

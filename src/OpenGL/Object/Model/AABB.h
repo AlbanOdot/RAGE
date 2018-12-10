@@ -9,6 +9,7 @@ public:
   AABB(const glm::vec3& min, const glm::vec3& max);
   AABB(const std::vector<Mesh>& model);
   void computeAABB(const std::vector<Mesh>& model);
+  void computeAABB(const Mesh* mesh);
   void computeAABB(const glm::vec3& a,const glm::vec3& b, const glm::vec3& c, const glm::vec3& d, const glm::vec3& dir, const float length);
   void computeAABB(const glm::vec3& min, const glm::vec3& max);
   void draw() const;

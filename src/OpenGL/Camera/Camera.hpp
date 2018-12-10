@@ -3,17 +3,10 @@
 
 #include <src/Math/ray.h>
 #include <src/OpenGL/Object/Model/AABB.h>
-#include "./src/OpenGL/Object/Model/Model.h"
+#include "./src/OpenGL/Object/Model/BasicModel.h"
 #include <string>
 #include <glm.hpp>
 
-/**
- * \file Camera.hpp
- * \brief Mother class for camera
- *
- * Mother class for camera
- *
- */
 
 #define ZOOM 45
 #define SPEED 2.5
@@ -21,10 +14,6 @@
 
 enum Movement{FORWARD = 1, BACKWARD = 3, LEFT = 0, RIGHT = 2};
 
-/**
- * \class Camera
- * \brief Mother class for camera
- */
 class Camera
 {
 public:
@@ -37,7 +26,7 @@ public:
     virtual void updateCameraVectors() = 0;
 
     virtual void fitScene(AABB aabb) = 0;
-    virtual void fitScene(std::vector<Model> models) = 0;
+    virtual void fitScene(std::vector<BasicModel> models) = 0;
     Ray getRayFromScreen(float x, float y);
 
     void updateCameraVectorsInit();

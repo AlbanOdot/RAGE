@@ -76,7 +76,7 @@ void Cube::draw() const{
 
 void Cube::computeCube(glm::vec3 a,glm::vec3 b,glm::vec3 c,glm::vec3 d,glm::vec3 dir,float length){
   //TODO Faire un cube de tout ce bordel
-
+  resetMesh();
   //left face
   m_topLeftFront = a;
   m_botLeftFront = b;

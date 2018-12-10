@@ -1,12 +1,12 @@
 #include "ShapeModel.h"
 
 //Generate a sphere
-ShapeModel::ShapeModel(float radius, glm::vec3 center) : Model(){
+ShapeModel::ShapeModel(float radius, glm::vec3 center) : BasicModel(){
   addShape(Sphere(center, radius));
 }
 
 //Generate generic shape
-ShapeModel::ShapeModel(Shape::SHAPE s,glm::vec3 origin , glm::vec3 direction, float length, float radius) : Model(){
+ShapeModel::ShapeModel(Shape::SHAPE s,glm::vec3 origin , glm::vec3 direction, float length, float radius) : BasicModel(){
   //TODO IMPLEMENTER CA
   switch(s){
     case Shape::SPHERE:

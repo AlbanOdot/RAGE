@@ -25,7 +25,23 @@ void AABB::computeAABB(const std::vector<Mesh>& meshes){
           m_max.z = mesh.m_vertices[i+2] > m_max.z ? mesh.m_vertices[i+2] : m_max.z;
         }
     }
-    m_box.computeCube(m_min,m_max);
+  m_box.computeCube(m_min,m_max);
+}
+
+void AABB::computeAABB(const Mesh* mesh){
+  glm::vec3 m_min = glm::vec3(mesh->m_vertices[0],mesh->m_vertices[1],mesh->m_vertices[2]);
+  glm::vec3 m_max = glm::vec3(mesh->m_vertices[0],mesh->m_vertices[1],mesh->m_vertices[2]);
+  for(unsigned int i = 0; i < mesh->m_vertices.size() - 2; i += 3){
+
+      m_min.x = mesh->m_vertices[i] < m_min.x ? mesh->m_vertices[i] : m_min.x;
+      m_min.y = mesh->m_vertices[i+1] < m_min.y ? mesh->m_vertices[i+1] : m_min.y;
+      m_min.z = mesh->m_vertices[i+2] < m_min.z ? mesh->m_vertices[i+2] : m_min.z;
+
+      m_max.x = mesh->m_vertices[i] > m_max.x ? mesh->m_vertices[i] : m_max.x;
+      m_max.y = mesh->m_vertices[i+1] > m_max.y ? mesh->m_vertices[i+1] : m_max.y;
+      m_max.z = mesh->m_vertices[i+2] > m_max.z ? mesh->m_vertices[i+2] : m_max.z;
+    }
+  m_box.computeCube(m_min,m_max);
 }
 
 void AABB::draw() const{

@@ -2,7 +2,7 @@
 #define MODEL_H
 
 #include "../Shapes/shapes.h"
-#include "Model.h"
+#include "BasicModel.h"
 
 /*
  *
@@ -11,10 +11,10 @@
  *
  *
  */
-class ShapeModel :public Model
+class ShapeModel :public BasicModel
 {
 public:
-  ShapeModel() : Model(){}
+  ShapeModel() : BasicModel(){}
   //Generate generic shape from ../Shapes
   //Generate a sphere
   ShapeModel(float radius,glm::vec3 center = glm::vec3(0.,0.,0.));

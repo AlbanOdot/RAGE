@@ -12,7 +12,6 @@ Mesh::Mesh(const vector<float> vertices, const vector<float> normals, const vect
   cout << "   Number of colors   : "<< m_colors.size() / 3   << endl;
   cout << "   Number of faces    : "<< m_indices.size() / 3  << endl;
   setupMesh();
-
 }
 
 void Mesh::draw() const{
@@ -53,7 +52,6 @@ void Mesh::setupMesh(){
   glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, 2* sizeof(GLfloat), (GLvoid *)0);
   glEnableVertexAttribArray(3);
 
-  glGenBuffers(1, &m_EBO);
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_EBO);
   glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_indices.size() * sizeof(unsigned int),m_indices.data(), GL_STATIC_DRAW);
 
@@ -67,4 +65,12 @@ Mesh::Mesh(){
   glGenBuffers(1, &m_CRBO);
   glGenBuffers(1, &m_UVBO);
   glGenBuffers(1, &m_EBO);
+}
+
+void Mesh::resetMesh(){
+  m_vertices.clear();
+  m_normals.clear();
+  m_uv.clear();
+  m_colors.clear();
+  m_indices.clear();
 }

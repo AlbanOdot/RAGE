@@ -8,8 +8,9 @@
 #include "../Buffers/FrameBuffers/GBuffer.h"
 #include "../Buffers/FrameBuffers/RedBuffer.h"
 #include "../Buffers/FrameBuffers/Textures/RedTexture.h"
-#include "../Object/Model/Model.h"
+#include "../Object/Model/BasicModel.h"
 #include "../Object/Model/ShapeModel.h"
+#include "../Object/Animation/AnimatedModel.h"
 #include "../ShadersUtils/shadermanager.h"
 #include "../Object/Animation/Bone.h"
 
@@ -99,8 +100,9 @@ public:
 private:
 
   //Change this to vector if you need multiple objects
-  std::vector<Model> m_objects;
+  std::vector<BasicModel> m_objects;
   std::vector<ShapeModel> m_shapes;
+  std::vector<AnimatedModel> m_animated_objects;
   std::vector<Bone> m_bones;
 
   Bone* m_clicked_bone;

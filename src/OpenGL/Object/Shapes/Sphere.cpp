@@ -1,4 +1,5 @@
 #include "Sphere.h"
+#include <iostream>
 
 Sphere::Sphere(glm::vec3 center, float radius) : Shape(SPHERE), m_center(center), m_radius(radius)
 {
@@ -29,7 +30,6 @@ Sphere::Sphere(glm::vec3 center, float radius) : Shape(SPHERE), m_center(center)
             }
         }
     }
-
   setupMesh();
 }
 

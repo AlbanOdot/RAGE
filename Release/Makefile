@@ -433,6 +433,60 @@ src/OpenGL/Camera/TrackBall.cpp.s:
 	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Camera/TrackBall.cpp.s
 .PHONY : src/OpenGL/Camera/TrackBall.cpp.s
 
+src/OpenGL/Object/Animation/AnimatedMesh.o: src/OpenGL/Object/Animation/AnimatedMesh.cpp.o
+
+.PHONY : src/OpenGL/Object/Animation/AnimatedMesh.o
+
+# target to build an object file
+src/OpenGL/Object/Animation/AnimatedMesh.cpp.o:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Animation/AnimatedMesh.cpp.o
+.PHONY : src/OpenGL/Object/Animation/AnimatedMesh.cpp.o
+
+src/OpenGL/Object/Animation/AnimatedMesh.i: src/OpenGL/Object/Animation/AnimatedMesh.cpp.i
+
+.PHONY : src/OpenGL/Object/Animation/AnimatedMesh.i
+
+# target to preprocess a source file
+src/OpenGL/Object/Animation/AnimatedMesh.cpp.i:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Animation/AnimatedMesh.cpp.i
+.PHONY : src/OpenGL/Object/Animation/AnimatedMesh.cpp.i
+
+src/OpenGL/Object/Animation/AnimatedMesh.s: src/OpenGL/Object/Animation/AnimatedMesh.cpp.s
+
+.PHONY : src/OpenGL/Object/Animation/AnimatedMesh.s
+
+# target to generate assembly for a file
+src/OpenGL/Object/Animation/AnimatedMesh.cpp.s:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Animation/AnimatedMesh.cpp.s
+.PHONY : src/OpenGL/Object/Animation/AnimatedMesh.cpp.s
+
+src/OpenGL/Object/Animation/AnimatedModel.o: src/OpenGL/Object/Animation/AnimatedModel.cpp.o
+
+.PHONY : src/OpenGL/Object/Animation/AnimatedModel.o
+
+# target to build an object file
+src/OpenGL/Object/Animation/AnimatedModel.cpp.o:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Animation/AnimatedModel.cpp.o
+.PHONY : src/OpenGL/Object/Animation/AnimatedModel.cpp.o
+
+src/OpenGL/Object/Animation/AnimatedModel.i: src/OpenGL/Object/Animation/AnimatedModel.cpp.i
+
+.PHONY : src/OpenGL/Object/Animation/AnimatedModel.i
+
+# target to preprocess a source file
+src/OpenGL/Object/Animation/AnimatedModel.cpp.i:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Animation/AnimatedModel.cpp.i
+.PHONY : src/OpenGL/Object/Animation/AnimatedModel.cpp.i
+
+src/OpenGL/Object/Animation/AnimatedModel.s: src/OpenGL/Object/Animation/AnimatedModel.cpp.s
+
+.PHONY : src/OpenGL/Object/Animation/AnimatedModel.s
+
+# target to generate assembly for a file
+src/OpenGL/Object/Animation/AnimatedModel.cpp.s:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Animation/AnimatedModel.cpp.s
+.PHONY : src/OpenGL/Object/Animation/AnimatedModel.cpp.s
+
 src/OpenGL/Object/Animation/Bone.o: src/OpenGL/Object/Animation/Bone.cpp.o
 
 .PHONY : src/OpenGL/Object/Animation/Bone.o
@@ -486,6 +540,33 @@ src/OpenGL/Object/Model/AABB.s: src/OpenGL/Object/Model/AABB.cpp.s
 src/OpenGL/Object/Model/AABB.cpp.s:
 	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Model/AABB.cpp.s
 .PHONY : src/OpenGL/Object/Model/AABB.cpp.s
+
+src/OpenGL/Object/Model/BasicModel.o: src/OpenGL/Object/Model/BasicModel.cpp.o
+
+.PHONY : src/OpenGL/Object/Model/BasicModel.o
+
+# target to build an object file
+src/OpenGL/Object/Model/BasicModel.cpp.o:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Model/BasicModel.cpp.o
+.PHONY : src/OpenGL/Object/Model/BasicModel.cpp.o
+
+src/OpenGL/Object/Model/BasicModel.i: src/OpenGL/Object/Model/BasicModel.cpp.i
+
+.PHONY : src/OpenGL/Object/Model/BasicModel.i
+
+# target to preprocess a source file
+src/OpenGL/Object/Model/BasicModel.cpp.i:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Model/BasicModel.cpp.i
+.PHONY : src/OpenGL/Object/Model/BasicModel.cpp.i
+
+src/OpenGL/Object/Model/BasicModel.s: src/OpenGL/Object/Model/BasicModel.cpp.s
+
+.PHONY : src/OpenGL/Object/Model/BasicModel.s
+
+# target to generate assembly for a file
+src/OpenGL/Object/Model/BasicModel.cpp.s:
+	$(MAKE) -f CMakeFiles/RAGE.dir/build.make CMakeFiles/RAGE.dir/src/OpenGL/Object/Model/BasicModel.cpp.s
+.PHONY : src/OpenGL/Object/Model/BasicModel.cpp.s
 
 src/OpenGL/Object/Model/Mesh.o: src/OpenGL/Object/Model/Mesh.cpp.o
 
@@ -962,12 +1043,21 @@ help:
 	@echo "... src/OpenGL/Camera/TrackBall.o"
 	@echo "... src/OpenGL/Camera/TrackBall.i"
 	@echo "... src/OpenGL/Camera/TrackBall.s"
+	@echo "... src/OpenGL/Object/Animation/AnimatedMesh.o"
+	@echo "... src/OpenGL/Object/Animation/AnimatedMesh.i"
+	@echo "... src/OpenGL/Object/Animation/AnimatedMesh.s"
+	@echo "... src/OpenGL/Object/Animation/AnimatedModel.o"
+	@echo "... src/OpenGL/Object/Animation/AnimatedModel.i"
+	@echo "... src/OpenGL/Object/Animation/AnimatedModel.s"
 	@echo "... src/OpenGL/Object/Animation/Bone.o"
 	@echo "... src/OpenGL/Object/Animation/Bone.i"
 	@echo "... src/OpenGL/Object/Animation/Bone.s"
 	@echo "... src/OpenGL/Object/Model/AABB.o"
 	@echo "... src/OpenGL/Object/Model/AABB.i"
 	@echo "... src/OpenGL/Object/Model/AABB.s"
+	@echo "... src/OpenGL/Object/Model/BasicModel.o"
+	@echo "... src/OpenGL/Object/Model/BasicModel.i"
+	@echo "... src/OpenGL/Object/Model/BasicModel.s"
 	@echo "... src/OpenGL/Object/Model/Mesh.o"
 	@echo "... src/OpenGL/Object/Model/Mesh.i"
 	@echo "... src/OpenGL/Object/Model/Mesh.s"

@@ -1,13 +1,19 @@
 #version 410 core
+
+
+uniform mat4 models[5]; //#define MAX_BONES_COUNT 5 -> AnimatedModel.h + m_model de Model.h
+uniform mat4 view;
+uniform mat4 projection;
+uniform bool animated;
+
 layout (location = 0) in vec3 iposition;
 layout (location = 1) in vec3 inormal;
 layout (location = 2) in vec3 icolor;
 layout (location = 3) in vec2 itexCoord;
+layout (location = 4) in vec4 weights;
+layout (location = 5) in vec4 weightsIdx;
 
-uniform mat4 models[5]; //#define MAX_BONES_COUNT 25 -> AnimatedModel.h + m_model de Model.h
 
-uniform mat4 view;
-uniform mat4 projection;
 
 out vec3 vnormal;
 out vec3 vposition;
@@ -32,6 +38,10 @@ void main()
 
     //Passthrough
     vnormal = inormal;
-    vcolor = inormal;
+    /*if( animated )
+        vcolor = vec3(weights.x,weights.y,weights.z );
+    else*/
+        vcolor = inormal;
+
     vtexCoord = itexCoord;
 }
