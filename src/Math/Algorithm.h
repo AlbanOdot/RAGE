@@ -12,6 +12,7 @@ namespace  Math{
   namespace Algorithm{
 #define SQRT2 1.414213562373095048801688724209698
 #define SQRT1_2  0.7071067811865475255008
+#define EPSILON 0.000000001
     /*
  * Trouve une base orthonomée à partir du vecteur v1
  *
@@ -32,8 +33,14 @@ namespace  Math{
      *
      */
     inline void find4MaxValues(const std::vector<float>& findIn, glm::vec4& foundOut, glm::vec4& foundOutIdx);
-  };
-};
+    /*
+     *
+     *
+     *
+     */
+    inline void generateOrthonormalBasisFromDirection(glm::vec3& direction, glm::vec3& x, glm::vec3& y);
+  }
+}
 
 #include "Algorithm.inl"
 

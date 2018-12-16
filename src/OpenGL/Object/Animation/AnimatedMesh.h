@@ -1,7 +1,7 @@
 #ifndef ANIMATEDMESH_H
 #define ANIMATEDMESH_H
 
-#include "./src/OpenGL/Object/Model/Mesh.h"
+#include "./src/OpenGL/Object/Model/mesh.h"
 #include "./Bone.h"
 
 class AnimatedMesh : public Mesh
@@ -10,23 +10,21 @@ public:
 
   vector<float> m_weights;
   vector<int> m_weight_indices;
+  bool m_is_complete;
 
   AnimatedMesh(const vector<float> vertices, const vector<float> normals, const vector<float> UV,
-       const vector<float> colors,   const  vector<unsigned int>  indices,const vector<float> weights, const vector<int> weight_indices);
-  AnimatedMesh(const vector<float> vertices, const vector<float> normals, const vector<float> UV,
-       const vector<float> colors,   const  vector<unsigned int>  indices);
+               const vector<float> colors,   const  vector<unsigned int>  indices);
   AnimatedMesh();
-
-  void resetMesh(const vector<float> vertices, const vector<float> normals);
+  AnimatedMesh(const Mesh& m);
   void attachWeights(const vector<float> weights, const vector<int> weight_indices);
   void transformMesh(const vector<glm::mat4>& transfo,  const vector<glm::mat4>& invRestPose);
   void addWeights(const glm::vec4& w, const glm::vec4& widx) {   Point4(w);WeightIdx(widx);}
-  void draw() const;
+  //void draw() const;
   void setupMesh();
-  void setupMesh( const vector<float>& vertice, const vector<float>& normals);
+  void setupMesh( const vector<float> vertice, const vector<float> normals);
+  void resetWeight() { m_weight_indices.clear(); m_weights.clear();}
 protected:
   unsigned int m_WBO, m_WIBO;
-  bool m_is_complete;
 
   inline void WeightIdx(unsigned int a,unsigned int b, unsigned int c, unsigned int d)
   { m_weight_indices.push_back(a); m_weight_indices.push_back(b); m_weight_indices.push_back(c);m_weight_indices.push_back(d);}

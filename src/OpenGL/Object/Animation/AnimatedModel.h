@@ -1,7 +1,8 @@
 #ifndef ANIMATEDMODEL_H
 #define ANIMATEDMODEL_H
-#include "../Model/Model.h"
+#include "../Model/model.h"
 #include "AnimatedMesh.h"
+#include "./src/OpenGL/Object/Shapes/shapes.h"
 
 class AnimatedModel : public Model
 {
@@ -9,6 +10,7 @@ public:
   AnimatedModel();
   //Load a mesh from a file
   AnimatedModel(string path){loadModel(path);}
+  AnimatedModel(const Mesh& m);
 
   /* ROTATION AND MODEL CHANGE STUF */
   virtual void translate(const glm::vec3& vec);
@@ -30,18 +32,22 @@ public:
   vector<AnimatedMesh> meshes() const {return m_meshes;}
   vector<AnimatedMesh>& meshes()      { return m_meshes;}
   void meshes(const AnimatedMesh m)   { m_meshes.push_back(m);for(const auto& mesh : m_meshes) m_aabb.computeAABB(&mesh);}
+  vector<glm::mat4> models();
 
   /* Skeletton related stuff */
   void computeWeights();
-  void attachSkeletton(const Skeletton& skeletton) { m_skeletton = skeletton; computeWeights();}
+  void attachSkeletton(const Skeletton& skeletton) { m_skeletton = std::move(skeletton); computeWeights();}
   void applyBonesTransformation();
   Skeletton& skeletton() { return m_skeletton;}
+  void displayAABB(bool t) { m_draw_aabb = t; m_skeletton.displayAABB(t);}
 
 protected:
   vector<AnimatedMesh> m_meshes;
   Skeletton m_skeletton;
 
 private:
+  float m_min_dist = 0.f;
+  float m_max_dist = 0.75f;
   /*  Functions   */
   void loadModel(const string path);
   void processNode(aiNode *node, const aiScene *scene);

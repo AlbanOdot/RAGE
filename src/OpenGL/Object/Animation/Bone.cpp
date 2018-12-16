@@ -29,15 +29,6 @@ void Bone::computeBone(glm::vec3 origin , glm::vec3 direction, float length , fl
   m_rest_pose = glm::mat4(1.f);
   m_rest_pose = glm::translate(m_rest_pose,m_origin);
 }
-void Bone::draw() const{
-  //Draw self
-  for(const auto& mesh : m_meshes ){
-      mesh.draw();
-    }
-  if(m_draw_aabb){
-      m_aabb.draw();
-    }
-}
 
 /* Hierarchy functions */
 Bone Bone::addChild(glm::vec3 direction, float length, float radius){
@@ -185,7 +176,7 @@ void Bone::stretch(float x, float y, float z){
 }
 
 Bone * Bone::clickOnSkeletton(Ray& r){
-  if(Math::RayCast::vsAABB(r,m_aabb))
+  if(Math::RayCast::vsOBB(r,m_aabb,m_model))
     return this;
   Bone * clicked;
   for(auto& child : m_children){
@@ -212,18 +203,9 @@ vector< Bone *> Bone::boneList(){
 }
 
 void Bone::computeBoneAABB() {
-  //On swap les coordonnées pour avoir une base de R^3
-  std::uniform_real_distribution<float> randomFloats(0.0001f,0.99f);
-  std::default_random_engine  generator;
-  float bias = randomFloats(generator);
-  // For all bias  :  bias != (2 - bias) != bias^2 <=> 0<bias<1
-  glm::vec3 base1(bias * m_direction.y, (2.f - bias) * m_direction.x, bias * bias *m_direction.z);
-  bias = randomFloats(generator);
-  glm::vec3 base2(bias * m_direction.y, (2.f - bias) * m_direction.z, bias * bias *m_direction.x);
-  base1 = glm::normalize(base1);
-  base2 = glm::normalize(base2);
-  //Find orthonormal basis
-  Math::Algorithm::GramSchmidt(m_direction,base1,base2);
+  glm::vec3 base1;
+  glm::vec3 base2;
+  Math::Algorithm::generateOrthonormalBasisFromDirection(m_direction,base1,base2);
   glm::vec3 a = m_radius * base1 + m_origin;
   glm::vec3 b = m_radius * base2 + m_origin;
   glm::vec3 c = -m_radius * base1 + m_origin;
@@ -238,5 +220,18 @@ void Bone::computeBoneAABB() {
 
   //+radius pour les deux spheres
   m_aabb.computeAABB(a,b,c,d,m_direction,m_length + m_radius);
+
+}
+
+void Bone::draw() const{
+
+  for(const auto& mesh : m_meshes ){
+      mesh.draw();
+    }
+
+  if( m_draw_aabb ){
+      glLineWidth(2.0f);
+      m_aabb.draw();
+    }
 
 }

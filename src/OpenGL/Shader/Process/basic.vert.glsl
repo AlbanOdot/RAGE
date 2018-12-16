@@ -1,7 +1,7 @@
 #version 410 core
 
 
-uniform mat4 models[5]; //#define MAX_BONES_COUNT 5 -> AnimatedModel.h + m_model de Model.h
+uniform mat4 models[20]; //#define MAX_BONES_COUNT 5 -> AnimatedModel.h + m_model de Model.h
 uniform mat4 view;
 uniform mat4 projection;
 uniform bool animated;
@@ -25,11 +25,10 @@ void main()
     //On lit à la bonne colonne grâce à gl_VertexID
     mat4 model = models[0];
     /*if(animated){
-        vec2 weightSize = vec2(textureSize(weights, 0));
-        for(int i = 0; i < weightSize.r; ++i){
-            // La texture de poids prends un os en ligne et un vertex en colonne
-            model *= models[i + 1] * texelFetch(weights,ivec2(i,gl_VertexID), 0).r;
-        }
+        model =  weights.x * models[int(weightsIdx.x)];
+                + models[int(weightsIdx.y)] * weights.y
+                + models[int(weightsIdx.z)] * weights.z
+                + models[int(weightsIdx.w)] * weights.w;
     }*/
 
     gl_Position = projection * view * model * vec4(iposition, 1.0f);
@@ -38,10 +37,10 @@ void main()
 
     //Passthrough
     vnormal = inormal;
-    /*if( animated )
-        vcolor = vec3(weights.x,weights.y,weights.z );
-    else*/
-        vcolor = inormal;
+    if( animated ){
+        vcolor = vec3(0.20);//vec3(weights.z,weights.w,weights.x);
+    }else
+        vcolor = vec3(0.20);
 
     vtexCoord = itexCoord;
 }

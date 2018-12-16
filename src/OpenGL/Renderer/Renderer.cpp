@@ -5,6 +5,7 @@
 #include <random>
 #include <iostream>
 #include "../../Math/Algorithm.h"
+#include "../../Math/distance.h"
 #include <glm/gtx/quaternion.hpp>
 #include "./src/Math/RayCast.h"
 #include "glu.h"
@@ -49,20 +50,23 @@ Renderer::Renderer(const int width, const int height, bool animation) : Scene(wi
   //POSTPROCESS SHADERS
   initLighting();
   initSSAO();
-  //MESH LOADING AND STORAGE
-  //m_shapes.push_back(ShapeModel(0.5f,glm::vec3(0.f,0.f,-2.f)));
-  //m_objects.push_back(Model("../DataFiles/CenteredCylinder.obj"));
 
+  //MESH LOADING AND STORAGE
+
+  //Shapes
+
+  //Basic Model
+  //m_objects.emplace_back(BasicModel("../DataFiles/smoothCyl.obj"));
+
+  //Animated Model
+  m_animated_objects.emplace_back(AnimatedModel(Cylinder(glm::vec3(-2,0,0),glm::vec3(1,0,0),4.0)));
   Bone skeletton1(glm::vec3(-2.f,.0,.0),glm::vec3(1.0,.0,0.0));
   Bone son = skeletton1.addChild(glm::vec3(1.0,0,0.0));
-  /*//TODO Voir pourquoi on a que 2 os qui s'affichent.
-  son.addChild(glm::vec3(1.0,-1,0.0));*/
-  //m_bones.push_back(skeletton1);
-  AnimatedModel amod("../DataFiles/CenteredCylinder.obj");
-  amod.attachSkeletton(skeletton1);
-  m_animated_objects.push_back(amod);
-
+  //TODO Voir pourquoi on a que 2 os qui s'affichent.
+  //son.addChild(glm::vec3(1.0,-1,0.0));
+  m_animated_objects[0].attachSkeletton(skeletton1);
   m_animation = true;
+
   //POSTPROCESS QUAD INIT
   m_postProcessScreen.quadLoad();
   //CAMERA STUFF
@@ -98,15 +102,10 @@ void Renderer::draw(){
       glUniformMatrix4fv( glGetUniformLocation(GBUFFERRENDER, "models"), 1, GL_FALSE,glm::value_ptr(model.model()));
       model.draw();
     }
-  /* for(const auto& model : m_shapes){
-      glUniform1i(glGetUniformLocation(GBUFFERRENDER, "animated"), 0);
-      glUniformMatrix4fv( glGetUniformLocation(GBUFFERRENDER, "models"), 1, GL_FALSE,glm::value_ptr(model.model()));
-      model.draw();
-    }*/
   for(auto& animated_model : m_animated_objects){
       //Draw the object
       glUniform1i(glGetUniformLocation(GBUFFERRENDER, "animated"), 1);
-      glUniformMatrix4fv( glGetUniformLocation(GBUFFERRENDER, "models"), 1, GL_FALSE,glm::value_ptr(animated_model.model()));
+      glUniformMatrix4fv( glGetUniformLocation(GBUFFERRENDER, "models"), 20, GL_FALSE,glm::value_ptr(animated_model.models()[0]));
       animated_model.draw();
 
       //Draw the bones
@@ -117,14 +116,6 @@ void Renderer::draw(){
           bone->draw();
         }
     }
-  //glDisable(GL_DEPTH_TEST);
-  /*for(auto& skeletton : m_bones){
-      for(const auto& bone : skeletton.boneList()){
-          glUniform1i(glGetUniformLocation(GBUFFERRENDER, "animated"), 0);
-          glUniformMatrix4fv( glGetUniformLocation(GBUFFERRENDER, "models"), 1, GL_FALSE,glm::value_ptr(bone->model()));
-          bone->draw();
-        }
-    }*/
 
   if(computeSSAO){
       ssaoBuffer.bind();
@@ -173,7 +164,6 @@ void Renderer::draw(){
   glClearColor(0.05f, 0.05f, 0.05f, 1.0f);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   glDisable(GL_DEPTH_TEST);
-
   glUseProgram(RENDERPROG);
   glActiveTexture(GL_TEXTURE0);
   glBindTexture(GL_TEXTURE_2D, m_GBuffer.position());
@@ -200,7 +190,6 @@ void Renderer::initPreprocess(){
   //PROCESS SHADERS
   std::string vshPath = wd +  std::string("/../src/OpenGL/Shader/Process/basic.vert.glsl");
   std::string GPath = wd +      std::string("/../src/OpenGL/Shader/Process/GBuffer.frag.glsl");
-  //std::string GPath = wd +      std::string("/../src/OpenGL/Shader/Process/basic.frag.glsl");
   GBUFFERRENDER = programs.computeAddProgramm(vshPath,GPath);
 
 }
@@ -316,7 +305,16 @@ void Renderer::mousemove(float xpos, float ypos) {
 
   if(m_animation){
       switch(m_last_button){
-        case RIGHT_BUTTON: break;
+        case RIGHT_BUTTON:
+          if(m_clicked_bone != nullptr){
+              glm::mat4 model = m_clicked_bone->model();
+              float offset = yOffset > xOffset ? yOffset : xOffset;
+              glm::vec4 axis = yOffset > xOffset ? glm::vec4(0,0,1,0) : glm::vec4(0,1,0,0);
+              m_clicked_bone->rotate(2.f * (float)M_PI * offset * invSS[0], m_view * model * axis);
+              for(auto& amod : m_animated_objects)
+                amod.applyBonesTransformation();
+            }
+          break;
         case LEFT_BUTTON:
 
           if(m_clicked_bone != nullptr){
@@ -375,11 +373,14 @@ bool Renderer::keyboard(unsigned char k) {
       return true;
       //#######Bone#########
     case 'c':
-      if( m_clicked_bone != nullptr) m_clicked_bone->addChild();cout << "add child"<<endl;
+      if( m_clicked_bone != nullptr)
+        m_clicked_bone->addChild();
+      cout << "add child"<<endl;
       break;
     default:
       return false;
     }
+  return false;
 }
 
 void Renderer::resizeBuffers(int w, int h){
@@ -400,8 +401,8 @@ void Renderer::setDrawAABB(bool d)
   for(auto& model : m_objects){
       model.displayAABB(d);
     }
-  for(auto& bone : m_bones){
-      bone.displayAABB(d);
+  for(auto& anim_obj : m_animated_objects){
+      anim_obj.displayAABB(d);
     }
 
 }

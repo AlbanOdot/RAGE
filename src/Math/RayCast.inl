@@ -17,6 +17,20 @@ bool Math::RayCast::vsAABB(const Ray& r, const AABB& aabb){
   return intersect;
 }
 
+bool Math::RayCast::vsOBB(const Ray& r, const AABB& aabb, const glm::mat4& model){
+  Mesh box = aabb.box();
+  bool intersect = false;
+  glm::vec3 intersectionPosition;
+  for(unsigned int i = 0; !intersect && i< box.m_indices.size() - 2; i += 3){
+      glm::vec3 a(box.m_vertices[box.m_indices[i ] ],box.m_vertices[box.m_indices[i  ] +1],box.m_vertices[box.m_indices[i  ] +2]);
+      glm::vec3 b(box.m_vertices[box.m_indices[i+1]],box.m_vertices[box.m_indices[i+1] +1],box.m_vertices[box.m_indices[i+1] +2]);
+      glm::vec3 c(box.m_vertices[box.m_indices[i+2]],box.m_vertices[box.m_indices[i+2] +1],box.m_vertices[box.m_indices[i+2] +2]);
+      intersect = glm::intersectLineTriangle(r.m_o,r.m_d, glm::vec3(model * glm::vec4(a,1.f)),glm::vec3(model * glm::vec4(b,1.f)),
+                                             glm::vec3(model * glm::vec4(c,1.f)),intersectionPosition);
+    }
+  return intersect;
+}
+
 /* Compute the intersection between a ray and a triangle */
 bool Math::RayCast::vsTriangle(const Ray& r, const glm::vec3& a, const glm::vec3& b, const glm::vec3& c){
   glm::vec3 intersectionPosition;

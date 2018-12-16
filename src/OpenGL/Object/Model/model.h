@@ -23,6 +23,7 @@ class Model
 public:
   /* Constructors n shiet */
   Model();
+  Model(Shape s);
   virtual ~Model();
 
   /* ROTATION AND MODEL CHANGE STUF */

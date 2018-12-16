@@ -10,6 +10,10 @@ AnimatedModel::AnimatedModel()
 
 }
 
+AnimatedModel::AnimatedModel(const Mesh& m){
+  m_meshes.emplace_back(m);
+}
+
 void AnimatedModel::loadModel(string path){
   Assimp::Importer import;
   const aiScene *scene = import.ReadFile(path, aiProcess_Triangulate |aiProcess_GenUVCoords
@@ -25,8 +29,8 @@ void AnimatedModel::loadModel(string path){
   processNode(scene->mRootNode, scene);
   m_draw_aabb = true;
 
-  for(const auto& mesh : m_meshes)
-    m_aabb.computeAABB(&mesh);
+  /*for(const auto& mesh : m_meshes)
+    m_aabb.computeAABB(&mesh);*/
 
 }
 
@@ -86,10 +90,10 @@ AnimatedMesh AnimatedModel::processMesh(aiMesh *mesh){
 }
 
 void AnimatedModel::draw() const{
+
   for(const auto& mesh : m_meshes ){
       mesh.draw();
     }
-
   if( m_draw_aabb ){
       glLineWidth(2.0f);
       m_aabb.draw();
@@ -158,45 +162,71 @@ void AnimatedModel::computeWeights(){
   glm::vec4 weightv4;
   glm::vec4 weightv4Idx;
   for( auto& mesh : m_meshes){
+      mesh.resetWeight();
       for( unsigned int i = 0; i < mesh.m_vertices.size() - 2; i+= 3){
           glm::vec3 vertex(mesh.m_vertices[i],mesh.m_vertices[i+1],mesh.m_vertices[i+2]);
           vector<float> weights;
           float totalWeight = 0.f;
           //Compute weights
           for(const auto& bone  : boneList){
-              float w = 1.f / Math::Distance::norm2(bone->origin(),vertex);
-              weights.emplace_back(w);
-              totalWeight += w;
+              float d = Math::Distance::segmentEuclid(bone->origin(), bone->origin() + bone->length() * bone->direction(),vertex);
+              //Si le point est sur l'os alors il bouge comme l'os
+              if(d <= EPSILON){
+                  for( unsigned long p = 0; p < weights.size(); weights[p++] = 0.f){}//On reset tous les poids
+                  weights.push_back(1.f);
+                  break;
+                }
+              if( d > m_max_dist){
+                  weights.push_back(0.f);
+                }else{
+                  weights.emplace_back(1.f / d);
+                }
+
             }
           //Fill with 0 if less than 4 bones
           for( int i = 0; i < 4 - nbBones; ++i){
               weights.emplace_back(0.f);
             }
           Math::Algorithm::find4MaxValues(weights,weightv4,weightv4Idx);
-          mesh.addWeights(weightv4 / totalWeight,weightv4Idx);
+          totalWeight = weightv4.x + weightv4.y + weightv4.z + weightv4.w;
+          weightv4 = weightv4 / totalWeight;
+          mesh.addWeights(weightv4,weightv4Idx);
         }
       mesh.setupMesh();
     }
 }
 
 void AnimatedModel::applyBonesTransformation(){
-  cout << "Je transforme le mesh"<<endl;
   vector<Bone *> boneList = m_skeletton.boneList();
   vector<float> new_vertex;
   vector<float> new_normal;
   vector<glm::mat4 > models = {glm::mat4(1.f)};
   vector<glm::mat4> invRestPose ={glm::mat4(1.f)};
+  //Le premier os est toujours l'os
 
   for(const auto& bone : boneList){
-      glm::mat4 invMod = glm::inverse(bone->model());
-      models.push_back(glm::translate(invMod,bone->origin()));
+      models.push_back(glm::inverse(bone->model()));
       invRestPose.push_back(glm::inverse(bone->restPose()));
     }
   for( auto& mesh : m_meshes){
-
       mesh.transformMesh(models,invRestPose);
     }
 
+}
+
+vector<glm::mat4> AnimatedModel::models(){
+  vector<glm::mat4 > models = {glm::mat4(1.f)};
+  vector<Bone *> boneList = m_skeletton.boneList();
+
+  for(const auto& bone : boneList){
+      glm::vec3 orig = bone->origin();
+      glm::mat4 invMod = bone->model();
+      models.push_back(glm::translate(invMod,orig));
+    }
+  while( models.size() < 20){
+      models.emplace_back(glm::mat4());
+    }
+  return models;
 }
 
 

@@ -8,6 +8,7 @@ public:
   BasicModel();
   //Load a mesh from a file
   BasicModel(string path){loadModel(path);}
+  BasicModel(const Shape& s);
 
   /* ROTATION AND MODEL CHANGE STUF */
   virtual void translate(const glm::vec3& vec);

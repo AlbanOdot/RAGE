@@ -7,6 +7,10 @@ BasicModel::BasicModel()
 
 }
 
+BasicModel::BasicModel(const Shape& s){
+  m_meshes.emplace_back(s);
+}
+
 void BasicModel::loadModel(string path){
   Assimp::Importer import;
   const aiScene *scene = import.ReadFile(path, aiProcess_Triangulate |aiProcess_GenUVCoords
@@ -81,7 +85,7 @@ Mesh BasicModel::processMesh(aiMesh *mesh){
 }
 
 void BasicModel::draw() const{
-  cout << "Draw de Model"<<endl;
+
   for(const auto& mesh : m_meshes ){
       mesh.draw();
     }
