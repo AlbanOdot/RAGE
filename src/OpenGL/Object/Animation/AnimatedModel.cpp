@@ -168,6 +168,7 @@ void AnimatedModel::computeWeights(){
           vector<float> weights;
           float totalWeight = 0.f;
           //Compute weights
+
           for(const auto& bone  : boneList){
               float d = Math::Distance::segmentEuclid(bone->origin(), bone->origin() + bone->length() * bone->direction(),vertex);
               //Si le point est sur l'os alors il bouge comme l'os
@@ -181,22 +182,21 @@ void AnimatedModel::computeWeights(){
                 }else{
                   weights.emplace_back(1.f / d);
                 }
-
             }
           //Fill with 0 if less than 4 bones
-          for( int i = 0; i < 4 - nbBones; ++i){
+          for( unsigned int i = 0; i < 4 - nbBones; ++i){
               weights.emplace_back(0.f);
             }
           Math::Algorithm::find4MaxValues(weights,weightv4,weightv4Idx);
           totalWeight = weightv4.x + weightv4.y + weightv4.z + weightv4.w;
           weightv4 = weightv4 / totalWeight;
           mesh.addWeights(weightv4,weightv4Idx);
-        }
+        }//i < mesh.m_vertices.size() - 2
       mesh.setupMesh();
     }
 }
 
-void AnimatedModel::applyBonesTransformation(){
+void AnimatedModel::applyBonesTransformation(const glm::vec3& rotOrig){
   vector<Bone *> boneList = m_skeletton.boneList();
   vector<float> new_vertex;
   vector<float> new_normal;
@@ -205,7 +205,7 @@ void AnimatedModel::applyBonesTransformation(){
   //Le premier os est toujours l'os
 
   for(const auto& bone : boneList){
-      models.push_back(glm::inverse(bone->model()));
+      models.push_back(bone->model());
       invRestPose.push_back(glm::inverse(bone->restPose()));
     }
   for( auto& mesh : m_meshes){
@@ -217,16 +217,22 @@ void AnimatedModel::applyBonesTransformation(){
 vector<glm::mat4> AnimatedModel::models(){
   vector<glm::mat4 > models = {glm::mat4(1.f)};
   vector<Bone *> boneList = m_skeletton.boneList();
-
   for(const auto& bone : boneList){
-      glm::vec3 orig = bone->origin();
-      glm::mat4 invMod = bone->model();
-      models.push_back(glm::translate(invMod,orig));
+      models.push_back(bone->model());
     }
+
   while( models.size() < 20){
-      models.emplace_back(glm::mat4());
+      models.emplace_back(glm::mat4(1.f));
     }
   return models;
 }
 
+void AnimatedModel::tresholdUp(bool up){
+  if(m_max_dist - 0.05f> 0.5f){
+      m_max_dist = up ? m_max_dist + 0.05f : m_max_dist - 0.05f;
+    }else{
+      m_max_dist = up ? m_max_dist + 0.05f : m_max_dist ;
+    }
+  computeWeights();
+}
 

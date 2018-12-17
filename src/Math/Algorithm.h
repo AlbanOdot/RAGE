@@ -10,9 +10,9 @@
 namespace  Math{
 
   namespace Algorithm{
-#define SQRT2 1.414213562373095048801688724209698
-#define SQRT1_2  0.7071067811865475255008
-#define EPSILON 0.000000001
+#define SQRT2 1.414213562373095048801688724209698f
+#define SQRT1_2  0.7071067811865475255008f
+#define EPSILON 0.000000001f
     /*
  * Trouve une base orthonomée à partir du vecteur v1
  *

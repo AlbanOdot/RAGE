@@ -27,7 +27,7 @@ void Bone::computeBone(glm::vec3 origin , glm::vec3 direction, float length , fl
   computeBoneAABB();
   //Calcul de la matrice rest_pose
   m_rest_pose = glm::mat4(1.f);
-  m_rest_pose = glm::translate(m_rest_pose,m_origin);
+  m_rest_pose = glm::translate(m_rest_pose,-m_origin);
 }
 
 /* Hierarchy functions */
@@ -88,10 +88,10 @@ void Bone::setRoot(bool root){
 void Bone::rotate(float theta, const glm::vec3& u){
   m_model = glm::translate(m_model,m_origin);
   m_model = glm::rotate(m_model, theta, u);
-  m_model = glm::translate(m_model,-m_origin);
   for(auto& child : m_children){
       child.rotateFromPoint(m_model,m_origin);
     }
+  m_model = glm::translate(m_model,-m_origin);
 }
 
 /* Action functions */
@@ -107,7 +107,7 @@ void Bone::rotate(const glm::mat4& R){
 void Bone::rotate(float angle, float x, float y, float z){
   m_model = glm::rotate(m_model, angle, glm::vec3(x,y,z));
   for(auto& child : m_children){
-      child.rotateFromPoint(m_model,m_origin);
+      child.translate(m_origin);
     }
 }
 
@@ -119,12 +119,13 @@ void Bone::rotateFromPoint(const float angle, const glm::vec3& vec, const glm::v
       child.rotateFromPoint(m_model,point);
     }
 }
+
 void Bone::rotateFromPoint(const glm::mat4& R, const glm::vec3& point){
-  //m_model = glm::translate(R,point);
+  m_model = glm::translate(m_model,point);
   m_model = R;
-  //m_model = glm::translate(m_model,-point);
+  m_model = glm::translate(m_model,-point);
   for(auto& child : m_children){
-      child.rotateFromPoint(m_model,point);
+      child.rotateFromPoint(R,point);
     }
 }
 void Bone::rotateFromPoint(const float angle, float x, float y, float z, const glm::vec3& point){

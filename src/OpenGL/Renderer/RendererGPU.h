@@ -1,5 +1,5 @@
-#ifndef Renderer_H
-#define Renderer_H
+#ifndef RendererGPUGPU_H
+#define RendererGPUGPU_H
 
 #include "scene.h"
 
@@ -17,12 +17,12 @@
 #include <memory>
 #include <functional>
 
-class Renderer : public Scene
+class RendererGPU : public Scene
 {
 public:
-  Renderer(const int width, const int height,const std::string& filename);
-  Renderer(const int width, const int height) : Scene(width,height){}
-  Renderer(const int width, const int height, bool animation);
+  RendererGPU(const int width, const int height,const std::string& filename);
+  RendererGPU(const int width, const int height) : Scene(width,height){}
+  RendererGPU(const int width, const int height, bool animation);
 
   void resize(int width, int height) override;
   void draw() override;
@@ -50,7 +50,7 @@ private:
 
   Bone* m_clicked_bone;
 
-  Ray m_renderer_ray;
+  Ray m_RendererGPU_ray;
 
   //PostProcess stuff
   GLuint RENDERPROG;
@@ -93,6 +93,4 @@ private:
   void weightTresholdUp(bool up);
 };
 
-
-
-#endif // SHADERICOSPHERE_H
+#endif // RendererGPUGPU_H

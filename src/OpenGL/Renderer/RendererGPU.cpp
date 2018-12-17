@@ -1,5 +1,5 @@
 #include <unistd.h>
-#include "Renderer.h"
+#include "RendererGPU.h"
 #include "src/OpenGL/Object/Shapes/Sphere.h"
 #include "src/OpenGL/Object/Animation/Bone.h"
 #include <random>
@@ -20,7 +20,7 @@
 
 #define deg2rad(x) float(M_PI)*(x)/180.f
 
-Renderer::Renderer(const int width, const int height, const std::string& filename) : Scene(width, height), _camera(nullptr) {
+RendererGPU::RendererGPU(const int width, const int height, const std::string& filename) : Scene(width, height), _camera(nullptr) {
   glCullFace(GL_FRONT_AND_BACK);
   resizeBuffers(2 * _width, 2 * _height);
 
@@ -41,7 +41,7 @@ Renderer::Renderer(const int width, const int height, const std::string& filenam
   m_projection = _camera->GetProjMatrix();
 }
 
-Renderer::Renderer(const int width, const int height, bool animation) : Scene(width, height), m_clicked_bone(nullptr),_camera(nullptr) {
+RendererGPU::RendererGPU(const int width, const int height, bool animation) : Scene(width, height), m_clicked_bone(nullptr),_camera(nullptr) {
   glCullFace(GL_FRONT_AND_BACK);
   resizeBuffers(2 * _width, 2 * _height);
 
@@ -56,11 +56,11 @@ Renderer::Renderer(const int width, const int height, bool animation) : Scene(wi
   //Shapes
 
   //Basic Model
-  //m_objects.emplace_back(BasicModel("../DataFiles/smoothCyl.obj"));
+  //m_objects.emplace_back(BasicModel(std::string("../DataFiles/Hand.obj")));
 
   //Animated Model
+  // m_animated_objects.emplace_back(AnimatedModel(std::string("../DataFiles/Hand.obj")));
   m_animated_objects.emplace_back(AnimatedModel(Cylinder(glm::vec3(-2,0,0),glm::vec3(1,0,0),4.0)));
-  //m_animated_objects.emplace_back(AnimatedModel(std::string("../DataFiles/Hand.obj")));
   Bone skeletton1(glm::vec3(-2.f,.0,.0),glm::vec3(1.0,.0,0.0));
   Bone son = skeletton1.addChild(glm::vec3(1.0,0,0.0));
   //TODO Voir pourquoi on a que 2 os qui s'affichent.
@@ -78,7 +78,7 @@ Renderer::Renderer(const int width, const int height, bool animation) : Scene(wi
   (void)animation;
 }
 
-void Renderer::draw(){
+void RendererGPU::draw(){
   //1ere passe de rendu
   //Qt utilise son propre buffer
 
@@ -106,7 +106,7 @@ void Renderer::draw(){
   for(auto& animated_model : m_animated_objects){
       //Draw the object
       glUniform1i(glGetUniformLocation(GBUFFERRENDER, "animated"), 1);
-      glUniformMatrix4fv( glGetUniformLocation(GBUFFERRENDER, "models"), 1, GL_FALSE,glm::value_ptr(animated_model.model()));
+      glUniformMatrix4fv( glGetUniformLocation(GBUFFERRENDER, "models"), 20, GL_FALSE,glm::value_ptr(animated_model.models()[0]));
       animated_model.draw();
 
       //Draw the bones
@@ -183,19 +183,19 @@ void Renderer::draw(){
   m_postProcessScreen.quadDraw();
 }
 
-void Renderer::initPreprocess(){
+void RendererGPU::initPreprocess(){
   m_GBuffer.init(2*_width,2*_height);
   char buff[1000];
   getcwd(buff,1000);
   std::string wd(buff);
   //PROCESS SHADERS
-  std::string vshPath = wd +  std::string("/../src/OpenGL/Shader/Process/basic.vert.glsl");
-  std::string GPath = wd +      std::string("/../src/OpenGL/Shader/Process/GBuffer.frag.glsl");
+  std::string vshPath = wd +  std::string("/../src/OpenGL/Shader/Process/animGPU.vert.glsl");
+  std::string GPath = wd + std::string("/../src/OpenGL/Shader/Process/GBuffer.frag.glsl");
   GBUFFERRENDER = programs.computeAddProgramm(vshPath,GPath);
 
 }
 
-void Renderer::initSSAO(){
+void RendererGPU::initSSAO(){
   ssaoRadius = 0.5f;
   ssaoBias = 0.01f;
   std::uniform_real_distribution<GLfloat> randomFloats(0.0,1.0);
@@ -243,23 +243,7 @@ void Renderer::initSSAO(){
 
 }
 
-void Renderer::initLighting(){
-  std::uniform_real_distribution<GLfloat> randompos(1.0f,40.0f);
-  std::uniform_real_distribution<GLfloat> randomcol(0.0f,2.0f);
-  std::default_random_engine  generator;
-  std::vector<float> pos3 = {1.f,1.f,1.f, 1.f,-1.f,1.f, -1.f,0.f,1.f};
-  float LiColor[9] = {0.1f,0.1f,0.1f, 0.1f,0.1f,0.1f, 0.1f,0.1f,0.1f};
-  nbLights = 0;
-  for(    ; nbLights<3; ++nbLights){
-      glm::vec3 pos(pos3[3*nbLights], pos3[3*nbLights+1], pos3[3*nbLights+3]);
-      pos = glm::normalize(pos);
-      pos *= 50.f;
-      LiPosition[3*nbLights]  = pos[0];
-      LiPosition[3*nbLights+1]= pos[1];
-      LiPosition[3*nbLights+3]= pos[2];
-    }
-  std::cout << "The scene is composed of " << nbLights << "lights "<<std::endl;
-
+void RendererGPU::initLighting(){
   char buff[1000];
   getcwd(buff,1000);
   std::string wd(buff);
@@ -270,25 +254,22 @@ void Renderer::initLighting(){
   glUniform1i(glGetUniformLocation(RENDERPROG, "normal"), 1);
   glUniform1i(glGetUniformLocation(RENDERPROG, "albedo"), 2);
   glUniform1i(glGetUniformLocation(RENDERPROG, "ssao"), 3);
-  glUniform1i(glGetUniformLocation(RENDERPROG, "lightCount"), nbLights);
-  glUniform3fv(glGetUniformLocation(RENDERPROG,"LiPosition"), nbLights, LiPosition);
-  glUniform3fv(glGetUniformLocation(RENDERPROG,"LiColor"), nbLights, LiColor);
 }
 
-void Renderer::wheelEvent( const int down){
+void RendererGPU::wheelEvent( const int down){
   _camera->mouseScroll(down);
 }
 
-void Renderer::mouseclick(int button, float xpos, float ypos) {
+void RendererGPU::mouseclick(int button, float xpos, float ypos) {
   lastX[button] = xpos;
   lastY[button] = ypos;
   firstMouse[button] = false;
   m_last_button = button;
   if( button == LEFT_BUTTON){
-      m_renderer_ray = _camera->getRayFromScreen(xpos,ypos);
+      m_RendererGPU_ray = _camera->getRayFromScreen(xpos,ypos);
       for(auto& anim_obj : m_animated_objects){
           for( auto& bone : anim_obj.skeletton().boneList()){
-              if((m_clicked_bone = bone->clickOnSkeletton(m_renderer_ray)) != nullptr ){
+              if((m_clicked_bone = bone->clickOnSkeletton(m_RendererGPU_ray)) != nullptr ){
                   cout << "You clicked on bone : "<<m_clicked_bone->ID()<<endl;
                   break;
                 }
@@ -298,7 +279,7 @@ void Renderer::mouseclick(int button, float xpos, float ypos) {
   //shortcut->mouseclick(button, xpos, ypos);
 }
 
-void Renderer::mousemove(float xpos, float ypos) {
+void RendererGPU::mousemove(float xpos, float ypos) {
   float xOffset = xpos - lastX[m_last_button];
   float yOffset = lastY[m_last_button] - ypos;
   lastX[m_last_button] = xpos;
@@ -312,8 +293,6 @@ void Renderer::mousemove(float xpos, float ypos) {
               float offset = yOffset > xOffset ? yOffset : xOffset;
               glm::vec4 axis = yOffset > xOffset ? glm::vec4(0,0,1,0) : glm::vec4(0,1,0,0);
               m_clicked_bone->rotate(2.f * (float)M_PI * offset * invSS[0], m_view * model * axis);
-              for(auto& amod : m_animated_objects)
-                amod.applyBonesTransformation(m_clicked_bone->origin());
             }
           break;
         case LEFT_BUTTON:
@@ -324,9 +303,6 @@ void Renderer::mousemove(float xpos, float ypos) {
               glm::vec3 XCamAxis = m_view * model * glm::vec4(0,1,0,0);
               m_clicked_bone->rotate(2.f * (float)M_PI * yOffset * invSS[0],ZCamAxis);
               m_clicked_bone->rotate(2.f * (float)M_PI * xOffset * invSS[0],XCamAxis);
-
-              for(auto& amod : m_animated_objects)
-                amod.applyBonesTransformation(m_clicked_bone->origin());
             }
           break;
         case MIDDLE_BUTTON:break;
@@ -339,11 +315,11 @@ void Renderer::mousemove(float xpos, float ypos) {
 
 }
 
-void Renderer::keyboardmove(int key, double time) {
+void RendererGPU::keyboardmove(int key, double time) {
   _camera->keyboard(Movement(key), time);
 }
 
-bool Renderer::keyboard(unsigned char k) {
+bool RendererGPU::keyboard(unsigned char k) {
   switch(k) {
     //TOOGLE OPTIONS - MAJ
     case 'S':
@@ -376,7 +352,6 @@ bool Renderer::keyboard(unsigned char k) {
     case 'c':
       if( m_clicked_bone != nullptr)
         m_clicked_bone->addChild();
-      cout << "add child"<<endl;
       return true;
       //#######Weights#######
     case '+':
@@ -391,20 +366,20 @@ bool Renderer::keyboard(unsigned char k) {
   return false;
 }
 
-void Renderer::resizeBuffers(int w, int h){
+void RendererGPU::resizeBuffers(int w, int h){
   m_GBuffer.resize(w,h);
   ssaoBuffer.resize(w,h);
   ssaoBufferBlur.resize(w,h);
   renderBuffer.resize(w,h);
 }
 
-void Renderer::resize(int w, int h){
+void RendererGPU::resize(int w, int h){
   resizeBuffers(w,h);
   Scene::resize(w, h);
   _camera->resizeCamera(_width, _height);
 }
 
-void Renderer::setDrawAABB(bool d)
+void RendererGPU::setDrawAABB(bool d)
 {
   for(auto& model : m_objects){
       model.displayAABB(d);
@@ -415,7 +390,7 @@ void Renderer::setDrawAABB(bool d)
 
 }
 
-void Renderer::weightTresholdUp(bool up){
+void RendererGPU::weightTresholdUp(bool up){
   for(auto& anim_obj : m_animated_objects){
       anim_obj.tresholdUp(up);
     }

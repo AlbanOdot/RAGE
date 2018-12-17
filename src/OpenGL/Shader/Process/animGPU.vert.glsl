@@ -1,7 +1,5 @@
 #version 410 core
-
-
-uniform mat4 models[20]; //#define MAX_BONES_COUNT 5 -> AnimatedModel.h + m_model de Model.h
+uniform mat4 models[20]; //#define MAX_BONES_COUNT 20 -> AnimatedModel.h + m_model de Model.h
 uniform mat4 view;
 uniform mat4 projection;
 uniform bool animated;
@@ -13,8 +11,6 @@ layout (location = 3) in vec2 itexCoord;
 layout (location = 4) in vec4 weights;
 layout (location = 5) in vec4 weightsIdx;
 
-
-
 out vec3 vnormal;
 out vec3 vposition;
 out vec4 vcolor;
@@ -23,6 +19,12 @@ out vec2 vtexCoord;
 void main()
 {
     mat4 model = models[0];
+    if(animated){
+        model =   weights.x * models[int(weightsIdx.x)]
+                + weights.y * models[int(weightsIdx.y)]
+                + weights.z * models[int(weightsIdx.z)]
+                + weights.w * models[int(weightsIdx.w)];
+    }
     gl_Position = projection * view * model * vec4(iposition, 1.0f);
     //On fait ca pour que la position soit interpolée
     vposition = vec3(view * model * vec4(iposition, 1.0f));

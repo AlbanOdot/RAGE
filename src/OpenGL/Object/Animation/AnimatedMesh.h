@@ -9,14 +9,14 @@ class AnimatedMesh : public Mesh
 public:
 
   vector<float> m_weights;
-  vector<int> m_weight_indices;
+  vector<float> m_weight_indices;
   bool m_is_complete;
 
   AnimatedMesh(const vector<float> vertices, const vector<float> normals, const vector<float> UV,
                const vector<float> colors,   const  vector<unsigned int>  indices);
   AnimatedMesh();
   AnimatedMesh(const Mesh& m);
-  void attachWeights(const vector<float> weights, const vector<int> weight_indices);
+  void attachWeights(const vector<float> weights, const vector<float> weight_indices);
   void transformMesh(const vector<glm::mat4>& transfo,  const vector<glm::mat4>& invRestPose);
   void addWeights(const glm::vec4& w, const glm::vec4& widx) {   Point4(w);WeightIdx(widx);}
   //void draw() const;

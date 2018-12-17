@@ -9,6 +9,7 @@
 
 #include "./src/OpenGL/Camera/Camera.hpp"
 #include "./src/OpenGL/Renderer/Renderer.h"
+#include "./src/OpenGL/Renderer/RendererGPU.h"
 
 MyOpenGLWidget::MyOpenGLWidget(QWidget *parent) :QOpenGLWidget(parent), QOpenGLFunctions_4_1_Core(), _scene(nullptr), _lastime(0) {
 }
@@ -72,9 +73,13 @@ void MyOpenGLWidget::mouseMoveEvent(QMouseEvent *event) {
 void MyOpenGLWidget::keyPressEvent(QKeyEvent *event) {
     switch(event->key()) {
         // Demo keys
-        case Qt::Key_0:
         case Qt::Key_1:
+        renderAnimation();
+        break;
         case Qt::Key_2:
+        renderAnimGPU();
+        break;
+        case Qt::Key_0:
         case Qt::Key_3:
         case Qt::Key_4:
         case Qt::Key_5:
@@ -117,6 +122,13 @@ void MyOpenGLWidget::render(const std::string& filename) {
 void MyOpenGLWidget::renderAnimation(){
     makeCurrent();
     _scene.reset(new Renderer(width(), height(), true));
+    doneCurrent();
+    update();
+}
+
+void MyOpenGLWidget::renderAnimGPU(){
+    makeCurrent();
+    _scene.reset(new RendererGPU(width(), height(), true));
     doneCurrent();
     update();
 }

@@ -37,9 +37,10 @@ public:
   /* Skeletton related stuff */
   void computeWeights();
   void attachSkeletton(const Skeletton& skeletton) { m_skeletton = std::move(skeletton); computeWeights();}
-  void applyBonesTransformation();
+  void applyBonesTransformation(const glm::vec3& rotOrig);
   Skeletton& skeletton() { return m_skeletton;}
   void displayAABB(bool t) { m_draw_aabb = t; m_skeletton.displayAABB(t);}
+  void tresholdUp(bool up);
 
 protected:
   vector<AnimatedMesh> m_meshes;
@@ -47,7 +48,7 @@ protected:
 
 private:
   float m_min_dist = 0.f;
-  float m_max_dist = 0.75f;
+  float m_max_dist = 0.5f;
   /*  Functions   */
   void loadModel(const string path);
   void processNode(aiNode *node, const aiScene *scene);

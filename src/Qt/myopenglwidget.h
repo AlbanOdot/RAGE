@@ -30,6 +30,7 @@ public:
     // Demo management
     void render(const std::string& filename);
     void renderAnimation();
+    void renderAnimGPU();
 
     //getters
 private :
