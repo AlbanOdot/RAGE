@@ -17,7 +17,8 @@ public:
   AnimatedMesh();
   AnimatedMesh(const Mesh& m);
   void attachWeights(const vector<float> weights, const vector<float> weight_indices);
-  void transformMesh(const vector<glm::mat4>& transfo,  const vector<glm::mat4>& invRestPose);
+  void transformMesh(const vector<glm::mat4>& transfo);
+  void transformMesh(const vector<Math::DualQuaternion>& quats);
   void addWeights(const glm::vec4& w, const glm::vec4& widx) {   Point4(w);WeightIdx(widx);}
   //void draw() const;
   void setupMesh();

@@ -46,7 +46,7 @@ public:
   virtual void rotateFromPoint(const float angle, const glm::vec3& vec, const glm::vec3& point);
   virtual void rotateFromPoint(const glm::mat4& R, const glm::vec3& point);
   virtual void rotateFromPoint(const float angle, float x, float y, float z, const glm::vec3& point);
-  //virtual void rotate(const Quaternion& q);
+  virtual void rotate(const Math::DualQuaternion& q) override;
 
   virtual void stretch(const float length, const glm::vec3& direction = glm::vec3(1,1,1)) override;
   virtual void stretch(const float x, float y, float z) override;

@@ -14,12 +14,12 @@ public:
   virtual void translate(const glm::vec3& vec);
   virtual void translate(const float x,const  float y,const  float z);
   virtual void translate(const glm::mat4& T);
-  //virtual void translate(const Quaternion& q);
+  virtual void translateQuat(const glm::vec3& t);
 
   virtual void rotate(const float angle,const glm::vec3& vec);
   virtual void rotate(const float angle,const  float x,const  float y,const  float z);
   virtual void rotate(const glm::mat4& R);
-  //virtual void rotate(const Quaternion& q);
+  virtual void rotate(const Math::DualQuaternion& q);
 
   virtual void stretch(const float length, const glm::vec3& direction = glm::vec3(1,1,1));
   virtual void stretch(const float x,const  float y,const  float z);

@@ -1,7 +1,8 @@
 #include "AnimatedMesh.h"
 #include <iostream>
-//#include <omp.h>
+#include <omp.h>
 #include "./src/OpenGL/opengl_stuff.h"
+#include "./src/Math/Quaternion.h"
 
 AnimatedMesh::AnimatedMesh(const vector<float> vertices, const vector<float> normals, const vector<float> UV,
                            const vector<float> colors,   const vector<unsigned int> indices)
@@ -110,14 +111,14 @@ void AnimatedMesh::attachWeights(const vector<float> weights, const vector<float
 }
 
 
-void AnimatedMesh::transformMesh(const vector<glm::mat4>& transfo, const vector<glm::mat4>& invRestPose){
+void AnimatedMesh::transformMesh(const vector<glm::mat4>& transfo){
 
   vector<float> new_vertex;
   new_vertex.resize(m_vertices.size());
   vector<float> new_normal;
   new_normal.resize(m_normals.size());
 
-  //#pragma omp for
+  #pragma omp for
   for(unsigned int i = 0; i < (m_vertices.size() / 3); ++i){//Autant de vertice que de normales
       uint x = 3*i; uint y = 3*i+1; uint z = 3*i+2;
       uint r = 4*i; uint g = 4*i+1; uint b = 4*i+2; uint a = 4*i +3;
@@ -126,10 +127,10 @@ void AnimatedMesh::transformMesh(const vector<glm::mat4>& transfo, const vector<
       glm::vec4 weights(m_weights[r],m_weights[g],m_weights[b],m_weights[a]);
       glm::vec4 weights_indices(m_weight_indices[r],m_weight_indices[g],m_weight_indices[b],m_weight_indices[a]);
 
-       glm::mat4 T =  weights.x * transfo[weights_indices.x] //* invRestPose[weights_indices.x]
-                    + weights.y * transfo[weights_indices.y] //* invRestPose[weights_indices.y]
-                    + weights.z * transfo[weights_indices.z] //* invRestPose[weights_indices.z]
-                    + weights.w * transfo[weights_indices.w];// * invRestPose[weights_indices.w]);
+      glm::mat4 T =  weights.x * transfo[weights_indices.x] //* invRestPose[weights_indices.x]
+          + weights.y * transfo[weights_indices.y] //* invRestPose[weights_indices.y]
+          + weights.z * transfo[weights_indices.z] //* invRestPose[weights_indices.z]
+          + weights.w * transfo[weights_indices.w];// * invRestPose[weights_indices.w]);
       vertex = T * vertex;
       new_vertex[x] = vertex.x; new_vertex[y] = vertex.y; new_vertex[z] = vertex.z;
       normal = glm::normalize( T * normal);
@@ -141,3 +142,33 @@ void AnimatedMesh::transformMesh(const vector<glm::mat4>& transfo, const vector<
 
 }
 
+void AnimatedMesh::transformMesh(const vector<Math::DualQuaternion>& quats){
+
+  vector<float> new_vertex;
+  new_vertex.resize(m_vertices.size());
+  vector<float> new_normal;
+  new_normal.resize(m_normals.size());
+
+  #pragma omp for
+  for(unsigned int i = 0; i < (m_vertices.size() / 3); ++i){//Autant de vertice que de normales
+      uint x = 3*i; uint y = 3*i+1; uint z = 3*i+2;
+      uint r = 4*i; uint g = 4*i+1; uint b = 4*i+2; uint a = 4*i +3;
+      glm::vec3 vertex(m_vertices[x],m_vertices[y],m_vertices[z]);
+      glm::vec3 normal(m_normals[x],m_normals[y], m_normals[z]);
+      glm::vec4 weights(m_weights[r],m_weights[g],m_weights[b],m_weights[a]);
+      glm::vec4 weights_indices(m_weight_indices[r],m_weight_indices[g],m_weight_indices[b],m_weight_indices[a]);
+
+      //On blend les quaternions
+      Math::Quaternion q0 = quats[weights_indices.x].rotation();
+      Math::DualQuaternion Q =  quats[weights_indices.x] * weights.x;
+      Q = Q + ( q0.dot(quats[weights_indices.y].rotation()) > 0 ? quats[weights_indices.y] * weights.y : quats[weights_indices.y] * weights.y * -1.f);
+      Q = Q + ( q0.dot(quats[weights_indices.z].rotation()) > 0 ? quats[weights_indices.z] * weights.z : quats[weights_indices.z] * weights.z * -1.f);
+      Q = Q + ( q0.dot(quats[weights_indices.w].rotation()) > 0 ? quats[weights_indices.w] * weights.w : quats[weights_indices.w] * weights.w * -1.f);
+      vertex = Q.transform(vertex);
+      new_vertex[x] = vertex.x; new_vertex[y] = vertex.y; new_vertex[z] = vertex.z;
+      normal = Q.rotate(normal);
+      new_normal[x] = normal.x;new_normal[y] = normal.y;new_normal[z] = normal.z;
+    }
+
+  setupMesh(new_vertex,new_normal);
+}

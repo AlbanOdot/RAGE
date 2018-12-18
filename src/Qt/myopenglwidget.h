@@ -31,7 +31,7 @@ public:
     void render(const std::string& filename);
     void renderAnimation();
     void renderAnimGPU();
-
+    void renderAnimQuat();
     //getters
 private :
     std::unique_ptr<Scene> _scene;

@@ -1,5 +1,5 @@
 #include <unistd.h>
-#include "Renderer.h"
+#include "RendererQuat.h"
 #include "src/OpenGL/Object/Shapes/Sphere.h"
 #include "src/OpenGL/Object/Animation/Bone.h"
 #include <random>
@@ -9,6 +9,8 @@
 #include <glm/gtx/quaternion.hpp>
 #include "./src/Math/RayCast.h"
 #include "glu.h"
+#include "./src/Math/DualQuaternion.h"
+#include "./src/Math/Quaternion.h"
 
 #define GL_SILENCE_DEPRECATION 1
 /*------------------------------------------------------------------------------------------------------------------------*/
@@ -20,7 +22,7 @@
 
 #define deg2rad(x) float(M_PI)*(x)/180.f
 
-Renderer::Renderer(const int width, const int height, const std::string& filename) : Scene(width, height), _camera(nullptr) {
+RendererQuat::RendererQuat(const int width, const int height, const std::string& filename) : Scene(width, height), _camera(nullptr) {
   glCullFace(GL_FRONT_AND_BACK);
   resizeBuffers(2 * _width, 2 * _height);
 
@@ -41,7 +43,7 @@ Renderer::Renderer(const int width, const int height, const std::string& filenam
   m_projection = _camera->GetProjMatrix();
 }
 
-Renderer::Renderer(const int width, const int height, bool animation) : Scene(width, height), m_clicked_bone(nullptr),_camera(nullptr) {
+RendererQuat::RendererQuat(const int width, const int height, bool animation) : Scene(width, height), m_clicked_bone(nullptr),_camera(nullptr) {
   glCullFace(GL_FRONT_AND_BACK);
   resizeBuffers(2 * _width, 2 * _height);
 
@@ -78,7 +80,7 @@ Renderer::Renderer(const int width, const int height, bool animation) : Scene(wi
   (void)animation;
 }
 
-void Renderer::draw(){
+void RendererQuat::draw(){
   //1ere passe de rendu
   //Qt utilise son propre buffer
 
@@ -110,12 +112,12 @@ void Renderer::draw(){
       animated_model.draw();
 
       //Draw the bones
-      glDisable(GL_DEPTH_TEST);
+      /*glDisable(GL_DEPTH_TEST);
       for(const auto& bone : animated_model.skeletton().boneList()){
           glUniform1i(glGetUniformLocation(GBUFFERRENDER, "animated"), 0);
           glUniformMatrix4fv( glGetUniformLocation(GBUFFERRENDER, "models"), 1, GL_FALSE,glm::value_ptr(bone->model()));
           bone->draw();
-        }
+        }*/
     }
 
   if(computeSSAO){
@@ -183,7 +185,7 @@ void Renderer::draw(){
   m_postProcessScreen.quadDraw();
 }
 
-void Renderer::initPreprocess(){
+void RendererQuat::initPreprocess(){
   m_GBuffer.init(2*_width,2*_height);
   char buff[1000];
   getcwd(buff,1000);
@@ -195,7 +197,7 @@ void Renderer::initPreprocess(){
 
 }
 
-void Renderer::initSSAO(){
+void RendererQuat::initSSAO(){
   ssaoRadius = 0.5f;
   ssaoBias = 0.01f;
   std::uniform_real_distribution<GLfloat> randomFloats(0.0,1.0);
@@ -243,7 +245,7 @@ void Renderer::initSSAO(){
 
 }
 
-void Renderer::initLighting(){
+void RendererQuat::initLighting(){
   std::uniform_real_distribution<GLfloat> randompos(1.0f,40.0f);
   std::uniform_real_distribution<GLfloat> randomcol(0.0f,2.0f);
   std::default_random_engine  generator;
@@ -275,20 +277,20 @@ void Renderer::initLighting(){
   glUniform3fv(glGetUniformLocation(RENDERPROG,"LiColor"), nbLights, LiColor);
 }
 
-void Renderer::wheelEvent( const int down){
+void RendererQuat::wheelEvent( const int down){
   _camera->mouseScroll(down);
 }
 
-void Renderer::mouseclick(int button, float xpos, float ypos) {
+void RendererQuat::mouseclick(int button, float xpos, float ypos) {
   lastX[button] = xpos;
   lastY[button] = ypos;
   firstMouse[button] = false;
   m_last_button = button;
   if( button == LEFT_BUTTON){
-      m_renderer_ray = _camera->getRayFromScreen(xpos,ypos);
+      m_RendererQuat_ray = _camera->getRayFromScreen(xpos,ypos);
       for(auto& anim_obj : m_animated_objects){
           for( auto& bone : anim_obj.skeletton().boneList()){
-              if((m_clicked_bone = bone->clickOnSkeletton(m_renderer_ray)) != nullptr ){
+              if((m_clicked_bone = bone->clickOnSkeletton(m_RendererQuat_ray)) != nullptr ){
                   cout << "You clicked on bone : "<<m_clicked_bone->ID()<<endl;
                   break;
                 }
@@ -298,7 +300,7 @@ void Renderer::mouseclick(int button, float xpos, float ypos) {
   //shortcut->mouseclick(button, xpos, ypos);
 }
 
-void Renderer::mousemove(float xpos, float ypos) {
+void RendererQuat::mousemove(float xpos, float ypos) {
   float xOffset = xpos - lastX[m_last_button];
   float yOffset = lastY[m_last_button] - ypos;
   lastX[m_last_button] = xpos;
@@ -311,9 +313,11 @@ void Renderer::mousemove(float xpos, float ypos) {
               glm::mat4 model = m_clicked_bone->model();
               float offset = yOffset > xOffset ? yOffset : xOffset;
               glm::vec4 axis = yOffset > xOffset ? glm::vec4(0,0,1,0) : glm::vec4(0,1,0,0);
-              m_clicked_bone->rotate(2.f * (float)M_PI * offset * invSS[0], m_view * model * axis);
+              Math::DualQuaternion dq(Math::Quaternion(m_view * model * axis,2.f * (float)M_PI * offset * invSS[0]),m_clicked_bone->origin());
+              m_clicked_bone->rotate(dq);
+               m_clicked_bone->rotate(2.f * (float)M_PI * offset * invSS[0], m_view * model * axis);//For the display
               for(auto& amod : m_animated_objects)
-                amod.applyBonesTransformation();
+                amod.applyBonesTransformationQuat();
             }
           break;
         case LEFT_BUTTON:
@@ -322,11 +326,14 @@ void Renderer::mousemove(float xpos, float ypos) {
               glm::mat4 model = m_clicked_bone->model();
               glm::vec3 ZCamAxis = m_view * model * glm::vec4(0,0,1,0);
               glm::vec3 XCamAxis = m_view * model * glm::vec4(0,1,0,0);
+              Math::DualQuaternion dqy(Math::Quaternion(ZCamAxis,2.f * (float)M_PI * yOffset * invSS[0]),m_clicked_bone->origin());
+              Math::DualQuaternion dqx(Math::Quaternion(XCamAxis,2.f * (float)M_PI * xOffset * invSS[1]),m_clicked_bone->origin());
+              m_clicked_bone->rotate(dqy);
+              m_clicked_bone->rotate(dqx);
               m_clicked_bone->rotate(2.f * (float)M_PI * yOffset * invSS[0],ZCamAxis);
               m_clicked_bone->rotate(2.f * (float)M_PI * xOffset * invSS[0],XCamAxis);
-
               for(auto& amod : m_animated_objects)
-                amod.applyBonesTransformation();
+                amod.applyBonesTransformationQuat();
             }
           break;
         case MIDDLE_BUTTON:break;
@@ -339,11 +346,11 @@ void Renderer::mousemove(float xpos, float ypos) {
 
 }
 
-void Renderer::keyboardmove(int key, double time) {
+void RendererQuat::keyboardmove(int key, double time) {
   _camera->keyboard(Movement(key), time);
 }
 
-bool Renderer::keyboard(unsigned char k) {
+bool RendererQuat::keyboard(unsigned char k) {
   switch(k) {
     //TOOGLE OPTIONS - MAJ
     case 'S':
@@ -391,20 +398,20 @@ bool Renderer::keyboard(unsigned char k) {
   return false;
 }
 
-void Renderer::resizeBuffers(int w, int h){
+void RendererQuat::resizeBuffers(int w, int h){
   m_GBuffer.resize(w,h);
   ssaoBuffer.resize(w,h);
   ssaoBufferBlur.resize(w,h);
   renderBuffer.resize(w,h);
 }
 
-void Renderer::resize(int w, int h){
+void RendererQuat::resize(int w, int h){
   resizeBuffers(w,h);
   Scene::resize(w, h);
   _camera->resizeCamera(_width, _height);
 }
 
-void Renderer::setDrawAABB(bool d)
+void RendererQuat::setDrawAABB(bool d)
 {
   for(auto& model : m_objects){
       model.displayAABB(d);
@@ -415,7 +422,7 @@ void Renderer::setDrawAABB(bool d)
 
 }
 
-void Renderer::weightTresholdUp(bool up){
+void RendererQuat::weightTresholdUp(bool up){
   for(auto& anim_obj : m_animated_objects){
       anim_obj.tresholdUp(up);
     }

@@ -3,6 +3,7 @@
 #include "../Model/model.h"
 #include "AnimatedMesh.h"
 #include "./src/OpenGL/Object/Shapes/shapes.h"
+#include "./src/Math/DualQuaternion.h"
 
 class AnimatedModel : public Model
 {
@@ -16,12 +17,12 @@ public:
   virtual void translate(const glm::vec3& vec);
   virtual void translate(const float x,const  float y,const  float z);
   virtual void translate(const glm::mat4& T);
-  //virtual void translate(const Quaternion& q);
+  virtual void translateQuat(const glm::vec3& t);
 
   virtual void rotate(const float angle,const glm::vec3& vec);
   virtual void rotate(const float angle,const  float x,const  float y,const  float z);
   virtual void rotate(const glm::mat4& R);
-  //virtual void rotate(const Quaternion& q);
+  virtual void rotate(const Math::DualQuaternion& q);
 
   virtual void stretch(const float length, const glm::vec3& direction = glm::vec3(1,1,1));
   virtual void stretch(const float x,const  float y,const  float z);
@@ -33,11 +34,13 @@ public:
   vector<AnimatedMesh>& meshes()      { return m_meshes;}
   void meshes(const AnimatedMesh m)   { m_meshes.push_back(m);for(const auto& mesh : m_meshes) m_aabb.computeAABB(&mesh);}
   vector<glm::mat4> models();
+  vector<glm::vec4> quats();
 
   /* Skeletton related stuff */
   void computeWeights();
   void attachSkeletton(const Skeletton& skeletton) { m_skeletton = std::move(skeletton); computeWeights();}
-  void applyBonesTransformation(const glm::vec3& rotOrig);
+  void applyBonesTransformation();
+  void applyBonesTransformationQuat();
   Skeletton& skeletton() { return m_skeletton;}
   void displayAABB(bool t) { m_draw_aabb = t; m_skeletton.displayAABB(t);}
   void tresholdUp(bool up);

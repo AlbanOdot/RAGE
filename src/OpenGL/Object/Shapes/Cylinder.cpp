@@ -5,7 +5,7 @@ Cylinder::Cylinder(glm::vec3 origin, glm::vec3 direction, float length, float ra
   : Shape(CYLINDER), m_origin(origin), m_direction(direction), m_length(length), m_radius(radius)
 {
   int nFaces=32;
-  int ech = 32;
+  int ech = 80;
   glm::vec3 base1,base2;
   Math::Algorithm::generateOrthonormalBasisFromDirection(direction,base1,base2);
   const float thetaInc( (float)M_PI*2.f / nFaces );

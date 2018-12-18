@@ -108,11 +108,10 @@ void BasicModel::translate(const float x, const float y, const float z){
 void BasicModel::translate(const glm::mat4& T){
   m_model = T;
 }
-/*
-void BasicModel::translate(const Quaternion& q){
-  m_model =
+
+void BasicModel::translateQuat(const glm::vec3& t){
+  m_quat.translate(t);
 }
-*/
 
 void BasicModel::rotate(const float angle, const glm::vec3& vec){
   m_model = glm::rotate(m_model, glm::radians(angle), vec);
@@ -126,10 +125,10 @@ void BasicModel::rotate(const float angle, const float x, const float y, const f
   m_model = glm::rotate(m_model, glm::radians(angle), glm::vec3(x,y,z));
 }
 
-/*
-void BasicModel::rotate(const Quaternion& q){
-  m_model =
-}*/
+
+void BasicModel::rotate(const Math::DualQuaternion& q){
+  m_quat = m_quat * q;
+}
 
 void BasicModel::stretch(const float length, const glm::vec3& direction){
   glm::vec3 stretch = length * direction;

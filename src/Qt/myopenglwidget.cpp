@@ -10,6 +10,7 @@
 #include "./src/OpenGL/Camera/Camera.hpp"
 #include "./src/OpenGL/Renderer/Renderer.h"
 #include "./src/OpenGL/Renderer/RendererGPU.h"
+#include "./src/OpenGL/Renderer/RendererQuat.h"
 
 MyOpenGLWidget::MyOpenGLWidget(QWidget *parent) :QOpenGLWidget(parent), QOpenGLFunctions_4_1_Core(), _scene(nullptr), _lastime(0) {
 }
@@ -79,14 +80,16 @@ void MyOpenGLWidget::keyPressEvent(QKeyEvent *event) {
         case Qt::Key_2:
         renderAnimGPU();
         break;
-        case Qt::Key_0:
         case Qt::Key_3:
+        renderAnimQuat();
+        break;
         case Qt::Key_4:
         case Qt::Key_5:
         case Qt::Key_6:
         case Qt::Key_7:
         case Qt::Key_8:
         case Qt::Key_9:
+        case Qt::Key_0:
         break;
         // Move keys
         case Qt::Key_Left:
@@ -133,3 +136,9 @@ void MyOpenGLWidget::renderAnimGPU(){
     update();
 }
 
+void MyOpenGLWidget::renderAnimQuat(){
+  makeCurrent();
+  _scene.reset(new RendererQuat(width(), height(), true));
+  doneCurrent();
+  update();
+}

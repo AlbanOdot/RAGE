@@ -110,6 +110,12 @@ void Bone::rotate(float angle, float x, float y, float z){
       child.translate(m_origin);
     }
 }
+void Bone::rotate(const Math::DualQuaternion& q){
+  m_quat = q * m_quat;
+  for(auto& child : m_children){
+      child.rotate(m_quat);
+    }
+}
 
 void Bone::rotateFromPoint(const float angle, const glm::vec3& vec, const glm::vec3& point){
   m_model = glm::translate(m_model,point);

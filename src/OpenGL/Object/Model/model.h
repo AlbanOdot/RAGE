@@ -4,9 +4,12 @@
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
+#define GLM_ENABLE_EXPERIMENTAL
 #include <glm/mat4x4.hpp>
+#include <glm/gtc/quaternion.hpp>
 
 #include "src/OpenGL/Object/Model/AABB.h"
+#include "./src/Math/DualQuaternion.h"
 
 
 /*
@@ -30,12 +33,12 @@ public:
   virtual void translate(const glm::vec3& vec)=0;
   virtual void translate(const float x,const  float y,const  float z)=0;
   virtual void translate(const glm::mat4& T) = 0;
-  //virtual void translate(const Quaternion&  q);
+  virtual void translateQuat(const glm::vec3& t) = 0;
 
   virtual void rotate(const float angle,const glm::vec3& vec) = 0;
   virtual void rotate(const float angle,const  float x,const  float y,const  float z) = 0;
   virtual void rotate(const glm::mat4& R) = 0;
-  //virtual void rotate(const Quaternion& q);
+  virtual void rotate(const Math::DualQuaternion& q) = 0;
 
   virtual void stretch(const float length, const glm::vec3& direction = glm::vec3(1,1,1)) = 0;
   virtual void stretch(const float x,const  float y,const  float z) = 0;
@@ -47,6 +50,8 @@ public:
   /* Accessors */
   AABB aabb()           const { return m_aabb;}
   glm::mat4 model()     const { return m_model;}
+  Math::DualQuaternion quaternion() const { return  m_quat;}
+  vector<glm::vec4> quatShader() const {vector<glm::vec4> dq = {m_quat.q0().m_coef,m_quat.qe().m_coef}; return dq;}
   bool displayAABB()    const { return m_draw_aabb;}
   string directory()    const { return m_directory;}
   /* Setters */
@@ -55,10 +60,12 @@ public:
   virtual void displayAABB(bool d)  { m_draw_aabb = d;}
 protected:
   glm::mat4 m_model;
+  Math::DualQuaternion m_quat;
   bool m_draw_aabb;
   bool m_dirty_model;
   AABB m_aabb;
   string m_directory;
+
   string getFileName(const string& s) {
     size_t i = s.rfind('/', s.length());
     if (i != string::npos)

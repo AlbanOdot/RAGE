@@ -4,6 +4,8 @@
 #include "./src/Math/distance.h"
 #include "./src/Math/Algorithm.h"
 #include "./src/Math/utils.h"
+#include "./src/Math/DualQuaternion.h"
+#include "./src/Math/Quaternion.h"
 
 AnimatedModel::AnimatedModel()
 {
@@ -116,11 +118,12 @@ void AnimatedModel::translate(const glm::mat4& T){
   m_model = T;
   m_skeletton.translate(T);
 }
-/*
-void AnimatedModel::translate(const Quaternion& q){
-  m_model =
+
+void AnimatedModel::translateQuat(const glm::vec3& t){
+  m_quat.translate(t);
+  m_skeletton.translateQuat(t);
 }
-*/
+
 
 void AnimatedModel::rotate(const float angle, const glm::vec3& vec){
   m_model = glm::rotate(m_model, glm::radians(angle), vec);
@@ -137,10 +140,10 @@ void AnimatedModel::rotate(const float angle, const float x, const float y, cons
   m_skeletton.rotate(m_model);
 }
 
-/*
-void AnimatedModel::rotate(const Quaternion& q){
-  m_model =
-}*/
+void AnimatedModel::rotate(const Math::DualQuaternion& q){
+  m_quat = Math::DualQuaternion(q);
+  m_skeletton.rotate(q);
+}
 
 void AnimatedModel::stretch(const float length, const glm::vec3& direction){
   glm::vec3 stretch = length * direction;
@@ -170,18 +173,11 @@ void AnimatedModel::computeWeights(){
           //Compute weights
 
           for(const auto& bone  : boneList){
-              float d = Math::Distance::segmentEuclid(bone->origin(), bone->origin() + bone->length() * bone->direction(),vertex);
+              //float d = Math::Distance::segmentEuclid(bone->origin(), bone->origin() + bone->length() * bone->direction(),vertex);
+              float d = Math::Distance::segmentRadial(bone->origin(), bone->origin() + bone->length() * bone->direction(),vertex,m_max_dist,4);
+              d = d != 0 ? d : 1.f;
               //Si le point est sur l'os alors il bouge comme l'os
-              if(d <= EPSILON){
-                  for( unsigned long p = 0; p < weights.size(); weights[p++] = 0.f){}//On reset tous les poids
-                  weights.push_back(1.f);
-                  break;
-                }
-              if( d > m_max_dist){
-                  weights.push_back(0.f);
-                }else{
-                  weights.emplace_back(1.f / d);
-                }
+              weights.emplace_back(1.f/d);
             }
           //Fill with 0 if less than 4 bones
           for( unsigned int i = 0; i < 4 - nbBones; ++i){
@@ -196,20 +192,18 @@ void AnimatedModel::computeWeights(){
     }
 }
 
-void AnimatedModel::applyBonesTransformation(const glm::vec3& rotOrig){
+void AnimatedModel::applyBonesTransformation(){
   vector<Bone *> boneList = m_skeletton.boneList();
   vector<float> new_vertex;
   vector<float> new_normal;
   vector<glm::mat4 > models = {glm::mat4(1.f)};
-  vector<glm::mat4> invRestPose ={glm::mat4(1.f)};
   //Le premier os est toujours l'os
 
   for(const auto& bone : boneList){
       models.push_back(bone->model());
-      invRestPose.push_back(glm::inverse(bone->restPose()));
     }
   for( auto& mesh : m_meshes){
-      mesh.transformMesh(models,invRestPose);
+      mesh.transformMesh(models);
     }
 
 }
@@ -227,6 +221,21 @@ vector<glm::mat4> AnimatedModel::models(){
   return models;
 }
 
+vector<glm::vec4> AnimatedModel::quats(){
+  //1 quat de rotation et un quat de translation par os
+  vector<glm::vec4> dq = {glm::vec4(1,0,0,0),glm::vec4(0)};
+  vector<Bone *> boneList = m_skeletton.boneList();
+  for(const auto& bone : boneList){
+      dq.push_back(bone->quaternion().q0().m_coef);
+      dq.push_back(bone->quaternion().qe().m_coef);
+    }
+  while( dq.size() < 40){
+      dq.push_back(glm::vec4(1,0,0,0));
+      dq.push_back(glm::vec4(0));
+    }
+  return dq;
+}
+
 void AnimatedModel::tresholdUp(bool up){
   if(m_max_dist - 0.05f> 0.5f){
       m_max_dist = up ? m_max_dist + 0.05f : m_max_dist - 0.05f;
@@ -236,3 +245,17 @@ void AnimatedModel::tresholdUp(bool up){
   computeWeights();
 }
 
+void AnimatedModel::applyBonesTransformationQuat(){
+  vector<Bone *> boneList = m_skeletton.boneList();
+  vector<float> new_vertex;
+  vector<float> new_normal;
+  vector<Math::DualQuaternion > quats = {Math::DualQuaternion::identity()};
+  //Le premier os est toujours l'os
+
+  for(const auto& bone : boneList){
+      quats.push_back(bone->quaternion());
+    }
+  for( auto& mesh : m_meshes){
+      mesh.transformMesh(quats);
+    }
+}
