@@ -6,13 +6,17 @@
 #include "./src/Math/utils.h"
 #include "./src/Math/DualQuaternion.h"
 #include "./src/Math/Quaternion.h"
-
+#include <omp.h>
 AnimatedModel::AnimatedModel()
 {
 
 }
 
 AnimatedModel::AnimatedModel(const Mesh& m){
+  m_meshes.emplace_back(m);
+}
+AnimatedModel::AnimatedModel(const Mesh& m, const int metrique){
+  m_metrique = metrique;
   m_meshes.emplace_back(m);
 }
 
@@ -166,27 +170,47 @@ void AnimatedModel::computeWeights(){
   glm::vec4 weightv4Idx;
   for( auto& mesh : m_meshes){
       mesh.resetWeight();
-      for( unsigned int i = 0; i < mesh.m_vertices.size() - 2; i+= 3){
-          glm::vec3 vertex(mesh.m_vertices[i],mesh.m_vertices[i+1],mesh.m_vertices[i+2]);
+      mesh.m_weights.resize(4*mesh.m_vertices.size());
+      mesh.m_weight_indices.resize(4*mesh.m_vertices.size());
+#pragma omp for
+      for( unsigned int i = 0; i < (mesh.m_vertices.size() / 3); ++i){
+          //cout << " Il y a "<<omp_get_num_threads()<<"fils"<<endl;
+          glm::vec3 vertex(mesh.m_vertices[3*i],mesh.m_vertices[3*i+1],mesh.m_vertices[3*i+2]);
           vector<float> weights;
           float totalWeight = 0.f;
           //Compute weights
-
           for(const auto& bone  : boneList){
-              //float d = Math::Distance::segmentEuclid(bone->origin(), bone->origin() + bone->length() * bone->direction(),vertex);
-              float d = Math::Distance::segmentRadial(bone->origin(), bone->origin() + bone->length() * bone->direction(),vertex,m_max_dist,4);
-              d = d != 0 ? d : 1.f;
+              float w = 0.f;
+              float d = 0.f;
+              switch(m_metrique){
+                case 0:
+                  d = Math::Distance::segmentEuclid(bone->origin(), bone->origin() + bone->length() * bone->direction(),vertex);
+                  w = d > m_max_dist ? 0.f : d != 0.f ? 1.f/d : 1.f;
+                  break;
+                case 1:
+                  float d = Math::Distance::segmentRadial(bone->origin(), bone->origin() + bone->length() * bone->direction(),vertex,m_max_dist,4);
+                  w = d != 0.f ? 1.f / d : 1.f;
+                  break;
+                }
               //Si le point est sur l'os alors il bouge comme l'os
-              weights.emplace_back(1.f/d);
+              weights.emplace_back(w);
             }
           //Fill with 0 if less than 4 bones
           for( unsigned int i = 0; i < 4 - nbBones; ++i){
               weights.emplace_back(0.f);
             }
+          //Find the 4 most important bone and normalize the weights
           Math::Algorithm::find4MaxValues(weights,weightv4,weightv4Idx);
           totalWeight = weightv4.x + weightv4.y + weightv4.z + weightv4.w;
+          if(totalWeight == 0.f){
+              weightv4 = glm::vec4(1.f,1.f,1.f,1.f);
+            }
           weightv4 = weightv4 / totalWeight;
-          mesh.addWeights(weightv4,weightv4Idx);
+          mesh.m_weights[4*i] = weightv4.x;mesh.m_weights[4*i+1] = weightv4.y;
+          mesh.m_weights[4*i+2] = weightv4.z; mesh.m_weights[4*i+3] = weightv4.w;
+          mesh.m_weight_indices[4*i] = weightv4Idx.x; mesh.m_weight_indices[4*i+1] = weightv4Idx.y;
+          mesh.m_weight_indices[4*i+2] = weightv4Idx.z;  mesh.m_weight_indices[4*i+3] = weightv4Idx.w;
+          //mesh.addWeights(weightv4,weightv4Idx);
         }//i < mesh.m_vertices.size() - 2
       mesh.setupMesh();
     }
@@ -237,11 +261,12 @@ vector<glm::vec4> AnimatedModel::quats(){
 }
 
 void AnimatedModel::tresholdUp(bool up){
-  if(m_max_dist - 0.05f> 0.5f){
+  if(m_max_dist - 0.05f > m_min_dist){
       m_max_dist = up ? m_max_dist + 0.05f : m_max_dist - 0.05f;
     }else{
       m_max_dist = up ? m_max_dist + 0.05f : m_max_dist ;
     }
+  cout << "Threshold is now" << m_max_dist<<endl;
   computeWeights();
 }
 

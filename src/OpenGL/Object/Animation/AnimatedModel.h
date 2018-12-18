@@ -10,8 +10,10 @@ class AnimatedModel : public Model
 public:
   AnimatedModel();
   //Load a mesh from a file
-  AnimatedModel(string path){loadModel(path);}
+  AnimatedModel(const string& path){loadModel(path);}
   AnimatedModel(const Mesh& m);
+  AnimatedModel(const Mesh& m, const int metrique);
+  AnimatedModel(const string& path, const int metrique) : m_metrique(metrique){loadModel(path);}
 
   /* ROTATION AND MODEL CHANGE STUF */
   virtual void translate(const glm::vec3& vec);
@@ -44,6 +46,8 @@ public:
   Skeletton& skeletton() { return m_skeletton;}
   void displayAABB(bool t) { m_draw_aabb = t; m_skeletton.displayAABB(t);}
   void tresholdUp(bool up);
+  void setMinDist(float m) { m_min_dist = m;}
+  void setMaxDist(float M) { m_max_dist = M;}
 
 protected:
   vector<AnimatedMesh> m_meshes;
@@ -52,6 +56,7 @@ protected:
 private:
   float m_min_dist = 0.f;
   float m_max_dist = 0.5f;
+  int m_metrique = 1;
   /*  Functions   */
   void loadModel(const string path);
   void processNode(aiNode *node, const aiScene *scene);

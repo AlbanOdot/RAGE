@@ -29,14 +29,18 @@ public:
 
     // Demo management
     void render(const std::string& filename);
-    void renderAnimation();
-    void renderAnimGPU();
-    void renderAnimQuat();
+    void render();
+    void renderAnimLBSCPU(int metric, int model);
+    void renderAnimLBSGPU(int metric, int model);
+    void renderAnimQuatCPU(int metric, int model);
     //getters
 private :
     std::unique_ptr<Scene> _scene;
     // for event management
     std::int64_t _lastime;
+    int m_method;
+    int m_metric;
+    int m_model;
 };
 
 #endif // MYOPENGLWIDGET_H

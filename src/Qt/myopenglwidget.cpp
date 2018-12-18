@@ -13,6 +13,9 @@
 #include "./src/OpenGL/Renderer/RendererQuat.h"
 
 MyOpenGLWidget::MyOpenGLWidget(QWidget *parent) :QOpenGLWidget(parent), QOpenGLFunctions_4_1_Core(), _scene(nullptr), _lastime(0) {
+  m_method = 0;
+  m_metric = 0;
+  m_model = 0;
 }
 
 MyOpenGLWidget::~MyOpenGLWidget() {
@@ -75,13 +78,13 @@ void MyOpenGLWidget::keyPressEvent(QKeyEvent *event) {
     switch(event->key()) {
         // Demo keys
         case Qt::Key_1:
-        renderAnimation();
+        renderAnimLBSCPU(1,0);
         break;
         case Qt::Key_2:
-        renderAnimGPU();
+        renderAnimLBSGPU(1,0);
         break;
         case Qt::Key_3:
-        renderAnimQuat();
+        renderAnimQuatCPU(1,0);
         break;
         case Qt::Key_4:
         case Qt::Key_5:
@@ -105,7 +108,7 @@ void MyOpenGLWidget::keyPressEvent(QKeyEvent *event) {
             update();
         break;
     case Qt::Key_Space:
-        renderAnimation();
+        render();
         break;
         // Other keys are transmitted to the scene
         default :
@@ -122,23 +125,49 @@ void MyOpenGLWidget::render(const std::string& filename) {
         update();
 }
 
-void MyOpenGLWidget::renderAnimation(){
+void MyOpenGLWidget::renderAnimLBSCPU(int metric,int model){
+    m_method = 0;
+    m_metric = metric;
+    m_model = model;
     makeCurrent();
-    _scene.reset(new Renderer(width(), height(), true));
+    _scene.reset(new Renderer(width(), height(), metric, model));
     doneCurrent();
     update();
 }
 
-void MyOpenGLWidget::renderAnimGPU(){
+void MyOpenGLWidget::renderAnimLBSGPU(int metric,int model){
+  m_method = 1;
+  m_metric = metric;
+  m_model = model;
     makeCurrent();
-    _scene.reset(new RendererGPU(width(), height(), true));
+    _scene.reset(new RendererGPU(width(), height(), metric, model));
     doneCurrent();
     update();
 }
 
-void MyOpenGLWidget::renderAnimQuat(){
+void MyOpenGLWidget::renderAnimQuatCPU(int metric,int model){
+  m_method = 2;
+  m_metric = metric;
+  m_model = model;
   makeCurrent();
-  _scene.reset(new RendererQuat(width(), height(), true));
+  _scene.reset(new RendererQuat(width(), height(), metric, model));
   doneCurrent();
   update();
+}
+
+void MyOpenGLWidget::render(){
+  switch(m_method){
+    case 0:
+      renderAnimLBSCPU(m_metric,m_model);
+      break;
+    case 1:
+      renderAnimLBSGPU(m_metric,m_model);
+      break;
+    case 2:
+      renderAnimQuatCPU(m_metric,m_model);
+      break;
+    default:
+      renderAnimQuatCPU(m_metric,m_model);
+      break;
+    }
 }

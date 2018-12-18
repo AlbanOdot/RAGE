@@ -22,7 +22,7 @@ class RendererGPU : public Scene
 public:
   RendererGPU(const int width, const int height,const std::string& filename);
   RendererGPU(const int width, const int height) : Scene(width,height){}
-  RendererGPU(const int width, const int height, bool animation);
+  RendererGPU(const int width, const int height, int metrique, int model);
 
   void resize(int width, int height) override;
   void draw() override;

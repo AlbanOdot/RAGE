@@ -37,7 +37,32 @@
     <addaction name="actionOpen"/>
     <addaction name="actionClose"/>
    </widget>
+   <widget class="QMenu" name="menuMethode">
+    <property name="title">
+     <string>Methode</string>
+    </property>
+    <addaction name="actionLBS_CPU"/>
+    <addaction name="actionLBS_GPU"/>
+    <addaction name="actionDQS_CPU"/>
+   </widget>
+   <widget class="QMenu" name="menuMetrique">
+    <property name="title">
+     <string>Metrique</string>
+    </property>
+    <addaction name="actionEuclide"/>
+    <addaction name="actionRadialClosed"/>
+   </widget>
+   <widget class="QMenu" name="menuModel">
+    <property name="title">
+     <string>Model</string>
+    </property>
+    <addaction name="actionCylinder"/>
+    <addaction name="actionPatrick"/>
+   </widget>
    <addaction name="menuFiles"/>
+   <addaction name="menuMethode"/>
+   <addaction name="menuMetrique"/>
+   <addaction name="menuModel"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -106,6 +131,41 @@
   <action name="actionDisplay_geometry">
    <property name="text">
     <string>Display geometry</string>
+   </property>
+  </action>
+  <action name="actionLBS_CPU">
+   <property name="text">
+    <string>LBS CPU</string>
+   </property>
+  </action>
+  <action name="actionLBS_GPU">
+   <property name="text">
+    <string>LBS GPU</string>
+   </property>
+  </action>
+  <action name="actionDQS_CPU">
+   <property name="text">
+    <string>DQS CPU</string>
+   </property>
+  </action>
+  <action name="actionEuclide">
+   <property name="text">
+    <string>Euclide</string>
+   </property>
+  </action>
+  <action name="actionRadialClosed">
+   <property name="text">
+    <string>RadialClosed</string>
+   </property>
+  </action>
+  <action name="actionCylinder">
+   <property name="text">
+    <string>Cylinder</string>
+   </property>
+  </action>
+  <action name="actionPatrick">
+   <property name="text">
+    <string>Leg Cylinder</string>
    </property>
   </action>
  </widget>

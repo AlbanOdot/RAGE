@@ -11,14 +11,14 @@
 namespace  Math{
 
   namespace Distance{
-#define SQRT2 1.414213562373095048801688724209698
-#define SQRT1_2  0.7071067811865475255008
     inline float min(const float a,const float b){
       return a < b ? a : b;
     }
+
     inline float max(const float a, const float b){
       return a > b ? a : b;
     }
+
     inline float euclid(const glm::vec3& p1, const glm::vec3& p2, unsigned int power = 2){
       if( power == 2)
         return glm::dot(p1-p2,p1-p2);
@@ -50,7 +50,6 @@ namespace  Math{
       glm::vec3 AB = B-A;
       float r = glm::dot(C-A,AB) / glm::dot(AB,AB);
       r = min(max(r,0.f),1.f);
-      //cout << "On a R = "<<r<<endl;
       return euclid(C,A + AB * r,power);
     }
 
@@ -58,7 +57,6 @@ namespace  Math{
       glm::vec3 AB = B-A;
       float r = glm::dot(C-A,AB) / glm::dot(AB,AB);
       r = min(max(r,0.f),1.f);
-      //cout << "On a R = "<<r<<endl;
       return radialClosed(C,A + AB * r,R,power);
     }
 

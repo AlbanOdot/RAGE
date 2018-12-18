@@ -22,7 +22,7 @@ class Renderer : public Scene
 public:
   Renderer(const int width, const int height,const std::string& filename);
   Renderer(const int width, const int height) : Scene(width,height){}
-  Renderer(const int width, const int height, bool animation);
+  Renderer(const int width, const int height, int metric, int model);
 
   void resize(int width, int height) override;
   void draw() override;

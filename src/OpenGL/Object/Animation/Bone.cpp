@@ -60,6 +60,7 @@ void Bone::addChild(Bone& child){
 }
 
 Bone Bone::addChild(deque<int> path,glm::vec3 direction, float length, float radius){
+  cout << "Queu called : size = "<<path.size()<<endl;
   if(path.size() == 0)
     return addChild(direction, length, radius);
   int son = path[0];
@@ -86,60 +87,54 @@ void Bone::setRoot(bool root){
 
 /* Hierarchy  action functions */
 void Bone::rotate(float theta, const glm::vec3& u){
-  m_model = glm::translate(m_model,m_origin);
-  m_model = glm::rotate(m_model, theta, u);
+  glm::mat4 R = glm::rotate(theta,u);
+  m_model = glm::translate(m_origin) * R * glm::translate(-m_origin) * m_model;
   for(auto& child : m_children){
-      child.rotateFromPoint(m_model,m_origin);
+      child.rotateFromPoint(R,m_origin);
     }
-  m_model = glm::translate(m_model,-m_origin);
+
 }
 
 /* Action functions */
 void Bone::rotate(const glm::mat4& R){
-  m_model = glm::translate(m_model,m_origin);
-  m_model = R;
-  m_model = glm::translate(m_model,-m_origin);
+  m_model = glm::translate(m_origin) * R * glm::translate(-m_origin) * m_model;
   for(auto& child : m_children){
-      child.rotateFromPoint(m_model,m_origin);
+      child.rotateFromPoint(R,m_origin);
     }
 }
 
 void Bone::rotate(float angle, float x, float y, float z){
-  m_model = glm::rotate(m_model, angle, glm::vec3(x,y,z));
+  glm::mat4 R = glm::rotate(angle,glm::vec3(x,y,z));
+  m_model = glm::translate(m_origin) * R * glm::translate(-m_origin) * m_model;
   for(auto& child : m_children){
-      child.translate(m_origin);
+      child.rotateFromPoint(R,m_origin);
     }
 }
 void Bone::rotate(const Math::DualQuaternion& q){
-  m_quat = q * m_quat;
+  m_quat = m_quat * q;
   for(auto& child : m_children){
       child.rotate(m_quat);
     }
 }
 
 void Bone::rotateFromPoint(const float angle, const glm::vec3& vec, const glm::vec3& point){
-  m_model = glm::translate(m_model,point);
-  m_model = glm::rotate(m_model, angle, vec);
-  m_model = glm::translate(m_model,-point);
+  m_model = glm::translate(point) * glm::rotate(angle,vec) * glm::translate(-point) * m_model;
   for(auto& child : m_children){
-      child.rotateFromPoint(m_model,point);
+      child.rotateFromPoint(glm::rotate(angle,vec),point);
     }
 }
 
 void Bone::rotateFromPoint(const glm::mat4& R, const glm::vec3& point){
-  m_model = glm::translate(m_model,point);
-  m_model = R;
-  m_model = glm::translate(m_model,-point);
+  m_model = glm::translate(point) * R * glm::translate(-point) * m_model;
   for(auto& child : m_children){
       child.rotateFromPoint(R,point);
     }
 }
 void Bone::rotateFromPoint(const float angle, float x, float y, float z, const glm::vec3& point){
-  m_model = glm::translate(m_model,point);
-  m_model = glm::rotate(m_model, angle, glm::vec3(x,y,z));
-  m_model = glm::translate(m_model,-point);
+  glm::mat4 R = glm::rotate(angle,glm::vec3(x,y,z));
+  m_model = glm::translate(point) * R* glm::translate(-point) * m_model;
   for(auto& child : m_children){
-      child.rotateFromPoint(m_model,point);
+      child.rotateFromPoint(R,point);
     }
 }
 

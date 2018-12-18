@@ -8,7 +8,6 @@
 #include "../../Math/distance.h"
 #include <glm/gtx/quaternion.hpp>
 #include "./src/Math/RayCast.h"
-#include "glu.h"
 #include "./src/Math/DualQuaternion.h"
 #include "./src/Math/Quaternion.h"
 
@@ -43,7 +42,7 @@ RendererQuat::RendererQuat(const int width, const int height, const std::string&
   m_projection = _camera->GetProjMatrix();
 }
 
-RendererQuat::RendererQuat(const int width, const int height, bool animation) : Scene(width, height), m_clicked_bone(nullptr),_camera(nullptr) {
+RendererQuat::RendererQuat(const int width, const int height, int metrique, int model) : Scene(width, height), m_clicked_bone(nullptr),_camera(nullptr) {
   glCullFace(GL_FRONT_AND_BACK);
   resizeBuffers(2 * _width, 2 * _height);
 
@@ -58,16 +57,38 @@ RendererQuat::RendererQuat(const int width, const int height, bool animation) : 
   //Shapes
 
   //Basic Model
-  //m_objects.emplace_back(BasicModel("../DataFiles/smoothCyl.obj"));
 
   //Animated Model
-  m_animated_objects.emplace_back(AnimatedModel(Cylinder(glm::vec3(-2,0,0),glm::vec3(1,0,0),4.0)));
-  //m_animated_objects.emplace_back(AnimatedModel(std::string("../DataFiles/Hand.obj")));
-  Bone skeletton1(glm::vec3(-2.f,.0,.0),glm::vec3(1.0,.0,0.0));
-  Bone son = skeletton1.addChild(glm::vec3(1.0,0,0.0));
-  //TODO Voir pourquoi on a que 2 os qui s'affichent.
-  //son.addChild(glm::vec3(1.0,-1,0.0));
-  m_animated_objects[0].attachSkeletton(skeletton1);
+  switch(model){
+    case 0:{
+        m_animated_objects.emplace_back(AnimatedModel(Cylinder(glm::vec3(-2,0,0),glm::vec3(1,0,0),4.0),metrique));
+        Bone skeletton(glm::vec3(-2.f,.0,.0),glm::vec3(1.0,.0,0.0));
+        skeletton.addChild(glm::vec3(1.0,0,0.0));
+        m_animated_objects[0].attachSkeletton(skeletton);
+      }
+      break;
+    case 1:
+      {
+        m_animated_objects.emplace_back(AnimatedModel(Cylinder(glm::vec3(-2,0,0),glm::vec3(1,0,0),4.0),metrique));
+        Bone skeletton1(glm::vec3(-2.0f,0.,.0f),glm::vec3(1,0,0));
+        //leg1
+        skeletton1.addChild(glm::vec3(1.0,-0.1,0.0));
+        //leg2
+        skeletton1.addChild(glm::vec3(1.0,0.1,0.0));
+
+        m_animated_objects[0].attachSkeletton(skeletton1);
+      }
+      break;
+    default:
+      {
+        m_animated_objects.emplace_back(AnimatedModel(Cylinder(glm::vec3(-2,0,0),glm::vec3(1,0,0),4.0)));
+        Bone skeletton2(glm::vec3(-2.f,.0,.0),glm::vec3(1.0,.0,0.0));
+        skeletton2.addChild(glm::vec3(1.0,0,0.0));
+        m_animated_objects[0].attachSkeletton(skeletton2);
+      }
+      break;
+    }
+
   m_animation = true;
 
   //POSTPROCESS QUAD INIT
@@ -77,7 +98,6 @@ RendererQuat::RendererQuat(const int width, const int height, bool animation) : 
   _camera->resizeCamera(_width,_height);
   m_view = _camera->GetViewMatrix();
   m_projection = _camera->GetProjMatrix();
-  (void)animation;
 }
 
 void RendererQuat::draw(){

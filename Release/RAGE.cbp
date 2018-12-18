@@ -4,56 +4,56 @@
 	<Project>
 		<Option title="RAGE"/>
 		<Option makefile_is_custom="1"/>
-		<Option compiler="clang"/>
-		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\Qt\;CMake Files\..\..\Qt\5.11.2\;CMake Files\..\..\Qt\5.11.2\clang_64\;CMake Files\..\..\Qt\5.11.2\clang_64\lib\;CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\;CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Widgets\;CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\;CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Core\;CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5OpenGL\;"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\Qt\;CMake Files\..\..\..\Qt\5.11.2\;CMake Files\..\..\..\Qt\5.11.2\clang_64\;CMake Files\..\..\..\Qt\5.11.2\clang_64\lib\;CMake Files\..\..\..\Qt\5.11.2\clang_64\lib\cmake\;CMake Files\..\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Widgets\;CMake Files\..\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\;CMake Files\..\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Core\;CMake Files\..\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5OpenGL\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/Users/alban/Cours/Rage/Release"/>
+				<Option working_dir="/Users/alban/Cours/Animation/RAGE/Release"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Animation/RAGE/Release/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Animation/RAGE/Release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Animation/RAGE/Release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Animation/RAGE/Release/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/Users/alban/Cours/Rage/Release"/>
+				<Option working_dir="/Users/alban/Cours/Animation/RAGE/Release"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Animation/RAGE/Release/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Animation/RAGE/Release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Animation/RAGE/Release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Animation/RAGE/Release/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/Users/alban/Cours/Rage/Release"/>
+				<Option working_dir="/Users/alban/Cours/Animation/RAGE/Release"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Animation/RAGE/Release/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Animation/RAGE/Release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Animation/RAGE/Release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Animation/RAGE/Release/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="RAGE">
-				<Option output="/Users/alban/Cours/Rage/bin/RAGE" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/alban/Cours/Rage/bin"/>
+				<Option output="/Users/alban/Cours/Animation/RAGE/bin/RAGE" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/alban/Cours/Animation/RAGE/bin"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
-				<Option compiler="clang"/>
+				<Option compiler="gcc"/>
 				<Compiler>
 					<Add option="-DQT_WIDGETS_LIB"/>
 					<Add option="-DQT_GUI_LIB"/>
 					<Add option="-DQT_CORE_LIB"/>
 					<Add option="-DQT_OPENGL_LIB"/>
 					<Add option="-DQT_NO_DEBUG"/>
-					<Add directory="/Users/alban/Cours/Rage/Release"/>
-					<Add directory="/Users/alban/Cours/Rage"/>
-					<Add directory="/Users/alban/Cours/Rage/Release/RAGE_autogen/include"/>
-					<Add directory="/Users/alban/Cours/Rage/src"/>
-					<Add directory="/Users/alban/Cours/Rage/glm"/>
+					<Add directory="/Users/alban/Cours/Animation/RAGE/Release"/>
+					<Add directory="/Users/alban/Cours/Animation/RAGE"/>
+					<Add directory="/Users/alban/Cours/Animation/RAGE/Release/RAGE_autogen/include"/>
+					<Add directory="/Users/alban/Cours/Animation/RAGE/src"/>
+					<Add directory="/Users/alban/Cours/Animation/RAGE/glm"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/Users/alban/Qt/5.11.2/clang_64/lib/QtWidgets.framework"/>
 					<Add directory="/Users/alban/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers"/>
@@ -65,36 +65,38 @@
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers"/>
 					<Add directory="/Users/alban/Qt/5.11.2/clang_64/lib/QtOpenGL.framework"/>
 					<Add directory="/Users/alban/Qt/5.11.2/clang_64/lib/QtOpenGL.framework/Headers"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks"/>
+					<Add directory="/usr/local/Cellar/gcc/8.2.0/lib/gcc/8/gcc/x86_64-apple-darwin18.0.0/8.2.0/../../../../../../include/c++/8.2.0"/>
+					<Add directory="/usr/local/Cellar/gcc/8.2.0/lib/gcc/8/gcc/x86_64-apple-darwin18.0.0/8.2.0/../../../../../../include/c++/8.2.0/x86_64-apple-darwin18.0.0"/>
+					<Add directory="/usr/local/Cellar/gcc/8.2.0/lib/gcc/8/gcc/x86_64-apple-darwin18.0.0/8.2.0/../../../../../../include/c++/8.2.0/backward"/>
+					<Add directory="/usr/local/Cellar/gcc/8.2.0/lib/gcc/8/gcc/x86_64-apple-darwin18.0.0/8.2.0/include"/>
+					<Add directory="/usr/local/Cellar/gcc/8.2.0/lib/gcc/8/gcc/x86_64-apple-darwin18.0.0/8.2.0/include-fixed"/>
+					<Add directory="/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 RAGE"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Animation/RAGE/Release/Makefile&quot;  VERBOSE=1 RAGE"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Animation/RAGE/Release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Animation/RAGE/Release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Animation/RAGE/Release/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="RAGE/fast">
-				<Option output="/Users/alban/Cours/Rage/bin/RAGE" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/alban/Cours/Rage/bin"/>
+				<Option output="/Users/alban/Cours/Animation/RAGE/bin/RAGE" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/alban/Cours/Animation/RAGE/bin"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
-				<Option compiler="clang"/>
+				<Option compiler="gcc"/>
 				<Compiler>
 					<Add option="-DQT_WIDGETS_LIB"/>
 					<Add option="-DQT_GUI_LIB"/>
 					<Add option="-DQT_CORE_LIB"/>
 					<Add option="-DQT_OPENGL_LIB"/>
 					<Add option="-DQT_NO_DEBUG"/>
-					<Add directory="/Users/alban/Cours/Rage/Release"/>
-					<Add directory="/Users/alban/Cours/Rage"/>
-					<Add directory="/Users/alban/Cours/Rage/Release/RAGE_autogen/include"/>
-					<Add directory="/Users/alban/Cours/Rage/src"/>
-					<Add directory="/Users/alban/Cours/Rage/glm"/>
+					<Add directory="/Users/alban/Cours/Animation/RAGE/Release"/>
+					<Add directory="/Users/alban/Cours/Animation/RAGE"/>
+					<Add directory="/Users/alban/Cours/Animation/RAGE/Release/RAGE_autogen/include"/>
+					<Add directory="/Users/alban/Cours/Animation/RAGE/src"/>
+					<Add directory="/Users/alban/Cours/Animation/RAGE/glm"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/Users/alban/Qt/5.11.2/clang_64/lib/QtWidgets.framework"/>
 					<Add directory="/Users/alban/Qt/5.11.2/clang_64/lib/QtWidgets.framework/Headers"/>
@@ -106,377 +108,409 @@
 					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers"/>
 					<Add directory="/Users/alban/Qt/5.11.2/clang_64/lib/QtOpenGL.framework"/>
 					<Add directory="/Users/alban/Qt/5.11.2/clang_64/lib/QtOpenGL.framework/Headers"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks"/>
+					<Add directory="/usr/local/Cellar/gcc/8.2.0/lib/gcc/8/gcc/x86_64-apple-darwin18.0.0/8.2.0/../../../../../../include/c++/8.2.0"/>
+					<Add directory="/usr/local/Cellar/gcc/8.2.0/lib/gcc/8/gcc/x86_64-apple-darwin18.0.0/8.2.0/../../../../../../include/c++/8.2.0/x86_64-apple-darwin18.0.0"/>
+					<Add directory="/usr/local/Cellar/gcc/8.2.0/lib/gcc/8/gcc/x86_64-apple-darwin18.0.0/8.2.0/../../../../../../include/c++/8.2.0/backward"/>
+					<Add directory="/usr/local/Cellar/gcc/8.2.0/lib/gcc/8/gcc/x86_64-apple-darwin18.0.0/8.2.0/include"/>
+					<Add directory="/usr/local/Cellar/gcc/8.2.0/lib/gcc/8/gcc/x86_64-apple-darwin18.0.0/8.2.0/include-fixed"/>
+					<Add directory="/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/System/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 RAGE/fast"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Animation/RAGE/Release/Makefile&quot;  VERBOSE=1 RAGE/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Animation/RAGE/Release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Animation/RAGE/Release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Animation/RAGE/Release/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="RAGE_autogen">
-				<Option working_dir="/Users/alban/Cours/Rage/Release"/>
+				<Option working_dir="/Users/alban/Cours/Animation/RAGE/Release"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 RAGE_autogen"/>
-					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Rage/Release/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Animation/RAGE/Release/Makefile&quot;  VERBOSE=1 RAGE_autogen"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Animation/RAGE/Release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Animation/RAGE/Release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/Users/alban/Cours/Animation/RAGE/Release/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/alban/Cours/Rage/Release/RAGE_autogen/mocs_compilation.cpp">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/Release/RAGE_autogen/mocs_compilation.cpp">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/Main/main.cpp">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/Main/main.cpp">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/Math/Algorithm.h">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/Math/Algorithm.h">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/Math/Algorithm.inl">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/Math/Algorithm.inl">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/Math/RayCast.h">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/Math/DualQuaternion.cpp">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/Math/RayCast.inl">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/Math/DualQuaternion.h">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/Math/distance.h">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/Math/Quaternion.cpp">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/Math/dualquaternion.h">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/Math/Quaternion.h">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/Math/ray.h">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/Math/RayCast.h">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/Math/utils.h">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/Math/RayCast.inl">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Buffers/DataBuffers/Float3BufferObject.cpp">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/Math/distance.h">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Buffers/DataBuffers/Float3BufferObject.h">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/Math/ray.h">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Buffers/FrameBuffers/FrameBuffer.cpp">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/Math/utils.h">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Buffers/FrameBuffers/FrameBuffer.h">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Buffers/DataBuffers/Float3BufferObject.cpp">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Buffers/FrameBuffers/GBuffer.cpp">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Buffers/DataBuffers/Float3BufferObject.h">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Buffers/FrameBuffers/GBuffer.h">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Buffers/FrameBuffers/FrameBuffer.cpp">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Buffers/FrameBuffers/RGBbuffer.cpp">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Buffers/FrameBuffers/FrameBuffer.h">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Buffers/FrameBuffers/RGBbuffer.h">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Buffers/FrameBuffers/GBuffer.cpp">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Buffers/FrameBuffers/RedBuffer.cpp">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Buffers/FrameBuffers/GBuffer.h">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Buffers/FrameBuffers/RedBuffer.h">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Buffers/FrameBuffers/RGBbuffer.cpp">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Buffers/FrameBuffers/Renderbuffer.cpp">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Buffers/FrameBuffers/RGBbuffer.h">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Buffers/FrameBuffers/Renderbuffer.h">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Buffers/FrameBuffers/RedBuffer.cpp">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Buffers/FrameBuffers/Textures/RedTexture.cpp">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Buffers/FrameBuffers/RedBuffer.h">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Buffers/FrameBuffers/Textures/RedTexture.h">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Buffers/FrameBuffers/Renderbuffer.cpp">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Camera/Camera.cpp">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Buffers/FrameBuffers/Renderbuffer.h">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Camera/Camera.hpp">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Buffers/FrameBuffers/Textures/RedTexture.cpp">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Camera/TrackBall.cpp">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Buffers/FrameBuffers/Textures/RedTexture.h">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Camera/TrackBall.hpp">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Camera/Camera.hpp">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Animation/AnimatedMesh.cpp">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Camera/TrackBall.cpp">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Animation/AnimatedMesh.h">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Camera/TrackBall.hpp">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Animation/AnimatedModel.cpp">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Camera/camera.cpp">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Animation/AnimatedModel.h">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Camera/camera.hpp">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Animation/Bone.cpp">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Object/Animation/AnimatedMesh.cpp">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Animation/Bone.h">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Object/Animation/AnimatedMesh.h">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Model/AABB.cpp">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Object/Animation/AnimatedModel.cpp">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Model/AABB.h">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Object/Animation/AnimatedModel.h">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Model/BasicModel.cpp">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Object/Animation/Bone.cpp">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Model/BasicModel.h">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Object/Animation/Bone.h">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Model/Mesh.cpp">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Object/Model/AABB.cpp">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Model/Mesh.h">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Object/Model/AABB.h">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Model/Model.cpp">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Object/Model/BasicModel.cpp">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Model/Model.h">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Object/Model/BasicModel.h">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Model/OBB.cpp">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Object/Model/OBB.cpp">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Model/OBB.h">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Object/Model/OBB.h">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Model/ShapeModel.cpp">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Object/Model/ShapeModel.cpp">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Model/ShapeModel.h">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Object/Model/ShapeModel.h">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Shapes/Cristal.cpp">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Object/Model/mesh.cpp">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Shapes/Cristal.h">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Object/Model/mesh.h">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Shapes/Cube.cpp">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Object/Model/model.cpp">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Shapes/Cube.h">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Object/Model/model.h">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Shapes/Cylinder.cpp">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Object/Shapes/Cristal.cpp">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Shapes/Cylinder.h">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Object/Shapes/Cristal.h">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Shapes/Shape.h">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Object/Shapes/Cube.cpp">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Shapes/Sphere.cpp">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Object/Shapes/Cube.h">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Shapes/Sphere.h">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Object/Shapes/Cylinder.cpp">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Shapes/Tetrahedron.cpp">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Object/Shapes/Cylinder.h">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Shapes/Tetrahedron.h">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Object/Shapes/Shape.h">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Object/Shapes/shapes.h">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Object/Shapes/Sphere.cpp">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Renderer/Renderer.cpp">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Object/Shapes/Sphere.h">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Renderer/Renderer.h">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Object/Shapes/Tetrahedron.cpp">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Renderer/scene.cpp">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Object/Shapes/Tetrahedron.h">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Renderer/scene.h">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Object/Shapes/shapes.h">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Shader/PostProcess/BLOOM.frag.glsl">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Renderer/Renderer.cpp">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Shader/PostProcess/BLOOMBLUR.frag.glsl">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Renderer/Renderer.h">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Shader/PostProcess/FXAA.frag.glsl">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Renderer/RendererGPU.cpp">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Shader/PostProcess/SSAO.frag.glsl">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Renderer/RendererGPU.h">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Shader/PostProcess/SSAOBLUR.frag.glsl">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Renderer/RendererQuat.cpp">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Shader/PostProcess/hdr.frag.glsl">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Renderer/RendererQuat.h">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Shader/PostProcess/pass.vert.glsl">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Renderer/scene.cpp">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Shader/PostProcess/render.frag.glsl">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Renderer/scene.h">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Shader/Process/GBuffer.frag.glsl">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Shader/PostProcess/BLOOM.frag.glsl">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Shader/Process/basic.frag.glsl">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Shader/PostProcess/BLOOMBLUR.frag.glsl">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/Shader/Process/basic.vert.glsl">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Shader/PostProcess/FXAA.frag.glsl">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/ShadersUtils/ShaderLoader.cpp">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Shader/PostProcess/SSAO.frag.glsl">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/ShadersUtils/ShaderLoader.h">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Shader/PostProcess/SSAOBLUR.frag.glsl">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/ShadersUtils/postprocess.cpp">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Shader/PostProcess/hdr.frag.glsl">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/ShadersUtils/postprocess.h">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Shader/PostProcess/pass.vert.glsl">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/ShadersUtils/shadermanager.cpp">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Shader/PostProcess/render.frag.glsl">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/ShadersUtils/shadermanager.h">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Shader/Process/GBuffer.frag.glsl">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/OpenGL/opengl_stuff.h">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Shader/Process/animGPU.vert.glsl">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/Qt/mainwindow.cpp">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Shader/Process/animQuat.vert.glsl">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/Qt/mainwindow.h">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Shader/Process/basic.frag.glsl">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/Qt/mainwindow.ui">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/Shader/Process/basic.vert.glsl">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/Qt/myopenglwidget.cpp">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/ShadersUtils/ShaderLoader.cpp">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/src/Qt/myopenglwidget.h">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/ShadersUtils/ShaderLoader.h">
 			<Option target="RAGE"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/CMakeLists.txt">
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/ShadersUtils/postprocess.cpp">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/ShadersUtils/postprocess.h">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/ShadersUtils/shadermanager.cpp">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/ShadersUtils/shadermanager.h">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/OpenGL/opengl_stuff.h">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/Qt/mainwindow.cpp">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/Qt/mainwindow.h">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/Qt/mainwindow.ui">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/Qt/myopenglwidget.cpp">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/src/Qt/myopenglwidget.h">
+			<Option target="RAGE"/>
+		</Unit>
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Widgets/Qt5WidgetsConfig.cmake">
-			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Widgets\"/>
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/../../../Qt/5.11.2/clang_64/lib/cmake/Qt5Widgets/Qt5WidgetsConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Widgets\"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Widgets/Qt5WidgetsConfigExtras.cmake">
-			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Widgets\"/>
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/../../../Qt/5.11.2/clang_64/lib/cmake/Qt5Widgets/Qt5WidgetsConfigExtras.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Widgets\"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Widgets/Qt5WidgetsConfigVersion.cmake">
-			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Widgets\"/>
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/../../../Qt/5.11.2/clang_64/lib/cmake/Qt5Widgets/Qt5WidgetsConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Widgets\"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Widgets/Qt5WidgetsMacros.cmake">
-			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Widgets\"/>
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/../../../Qt/5.11.2/clang_64/lib/cmake/Qt5Widgets/Qt5WidgetsMacros.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Widgets\"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Widgets/Qt5Widgets_QMacStylePlugin.cmake">
-			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Widgets\"/>
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/../../../Qt/5.11.2/clang_64/lib/cmake/Qt5Widgets/Qt5Widgets_QMacStylePlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Widgets\"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5GuiConfig.cmake">
-			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/../../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5GuiConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5GuiConfigExtras.cmake">
-			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/../../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5GuiConfigExtras.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5GuiConfigVersion.cmake">
-			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/../../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5GuiConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QCocoaIntegrationPlugin.cmake">
-			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/../../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QCocoaIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QFlatpakThemePlugin.cmake">
-			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/../../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QFlatpakThemePlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QGifPlugin.cmake">
-			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/../../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QGifPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QICNSPlugin.cmake">
-			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/../../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QICNSPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QICOPlugin.cmake">
-			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/../../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QICOPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QJpegPlugin.cmake">
-			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/../../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QJpegPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QMacHeifPlugin.cmake">
-			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/../../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QMacHeifPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QMacJp2Plugin.cmake">
-			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/../../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QMacJp2Plugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QMinimalIntegrationPlugin.cmake">
-			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/../../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QMinimalIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QOffscreenIntegrationPlugin.cmake">
-			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/../../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QOffscreenIntegrationPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QTgaPlugin.cmake">
-			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/../../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QTgaPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QTiffPlugin.cmake">
-			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/../../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QTiffPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QTuioTouchPlugin.cmake">
-			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/../../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QTuioTouchPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QWbmpPlugin.cmake">
-			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/../../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QWbmpPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QWebpPlugin.cmake">
-			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/../../../Qt/5.11.2/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QWebpPlugin.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Gui\"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Core/Qt5CoreConfig.cmake">
-			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Core\"/>
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/../../../Qt/5.11.2/clang_64/lib/cmake/Qt5Core/Qt5CoreConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Core\"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Core/Qt5CoreConfigExtras.cmake">
-			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Core\"/>
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/../../../Qt/5.11.2/clang_64/lib/cmake/Qt5Core/Qt5CoreConfigExtras.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Core\"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Core/Qt5CoreConfigExtrasMkspecDir.cmake">
-			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Core\"/>
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/../../../Qt/5.11.2/clang_64/lib/cmake/Qt5Core/Qt5CoreConfigExtrasMkspecDir.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Core\"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Core/Qt5CoreConfigVersion.cmake">
-			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Core\"/>
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/../../../Qt/5.11.2/clang_64/lib/cmake/Qt5Core/Qt5CoreConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Core\"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5Core/Qt5CoreMacros.cmake">
-			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Core\"/>
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/../../../Qt/5.11.2/clang_64/lib/cmake/Qt5Core/Qt5CoreMacros.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5Core\"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5OpenGL/Qt5OpenGLConfig.cmake">
-			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5OpenGL\"/>
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/../../../Qt/5.11.2/clang_64/lib/cmake/Qt5OpenGL/Qt5OpenGLConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5OpenGL\"/>
 		</Unit>
-		<Unit filename="/Users/alban/Cours/Rage/../../Qt/5.11.2/clang_64/lib/cmake/Qt5OpenGL/Qt5OpenGLConfigVersion.cmake">
-			<Option virtualFolder="CMake Files\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5OpenGL\"/>
+		<Unit filename="/Users/alban/Cours/Animation/RAGE/../../../Qt/5.11.2/clang_64/lib/cmake/Qt5OpenGL/Qt5OpenGLConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\Qt\5.11.2\clang_64\lib\cmake\Qt5OpenGL\"/>
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>

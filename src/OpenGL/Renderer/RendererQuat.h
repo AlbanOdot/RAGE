@@ -22,7 +22,7 @@ class RendererQuat : public Scene
 public:
   RendererQuat(const int width, const int height,const std::string& filename);
   RendererQuat(const int width, const int height) : Scene(width,height){}
-  RendererQuat(const int width, const int height, bool animation);
+  RendererQuat(const int width, const int height, int metrique, int model);
 
   void resize(int width, int height) override;
   void draw() override;

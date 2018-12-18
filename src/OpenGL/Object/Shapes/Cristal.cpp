@@ -5,9 +5,12 @@ Cristal::Cristal(glm::vec3 origin , glm::vec3 direction, float length, float rad
   : Shape(CRISTAL), m_origin(origin), m_direction(direction), m_length(length), m_radius(radius)
 {
   //Generate 4 points
-  glm::vec3 b0 = origin + glm::vec3(0.,0.5 * radius,0.0) + 0.3f * direction;
-  glm::vec3 b1 = origin + glm::vec3(0.,-0.5 * radius,0.0) + 0.3f * direction;
-  glm::vec3 b2 = origin + glm::vec3(0.0,0.0,0.5 * radius) + 0.3f * direction;
+  glm::vec3 base1;
+  glm::vec3 base2;
+  Math::Algorithm::generateOrthonormalBasisFromDirection(direction,base1,base2);
+  glm::vec3 b0 = origin + 0.5f*radius*base1 + 0.3f * direction;
+  glm::vec3 b1 = origin + -0.5f*radius*(base1+base2) + 0.3f * direction;
+  glm::vec3 b2 = origin + 0.5f * radius*base2 + 0.3f * direction;
   glm::vec3 top = origin + length * direction;
   glm::vec3 bottom = origin;
 

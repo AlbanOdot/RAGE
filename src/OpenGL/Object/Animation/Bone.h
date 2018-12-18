@@ -14,7 +14,7 @@ public:
   /* Hierarchy functions */
   Bone            addChild(float length = 2.0f, float radius = 0.3f);
   Bone            addChild(glm::vec3 direction, float length = 2.0f, float radius = 0.3f);
-  Bone            addChild(deque<int> path,glm::vec3 direction, float length, float radius);
+  Bone            addChild(deque<int> path,glm::vec3 direction, float length = 2.0f, float radius = 0.3f);
   void            addChild(Bone& child);
   virtual Bone*   clickOnSkeletton(Ray& r);
   void            addParent(const Bone& parent);
