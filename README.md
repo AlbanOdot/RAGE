@@ -4,12 +4,19 @@
 Build instructions :
 
 cd RAGE/Tools/assimp/build
+
 cmake .. -DCMAKE_INSTALL_PREFIX="THE ABSOLUTE PATH TO THE install SUBDIRECTORY"
+
 make -j
+
 make install
+
 cd ../../..
+
 mkdir Release
+
 cd Release
+
 cmake ..
 
 The binany is in the bin folder
