@@ -73,7 +73,6 @@ Renderer::Renderer(const int width, const int height, int metrique, int model) :
         skeletton1.addChild(glm::vec3(1.0,-0.1,0.0));
         //leg2
         skeletton1.addChild(glm::vec3(1.0,0.1,0.0));
-
         m_animated_objects[0].attachSkeletton(skeletton1);
       }
       break;
@@ -131,6 +130,13 @@ void Renderer::draw(){
       //Draw the bones
       glDisable(GL_DEPTH_TEST);
       for(const auto& bone : animated_model.skeletton().boneList()){
+          glUniform1i(glGetUniformLocation(GBUFFERRENDER, "animated"), 0);
+          glUniformMatrix4fv( glGetUniformLocation(GBUFFERRENDER, "models"), 1, GL_FALSE,glm::value_ptr(bone->model()));
+          bone->draw();
+        }
+    }
+  for(auto skeletton : m_bones){
+      for(auto& bone : skeletton.boneList()){
           glUniform1i(glGetUniformLocation(GBUFFERRENDER, "animated"), 0);
           glUniformMatrix4fv( glGetUniformLocation(GBUFFERRENDER, "models"), 1, GL_FALSE,glm::value_ptr(bone->model()));
           bone->draw();

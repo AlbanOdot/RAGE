@@ -30,6 +30,6 @@ void main()
     vposition = vec3(view * model * vec4(iposition, 1.0f));
     //Passthrough
     vnormal = normalize(vec3(model * vec4(inormal, 1.0f)));
-    vcolor = vec4(0.20);
+    vcolor = vec4(0.40);
     vtexCoord = itexCoord;
 }

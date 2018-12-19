@@ -185,7 +185,7 @@ void AnimatedModel::computeWeights(){
               switch(m_metrique){
                 case 0:
                   d = Math::Distance::segmentEuclid(bone->origin(), bone->origin() + bone->length() * bone->direction(),vertex);
-                  w = d > m_max_dist ? 0.f : d != 0.f ? 1.f/d : 1.f;
+                  w = d > m_max_dist ? 1.f/(35.f * d) : d != 0.f ? 1.f/d : 1.f;
                   break;
                 case 1:
                   float d = Math::Distance::segmentRadial(bone->origin(), bone->origin() + bone->length() * bone->direction(),vertex,m_max_dist,4);
@@ -266,7 +266,7 @@ void AnimatedModel::tresholdUp(bool up){
     }else{
       m_max_dist = up ? m_max_dist + 0.05f : m_max_dist ;
     }
-  cout << "Threshold is now" << m_max_dist<<endl;
+  cout << "Distance threshold is now : " << m_max_dist<<endl;
   computeWeights();
 }
 
